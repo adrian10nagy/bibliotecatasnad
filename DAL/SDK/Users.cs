@@ -26,5 +26,10 @@ namespace DAL.SDK
         }
 
         #endregion
+
+        public int AddUser(User user)
+        {
+            return _repository.InsertUser(user);
+        }
     }
 }

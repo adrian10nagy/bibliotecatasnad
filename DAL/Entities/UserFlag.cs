@@ -7,6 +7,5 @@ namespace DAL.Entities
     public enum UserFlag
     {
         Default = 0,
-
     }
 }

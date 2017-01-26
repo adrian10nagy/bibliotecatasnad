@@ -28,6 +28,7 @@
         public Books Books { get { return new Books(); } }
         public BookDomains BookDomains { get { return new BookDomains(); } }
         public Loans Loans { get { return new Loans(); } }
+        public Localities Localities { get { return new Localities(); } }
         public Publishers Publishers { get { return new Publishers(); } }
 
         public void Dispose()

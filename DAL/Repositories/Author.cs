@@ -9,7 +9,7 @@ namespace DAL.Repositories
     public interface IAuthorRepository
     {
         IEnumerable<Author> GetAuthorsAll();
-        int AddAuthor(Author author);
+        int AddAuthor(string author);
     }
 
     public partial class Repository : IAuthorRepository
@@ -30,14 +30,14 @@ namespace DAL.Repositories
             return authors;
         }
 
-        public int AddAuthor(Author author)
+        public int AddAuthor(string author)
         {
-            int authorNr = 1;
+            int authorNr = 0;
 
             _dbRead.Execute(
                "AuthorsAdd",
            new[] { 
-                new SqlParameter("@name", author.Name),
+                new SqlParameter("@name", author),
             },
             r => authorNr = Read<int>(r, "Id"));
 

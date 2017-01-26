@@ -3,7 +3,7 @@ namespace DAL.Entities
 {
     public enum BookFormat
     {
-        Nesetat = 0,
+        Nesetată = 0,
         Hârtie = 1,
         CasetăAudio = 2,
         CasetăVideo = 3,

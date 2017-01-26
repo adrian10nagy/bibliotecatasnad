@@ -23,5 +23,10 @@ namespace DAL.SDK
         }
 
         #endregion
+
+        public int AddAuthor(string name)
+        {
+            return _repository.AddAuthor(name);
+        }
     }
 }

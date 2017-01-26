@@ -18,5 +18,7 @@ namespace DAL.Entities
         public Locality Locality;
         public UserFlag Flags;
         public UserType UserType;
+        public Nationality Nationality;
+        public Gender Gender;
     }
 }

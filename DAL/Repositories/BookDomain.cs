@@ -2,10 +2,12 @@
 {
     using DAL.Entities;
     using System.Collections.Generic;
+    using System.Data.SqlClient;
 
     public interface IBookDomainsRepository
     {
         IEnumerable<BookDomain> GetAllBookDomains();
+        int AddBookDomain(string name);
     }
 
     public partial class Repository : IBookDomainsRepository
@@ -29,5 +31,19 @@
         }
 
         #endregion
+
+        public int AddBookDomain(string author)
+        {
+            int bookDomainNr = 0;
+
+            _dbRead.Execute(
+               "BookDomainsAdd",
+           new[] { 
+                new SqlParameter("@name", author),
+            },
+            r => bookDomainNr = Read<int>(r, "Id"));
+
+            return bookDomainNr;
+        }
     }
 }

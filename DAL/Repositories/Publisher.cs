@@ -9,6 +9,7 @@ namespace DAL.Repositories
     public interface IPublisherRepository
     {
         IEnumerable<Publisher> GetAllPublishers();
+        int AddPublisher(string name);
     }
 
     public partial class Repository : IPublisherRepository
@@ -32,5 +33,18 @@ namespace DAL.Repositories
         }
 
         #endregion
+        public int AddPublisher(string name)
+        {
+            int publisherNr = 0;
+
+            _dbRead.Execute(
+               "PublishersAdd",
+           new[] { 
+                new SqlParameter("@name", name),
+            },
+            r => publisherNr = Read<int>(r, "Id"));
+
+            return publisherNr;
+        }
     }
 }

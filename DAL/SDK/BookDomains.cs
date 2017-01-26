@@ -22,6 +22,11 @@ namespace DAL.SDK
         }
 
         #endregion
+
+        public int AddBookDomain(string name)
+        {
+            return _repository.AddBookDomain(name);
+        }
     }
 }
 

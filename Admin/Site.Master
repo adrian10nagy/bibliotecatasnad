@@ -22,7 +22,7 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="index.html" class="site_title"><i class="fa fa-paw"></i><span>Gentelella Alela!</span></a>
+                            <a href="~/" class="site_title" runat="server"><i class="fa fa-paw"></i><span>Gentelella Alela!</span></a>
                         </div>
 
                         <div class="clearfix"></div>
@@ -48,15 +48,15 @@
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-home"></i>Home <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="Dashboard.aspx">Dashboard</a></li>
-                                            <li><a href="index2.html">Dashboard2</a></li>
+                                            <li><a href="Dashboard.aspx" runat="server">Dashboard</a></li>
+                                            <li><a href="index2.html" runat="server">Dashboard2</a></li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-clone"></i>Cărți <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="Books/Search.aspx">Caută</a></li>
-                                            <li><a href="Books/Add.aspx">Adaugă</a></li>
-                                            <li><a href="Books/Manage.aspx">Editează/ Șterge</a></li>
+                                            <li><a href="~/Books/Search.aspx" runat="server">Caută</a></li>
+                                            <li><a href="~/Books/Add.aspx" runat="server">Adaugă</a></li>
+                                            <li><a href="~/Books/Manage.aspx" runat="server">Editează/ Șterge</a></li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-desktop"></i>UI Elements <span class="fa fa-chevron-down"></span></a>
@@ -259,22 +259,22 @@
                 <!-- /top navigation -->
 
                 <asp:ScriptManager runat="server">
-            <Scripts>
-                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
-                <%--Framework Scripts--%>
-                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
-                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
-                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
-                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
-                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
-                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
-                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
-                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                    <Scripts>
+                        <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                        <%--Framework Scripts--%>
+                        <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                        <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                        <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                        <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                        <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                        <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                        <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                        <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
 
-                <asp:ScriptReference Name="WebFormsBundle" />
-                <%--Site Scripts--%>
-            </Scripts>
-        </asp:ScriptManager>
+                        <asp:ScriptReference Name="WebFormsBundle" />
+                        <%--Site Scripts--%>
+                    </Scripts>
+                </asp:ScriptManager>
 
                 <!-- page content -->
                 <div class="right_col" role="main">

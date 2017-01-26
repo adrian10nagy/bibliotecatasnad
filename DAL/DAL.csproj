@@ -49,9 +49,11 @@
     <Compile Include="Entities\BookFormat.cs" />
     <Compile Include="Entities\BookLanguage.cs" />
     <Compile Include="Entities\BookSubject.cs" />
+    <Compile Include="Entities\Gender.cs" />
     <Compile Include="Entities\Library.cs" />
     <Compile Include="Entities\Loan.cs" />
     <Compile Include="Entities\Locality.cs" />
+    <Compile Include="Entities\Nationality.cs" />
     <Compile Include="Entities\Publisher.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserFlag.cs" />
@@ -61,6 +63,7 @@
     <Compile Include="Repositories\Book.cs" />
     <Compile Include="Repositories\BookDomain.cs" />
     <Compile Include="Repositories\Loan.cs" />
+    <Compile Include="Repositories\Locality.cs" />
     <Compile Include="Repositories\Publisher.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\User.cs" />
@@ -69,6 +72,7 @@
     <Compile Include="SDK\Books.cs" />
     <Compile Include="SDK\Kit.cs" />
     <Compile Include="SDK\Loans.cs" />
+    <Compile Include="SDK\Localities.cs" />
     <Compile Include="SDK\Publishers.cs" />
     <Compile Include="SDK\Users.cs" />
     <Compile Include="Settings\Configure.cs" />

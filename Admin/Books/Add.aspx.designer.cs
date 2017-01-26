@@ -49,22 +49,22 @@ namespace Admin.Books {
         protected global::System.Web.UI.WebControls.Label lblBookAuthors;
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// lblBookAuthorsStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.Label lblBookAuthorsStatus;
         
         /// <summary>
-        /// bulBookAuthorsItems control.
+        /// bltBookAuthorsSelected control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.BulletedList bulBookAuthorsItems;
+        protected global::System.Web.UI.WebControls.BulletedList bltBookAuthorsSelected;
         
         /// <summary>
         /// txtBookAuthorsSearch control.
@@ -73,25 +73,25 @@ namespace Admin.Books {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBookAuthorsSearch;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtBookAuthorsSearch;
         
         /// <summary>
-        /// drpBookAuthors control.
+        /// btnBookauthorAddSelected control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpBookAuthors;
+        protected global::System.Web.UI.WebControls.Button btnBookauthorAddSelected;
         
         /// <summary>
-        /// lnkBookAuthorsAdd control.
+        /// btnBookAuthorsAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkBookAuthorsAdd;
+        protected global::System.Web.UI.WebControls.Button btnBookAuthorsAdd;
         
         /// <summary>
         /// lblBookPublisher control.
@@ -109,16 +109,7 @@ namespace Admin.Books {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBookPublisher;
-        
-        /// <summary>
-        /// drpBookPublisher control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpBookPublisher;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtBookPublisher;
         
         /// <summary>
         /// lblBookInternalNr control.
@@ -208,16 +199,7 @@ namespace Admin.Books {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBookDomain;
-        
-        /// <summary>
-        /// drpBookDomain control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpBookDomain;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtBookDomain;
         
         /// <summary>
         /// lblBookPublishYear control.
@@ -307,7 +289,7 @@ namespace Admin.Books {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBookSubject;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtBookSubject;
         
         /// <summary>
         /// btnSubmit control.

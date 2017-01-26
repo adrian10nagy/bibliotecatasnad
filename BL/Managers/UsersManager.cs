@@ -15,5 +15,10 @@ namespace BL.Managers
         {
             return Kit.Instance.Users.GetUserCount();
         }
+
+        public static int Add(User user)
+        {
+            return Kit.Instance.Users.AddUser(user);
+        }
     }
 }

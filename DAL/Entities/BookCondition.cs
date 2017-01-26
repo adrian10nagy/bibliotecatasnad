@@ -3,9 +3,9 @@ namespace DAL.Entities
 {
     public enum BookCondition
     {
-        Default = 0,
-        New = 1,
-        Broken = 2,
-        Unreadable = 3
+        Standard = 1,
+        Nouă = 2,
+        Avariată = 3,
+        Necitibilă = 4
     }
 }

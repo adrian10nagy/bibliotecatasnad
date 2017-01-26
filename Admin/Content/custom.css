@@ -4867,23 +4867,65 @@ ul.notifications {
 
 /** /Dropzone.js **/
 
-.formCreateArea{
+.formCreateArea {
     width: 50%;
     margin-left: auto;
     margin-right: auto;
 }
 
-.formCreateTwoColumns{
-    width:50%;
+.formCreateTwoColumns {
+    width: 50%;
 }
 
-.bookAuthorsItems li{
+.bookAuthorsSearchMain {
+    padding: 10px;
+}
+
+.searchMainItem {
+    background-color: white;
+    padding: 6px;
+}
+
+    .searchMainItem:hover {
+        cursor: pointer;
+        background-color: #f5f5f5;
+    }
+
+.displayImportant {
+    display: inline-block !important;
+}
+
+#bookAuthorsAddNewAuthor {
     padding: 5px;
 }
 
-.bookAuthorsItems li:hover{
-    background-color:red;
-    text-decoration:line-through;
-    cursor:pointer;
-    cursor:pointer;
+    #bookAuthorsAddNewAuthor:hover {
+        background-color: #f5f5f5;
+        cursor: pointer;
+    }
+
+.bookAddNew {
+    padding: 5px;
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+    .bookAddNew:hover {
+    }
+
+.searchMainSuggestions {
+    background-color: white;
+    border-radius: 3px;
+    border: 1px solid;
+}
+
+.divBookAuthorsSelected {
+    margin-left: 20px;
+    padding: 4px;
+    margin-top: 5px;
+}
+
+.requiredField{
+    color:red;
+    padding:3px;
 }

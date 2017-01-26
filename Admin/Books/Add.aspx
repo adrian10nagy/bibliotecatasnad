@@ -10,84 +10,83 @@
             <asp:TextBox ID="txtBookTitle" runat="server" CssClass="form-control"></asp:TextBox>
             <asp:RequiredFieldValidator runat="server" ControlToValidate="txtBookTitle" CssClass="field-validation-error" ErrorMessage="Titlul este obligatoriu." />
         </div>
+
         <div>
-            <asp:Label ID="lblBookAuthors" runat="server" Text="Autori(*)" AssociatedControlID="drpBookAuthors"></asp:Label>
-            <asp:UpdatePanel runat="server" ID="UpdatePanel1" UpdateMode="Conditional">
-                <ContentTemplate>
-
-
-                    <asp:BulletedList ID="bulBookAuthorsItems" runat="server" CssClass="bookAuthorsItems" OnClick="bulBookAuthorsItems_Click" DisplayMode="LinkButton"></asp:BulletedList>
-                    <asp:TextBox ID="txtBookAuthorsSearch" runat="server" AutoPostBack="true" CssClass="form-control"
-                        OnTextChanged="txtBookAuthorsSearch_TextChanged"
-                        onkeyup="RefreshUpdatePanel();"></asp:TextBox>
-
-
-
-                    <asp:DropDownList ID="drpBookAuthors" runat="server"
-                        CssClass="form-control" Visible="false" AutoPostBack="true"
-                        OnSelectedIndexChanged="drpBookAuthors_SelectedIndexChanged" onmouseover="this.size=5;" onmouseout="this.size=1">
-                    </asp:DropDownList>
-                    <asp:LinkButton ID="lnkBookAuthorsAdd" runat="server" OnClick="lnkBookAuthorsAdd_Click" CausesValidation="false">Adaugă autor +</asp:LinkButton>
-                </ContentTemplate>
-                <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="txtBookAuthorsSearch" />
-                </Triggers>
-            </asp:UpdatePanel>
+            <asp:Label ID="lblBookAuthors" runat="server" Text="Autori(*)"></asp:Label>
+            <asp:Label ID="lblBookAuthorsStatus" runat="server" Text=""></asp:Label>
+            <asp:BulletedList ID="bltBookAuthorsSelected" runat="server"  ClientIDMode="Static">
+            </asp:BulletedList>
+            <div class="bookAuthorsSearchMain">
+                <input type="text" id="txtBookAuthorsSearch" class="form-control" runat="server" ClientIDMode="Static" />
+                <asp:Button ID="btnBookauthorAddSelected" runat="server" Text="Adaugă autor" OnClick="btnBookauthorAddSelected_Click" CausesValidation="false"/>
+                <div id="divBookAuthorsSuggestion">
+                </div>
+            </div>
+                <asp:Button ID="btnBookAuthorsAdd" runat="server" Text="Adaugă mai mulți autori +" OnClick="btnBookAuthorsAdd_Click" CausesValidation="false"/>
         </div>
         <div>
-            <asp:Label ID="lblBookPublisher" runat="server" Text="Editura(*)" AssociatedControlID="txtBookPublisher"></asp:Label>
-            <asp:TextBox ID="txtBookPublisher" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:DropDownList ID="drpBookPublisher" runat="server" CssClass="form-control"></asp:DropDownList>
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtBookPublisher" CssClass="field-validation-error" ErrorMessage="Editura este obligatorie." />
+            <div>
+                <asp:Label ID="lblBookPublisher" runat="server" Text="Editura(*)"></asp:Label>
+                <input type="text" ID="txtBookPublisher" class="form-control" runat="server"  ClientIDMode="Static" />
+                <div id="divBookPublishersSuggestion">
+                </div>
+            </div>
+            <div>
+                <div class="formCreateTwoColumns">
+                    <asp:Label ID="lblBookInternalNr" runat="server" Text="Nr Intern(*)" AssociatedControlID="txtBookInternalNr"></asp:Label>
+                    <asp:TextBox ID="txtBookInternalNr" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="txtBookInternalNr" CssClass="field-validation-error" ErrorMessage="Numarul intern este obligatoriu." />
+                </div>
+                <div class="formCreateTwoColumns">
+                    <asp:Label ID="lblBookIsbn" runat="server" Text="ISBN(*)" AssociatedControlID="txtBookIsbn"></asp:Label>
+                    <asp:TextBox ID="txtBookIsbn" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="txtBookIsbn" CssClass="field-validation-error" ErrorMessage="ISBN-ul este obligatoriu." />
+                </div>
+            </div>
+            <div>
+                <div class="formCreateTwoColumns">
+                    <asp:Label ID="lblBookNrPages" runat="server" Text="Număr pagini(*)" AssociatedControlID="txtBookNrPages"></asp:Label>
+                    <asp:TextBox ID="txtBookNrPages" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="txtBookNrPages" CssClass="field-validation-error" ErrorMessage="Numarul paginilor este obliogatorie" />
+                </div>
+                <div class="formCreateTwoColumns">
+                    <asp:Label ID="lblBookLanguage" runat="server" Text="Limba(*)" AssociatedControlID="drpBookLanguage"></asp:Label>
+                    <asp:DropDownList ID="drpBookLanguage" runat="server" CssClass="form-control"></asp:DropDownList>
+                </div>
+            </div>
+            <div>
+                <div class="formCreateTwoColumns">
+                    <asp:Label ID="lblBookDomain" runat="server" Text="Domeniul" ></asp:Label>
+                    <input type="text" id="txtBookDomain" class="form-control" runat="server" ClientIDMode="Static"/>
+                    <div id="divBookDomainSuggestion">
+                    </div>
+                </div>
+                <div class="formCreateTwoColumns">
+                    <asp:Label ID="lblBookPublishYear" runat="server" Text="Anul publicării" AssociatedControlID="txtBookPublishYear"></asp:Label>
+                    <asp:TextBox ID="txtBookPublishYear" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="txtBookPublishYear" CssClass="field-validation-error" ErrorMessage="Anul publicării este obligatoriu." />
+                </div>
+            </div>
+            <div>
+                <div class="formCreateTwoColumns">
+                    <asp:Label ID="lblBookVolume" runat="server" Text="Volum" AssociatedControlID="txtBookVolume"></asp:Label>
+                    <asp:TextBox ID="txtBookVolume" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+                <div class="formCreateTwoColumns">
+                    <asp:Label ID="lblBookCondition" runat="server" Text="Starea cărții" AssociatedControlID="drpBookCondition"></asp:Label>
+                    <asp:DropDownList ID="drpBookCondition" runat="server" CssClass="form-control"></asp:DropDownList>
+                </div>
+                <div class="formCreateTwoColumns">
+                    <asp:Label ID="lblBookFormat" runat="server" Text="Formatul cărții" AssociatedControlID="drpBookFormat"></asp:Label>
+                    <asp:DropDownList ID="drpBookFormat" runat="server" CssClass="form-control"></asp:DropDownList>
+                </div>
+            </div>
+            <div class="formCreateTwoColumns">
+                <asp:Label ID="lblBookSubject" runat="server" Text="Subiectul" AssociatedControlID="txtBookSubject"></asp:Label>
+                <input type="text" ID="txtBookSubject" runat="server" Class="form-control" />
+            </div>
+            <asp:Button ID="btnSubmit" runat="server" Text="Salvează" OnClick="btnSubmit_Click" CssClass="btn btn-success" />
         </div>
-        <div class="formCreateTwoColumns">
-            <asp:Label ID="lblBookInternalNr" runat="server" Text="Nr Intern(*)" AssociatedControlID="txtBookInternalNr"></asp:Label>
-            <asp:TextBox ID="txtBookInternalNr" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtBookInternalNr" CssClass="field-validation-error" ErrorMessage="Numarul intern este obligatoriu." />
-        </div>
-        <div class="formCreateTwoColumns">
-            <asp:Label ID="lblBookIsbn" runat="server" Text="ISBN(*)" AssociatedControlID="txtBookIsbn"></asp:Label>
-            <asp:TextBox ID="txtBookIsbn" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtBookIsbn" CssClass="field-validation-error" ErrorMessage="ISBN-ul este obligatoriu." />
-        </div>
-        <div class="formCreateTwoColumns">
-            <asp:Label ID="lblBookNrPages" runat="server" Text="Număr pagini(*)" AssociatedControlID="txtBookNrPages"></asp:Label>
-            <asp:TextBox ID="txtBookNrPages" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtBookNrPages" CssClass="field-validation-error" ErrorMessage="Numarul paginilor este obliogatorie" />
-        </div>
-        <div class="formCreateTwoColumns">
-            <asp:Label ID="lblBookLanguage" runat="server" Text="Limba(*)" AssociatedControlID="drpBookLanguage"></asp:Label>
-            <asp:DropDownList ID="drpBookLanguage" runat="server" CssClass="form-control"></asp:DropDownList>
-        </div>
-        <div class="formCreateTwoColumns">
-            <asp:Label ID="lblBookDomain" runat="server" Text="Domeniul" AssociatedControlID="txtBookDomain"></asp:Label>
-            <asp:TextBox ID="txtBookDomain" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:DropDownList ID="drpBookDomain" runat="server" CssClass="form-control"></asp:DropDownList>
-        </div>
-        <div class="formCreateTwoColumns">
-            <asp:Label ID="lblBookPublishYear" runat="server" Text="Anul publicării" AssociatedControlID="txtBookPublishYear"></asp:Label>
-            <asp:TextBox ID="txtBookPublishYear" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtBookPublishYear" CssClass="field-validation-error" ErrorMessage="Anul publicării este obligatoriu." />
-        </div>
-        <div class="formCreateTwoColumns">
-            <asp:Label ID="lblBookVolume" runat="server" Text="Volum" AssociatedControlID="txtBookVolume"></asp:Label>
-            <asp:TextBox ID="txtBookVolume" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtBookVolume" CssClass="field-validation-error" ErrorMessage="Volumul este obligatoriu." />
-        </div>
-        <div class="formCreateTwoColumns">
-            <asp:Label ID="lblBookCondition" runat="server" Text="Starea cărții" AssociatedControlID="drpBookCondition"></asp:Label>
-            <asp:DropDownList ID="drpBookCondition" runat="server" CssClass="form-control"></asp:DropDownList>
-        </div>
-        <div class="formCreateTwoColumns">
-            <asp:Label ID="lblBookFormat" runat="server" Text="Formatul cărții" AssociatedControlID="drpBookFormat"></asp:Label>
-            <asp:DropDownList ID="drpBookFormat" runat="server" CssClass="form-control"></asp:DropDownList>
-        </div>
-        <div class="formCreateTwoColumns">
-            <asp:Label ID="lblBookSubject" runat="server" Text="Subiectul" AssociatedControlID="txtBookSubject"></asp:Label>
-            <asp:TextBox ID="txtBookSubject" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtBookSubject" CssClass="field-validation-error" ErrorMessage="Subiectul este obligatoriu." />
-        </div>
-        <asp:Button ID="btnSubmit" runat="server" Text="Salvează" OnClick="btnSubmit_Click" CssClass="btn btn-main" />
     </div>
 </asp:Content>
 
@@ -101,9 +100,38 @@
     <script>
         window.onload = autoHideStatusLabel('<%=lblStatus.ClientID%>', 10000);
 
-        function RefreshUpdatePanel() {
-            __doPostBack('<%= txtBookAuthorsSearch.ClientID %>', '');
-        };
+        $(document).ready(function () {
+            $('#txtBookAuthorsSearch').keyup(function (e) {
+                AsyncAddAuthorSuggestions(document.getElementById('txtBookAuthorsSearch').value);
+            });
+
+            $('#txtBookPublisher').keyup(function (e) {
+                AsyncAddPublisherSuggestions(document.getElementById('txtBookPublisher').value);
+            });
+
+            $('#txtBookDomain').keyup(function (e) {
+                AsyncAddDomainSuggestions(document.getElementById('txtBookDomain').value);
+            });
+
+            $('.searchMainSuggestions').mouseleave(function () {
+                $(this).hide();
+            });
+        });
+
+        function BookAuthorAddtoSuggestions(inputId, inputValue) {
+            $('#txtBookAuthorsSearch').val(inputValue);
+            $('.searchMainSuggestions').hide();
+        }
+
+        function BookPublisherAddToSuggestions(inputId, inputValue) {
+            $('#txtBookPublisher').val(inputValue);
+            $('.searchMainSuggestions').hide();
+        }
+
+        function BookDomainAddToSuggestions(inputId, inputValue) {
+            $('#txtBookDomain').val(inputValue);
+            $('.searchMainSuggestions').hide();
+        }
 
     </script>
 </asp:Content>

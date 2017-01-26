@@ -129,22 +129,28 @@ namespace DAL.Repositories
 
         public int InsertUser(User user)
         {
-            throw new NotImplementedException();
-
             int userId = 0;
             _dbRead.Execute(
-                "UserInsert",
+                "UsersAdd",
             new[] { 
                 new SqlParameter("@FirstName", user.FirstName), 
                 new SqlParameter("@LastName", user.LastName), 
+                new SqlParameter("@Username", user.Username), 
+                new SqlParameter("@HomeAddress", user.HomeAddress), 
+                new SqlParameter("@Birthdate", user.Birthdate), 
+                new SqlParameter("@Phone", user.Phone), 
+                new SqlParameter("@Email", user.Email), 
+                new SqlParameter("@FacebookAddress", user.FacebookAddress), 
                 new SqlParameter("@JoinDate", user.JoinDate), 
                 new SqlParameter("@Flags", user.Flags), 
-                new SqlParameter("@Email", user.Email), 
-                new SqlParameter("@Id_typ", user.UserType), 
+                new SqlParameter("@Gender", user.Gender), 
+                new SqlParameter("@LocalityId", user.Locality.Id), 
+                new SqlParameter("@UserType", user.UserType), 
             },
                 r =>
                 userId = Read<int>(r, "Id")
             );
+
             return userId;
         }
 

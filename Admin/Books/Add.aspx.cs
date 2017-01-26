@@ -8,13 +8,110 @@ namespace Admin.Books
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
-    using System.Web.Services;
-    using System.Web.UI;
+    using System.Text;
     using System.Web.UI.WebControls;
 
     public partial class Add : System.Web.UI.Page
     {
+        [System.Web.Services.WebMethod]
+        public static string AsyncUpdateBookAuthorsSearch(string name)
+        {
+            StringBuilder sb = new StringBuilder();
+            var authors = AuthorsManager.GetAllAuthorsByInput(name);
+            sb.Append(string.Format("<div class='searchMainSuggestions'>{0} rezultate pentru <b>{1}</b></br>", authors.Count(), name));
+            if (authors.Count() > 0)
+            {
+                foreach (var item in authors)
+                {
+                    var divStructure = "<div class='searchMainItem' onclick = \"BookAuthorAddtoSuggestions('{0}', '{1}') \">";
+                    sb.Append(string.Format(divStructure, item.Id, item.Name));
+                    sb.Append(item.Name);
+                    sb.Append("</div>");
+                }
+            }
+            else
+            {
+                var divStructure = "<div id='bookAuthorsAddNewAuthor' onclick = \"bookAuthorsAddNewAuthor('{0}') \">Adaugă autorul <b>{0}</b></div>";
+                sb.Append(string.Format(divStructure, name));
+            }
+            sb.Append("</div>");
+            return sb.ToString();
+        }
+
+        [System.Web.Services.WebMethod]
+        public static string AsyncUpdatePublishersSearch(string name)
+        {
+            var publishers = PublishersManager.GetAllPublishersByInput(name);
+            StringBuilder sb = new StringBuilder();
+            sb.Append(string.Format("<div class='searchMainSuggestions'>{0} rezultate pentru <b>{1}</b></br>", publishers.Count(), name));
+            if (publishers.Count() > 0)
+            {
+                foreach (var item in publishers)
+                {
+                    var divStructure = "<div class='searchMainItem' onclick = \"BookPublisherAddToSuggestions('{0}', '{1}') \">";
+                    sb.Append(string.Format(divStructure, item.Id, item.Name));
+                    sb.Append(item.Name);
+                    sb.Append("</div>");
+                }
+            }
+            else
+            {
+                var divStructure = "<div class='bookAddNew' onclick = \"bookAddNewPublisher('{0}') \">Adaugă Editura <b>{0}</b></div>";
+                sb.Append(string.Format(divStructure, name));
+            }
+            sb.Append("</div>");
+            return sb.ToString();
+        }
+        
+        [System.Web.Services.WebMethod]
+        public static string AsyncUpdateDomainSearch(string name)
+        {
+            var bookDomains = BookDomainsManager.GetAllBookDomainsByInput(name);
+            StringBuilder sb = new StringBuilder();
+            sb.Append(string.Format("<div class='searchMainSuggestions'>{0} rezultate pentru <b>{1}</b></br>", bookDomains.Count(), name));
+            if (bookDomains.Count() > 0)
+            {
+                foreach (var item in bookDomains)
+                {
+                    var divStructure = "<div class='searchMainItem' onclick = \"BookDomainAddToSuggestions('{0}', '{1}') \">";
+                    sb.Append(string.Format(divStructure, item.Id, item.Name));
+                    sb.Append(item.Name);
+                    sb.Append("</div>");
+                }
+            }
+            else
+            {
+                var divStructure = "<div class='bookAddNew' onclick = \"bookAddNewBookDomain('{0}') \">Adaugă domeniul <b>{0}</b></div>";
+                sb.Append(string.Format(divStructure, name));
+            }
+            sb.Append("</div>");
+            return sb.ToString();
+        }
+
+        [System.Web.Services.WebMethod]
+        public static Author AsyncAddAuthor(string name)
+        {
+            Author author = AuthorsManager.Add(name);
+
+            return author;
+        }
+
+        [System.Web.Services.WebMethod]
+        public static Publisher AsyncAddPublisher(string name)
+        {
+            Publisher publisher = PublishersManager.Add(name);
+
+            return publisher;
+        }
+
+         [System.Web.Services.WebMethod]
+        public static BookDomain AsyncAddDomain(string name)
+        {
+            BookDomain bookDomain = BookDomainsManager.Add(name);
+
+            return bookDomain;
+        }
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             InitializeSources();
@@ -25,37 +122,9 @@ namespace Admin.Books
             if (!this.Page.IsPostBack)
             {
                 this.InitializeLanguages();
-                this.InitializePublisher();
                 this.InitializeCondition();
                 this.InitializeBookFormat();
-                this.InitializeBookDomain();
-                this.InitializeBookAuthors();
             }
-        }
-
-        private void InitializeBookAuthors()
-        {
-            var authors = AuthorsManager.GetAllAuthors();
-
-            var listItemAuthors = TransformAuthorsToListItem(authors);
-
-            drpBookAuthors.Items.AddRange(listItemAuthors);
-            drpBookAuthors.SelectedIndex = 0;
-            drpBookAuthors.DataBind();
-        }
-
-        private void InitializeBookDomain()
-        {
-            var counties = BookDomainsManager.GetAllBookDomains();
-
-            var x = counties.Select(c => new ListItem
-            {
-                Text = c.Name,
-                Value = c.Id.ToString()
-            }).ToArray();
-
-            drpBookDomain.Items.AddRange(x);
-            drpBookDomain.DataBind();
         }
 
         private void InitializeCondition()
@@ -74,8 +143,8 @@ namespace Admin.Books
 
         private void InitializeBookFormat()
         {
-            var bookFrmats = EnumUtil.GetValues<BookFormat>();
-
+            var bookFrmats = EnumUtil.GetValues<BookFormat>().ToList();
+            bookFrmats = bookFrmats.Swap(0, 1).ToList();
             var listItemBookFormats = bookFrmats.Select(c => new ListItem
             {
                 Text = c.ToString(),
@@ -86,24 +155,10 @@ namespace Admin.Books
             drpBookFormat.DataBind();
         }
 
-        private void InitializePublisher()
-        {
-            var publishers = PublishersManager.GetAllPublishers();
-
-            var x = publishers.Select(c => new ListItem
-            {
-                Text = c.Name,
-                Value = c.Id.ToString()
-            }).ToArray();
-
-            drpBookPublisher.Items.AddRange(x);
-            drpBookPublisher.DataBind();
-        }
-
         private void InitializeLanguages()
         {
-            var languages = EnumUtil.GetValues<Language>();
-
+            var languages = EnumUtil.GetValues<Language>().ToList();
+            languages = languages.Swap(0, 1).ToList();
             var listItemLanguages = languages.Select(c => new ListItem
             {
                 Text = c.ToString(),
@@ -126,12 +181,14 @@ namespace Admin.Books
                 NrPages = txtBookNrPages.Text.ToInt(),
                 AddedDate = DateTime.Now,
                 AddedBy = new User { Id = 1 },
-                Publisher = new Publisher { Id = 1 },
+                Publisher = PublishersManager.GetAllPublishersByInput(txtBookPublisher.Value).First(),
                 BookCondition = (BookCondition)drpBookCondition.SelectedValue.ToInt(),
                 Library = new Library { Id = 1 },
                 BookFormat = (BookFormat)drpBookFormat.SelectedValue.ToInt(),
-                BookDomain = new BookDomain { Id = 1 },
-                BookSubject = new BookSubject { Id = 1 },
+                BookDomain = BookDomainsManager.GetAllBookDomainsByInput(txtBookDomain.Value).First(),
+                BookSubject = new BookSubject {
+                   Name = txtBookSubject.Value 
+                },
                 BookLanguage = (Language)drpBookLanguage.SelectedValue.ToInt(),
                 Authors = this.GetAuthors()
             };
@@ -155,45 +212,17 @@ namespace Admin.Books
         private List<Author> GetAuthors()
         {
             var authors = new List<Author>();
-            var x = drpBookAuthors.Items;
+            foreach (ListItem item in bltBookAuthorsSelected.Items)
+            {
+                var author = new Author
+                {
+                    Name = item.Text,
+                    Id = item.Value.ToInt()
+                };
+                authors.Add(author);
+            }
 
             return authors;
-        }
-
-        protected void lnkBookAuthorsAdd_Click(object sender, EventArgs e)
-        {
-            drpBookAuthors.Visible = true;
-        }
-
-        protected void drpBookAuthors_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var bookAuthors = (DropDownList)sender;
-            var item = new ListItem
-                {
-                    Text = bookAuthors.SelectedItem.Text,
-                    Value = bookAuthors.SelectedItem.Value,
-                };
-
-            bulBookAuthorsItems.Items.Add(item);
-            drpBookAuthors.Items.Remove(item);
-            drpBookAuthors.Visible = false;
-            txtBookAuthorsSearch.Text = string.Empty;
-        }
-
-        protected void bulBookAuthorsItems_Click(object sender, BulletedListEventArgs e)
-        {
-            var bookAuthors = (BulletedList)sender;
-            bookAuthors.Items.RemoveAt(e.Index);
-        }
-
-        protected void txtBookAuthorsSearch_TextChanged(object sender, EventArgs e)
-        {
-            drpBookAuthors.Visible = true;
-            var authors = AuthorsManager.GetAllAuthorsByInput(txtBookAuthorsSearch.Text); //
-            var listItemAuthors = TransformAuthorsToListItem(authors);
-            drpBookAuthors.Items.Clear();
-            drpBookAuthors.SelectedIndex = 0;
-            drpBookAuthors.Items.AddRange(listItemAuthors);
         }
 
         private ListItem[] TransformAuthorsToListItem(IEnumerable<Author> authors)
@@ -205,6 +234,25 @@ namespace Admin.Books
             }).ToArray();
 
             return listItems;
+        }
+
+        protected void btnBookAuthorsAdd_Click(object sender, EventArgs e)
+        {
+            txtBookAuthorsSearch.Visible = true;
+            btnBookauthorAddSelected.Visible = true;
+        }
+
+        protected void btnBookauthorAddSelected_Click(object sender, EventArgs e)
+        {
+            bltBookAuthorsSelected.Items.Add(new ListItem
+            {
+                Text = txtBookAuthorsSearch.Value
+            });
+
+            lblBookAuthorsStatus.Text = "Autori adăugați:" + bltBookAuthorsSelected.Items.Count.ToString();
+            txtBookAuthorsSearch.Value = string.Empty;
+            txtBookAuthorsSearch.Visible = false;
+            btnBookauthorAddSelected.Visible = false;
         }
     }
 }

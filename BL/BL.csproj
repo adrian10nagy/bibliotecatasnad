@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,13 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\CacheHelper.cs" />
+    <Compile Include="Cache\MyCachePriority.cs" />
     <Compile Include="Constants\BookConstants.cs" />
+    <Compile Include="Constants\CacheConstants.cs" />
+    <Compile Include="Constants\UserConstants.cs" />
     <Compile Include="Helpers\EnumUtil.cs" />
+    <Compile Include="Helpers\ListHelper.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Managers\AuthorsManager.cs" />
     <Compile Include="Managers\BookDomainsManager.cs" />
     <Compile Include="Managers\BooksManager.cs" />
     <Compile Include="Managers\LoansManager.cs" />
+    <Compile Include="Managers\LocalitiesManager.cs" />
     <Compile Include="Managers\PublishersManager.cs" />
     <Compile Include="Managers\UsersManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -3,6 +3,7 @@ namespace DAL.SDK
 {
     using DAL.Entities;
     using DAL.Repositories;
+    using System.Collections.Generic;
 
     public class Users
     {
@@ -30,6 +31,11 @@ namespace DAL.SDK
         public int AddUser(User user)
         {
             return _repository.InsertUser(user);
+        }
+
+        public IEnumerable<User> GetUsersAll()
+        {
+            return _repository.GetAllUsers();
         }
     }
 }

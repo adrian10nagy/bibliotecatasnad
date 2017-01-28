@@ -79,8 +79,6 @@ namespace DAL.Repositories
 
         public IEnumerable<User> GetAllUsers()
         {
-            throw new NotImplementedException();
-
             var users = new List<User>();
             _dbRead.Execute(
                 "UserGetAll",
@@ -90,9 +88,20 @@ namespace DAL.Repositories
                     Id = Read<int>(r, "Id"),
                     FirstName = Read<string>(r, "FirstName"),
                     LastName = Read<string>(r, "LastName"),
+                    Username = Read<string>(r, "UserName"),
+                    HomeAddress = Read<string>(r, "HomeAddress"),
+                    Birthdate = Read<DateTime>(r, "Birthdate"),
+                    Phone = Read<string>(r, "Phone"),
                     Email = Read<string>(r, "Email"),
-                    Flags = Read<UserFlag>(r, "Flags"),
+                    FacebookAddress = Read<string>(r, "FacebookAddress"),
                     JoinDate = Read<DateTime>(r, "JoinDate"),
+                    Flags = Read<UserFlag>(r, "Flags"),
+                    Gender = Read<Gender>(r, "Gender"),
+                    Locality = new Locality() {
+                        Id = Read<int>(r, "Id_Locality"),
+                        Name = Read<string>(r, "Locality"),
+                    },
+                    UserType = Read<UserType>(r, "Id_UserType")
                 }));
 
             return users;

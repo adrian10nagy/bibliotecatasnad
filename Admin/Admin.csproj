@@ -109,9 +109,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
     <Content Include="Content\custom.min.css" />
+    <Content Include="Content\dataTables.bootstrap.min.css" />
     <Content Include="Content\daterangepicker.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="cs.aspx" />
+    <Content Include="Content\responsive.bootstrap.min.css" />
     <Content Include="Fonts\fontawesome-webfont.svg" />
     <Content Include="Content\green.css" />
     <Content Include="Content\jqvmap.min.css" />
@@ -130,6 +131,10 @@
     <Content Include="Scripts\curvedLines.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\Dashboard.js" />
+    <Content Include="Scripts\Datatables\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\Datatables\dataTables.responsive.min.js" />
+    <Content Include="Scripts\Datatables\jquery.dataTables.min.js" />
+    <Content Include="Scripts\Datatables\responsive.bootstrap.js" />
     <Content Include="Scripts\date.js" />
     <Content Include="Scripts\daterangepicker.js" />
     <Content Include="Scripts\fastclick.js" />
@@ -182,6 +187,7 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="Users\Add.aspx" />
+    <Content Include="Users\Manage.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -239,13 +245,6 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="cs.aspx.cs">
-      <DependentUpon>cs.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="cs.aspx.designer.cs">
-      <DependentUpon>cs.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -277,6 +276,13 @@
     </Compile>
     <Compile Include="Users\Add.aspx.designer.cs">
       <DependentUpon>Add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Manage.aspx.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Manage.aspx.designer.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

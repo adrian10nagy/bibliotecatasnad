@@ -3,6 +3,7 @@ namespace DAL.SDK
 {
     using DAL.Entities;
     using DAL.Repositories;
+    using System.Collections.Generic;
 
     public class Books
     {
@@ -20,11 +21,16 @@ namespace DAL.SDK
             return _repository.GetBookCount();
         }
 
+        public IEnumerable<Book> GetAllBooks()
+        {
+            return _repository.GetAllBooks();
+
+        }
         #endregion
 
-        public void AddBook(Book book)
+        public int AddBook(Book book)
         {
-            _repository.AddBook(book);
+            return _repository.AddBook(book);
         }
     }
 }

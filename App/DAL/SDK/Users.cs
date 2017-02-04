@@ -37,5 +37,10 @@ namespace DAL.SDK
         {
             return _repository.GetAllUsers();
         }
+
+        public void UpdateUser(User user)
+        {
+            _repository.UpdateUser(user);
+        }
     }
 }

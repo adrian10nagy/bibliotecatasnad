@@ -8,5 +8,6 @@ namespace BL.Constants
         public static string BookPublishersGetAll = "BookPublishersGetAll";
         public static string LocalitiesGetAll = "LocalitiesGetAll";
         public static string UsersGetAll = "UsersGetAll";
+        public static string BooksGetAll = "BooksGetAll";
     }
 }

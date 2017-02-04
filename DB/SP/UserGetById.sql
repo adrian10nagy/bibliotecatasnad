@@ -23,8 +23,16 @@ BEGIN
 	   [FirstName]
       ,[LastName]
       ,[UserName]
+      ,[HomeAddress]
+      ,[Birthdate]
+      ,[Phone]
+      ,[Email]
+      ,[FacebookAddress] 
+      ,[Gender]
+      ,[Id_Locality] 
       ,[Id_UserType]
-	FROM [bibliotecaTasnad].[dbo].[Users]
+      ,[Id_Nationality]
+	FROM [dbo].[Users]
 	   where [Id] = @id
 
 END

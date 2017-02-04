@@ -33,6 +33,7 @@ BEGIN
       ,U.[Gender]
       ,U.[Id_Locality]
       ,U.[Id_UserType]
+      ,U.[Id_Nationality]
 	  ,L.Name as Locality
   FROM dbo.[Users] U
   Inner Join Localities L

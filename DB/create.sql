@@ -71,6 +71,7 @@ create table Users(
 	Gender int default 0,
 	Id_Locality int not null foreign key REFERENCES Localities(Id),
 	Id_UserType int not null foreign key REFERENCES UserTypes(Id),
+	Id_Nationality int not null foreign key REFERENCES Nationalities(Id)
 )
 
 create table Books(

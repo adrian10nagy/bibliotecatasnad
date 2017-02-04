@@ -23,7 +23,14 @@ namespace BL.Managers
 
         public static User GetUserById(int id)
         {
-            return Kit.Instance.Users.GetUserById(id);
+            User user = null;
+
+            if (id > 0)
+            {
+                user = Kit.Instance.Users.GetUserById(id);
+            }
+
+            return user;
         }
 
         public static int GetUserNrAll()
@@ -36,6 +43,13 @@ namespace BL.Managers
             CacheHelper.Instance.RemoveMyCachedItem(CacheConstants.UsersGetAll);
 
             return Kit.Instance.Users.AddUser(user);
+        }
+
+        public static void Update(User user)
+        {
+            CacheHelper.Instance.RemoveMyCachedItem(CacheConstants.UsersGetAll);
+
+            Kit.Instance.Users.UpdateUser(user);
         }
     }
 }

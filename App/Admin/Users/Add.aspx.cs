@@ -1,23 +1,50 @@
 ﻿
 namespace Admin.Users
 {
+    using Admin.Helpers;
     using BL.Constants;
     using BL.Helpers;
     using BL.Managers;
     using DAL.Entities;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Web.UI.WebControls;
 
     public partial class Add : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.InitializeNationalities();
-            this.InitializeLocalities();
-            this.InitializeUserTypes();
+            if (!Page.IsPostBack)
+            {
+                if (!string.IsNullOrEmpty(Request["userId"]))
+                {
+                    var user = UsersManager.GetUserById(Request["userId"].ToInt());
+                    if (user != null)
+                    {
+                        userName.Value = user.FirstName;
+                        userSurname.Value = user.LastName;
+                        userAddress.Value = user.HomeAddress;
+                        userBirthday.Value = user.Birthdate.ToString("dd-MM-yyyy");
+                        userPhone.Value = user.Phone;
+                        userEmail.Value = user.Email;
+                        userFacebook.Value = user.FacebookAddress;
+                        drpUserCity.SelectedValue = user.Locality != null ? user.Locality.Id.ToString() : "1";
+                        drpUsertype.SelectedValue = ((int)user.UserType).ToString();
+                        drpUserNationality.SelectedValue = ((int)user.Nationality).ToString();
+                        userGender.SelectedValue = ((int)user.Gender).ToString();
+                        btnSave.Text = "Updatează datele utilizatorului";
+                        lblUserId.Text = Request["userId"];
+                    }
+                    else
+                    {
+                        Response.Redirect("~/Error.aspx?errorId=" + ErrorMessages.UserInvalid);
+                    }
+                }
+
+                this.InitializeNationalities();
+                this.InitializeLocalities();
+                this.InitializeUserTypes();
+            }
         }
 
         private void InitializeUserTypes()
@@ -66,7 +93,7 @@ namespace Admin.Users
                 FirstName = userName.Value,
                 LastName = userSurname.Value,
                 HomeAddress = userAddress.Value,
-                Birthdate = DateTime.ParseExact(userBirthday.Value, "MM/dd/yyyy",
+                Birthdate = DateTime.ParseExact(userBirthday.Value, "dd-MM-yyyy",
                                        System.Globalization.CultureInfo.InvariantCulture),
                 Phone = userPhone.Value,
                 Email = userEmail.Value,
@@ -82,27 +109,36 @@ namespace Admin.Users
                 Gender = (Gender)userGender.SelectedValue.ToInt()
             };
 
-            UsersManager.Add(user);
+            if (!string.IsNullOrEmpty(lblUserId.Text) && lblUserId.Text.ToInt() != 0)
+            {
+                user.Id = lblUserId.Text.ToInt();
+                UsersManager.Update(user);
+                Response.Redirect("~/Users/Manage.aspx?Message=UserUpdatedSuccess");
+            }
+            else
+            {
+                UsersManager.Add(user);
+                lblStatus.Text = FlowMessages.UserAddSuccess;
+                lblStatus.CssClass = "SuccessBox";
+                CleanFields();
+            }
 
-            lblStatus.Text = UserConstants.AddSuccess;
-            lblStatus.CssClass = "SuccessBox";
-            CleanFields();
         }
 
         private void CleanFields()
         {
-                userName.Value = string.Empty;
-                userSurname.Value = string.Empty;
-                userAddress.Value = string.Empty;
-                userBirthday.Value = DateTime.Now.ToString();
-                userPhone.Value = string.Empty;
-                userEmail.Value = string.Empty;
-                userFacebook.Value = string.Empty;
+            userName.Value = string.Empty;
+            userSurname.Value = string.Empty;
+            userAddress.Value = string.Empty;
+            userBirthday.Value = DateTime.Now.ToString();
+            userPhone.Value = string.Empty;
+            userEmail.Value = string.Empty;
+            userFacebook.Value = string.Empty;
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/");
+            Response.Redirect("~/Users/Manage.aspx");
         }
     }
 }

@@ -26,6 +26,7 @@
         public Authors Authors { get { return new Authors(); } }
         public Users Users { get { return new Users(); } }
         public Books Books { get { return new Books(); } }
+        public BookAuthors BookAuthors { get { return new BookAuthors(); } }
         public BookDomains BookDomains { get { return new BookDomains(); } }
         public Loans Loans { get { return new Loans(); } }
         public Localities Localities { get { return new Localities(); } }

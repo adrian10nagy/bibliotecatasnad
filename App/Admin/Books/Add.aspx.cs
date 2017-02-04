@@ -31,7 +31,7 @@ namespace Admin.Books
             }
             else
             {
-                var divStructure = "<div id='bookAuthorsAddNewAuthor' onclick = \"bookAuthorsAddNewAuthor('{0}') \">Adaugă autorul <b>{0}</b></div>";
+                var divStructure = "<div id='bookAuthorsAddNewAuthor' onclick = \"bookAuthorsAddNewAuthor('{0}') \"><b>Adaugă autorul </b>{0} în sistem!</div>";
                 sb.Append(string.Format(divStructure, name));
             }
             sb.Append("</div>");
@@ -114,17 +114,18 @@ namespace Admin.Books
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            InitializeSources();
+            if (!this.Page.IsPostBack)
+            {
+                InitializeSources();
+                btnBookAuthorsAdd.Visible = false;
+            }
         }
 
         private void InitializeSources()
         {
-            if (!this.Page.IsPostBack)
-            {
-                this.InitializeLanguages();
-                this.InitializeCondition();
-                this.InitializeBookFormat();
-            }
+            this.InitializeLanguages();
+            this.InitializeCondition();
+            this.InitializeBookFormat();
         }
 
         private void InitializeCondition()
@@ -187,7 +188,8 @@ namespace Admin.Books
                 BookFormat = (BookFormat)drpBookFormat.SelectedValue.ToInt(),
                 BookDomain = BookDomainsManager.GetAllBookDomainsByInput(txtBookDomain.Value).First(),
                 BookSubject = new BookSubject {
-                   Name = txtBookSubject.Value 
+                   Name = txtBookSubject.Value,
+                   Id = 1
                 },
                 BookLanguage = (Language)drpBookLanguage.SelectedValue.ToInt(),
                 Authors = this.GetAuthors()
@@ -240,6 +242,7 @@ namespace Admin.Books
         {
             txtBookAuthorsSearch.Visible = true;
             btnBookauthorAddSelected.Visible = true;
+            btnBookAuthorsAdd.Visible = false;
         }
 
         protected void btnBookauthorAddSelected_Click(object sender, EventArgs e)
@@ -253,6 +256,12 @@ namespace Admin.Books
             txtBookAuthorsSearch.Value = string.Empty;
             txtBookAuthorsSearch.Visible = false;
             btnBookauthorAddSelected.Visible = false;
+            btnBookAuthorsAdd.Visible = true;
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Books/Manage.aspx");
         }
     }
 }

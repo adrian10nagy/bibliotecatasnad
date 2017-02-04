@@ -40,6 +40,24 @@ namespace Admin.Books {
         protected global::System.Web.UI.WebControls.TextBox txtBookTitle;
         
         /// <summary>
+        /// lblBookPublisher control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBookPublisher;
+        
+        /// <summary>
+        /// txtBookPublisher control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtBookPublisher;
+        
+        /// <summary>
         /// lblBookAuthors control.
         /// </summary>
         /// <remarks>
@@ -92,24 +110,6 @@ namespace Admin.Books {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBookAuthorsAdd;
-        
-        /// <summary>
-        /// lblBookPublisher control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBookPublisher;
-        
-        /// <summary>
-        /// txtBookPublisher control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtBookPublisher;
         
         /// <summary>
         /// lblBookInternalNr control.
@@ -184,6 +184,24 @@ namespace Admin.Books {
         protected global::System.Web.UI.WebControls.DropDownList drpBookLanguage;
         
         /// <summary>
+        /// lblBookVolume control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBookVolume;
+        
+        /// <summary>
+        /// txtBookVolume control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBookVolume;
+        
+        /// <summary>
         /// lblBookDomain control.
         /// </summary>
         /// <remarks>
@@ -218,24 +236,6 @@ namespace Admin.Books {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtBookPublishYear;
-        
-        /// <summary>
-        /// lblBookVolume control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBookVolume;
-        
-        /// <summary>
-        /// txtBookVolume control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBookVolume;
         
         /// <summary>
         /// lblBookCondition control.
@@ -299,5 +299,14 @@ namespace Admin.Books {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
+        
+        /// <summary>
+        /// btnCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancel;
     }
 }

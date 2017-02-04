@@ -8,6 +8,7 @@
     <div class="x_panel">
         <div class="x_title">
         <asp:Label ID="lblStatus" runat="server"></asp:Label>
+        <asp:Label ID="lblUserId" Visible="false" runat="server"></asp:Label>
             <h2>Adaugă utilizator <small>[poate fii modificat după salvare]</small></h2>
 
             <div class="clearfix"></div>
@@ -15,30 +16,30 @@
         <div class="x_content form-horizontal form-label-left">
             <br />
             <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                <input type="text" class="form-control has-feedback-left" id="userName" placeholder="Nume" runat="server" required="required">
+                <input type="text" class="form-control has-feedback-left" id="userName" placeholder="Nume" runat="server" required="required" autocomplete="off" >
                 <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                 <asp:RequiredFieldValidator ControlToValidate="userName" runat="server" ErrorMessage="Numele este obligatoriu" CssClass="requiredField"></asp:RequiredFieldValidator>
             </div>
 
             <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                <input type="text" class="form-control has-feedback-left" id="userSurname" placeholder="Prenume" runat="server" required="required">
+                <input type="text" class="form-control has-feedback-left" id="userSurname" placeholder="Prenume" runat="server" required="required" autocomplete="off" >
                 <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                 <asp:RequiredFieldValidator ControlToValidate="userSurname" runat="server" ErrorMessage="Prenumele este obligatoriu" CssClass="requiredField"></asp:RequiredFieldValidator>
             </div>
 
             <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                <input type="text" class="form-control has-feedback-left" id="userEmail" placeholder="Email (opțional)" runat="server">
+                <input type="text" class="form-control has-feedback-left" id="userEmail" placeholder="Email (opțional)" runat="server" autocomplete="off" >
                 <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
             </div>
 
             <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                <input type="text" class="form-control has-feedback-left" id="userPhone" placeholder="Telefon (opțional)" runat="server">
+                <input type="text" class="form-control has-feedback-left" id="userPhone" placeholder="Telefon (opțional)" runat="server" autocomplete="off" >
                 <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
             </div>
             <div class="item form-group">
                 <label class="control-label col-md-2 col-sm-2 col-xs-12">Data nașterii</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input id="userBirthday" class="form-control date-picker" required="required" type="text" runat="server">
+                    <input id="userBirthday" class="form-control date-picker" required="required" type="text" runat="server" autocomplete="off" >
                 </div>
             </div>
             <div class="item form-group">
@@ -50,7 +51,7 @@
             <div class="item form-group">
                 <label class="control-label col-md-2 col-sm-2 col-xs-12">Adresă</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" class="form-control" placeholder="Adresă(opțional)" id="userAddress" runat="server">
+                    <input type="text" class="form-control" placeholder="Adresă(opțional)" id="userAddress" runat="server" autocomplete="off" >
                 </div>
             </div>
             <div class="item form-group">
@@ -77,7 +78,7 @@
             <div class="item form-group">
                 <label class="control-label col-md-2 col-sm-2 col-xs-12">Facebook</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" class="form-control" placeholder="(opțional)" id="userFacebook" runat="server">
+                    <input type="text" class="form-control" placeholder="(opțional)" id="userFacebook" runat="server" autocomplete="off" >
                 </div>
             </div>
             <div class="ln_solid"></div>
@@ -97,6 +98,9 @@
     <script>
         $(document).ready(function () {
             $('#<%=userBirthday.ClientID%>').daterangepicker({
+                locale: {
+                    format: 'DD-MM-YYYY'
+                },
                 singleDatePicker: true,
                 calender_style: "picker_4"
             }, function (start, end, label) {

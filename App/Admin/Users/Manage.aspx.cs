@@ -10,11 +10,19 @@ namespace Admin.Users
     using System.Web.UI;
     using System.Web.UI.WebControls;
     using DAL.Entities;
+    using BL.Helpers;
+    using Admin.Helpers;
 
     public partial class Manage : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(Request["message"]) && Request["message"] == "UserUpdatedSuccess")
+            {
+                lblMessage.Text = FlowMessages.UserUpdatedSuccess;
+                lblMessage.CssClass = "SuccessBox";
+            }
+
             if (!Page.IsPostBack)
             {
                 InitializeUsersTable();
@@ -30,13 +38,23 @@ namespace Admin.Users
                 TableRow row = new TableRow();
                 HyperLink link = new HyperLink
                 {
-                    NavigateUrl = "~/User/Details.aspx?userId" + user.Id,
+                    NavigateUrl = "~/Loans/ByUser.aspx?userId=" + user.Id,
                     CssClass = "toClickOn",
-                    Text = "Vezi detalii"
+                    Text = "Vezi împrumuturi"
                 };
                 TableCell userId = new TableCell();
                 userId.Controls.Add(link);
                 row.Cells.Add(userId);
+
+                HyperLink linkEditUser = new HyperLink
+                {
+                    NavigateUrl = "~/Users/Add.aspx?userId=" + user.Id,
+                    CssClass = "toClickOn",
+                    Text = "Editează"
+                };
+                TableCell userEditCell = new TableCell();
+                userEditCell.Controls.Add(linkEditUser);
+                row.Cells.Add(userEditCell);
 
                 TableCell userFirstName = new TableCell
                 {

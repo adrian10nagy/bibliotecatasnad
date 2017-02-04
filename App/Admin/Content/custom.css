@@ -4944,7 +4944,7 @@ ul.notifications {
 
 .SuccessBox {
     background-color: #26b99a;
-    color: white;
+    color: white!important;
     padding: 20px;
     border-radius: 10px;
     display: inherit;

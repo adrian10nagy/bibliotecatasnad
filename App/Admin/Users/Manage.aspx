@@ -2,11 +2,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainStyle" runat="server">
     <link href="/Content/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="/Content/responsive.bootstrap.min.css"" rel="stylesheet" type="text/css" />
+    <link href="/Content/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    
+    <div class="preLoadIcon"></div>
     <div class="col-md-12 col-sm-12 col-xs-12">
-     <asp:Label ID="lblMessage" runat="server"></asp:Label>
+        <asp:Label ID="lblMessage" runat="server"></asp:Label>
         <div class="x_panel">
             <div class="x_title">
                 <h2>Utilizatori <small>ai bibliotecii din Tășnad</small></h2>
@@ -45,6 +47,11 @@
     <script src='<%= ResolveUrl("~/Scripts/Datatables/responsive.bootstrap.js")%>'></script>
 
     <script>
+        $(window).load(function () {
+            // Animate loader off screen
+            $(".preLoadIcon").fadeOut("slow");
+        });
+
         $('#datatableResponsive').DataTable();
     </script>
 

@@ -8,9 +8,9 @@ namespace DAL.Entities
     {
         public int Id;
         public string Title;
-        public int PublishYear;
+        public int? PublishYear;
         public string Volume;
-        public string ISBN;
+        public List<ISBN> ISBNs;
         public string InternalNr;
         public int NrPages;
         public DateTime AddedDate;
@@ -23,5 +23,6 @@ namespace DAL.Entities
         public BookSubject BookSubject;
         public Language BookLanguage;
         public List<Author> Authors;
+        public LoanStatus LoanStatus;
     }
 }

@@ -44,6 +44,7 @@
     <Compile Include="Cache\MyCachePriority.cs" />
     <Compile Include="Constants\BookConstants.cs" />
     <Compile Include="Constants\CacheConstants.cs" />
+    <Compile Include="Entities\BookPublishersChart.cs" />
     <Compile Include="Helpers\EnumUtil.cs" />
     <Compile Include="Helpers\ListHelper.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />

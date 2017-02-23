@@ -32,5 +32,26 @@ namespace DAL.SDK
         {
             return _repository.AddBook(book);
         }
+
+        public Book GetBookById(int bookId)
+        {
+            return _repository.GetBookById(bookId);
+        }
+
+        public void UpdateBook(Book book)
+        {
+            _repository.UpdateBook(book);
+        }
+
+        public void RemoveAuthors(int bookId)
+        {
+            _repository.RemoveAuthors(bookId);
+        }
+
+        public IEnumerable<Publisher> GetAllBookPublishersGrouped()
+        {
+            return _repository.GetAllBookPublishersGrouped();
+        }
+        
     }
 }

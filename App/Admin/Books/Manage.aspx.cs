@@ -7,6 +7,7 @@ namespace Admin.Books
     using System;
     using System.Web.UI;
     using System.Web.UI.WebControls;
+    using System.Linq;
 
     public partial class Manage : System.Web.UI.Page
     {
@@ -33,7 +34,7 @@ namespace Admin.Books
                 TableRow row = new TableRow();
                 HyperLink link = new HyperLink
                 {
-                    NavigateUrl = "~/Loans/ByBook.aspx?bookId=" + book.Id,
+                    NavigateUrl = "~/Loans/Search.aspx?bookId=" + book.Id,
                     CssClass = "toClickOn",
                     Text = "Vezi împrumuturi"
                 };
@@ -51,27 +52,16 @@ namespace Admin.Books
                 userEditCell.Controls.Add(linkEditUser);
                 row.Cells.Add(userEditCell);
 
-                TableCell bookTitle = new TableCell
+                TableCell bookStatus = new TableCell
                 {
-                    Text = book.Title
+                    Text = book.LoanStatus.ToString()
                 };
-                row.Cells.Add(bookTitle);
+                row.Cells.Add(bookStatus);
 
-                TableCell bookPublishYear = new TableCell
-                {
-                    Text = book.PublishYear.ToString()
-                };
-                row.Cells.Add(bookPublishYear);
-
-                TableCell bookVolume = new TableCell
-                {
-                    Text = book.Volume
-                };
-                row.Cells.Add(bookVolume);
-
+                var bookIsbns = book.ISBNs.Select(b => b.Value);
                 TableCell bookIsbn = new TableCell
                 {
-                    Text = book.ISBN
+                    Text = string.Join(", ", bookIsbns)
                 };
                 row.Cells.Add(bookIsbn);
 
@@ -80,6 +70,36 @@ namespace Admin.Books
                     Text = book.InternalNr
                 };
                 row.Cells.Add(bookInternalNr);
+
+                TableCell bookTitle = new TableCell
+                {
+                    Text = book.Title
+                };
+                row.Cells.Add(bookTitle);
+
+                TableCell bookPublishYear = new TableCell
+                {
+                    Text = (book.PublishYear != null) ? book.PublishYear.ToString() : string.Empty
+                };
+                row.Cells.Add(bookPublishYear);
+
+                string authors = "Fără autor(i)";
+                if(book.Authors.Count >= 1)
+                {
+                    authors = book.Authors[0].Name;
+                }
+
+                if(book.Authors.Count > 1)
+                {
+                    var count = book.Authors.Count() - 1;
+                    authors = authors + " + " + count; 
+                }
+
+                TableCell bookAuthors = new TableCell
+                {
+                    Text = authors
+                };
+                row.Cells.Add(bookAuthors);
 
                 TableCell bookNrPages = new TableCell
                 {
@@ -92,6 +112,12 @@ namespace Admin.Books
                     Text = book.Publisher.Name
                 };
                 row.Cells.Add(bookPublisher);
+
+                TableCell bookVolume = new TableCell
+                {
+                    Text = book.Volume
+                };
+                row.Cells.Add(bookVolume);
 
                 TableCell bookCondition = new TableCell
                 {

@@ -31,6 +31,7 @@
         public Loans Loans { get { return new Loans(); } }
         public Localities Localities { get { return new Localities(); } }
         public Publishers Publishers { get { return new Publishers(); } }
+        public ISBNs ISBNs { get { return new ISBNs(); } }
 
         public void Dispose()
         {

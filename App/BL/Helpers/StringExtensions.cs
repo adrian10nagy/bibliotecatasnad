@@ -3,12 +3,11 @@ namespace BL.Helpers
 {
     public static class StringExtensions
     {
-        public static int ToInt(this string input)
+        public static int? ToNullableInt(this string input)
         {
-            int result = 0;
-            int.TryParse(input, out result);
-
-            return result;
+            int i;
+            if (int.TryParse(input, out i)) return i;
+            return null;
         }
     }
 }

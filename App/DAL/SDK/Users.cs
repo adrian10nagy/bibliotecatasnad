@@ -42,5 +42,10 @@ namespace DAL.SDK
         {
             _repository.UpdateUser(user);
         }
+
+        public User GetUserForLogin(string userName, string password)
+        {
+            return _repository.GetUserForLogin(userName, password);
+        }
     }
 }

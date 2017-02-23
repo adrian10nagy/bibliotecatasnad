@@ -32,6 +32,23 @@ namespace BL.Managers
             return publishers;
         }
 
+
+        public static Publisher GetAllPublishersById(int id)
+        {
+            var publishers = (List<Publisher>)GetAllPublishers();
+            Publisher publisher = null;
+            if (id != 0)
+            {
+                publishers = publishers.FindAll(a => a.Id == id);
+                if(publishers.Count > 0)
+                {
+                    publisher = publishers[0];
+                }
+            }
+
+            return publisher;
+        }
+
         public static Publisher Add(string name)
         {
             CacheHelper.Instance.RemoveMyCachedItem(CacheConstants.BookPublishersGetAll);

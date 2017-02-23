@@ -8,34 +8,21 @@ namespace DAL.Repositories
 
     public interface ILoanRepository
     {
-        User GetLoanById(int id);
         int GetLoanCount();
+        void AddLoan(int bookId, int userId, DateTime loanDate);
+        IEnumerable<Loan> GetAllActiveLoans();
+        IEnumerable<Loan> GetAllFinishedLoans();
+        void ReturnBook(int loanId, DateTime dateTime);
+        void Remove(int loanId);
+        IEnumerable<Loan> GetLoansByDay(DateTime datetime);
+        IEnumerable<Loan> GetLoansByUserId(int userId);
+        IEnumerable<Loan> GetLoansByBookId(int bookId);
+        LoanStatus GetBookLoanStatus(int bookId);
     }
 
     public partial class Repository : ILoanRepository
     {
         #region Get
-
-        public User GetLoanById(int id)
-        {
-            throw new NotImplementedException();
-
-            User user = null;
-
-            _dbRead.Execute(
-                "LoansGetById",
-            new[] { 
-                new SqlParameter("@Id", id), 
-            },
-                r => user = new User()
-                {
-                    FirstName = Read<string>(r, "FirstName"),
-                    LastName = Read<string>(r, "LastName"),
-                    Username = Read<string>(r, "Username"),
-                });
-
-            return user;
-        }
 
         public int GetLoanCount()
         {
@@ -49,6 +36,231 @@ namespace DAL.Repositories
             return user;
         }
 
+        public IEnumerable<Loan> GetAllActiveLoans()
+        {
+            var loans = new List<Loan>();
+
+            _dbRead.Execute(
+                "LoansGetAllActive",
+            null,
+                r => loans.Add(new Loan()
+                {
+                    Id = Read<int>(r, "Id"),
+                    User = new User 
+                    {
+                        Id = Read<int>(r, "UserId"),
+                        FirstName = Read<string>(r, "FirstName"),
+                        LastName = Read<string>(r, "LastName")
+                    },
+                    Books = new List<Book>()
+                    {
+                        new Book
+                        {
+                            Id = Read<int>(r, "BookId"),
+                            Title = Read<string>(r, "Title"),
+                            InternalNr = Read<string>(r, "InternalNr"),
+                        }
+                    },
+                    LoanDate = Read<DateTime>(r, "loandate")
+                }));
+
+            return loans;
+        }
+
+        public IEnumerable<Loan> GetAllFinishedLoans()
+        {
+            var loans = new List<Loan>();
+
+            _dbRead.Execute(
+                "LoansGetAllFinished",
+            null,
+                r => loans.Add(new Loan()
+                {
+                    Id = Read<int>(r, "Id"),
+                    User = new User
+                    {
+                        Id = Read<int>(r, "UserId"),
+                        FirstName = Read<string>(r, "FirstName"),
+                        LastName = Read<string>(r, "LastName")
+                    },
+                    Books = new List<Book>()
+                    {
+                        new Book
+                        {
+                            Id = Read<int>(r, "BookId"),
+                            Title = Read<string>(r, "Title"),
+                            InternalNr = Read<string>(r, "InternalNr"),
+                        }
+                    },
+                    LoanDate = Read<DateTime>(r, "loandate"),
+                    ReturnedDate = Read<DateTime>(r, "returnedDate")
+                }));
+
+            return loans; 
+        }
+
+        public IEnumerable<Loan> GetLoansByDay(DateTime datetime)
+        {
+            var loans = new List<Loan>();
+
+            _dbRead.Execute(
+                "LoansGetAllByDate",
+            new[]
+            {
+                new SqlParameter("@date", datetime),
+            },
+                r => loans.Add(new Loan()
+                {
+                    Id = Read<int>(r, "Id"),
+                    User = new User
+                    {
+                        Id = Read<int>(r, "UserId"),
+                        FirstName = Read<string>(r, "FirstName"),
+                        LastName = Read<string>(r, "LastName")
+                    },
+                    Books = new List<Book>()
+                    {
+                        new Book
+                        {
+                            Id = Read<int>(r, "BookId"),
+                            Title = Read<string>(r, "Title"),
+                            InternalNr = Read<string>(r, "InternalNr"),
+                        }
+                    },
+                    LoanDate = Read<DateTime>(r, "loandate"),
+                    ReturnedDate = Read<Nullable<DateTime>>(r, "returnedDate")
+                }));
+
+            return loans;
+        }
+
+        public IEnumerable<Loan> GetLoansByUserId(int userId)
+        {
+            var loans = new List<Loan>();
+
+            _dbRead.Execute(
+                "LoansGetAllByUserId",
+            new[]
+            {
+                new SqlParameter("@userId", userId),
+            },
+                r => loans.Add(new Loan()
+                {
+                    Id = Read<int>(r, "Id"),
+                    User = new User
+                    {
+                        Id = userId,
+                        FirstName = Read<string>(r, "FirstName"),
+                        LastName = Read<string>(r, "LastName")
+                    },
+                    Books = new List<Book>()
+                    {
+                        new Book
+                        {
+                            Id = Read<int>(r, "BookId"),
+                            Title = Read<string>(r, "Title"),
+                            InternalNr = Read<string>(r, "InternalNr"),
+                        }
+                    },
+                    LoanDate = Read<DateTime>(r, "loandate"),
+                    ReturnedDate = Read <Nullable<DateTime>>(r, "returnedDate")
+                }));
+
+            return loans;
+        }
+
+        public IEnumerable<Loan> GetLoansByBookId(int bookId)
+        {
+            var loans = new List<Loan>();
+
+            _dbRead.Execute(
+                "LoansGetAllByBookId",
+            new[]
+            {
+                new SqlParameter("@bookId", bookId),
+            },
+                r => loans.Add(new Loan()
+                {
+                    Id = Read<int>(r, "Id"),
+                    User = new User
+                    {
+                        Id = Read<int>(r, "UserId"),
+                        FirstName = Read<string>(r, "FirstName"),
+                        LastName = Read<string>(r, "LastName")
+                    },
+                    Books = new List<Book>()
+                    {
+                        new Book
+                        {
+                            Id = bookId,
+                            Title = Read<string>(r, "Title"),
+                            InternalNr = Read<string>(r, "InternalNr"),
+                        }
+                    },
+                    LoanDate = Read<DateTime>(r, "loandate"),
+                    ReturnedDate = Read <Nullable<DateTime>>(r, "returnedDate")
+                }));
+
+            return loans;
+        }
+
+        public LoanStatus GetBookLoanStatus(int bookId)
+        {
+            var bookstatus = LoanStatus.Necunoscut;
+
+            _dbRead.Execute(
+                "LoansGetBookSatus",
+            new[]
+            {
+                new SqlParameter("@bookId", bookId),
+
+            },
+                r => bookstatus = (LoanStatus)Read<int>(r, "bookstatus")
+                );
+
+            return bookstatus;
+        }
+
         #endregion
+
+        #region Add
+
+        public void AddLoan(int bookId, int userId, DateTime loanDate)
+        {
+            _dbRead.Execute(
+              "LoansAdd",
+          new[] { 
+                new SqlParameter("@bookId", bookId),
+                new SqlParameter("@userId", userId),
+                new SqlParameter("@loandate", loanDate),
+            });
+
+        }
+
+        #endregion
+
+        #region Update
+
+        public void ReturnBook(int loanId, DateTime dateTime)
+        {
+            _dbRead.ExecuteNonQuery(
+              "LoansReturn",
+          new[] { 
+                new SqlParameter("@loanId", loanId),
+                new SqlParameter("@returnedDate", dateTime),
+            });
+        }
+
+        #endregion
+
+        public void Remove(int loanId)
+        {
+            _dbRead.ExecuteNonQuery(
+              "LoansRemove",
+          new[] { 
+                new SqlParameter("@loanId", loanId),
+            });
+        }
+
     }
 }

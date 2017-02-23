@@ -4,6 +4,7 @@ namespace BL.Cache
     public enum MyCachePriority
     {
         Default,
-        NotRemovable
+        NotRemovable,
+        Login
     }
 }

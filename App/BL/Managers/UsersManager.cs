@@ -51,5 +51,10 @@ namespace BL.Managers
 
             Kit.Instance.Users.UpdateUser(user);
         }
+
+        public static User GetUserForLogin(string userName, string password)
+        {
+            return Kit.Instance.Users.GetUserForLogin(userName, password);
+        }
     }
 }

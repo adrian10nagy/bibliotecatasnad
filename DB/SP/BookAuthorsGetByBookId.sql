@@ -20,12 +20,13 @@ AS
 BEGIN
     -- Insert statements for procedure here
 	SELECT 
-       BA.[Id_Author]
-      ,BA.[Id_BookAuthorType]
+		A.[Id]
+		,A.[Name]
+		,BA.[Id_BookAuthorType]
       
-  FROM dbo.[BookAuthors] BA
-	INNER JOIN Authors A
-	ON A.Id = BA.Id_Book
+  FROM dbo.[Authors] A
+	INNER JOIN [BookAuthors] BA
+	ON A.Id = BA.Id_Author
   WHERE [Id_Book] = @bookId
 
 END

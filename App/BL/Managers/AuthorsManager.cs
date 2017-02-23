@@ -44,5 +44,13 @@ namespace BL.Managers
 
             return author;
         }
+
+        public static Author GetAllById(int id)
+        {
+            var authors = GetAllAuthors() as List<Author>;
+            var author = authors.Find(a => a.Id == id);
+
+            return author;
+        }
     }
 }

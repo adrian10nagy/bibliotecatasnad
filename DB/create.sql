@@ -79,7 +79,6 @@ create table Books(
 	Title nvarchar(MAX) not null, 
 	PublishYear int null, 
 	Volume nvarchar(50) null, 
-	ISBN nvarchar(MAX) not null,
 	InternalNr nvarchar(MAX) not null,
 	NrPages int not null,
 	AddedDate datetime not null,
@@ -91,6 +90,12 @@ create table Books(
 	Id_BookDomain int not null foreign key REFERENCES BookDomains(Id),
 	Id_BookSubject int not null foreign key REFERENCES BookSubjects(Id),
 	Id_Language int not null foreign key REFERENCES Languages(Id)
+)
+
+create table ISBN(
+	Id	int not null primary key identity(1,1),
+	Value nvarchar(50) not null,
+	Id_Book int not null foreign key REFERENCES Books(Id)
 )
 
 create table Authors(

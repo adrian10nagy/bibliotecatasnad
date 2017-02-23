@@ -23,13 +23,12 @@ CREATE PROCEDURE [dbo].[BooksAdd]
 	@BookLanguageId int,
 	@BookSubjectId int,
 	@InternalNr nvarchar(MAX),
-	@Isbn nvarchar(MAX),
 	@LibraryId int,
 	@NrPages int,
 	@Title nvarchar(MAX),
 	@PublisherId int,
-	@PublishYear int,
-	@Volume nvarchar(50)
+	@PublishYear int = null,
+	@Volume nvarchar(50) = null
 AS
 BEGIN
 	SET NOCOUNT ON;
@@ -42,7 +41,6 @@ BEGIN
 		[Title]
       ,[PublishYear]
       ,[Volume]
-      ,[ISBN]
       ,[InternalNr]
       ,[NrPages]
       ,[AddedDate]
@@ -58,7 +56,6 @@ BEGIN
 		@Title,
 		@PublishYear,
 		@Volume,
-		@Isbn,
 		@InternalNr,
 		@NrPages,
 		@AddedDate,

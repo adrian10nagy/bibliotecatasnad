@@ -8,19 +8,57 @@ namespace DAL.Repositories
 
     public interface IBookRepository
     {
-        User GetBookById(int id);
+        Book GetBookById(int bookId);
         int GetBookCount();
         IEnumerable<Book> GetAllBooks();
         int AddBook(Book book);
+        void UpdateBook(Book book);
+        void RemoveAuthors(int bookId);
+        IEnumerable<Publisher> GetAllBookPublishersGrouped();
     }
 
     public partial class Repository : IBookRepository
     {
         #region Get
 
-        public User GetBookById(int id)
+        public Book GetBookById(int bookId)
         {
-            throw new NotImplementedException();
+            Book book = null;
+
+            _dbRead.Execute(
+                "BooksGetById",
+             new[] { 
+                new SqlParameter("@bookId", bookId),
+             },
+                r => book = new Book()
+                {
+                    Id = Read<int>(r, "Id"),
+                    Title = Read<string>(r, "Title"),
+                    PublishYear = Read<int?>(r, "PublishYear"),
+                    Volume = Read<string>(r, "Volume"),
+                    InternalNr = Read<string>(r, "InternalNr"),
+                    NrPages = Read<int>(r, "NrPages"),
+                    Publisher = new Publisher
+                    {
+                        Id = Read<int>(r, "Id_Publisher"),
+                        Name = Read<string>(r, "PublisherName"),
+                    },
+                    BookCondition = (BookCondition)Read<int>(r, "Id_BookCondition"),
+                    BookFormat = (BookFormat)Read<int>(r, "Id_BookFormat"),
+                    BookLanguage = (Language)Read<int>(r, "Id_Language"),
+                    BookSubject = new BookSubject
+                    {
+                        Id = Read<int>(r, "Id_BookSubject"),
+                        Name = Read<string>(r, "SubjectName"),
+                    },
+                    BookDomain = new BookDomain
+                    {
+                        Id = Read<int>(r, "Id_BookDomain"),
+                        Name = Read<string>(r, "DomainName"),
+                    }
+                });
+
+            return book;
         }
 
         public int GetBookCount()
@@ -45,9 +83,8 @@ namespace DAL.Repositories
                 {
                     Id = Read<int>(r, "Id"),
                     Title = Read<string>(r, "Title"),
-                    PublishYear = Read<int>(r, "PublishYear"),
+                    PublishYear = Read<int?>(r, "PublishYear"),
                     Volume = Read<string>(r, "Volume"),
-                    ISBN = Read<string>(r, "ISBN"),
                     InternalNr = Read<string>(r, "InternalNr"),
                     NrPages = Read<int>(r, "NrPages"),
                     Publisher = new Publisher{
@@ -57,9 +94,25 @@ namespace DAL.Repositories
                     BookCondition = (BookCondition)Read<int>(r, "Id_BookCondition"),
                     BookFormat = (BookFormat)Read<int>(r, "Id_BookFormat"),
                     BookLanguage = (Language)Read<int>(r, "Id_Language"),
+                    LoanStatus = GetBookLoanStatus(Read<int>(r, "Id"))
                 }));
 
             return books;
+        }
+
+        public IEnumerable<Publisher> GetAllBookPublishersGrouped()
+        {
+            var publishers = new List<Publisher>();
+            _dbRead.Execute(
+                "BooksPublishersGetGrouped",
+            null,
+                r => publishers.Add(new Publisher()
+                {
+                    Id = Read<int>(r, "NrCount"),
+                    Name = Read<string>(r, "PublisherName"),
+                }));
+
+            return publishers;
         }
 
         #endregion
@@ -81,7 +134,6 @@ namespace DAL.Repositories
                 new SqlParameter("@BookLanguageId", book.BookLanguage), 
                 new SqlParameter("@BookSubjectId", book.BookSubject.Id), 
                 new SqlParameter("@InternalNr", book.InternalNr), 
-                new SqlParameter("@Isbn", book.ISBN), 
                 new SqlParameter("@LibraryId", book.Library.Id), 
                 new SqlParameter("@NrPages", book.NrPages), 
                 new SqlParameter("@PublisherId", book.Publisher.Id), 
@@ -96,5 +148,39 @@ namespace DAL.Repositories
         }
 
         #endregion
+
+        #region Update
+
+        public void UpdateBook(Book book)
+        {
+            _dbRead.Execute(
+               "BooksUpdate",
+           new[] { 
+                new SqlParameter("@Id", book.Id), 
+                new SqlParameter("@BookConditionId", book.BookCondition), 
+                new SqlParameter("@BookDomainId", book.BookDomain.Id), 
+                new SqlParameter("@BookFormatId", book.BookFormat), 
+                new SqlParameter("@BookLanguageId", book.BookLanguage), 
+                new SqlParameter("@BookSubjectId", book.BookSubject.Id), 
+                new SqlParameter("@InternalNr", book.InternalNr), 
+                new SqlParameter("@LibraryId", book.Library.Id), 
+                new SqlParameter("@NrPages", book.NrPages), 
+                new SqlParameter("@PublisherId", book.Publisher.Id), 
+                new SqlParameter("@PublishYear", book.PublishYear), 
+                new SqlParameter("@Title", book.Title), 
+                new SqlParameter("@Volume", book.Volume)
+            });
+        }
+
+        #endregion
+
+        public void RemoveAuthors(int bookId)
+        {
+             _dbRead.Execute(
+               "BookAuthorsRemoveById",
+           new[] { 
+                new SqlParameter("@bookId", bookId), 
+            });
+        }
     }
 }

@@ -20,8 +20,13 @@ namespace Admin
                 if (requestId == ErrorMessages.UserInvalid.ToString())
                 {
                     lblMessage.Text = EnumUtil.GetEnumDescription(ErrorMessages.UserInvalid);
-                    lblMoreInfo.Text = "Dacă considerați acest mesaj ca fiind eronat vă rugăm să ne contactați având în vedere pașii urmați. <br> Aceasta ne ajută să îmbunătățim platforma pe viitor. Mulțumim!";
                 }
+                else if (requestId == ErrorMessages.BookInvalid.ToString())
+                {
+                    lblMessage.Text = EnumUtil.GetEnumDescription(ErrorMessages.UserInvalid);
+
+                }
+                lblMoreInfo.Text = "Dacă considerați acest mesaj ca fiind eronat vă rugăm să ne contactați având în vedere pașii urmați. <br> Aceasta ne ajută să îmbunătățim platforma pe viitor. Mulțumim!";
             }
         }
     }

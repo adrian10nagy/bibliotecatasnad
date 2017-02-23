@@ -16,34 +16,42 @@ namespace Admin.Users
         {
             if (!Page.IsPostBack)
             {
+                this.InitializeNationalities();
+                this.InitializeLocalities();
+                this.InitializeUserTypes();
+
                 if (!string.IsNullOrEmpty(Request["userId"]))
                 {
-                    var user = UsersManager.GetUserById(Request["userId"].ToInt());
-                    if (user != null)
+                    var userId = Request["userId"].ToNullableInt();
+                    if (userId != null && userId != 0)
                     {
-                        userName.Value = user.FirstName;
-                        userSurname.Value = user.LastName;
-                        userAddress.Value = user.HomeAddress;
-                        userBirthday.Value = user.Birthdate.ToString("dd-MM-yyyy");
-                        userPhone.Value = user.Phone;
-                        userEmail.Value = user.Email;
-                        userFacebook.Value = user.FacebookAddress;
-                        drpUserCity.SelectedValue = user.Locality != null ? user.Locality.Id.ToString() : "1";
-                        drpUsertype.SelectedValue = ((int)user.UserType).ToString();
-                        drpUserNationality.SelectedValue = ((int)user.Nationality).ToString();
-                        userGender.SelectedValue = ((int)user.Gender).ToString();
-                        btnSave.Text = "Updatează datele utilizatorului";
-                        lblUserId.Text = Request["userId"];
+                        var user = UsersManager.GetUserById(userId.Value);
+                        if (user != null)
+                        {
+                            userName.Value = user.FirstName;
+                            userSurname.Value = user.LastName;
+                            userAddress.Value = user.HomeAddress;
+                            userBirthday.Value = user.Birthdate.ToString("dd-MM-yyyy");
+                            userPhone.Value = user.Phone;
+                            userEmail.Value = user.Email;
+                            userFacebook.Value = user.FacebookAddress;
+                            drpUserCity.SelectedValue = user.Locality != null ? user.Locality.Id.ToString() : "1";
+                            drpUsertype.SelectedValue = ((int)user.UserType).ToString();
+                            drpUserNationality.SelectedValue = ((int)user.Nationality).ToString();
+                            userGender.SelectedValue = ((int)user.Gender).ToString();
+                            btnSave.Text = "Actualizează datele utilizatorului";
+                            lblUserId.Text = Request["userId"];
+                        }
+                        else
+                        {
+                            Response.Redirect("~/Error.aspx?errorId=" + ErrorMessages.UserInvalid);
+                        }
                     }
                     else
                     {
                         Response.Redirect("~/Error.aspx?errorId=" + ErrorMessages.UserInvalid);
                     }
                 }
-
-                this.InitializeNationalities();
-                this.InitializeLocalities();
-                this.InitializeUserTypes();
             }
         }
 
@@ -88,6 +96,8 @@ namespace Admin.Users
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            this.ValidateInputs();
+
             var user = new User
             {
                 FirstName = userName.Value,
@@ -101,17 +111,17 @@ namespace Admin.Users
                 JoinDate = DateTime.Now,
                 Locality = new Locality
                 {
-                    Id = drpUserCity.SelectedValue.ToInt()
+                    Id = drpUserCity.SelectedValue.ToNullableInt().Value
                 },
                 Flags = UserFlag.Default,
-                UserType = (UserType)drpUsertype.SelectedValue.ToInt(),
-                Nationality = (Nationality)drpUserNationality.SelectedValue.ToInt(),
-                Gender = (Gender)userGender.SelectedValue.ToInt()
+                UserType = (UserType)drpUsertype.SelectedValue.ToNullableInt(),
+                Nationality = (Nationality)drpUserNationality.SelectedValue.ToNullableInt(),
+                Gender = (Gender)userGender.SelectedValue.ToNullableInt()
             };
 
-            if (!string.IsNullOrEmpty(lblUserId.Text) && lblUserId.Text.ToInt() != 0)
+            if (!string.IsNullOrEmpty(lblUserId.Text) && lblUserId.Text.ToNullableInt() != 0)
             {
-                user.Id = lblUserId.Text.ToInt();
+                user.Id = lblUserId.Text.ToNullableInt().Value;
                 UsersManager.Update(user);
                 Response.Redirect("~/Users/Manage.aspx?Message=UserUpdatedSuccess");
             }
@@ -123,6 +133,22 @@ namespace Admin.Users
                 CleanFields();
             }
 
+        }
+
+        private void ValidateInputs()
+        {
+            userName.Attributes.CssStyle.Remove("color");
+            userSurname.Attributes.CssStyle.Remove("color");
+
+            if(string.IsNullOrWhiteSpace(userName.Value))
+            {
+                userName.Attributes.CssStyle.Add("color", "red");
+            }
+
+            if(string.IsNullOrWhiteSpace(userSurname.Value))
+            {
+                userSurname.Attributes.CssStyle.Add("color", "red");
+            }
         }
 
         private void CleanFields()

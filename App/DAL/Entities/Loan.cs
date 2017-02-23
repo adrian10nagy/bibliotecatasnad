@@ -2,14 +2,14 @@
 namespace DAL.Entities
 {
     using System;
+    using System.Collections.Generic;
 
     public class Loan
     {
         public int Id;
         public User User;
-        public Book Book;
+        public List<Book> Books;
         public DateTime LoanDate;
-        public DateTime ReturnedDate;
-        public BookCondition BookCondition;
+        public Nullable<DateTime> ReturnedDate;
     }
 }

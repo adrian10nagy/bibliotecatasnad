@@ -9,5 +9,8 @@ namespace Admin.Helpers
 
         [Description("User inexistent, nu poți edita acest user!")]
         UserInvalid = 1,
+
+        [Description("Book inexistent, nu poți edita acest user!")]
+        BookInvalid = 2,
     }
 }

@@ -32,6 +32,22 @@ namespace BL.Managers
             return publishers;
         }
 
+        public static BookDomain GetAllBookDomainsById(int id)
+        {
+            var domains = (List<BookDomain>)GetAllBookDomains();
+            BookDomain bookDomain = null;
+            if (id != 0)
+            {
+                domains = domains.FindAll(a => a.Id == id);
+                if(domains.Count >= 0)
+                {
+                    bookDomain = domains[0];
+                }
+            }
+
+            return bookDomain;
+        }
+
         public static BookDomain Add(string name)
         {
             CacheHelper.Instance.RemoveMyCachedItem(CacheConstants.BookDomainsGetAll);

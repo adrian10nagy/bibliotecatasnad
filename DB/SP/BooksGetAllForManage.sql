@@ -23,7 +23,6 @@ BEGIN
       ,B.[Title]
       ,B.[PublishYear]
       ,B.[Volume]
-      ,B.[ISBN]
       ,B.[InternalNr]
       ,B.[NrPages]
       ,B.[Id_Publisher]

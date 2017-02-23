@@ -15,6 +15,7 @@ namespace DAL.Repositories
         User GetUserByEmail(string email);
         int GetUserCount();
         void UpdateUser(User user);
+        User GetUserForLogin(string userName, string password);
     }
 
     public partial class Repository : IUserRepository
@@ -64,7 +65,6 @@ namespace DAL.Repositories
             return user;
         }
 
-
         public User GetUserByEmail(string email)
         {
             throw new NotImplementedException();
@@ -89,6 +89,30 @@ namespace DAL.Repositories
 
             return user;
         }
+
+        public User GetUserForLogin(string userName, string password)
+        {
+            User user = null;
+
+            _dbRead.Execute(
+                "UserGetForLogin",
+            new[] { 
+                new SqlParameter("@userName", userName), 
+                new SqlParameter("@password", password), 
+            },
+                r => user = new User()
+                {
+                    Id = Read<int>(r, "Id"),
+                    FirstName = Read<string>(r, "FirstName"),
+                    LastName = Read<string>(r, "LastName"),
+                    Email = Read<string>(r, "Email"),
+                    Flags = Read<UserFlag>(r, "Flags"),
+                    UserType = Read<UserType>(r, "Id_usertype"),
+                });
+
+            return user;
+        }
+
 
         public IEnumerable<User> GetAllUsers()
         {

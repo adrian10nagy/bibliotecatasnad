@@ -101,9 +101,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Logout.aspx" />
     <Content Include="Books\Add.aspx" />
     <Content Include="Books\Manage.aspx" />
     <Content Include="Contact.aspx" />
+    <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap-progressbar-3.3.4.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -114,6 +117,7 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Images\img.png" />
     <Content Include="Content\responsive.bootstrap.min.css" />
+    <Content Include="Content\select2.min.css" />
     <Content Include="Error.aspx" />
     <Content Include="Fonts\fontawesome-webfont.svg" />
     <Content Include="Content\green.css" />
@@ -121,12 +125,15 @@
     <Content Include="Content\nprogress.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Loans\History.aspx" />
+    <Content Include="Loans\InProgress.aspx" />
+    <Content Include="Loans\NewLoan.aspx" />
+    <Content Include="Loans\Search.aspx" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\BooksAdd.js" />
     <Content Include="Scripts\bootstrap-progressbar.min.js" />
-    <Content Include="Scripts\bootstrap-wysiwyg.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Chart.min.js" />
@@ -161,6 +168,7 @@
     <Content Include="Scripts\nprogress.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\select2.full.min.js" />
     <Content Include="Scripts\skycons.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
@@ -209,6 +217,7 @@
     <None Include="Project_Readme.html" />
     <Content Include="Site.Mobile.Master" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="SessionHeartbeat.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -217,6 +226,20 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -266,7 +289,42 @@
     </Compile>
     <Compile Include="Helpers\ErrorMessages.cs" />
     <Compile Include="Helpers\FlowMessages.cs" />
+    <Compile Include="Helpers\SessionHelper.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Helpers\Web.cs" />
+    <Compile Include="Loans\History.aspx.cs">
+      <DependentUpon>History.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Loans\History.aspx.designer.cs">
+      <DependentUpon>History.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Loans\InProgress.aspx.cs">
+      <DependentUpon>InProgress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Loans\InProgress.aspx.designer.cs">
+      <DependentUpon>InProgress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Loans\NewLoan.aspx.cs">
+      <DependentUpon>NewLoan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Loans\NewLoan.aspx.designer.cs">
+      <DependentUpon>NewLoan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Loans\Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Loans\Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionHeartbeat.ashx.cs">
+      <DependentUpon>SessionHeartbeat.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

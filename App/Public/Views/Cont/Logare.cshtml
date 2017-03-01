@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Logare";
+}
+<link href="/Content/animate.min.css" rel="stylesheet" type="text/css" />
+
+<form>
+    <div>
+        <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="signin"></a>
+
+        <div class="login_wrapper">
+            <div class="animate form login_form">
+                <section class="login_content">
+                    <div class="formDiv">
+                        <h1>Loghează-te</h1>
+                        <div>
+                            <input type="text" class="form-control has-feedback-left" id="txtUserName" placeholder="Utilizator" autocomplete="off" />
+                        </div>
+                        <div>
+                            <input type="password" class="form-control has-feedback-left" id="txtUserPassword" placeholder="Parolă" />
+                        </div>
+                        <div>
+                            <asp:button id="btnAccountLogin" text="Loghează-te" cssclass="btn btn-default submit" onclick="btnAccountLogin_Click" />
+                            <a class="reset_pass" href="#">Am uitat parola</a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="separator">
+                            <p class="change_link">
+                                Nou pe site?
+
+                                <a href="#signup" class="to_register">Crează-ți cont </a>
+                            </p>
+                            <div class="clearfix"></div>
+                            <br />
+                            <div>
+                                <h1><i class="fa fa-paw"></i> Biblioteca Tășnad</h1>
+                                <p>©<%= DateTime.Now.Year.ToString() %>. Toate drepturile rezervate.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div id="register" class="animate form registration_form">
+                <section class="login_content">
+                    <div class="formDiv">
+                        <h1>Crează cont</h1>
+                        <asp:label id="lblMessageCreate"></asp:label>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Utilizator" />
+                        </div>
+                        <div>
+                            <input type="email" class="form-control" placeholder="Email" />
+                        </div>
+                        <div>
+                            <input type="password" class="form-control" placeholder="Parolă" autocomplete="off" />
+                        </div>
+                        <div>
+                            <input type="password" class="form-control" placeholder="Reintrodu Parolă" autocomplete="off" />
+                        </div>
+                        <div>
+                            <asp:button id="btnAccountCreate" text="Crează cont" cssclass="btn btn-default submit" onclick="btnAccountCreate_Click" />
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="separator">
+                            <p class="change_link">
+                                Ai cont?
+
+                                <a href="#signin" class="to_register">Loghează-te </a>
+                            </p>
+
+                            <div class="clearfix"></div>
+                            <br />
+
+                            <div>
+                                <h1><i class="fa fa-paw"></i>Biblioteca Tășnad</h1>
+                                <p>©<%= DateTime.Now.Year.ToString() %>. Toate drepturile rezervate.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</form>

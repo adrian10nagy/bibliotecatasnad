@@ -8,6 +8,7 @@ namespace BL.Managers
     using DAL.SDK;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public static class BooksManager
     {
@@ -25,7 +26,7 @@ namespace BL.Managers
                 books = Kit.Instance.Books.GetAllBooks() as List<Book>;
                 foreach (var item in books)
                 {
-                    item.ISBNs = Kit.Instance.ISBNs.GetAllByBookId(item.Id)as List<ISBN>;
+                    item.ISBNs = Kit.Instance.ISBNs.GetAllByBookId(item.Id) as List<ISBN>;
                     item.Authors = BooksManager.GetBookAuthorsByBookId(item.Id) as List<Author>;
                 }
                 CacheHelper.Instance.AddToMyCache(CacheConstants.BooksGetAll, books, MyCachePriority.Default);
@@ -36,8 +37,26 @@ namespace BL.Managers
 
         public static BookPublishersChart GetBookPublisherForChart()
         {
+            var maxPublishers = 4;
             var bookPublishers = Kit.Instance.Books.GetAllBookPublishersGrouped() as List<Publisher>;
-            bookPublishers.Sort((x, y) => x.Id.CompareTo(y.Id));
+
+            var topPublishers = new List<Publisher>();
+            for (int i = 0; i < maxPublishers; i++)
+            {
+                topPublishers.Add(bookPublishers[i]);
+            }
+
+            var otherPublishers = new List<Publisher>();
+            for (int i = maxPublishers; i < bookPublishers.Count; i++)
+            {
+                otherPublishers.Add(bookPublishers[i]);
+            }
+            topPublishers.Add(new Publisher
+            {
+                Name = "Altele",
+                Id = otherPublishers.Sum(p => p.Id)
+            });
+
             var result = new BookPublishersChart()
             {
                 Dataset = new Dataset(),
@@ -45,30 +64,37 @@ namespace BL.Managers
             };
 
             var labels = new List<string>();
-            string[] datas = new string[bookPublishers.Count];
-
-            for (int i = 0; i < bookPublishers.Count; i++)
+            string[] datas = new string[maxPublishers + 1];
+            string[] percentage = new string[maxPublishers + 1];
+            var booksNumber = (double)bookPublishers.Sum(p => p.Id);
+            for (int i = 0; i < maxPublishers+1; i++)
             {
-                labels.Add(bookPublishers[i].Name);
-                datas[i] = bookPublishers[i].Id.ToString();
+                var x = (double)bookPublishers.Sum(p => p.Id);
+                var xx = (double)topPublishers[i].Id / booksNumber;
+                var xxx = xx * 100;
+
+                labels.Add(topPublishers[i].Name);
+                datas[i] = topPublishers[i].Id.ToString();
+                percentage[i] = (((double)topPublishers[i].Id / (double)booksNumber) * 100).ToString();
             }
             result.Labels = labels;
             result.Dataset.Data = datas;
+            result.Dataset.Percentage = percentage;
             result.Dataset.BackgroundColor = new List<string>
             { 
+                "#3498DB", 
                 "#9B59B6",
                 "#E74C3C",
                 "#26B99A",
-                "#3498DB", 
                 "#BDC3C7"
             }.ToArray();
-            result.Dataset.HoverBackgroundColor = new List<string>
+            result.Dataset.SquareColors = new List<string>
             {
-                "#B370CF",
-                "#E95E4F",
-                "#36CAAB",
-                "#49A9EA",
-                "#CFD4D8"
+                "blue",
+                "purple",
+                "red",
+                "green",
+                "aero"
             }.ToArray();
 
             return result;
@@ -96,10 +122,19 @@ namespace BL.Managers
             CacheHelper.Instance.RemoveMyCachedItem(CacheConstants.BooksGetAll);
 
             book.Id = Kit.Instance.Books.AddBook(book);
-            AddBookAuthor(book);
+            AddBookAuthors(book);
+            AddBookIsbns(book);
         }
 
-        public static void AddBookAuthor(Book book)
+        private static void AddBookIsbns(Book book)
+        {
+            foreach (var isbn in book.ISBNs)
+            {
+                Kit.Instance.ISBNs.AddISBN(book.Id, isbn.Value);
+            }
+        }
+
+        public static void AddBookAuthors(Book book)
         {
             foreach (var author in book.Authors)
             {
@@ -110,13 +145,36 @@ namespace BL.Managers
 
         public static void Update(Book book)
         {
+            
             CacheHelper.Instance.RemoveMyCachedItem(CacheConstants.BooksGetAll);
-
             //Update Book
             Kit.Instance.Books.UpdateBook(book);
             // Update Authors
-            Kit.Instance.Books.RemoveAuthors(book.Id);
-            AddBookAuthor(book);
+            var bookAuthorsBeforeChange = BooksManager.GetBookAuthorsByBookId(book.Id) as List<Author>;
+            var authorsAreTheSame = (string.Join(", ", bookAuthorsBeforeChange.Select(i => i.Id)) == string.Join(", ", book.Authors.Select(i => i.Id)));           
+
+            // Update ISBNS
+            var bookIsbnsBeforeChange = Kit.Instance.ISBNs.GetAllByBookId(book.Id) as List<ISBN>;
+            var isbnsAreTheSame = (string.Join(", ", bookIsbnsBeforeChange.Select(i => i.Value)) == string.Join(", ", book.ISBNs.Select(i => i.Value)));
+            
+            if (!authorsAreTheSame)
+            {
+                Kit.Instance.Books.RemoveAuthors(book.Id);
+                AddBookAuthors(book);
+            }
+
+            if (!isbnsAreTheSame)
+            {
+                Kit.Instance.ISBNs.RemoveISBNsByBookId(book.Id);
+                AddBookIsbns(book);
+            }
+        }
+
+        public static List<Book> GetBooksByDay(DateTime dateTime)
+        {
+            var books = Kit.Instance.Books.GetBooksByDay(dateTime);
+
+            return books;
         }
     }
 }

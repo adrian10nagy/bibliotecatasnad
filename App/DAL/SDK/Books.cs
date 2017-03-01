@@ -3,6 +3,7 @@ namespace DAL.SDK
 {
     using DAL.Entities;
     using DAL.Repositories;
+    using System;
     using System.Collections.Generic;
 
     public class Books
@@ -52,6 +53,11 @@ namespace DAL.SDK
         {
             return _repository.GetAllBookPublishersGrouped();
         }
-        
+
+
+        public List<Book> GetBooksByDay(DateTime dateTime)
+        {
+            return _repository.GetBooksByDay(dateTime);
+        }
     }
 }

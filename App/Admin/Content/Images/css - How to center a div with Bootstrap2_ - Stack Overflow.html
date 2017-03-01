@@ -1,0 +1,1912 @@
+<!DOCTYPE html>
+<!-- saved from url=(0078)http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2 -->
+<html itemscope="" itemtype="http://schema.org/QAPage"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>css - How to center a div with Bootstrap2? - Stack Overflow</title>
+    <link rel="shortcut icon" href="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">
+
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="How to center a div with Bootstrap2?">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="http://twitter.github.com/bootstrap/scaffolding.html
+
+I tried like all combinations:
+
+&amp;lt;div class=&quot;row&quot;&amp;gt;
+  &amp;lt;div class=&quot;span7 offset5&quot;&amp;gt; box &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+or 
+
+&amp;lt;div class=&quot;">
+    <meta property="og:url" content="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2">
+    <link rel="canonical" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2">
+
+    
+    
+    <script type="text/javascript" async="" src="http://engine.adzerk.net/ados?t=1488220300493&amp;request={%22Placements%22:[{%22A%22:22,%22S%22:8277,%22D%22:%22adzerk1145175654%22,%22AT%22:4,%22Z%22:[43]},{%22A%22:22,%22S%22:8277,%22D%22:%22adzerk197967070%22,%22AT%22:4,%22Z%22:[44]},{%22A%22:22,%22S%22:8277,%22D%22:%22adzerk1962679771%22,%22ATA%22:[5,17,2221],%22Z%22:[45]}],%22Keywords%22:%22css%2Ctwitter-bootstrap%2Ctwitter-bootstrap-2%22,%22Referrer%22:%22https%3A%2F%2Fwww.google.ro%2F%22,%22IsAsync%22:true}"></script><script async="" src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/quant.js.download"></script><script async="" src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/beacon.js.download"></script><script async="" src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/analytics.js.download"></script><script type="text/javascript" async="" src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/ados.js.download"></script><script src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/jquery.min.js.download"></script>
+    <script src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/stub.en.js.download"></script>
+    <link rel="stylesheet" type="text/css" href="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/all.css">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;How to center a div with Bootstrap2?&#39;" href="http://stackoverflow.com/feeds/question/9382970">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:3,shownCommentCount:3,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:9382970});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '9382970');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text', true); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","serverTime":1488220218,"routeName":"Questions/Show","site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"enableInsertDocLinkDialog":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"7b1273e1580adff81e186b45f20ab45d","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true,"canSeeNewHeaderDesign":true,"ab":{"question_show_tweaks":{"v":"altern_unansw_cta","g":2},"devstory_onboarding_exp":{"v":"j","g":1}}},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}},"story":{"minCompleteBodyLength":75}}, {"site":{"allowImageUploads":true,"enableUserHovercards":true,"styleCode":true,"enableNewLinkInsertDialog":true,"enableImgurHttps":true,"forceHttpsImages":true},"comments":{},"userProfile":{"openGraphAPIKey":"58740831ad23540e00c58987"},"tags":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true},"flags":{"allowRetractingFlags":true},"analytics":{"clientTimingsAbsoluteTimeout":30000,"clientTimingsDebounceTimeout":1000},"snippets":{"snippetsEnabled":true,"renderDomain":"stacksnippets.net"},"markdown":{"asteriskIntraWordEmphasis":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"6712a974335d","js/moderator.en.js":"13f5b993ec18","js/full-anon.en.js":"3ae6f7c3c1a6","js/full.en.js":"74969197da49","js/wmd.en.js":"41828e61da36","js/third-party/jquery.autocomplete.min.js":"d3b8fa7fdf74","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"02b7b1d44471","js/help.en.js":"a2f92aacc060","js/tageditor.en.js":"248fce004255","js/tageditornew.en.js":"a4e6b3ba0c34","js/inline-tag-editing.en.js":"77dde44800e2","js/revisions.en.js":"47de10a8358f","js/review.en.js":"9e95c94b0aec","js/tagsuggestions.en.js":"ddb0e41afe26","js/post-validation.en.js":"a84c6cac996b","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"c7cfc9495b96","js/keyboard-shortcuts.en.js":"a0bc67e68ea8","js/external-editor.en.js":"fc9efaebc4b7","js/adops.en.js":"9a6a7812a212","js/external-editor.en.js":"fc9efaebc4b7","js/snippet-javascript.en.js":"93fad8d58427","js/snippet-javascript-codemirror.en.js":"49ef1caa2627"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+<script async="" src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/full-anon.en.js.download"></script><script async="" src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/snippet-javascript.en.js.download"></script><script async="" src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/post-validation.en.js.download"></script><script async="" src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/prettify-full.en.js.download"></script><script type="text/javascript" src="http://static.adzerk.net/Extensions/adFeedback.js"></script><link rel="stylesheet" href="http://static.adzerk.net/Extensions/adFeedback.css"><link rel="stylesheet" href="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/jobs-multi.min.css" type="text/css"></head>
+<body class="question-page new-topbar">
+    <noscript>&lt;div id="noscript-padding"&gt;&lt;/div&gt;</noscript>
+            <script>(function () { var old = $.fn.contents; $.fn.contents = function () { try { return old.apply(this, arguments); } catch (e) { return $([]); } } })()</script>
+        
+
+    <div id="notify-container"></div>
+    <div id="custom-header"></div>
+
+
+<header class="so-header js-so-header _fixed _scrolling">
+    <div class="-container">
+        <div class="-main">
+            
+            <a href="http://stackoverflow.com/" class="-logo ">
+                <span class="-img">Stack Overflow</span>
+            </a>
+
+            <nav class="navigation">
+                <ol class="-list">
+                        <li class="-item _current">
+        <a id="nav-questions" href="http://stackoverflow.com/questions" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:true, location:2, destination:1})">Questions</a>
+    </li>
+
+    <li class="-item">
+        <a id="nav-jobs" href="http://stackoverflow.com/jobs?med=site-ui&amp;ref=jobs-tab" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:6})">Jobs</a>
+    </li>
+                        <li class="-item">
+        <a id="nav-docs" href="http://stackoverflow.com/documentation" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:7})">Documentation <small class="beta-badge">beta</small></a>
+    </li>
+                        <li class="-item">
+        <a id="nav-tags" href="http://stackoverflow.com/tags" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:2})">Tags</a>
+    </li>
+
+                        <li class="-item">
+        <a id="nav-users" href="http://stackoverflow.com/users" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:3})">Users</a>
+    </li>
+
+                </ol>
+            </nav>
+
+            <form id="search" action="http://stackoverflow.com/search" method="get" class="searchbar" autocomplete="off">
+                <svg viewBox="0 0 18 18" width="18" height="18" role="icon"><path fill-rule="evenodd" d="M12.864 11.32h-.813l-.288-.277A6.66 6.66 0 0 0 13.38 6.69a6.69 6.69 0 1 0-6.69 6.69 6.66 6.66 0 0 0 4.354-1.617l.278.288v.813L16.467 18 18 16.467l-5.136-5.146zm-6.174 0a4.625 4.625 0 0 1-4.632-4.63A4.625 4.625 0 0 1 6.69 2.058a4.625 4.625 0 0 1 4.63 4.632 4.625 4.625 0 0 1-4.63 4.63z"></path></svg>
+                <input name="q" type="text" placeholder="Search..." value="" tabindex="1" autocomplete="off" maxlength="240" class="f-input js-search-field">
+                <button type="submit" class="btn js-search-submit">
+                    <svg viewBox="0 0 18 18" width="18" height="18" role="icon"><path fill-rule="evenodd" d="M12.864 11.32h-.813l-.288-.277A6.66 6.66 0 0 0 13.38 6.69a6.69 6.69 0 1 0-6.69 6.69 6.66 6.66 0 0 0 4.354-1.617l.278.288v.813L16.467 18 18 16.467l-5.136-5.146zm-6.174 0a4.625 4.625 0 0 1-4.632-4.63A4.625 4.625 0 0 1 6.69 2.058a4.625 4.625 0 0 1 4.63 4.632 4.625 4.625 0 0 1-4.63 4.63z"></path></svg>
+                </button>
+            </form>
+
+        </div>
+        
+
+
+<div class="-actions">
+    <nav class="secondary-nav">
+        <div class="-dialog-container js-topbar-dialog-corral">
+
+
+    <div class="topbar-dialog siteSwitcher-dialog dno">
+        <div class="header">
+            <h3><a href="http://stackoverflow.com/">current community</a>
+            </h3>
+        </div>
+        <div class="modal-content current-site-container">
+            <ul class="current-site">
+                    <li>
+                            <div class="related-links">
+                    <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                    </li>
+                    <li class="related-site">
+                            <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                        
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="site.switch({ target_site:552, item_type:3 }),site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                    </li>
+            </ul>
+        </div>
+
+        <div class="header" id="your-communities-header">
+            <h3>
+your communities            </h3>
+
+        </div>
+        <div class="modal-content" id="your-communities-section">
+
+                <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;amp;utm_source=stackoverflow.com&amp;amp;utm_medium=dev-story&amp;amp;utm_campaign=signup-redirect" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f9382970%2fhow-to-center-a-div-with-bootstrap2" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+                </div>
+        </div>
+
+        <div class="header">
+            <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a>
+            </h3>
+            <a href="http://stackoverflow.blog/" class="fr">company blog</a>
+        </div>
+        <div class="modal-content">
+                <div class="child-content"></div>
+        </div>        
+    </div>
+                <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                        <li>
+                            <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                                Meta
+                                <span class="item-summary">
+                                    Discuss the workings and policies of this site
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://stackoverflow.com/company/about" class="js-gps-track" data-gps-track="help_popup.click({ item_type:6 })">
+                                About Us
+                                <span class="item-summary">
+                                    Learn more about Stack Overflow the company
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.stackoverflowbusiness.com/?ref=topbar_help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:7 })">
+                                Business
+                                <span class="item-summary">
+                                    Learn more about hiring developers or posting ads with us
+                                </span>
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+
+        </div>
+        <ol class="-list">
+            
+    <li class="-item"><a href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#" class="-link js-help-button" title="Help Center and other resources">
+        <svg viewBox="0 0 18 18" width="18" height="18" role="icon"><path fill-rule="evenodd" d="M9 0a9 9 0 1 0 .001 18.001A9 9 0 0 0 9 0zm.812 13.126c-.02.716-.55 1.157-1.238 1.137-.659-.02-1.177-.49-1.157-1.209.02-.715.566-1.17 1.225-1.15.691.021 1.194.507 1.17 1.222zm1.956-5.114c-.168.237-.546.542-1.02.912l-.527.361c-.257.197-.417.43-.502.695-.044.141-.076.507-.084.752-.004.048-.032.156-.181.156H7.883c-.165 0-.185-.096-.18-.144.023-.667.12-1.218.397-1.66.374-.594 1.426-1.221 1.426-1.221.161-.12.286-.25.382-.39.177-.24.321-.51.321-.8 0-.333-.08-.65-.293-.915-.249-.31-.518-.458-1.036-.458-.51 0-.808.257-1.021.594-.213.338-.177.735-.177 1.097H5.746c0-1.366.357-2.238 1.112-2.752.51-.35 1.162-.502 1.921-.502.996 0 1.788.184 2.487.715.647.49.988 1.181.988 2.113 0 .575-.2 1.057-.486 1.447z"></path></svg>
+    </a></li>
+                <li class="-item">
+        <a href="http://stackexchange.com/" class="-link js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 165 Stack Exchange sites">
+            <svg viewBox="0 0 18 19" width="18" height="19" role="icon"><path fill-rule="evenodd" d="M0 14a2 2 0 0 0 2 2h10v3l3-3h1a2 2 0 0 0 2-2v-2H0v2zM16 0H2a2 2 0 0 0-2 2v2h18V2a2 2 0 0 0-2-2zM0 6h18v4H0V6z"></path></svg>
+        </a>
+    </li>
+
+
+        </ol>
+    </nav>
+        <div class="-ctas">
+                    <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f9382970%2fhow-to-center-a-div-with-bootstrap2" class="login-link btn-clear" rel="nofollow">Log In</a>
+                        <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;utm_source=stackoverflow.com&amp;utm_medium=dev-story&amp;utm_campaign=signup-redirect" class="login-link btn" rel="nofollow">Sign Up</a>
+
+        </div>
+</div>
+    </div>
+</header>
+
+    <script>
+        StackExchange.ready(function () { StackExchange.topbar.init(); });
+            StackExchange.scrollPadding.setPaddingTop(60, 10);     </script>
+
+    <div class="container">
+        
+
+
+        <div id="content" class="snippet-hidden">
+
+
+
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+
+
+<div id="herobox" class="alternate">
+    <div class="test"></div>
+        <div id="close">
+            <a title="click to minimize"><span>x</span> Dismiss</a>
+        </div>
+    <div class="content">
+        <b>Join the Stack Overflow Community</b>
+        <div class="separator"></div>
+        <div class="blurb">
+            Stack Overflow is a community of 6.8 million programmers, just like you, helping each other.
+                <br>
+Join them; it only takes a minute:                <br>
+        </div>
+        <a href="http://stackoverflow.com/users/signup?ssrc=hero&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;amp;utm_source=stackoverflow.com&amp;amp;utm_medium=dev-story&amp;amp;utm_campaign=signup-redirect" id="tell-me-more" class="button">Sign up</a>
+    </div>
+</div>
+<script>
+    StackExchange.ready(function () {
+
+        var location = 0;
+        if ($("body").hasClass("questions-page")) {
+            location = 1;;
+        } else if ($("body").hasClass("question-page")) {
+            location = 1;;
+        } else if ($("body").hasClass("faq-page")) {
+            location = 5;;
+        } else if ($("body").hasClass("home-page")) {
+            location = 3;;
+        }
+
+        $('#tell-me-more').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+            });
+        });
+        $('#herobox #close').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: "minimize", location: location }, true);
+            });
+            $.cookie("hero", "mini", { path: "/", expires: 365 });
+            $.ajax({
+                url: "/hero-mini",
+                success: function (data) {
+                    $("#herobox").fadeOut("fast", function () {
+                        $("#herobox").replaceWith(data);
+                        $("#herobox-mini").fadeIn("fast");
+                    });
+                }
+            });
+            return false;
+        });
+    });
+
+</script>			<div id="question-header">
+                <h1 itemprop="name"><a href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2" class="question-hyperlink">How to center a div with Bootstrap2?</a></h1>
+
+            
+<div class="aside-cta">
+    <a href="http://stackoverflow.com/questions/ask" class="btn-outlined">Ask Question</a>
+</div>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="9382970" id="question">
+
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1145175654",4).setZone(43); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1145175654"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="9382970">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">76</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#">favorite</a>
+        <div class="favoritecount"><b>25</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p><a href="http://twitter.github.com/bootstrap/scaffolding.html" rel="noreferrer">http://twitter.github.com/bootstrap/scaffolding.html</a></p>
+
+<p>I tried like all combinations:</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"row"</span><span class="tag">&gt;</span><span class="pln">
+  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"span7 offset5"</span><span class="tag">&gt;</span><span class="pln"> box </span><span class="tag">&lt;/div&gt;</span><span class="pln">
+</span><span class="tag">&lt;/div&gt;</span></code></pre>
+
+<p>or </p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"container"</span><span class="tag">&gt;</span><span class="pln">
+  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"row"</span><span class="tag">&gt;</span><span class="pln">
+    </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"span7 offset5"</span><span class="tag">&gt;</span><span class="pln"> box </span><span class="tag">&lt;/div&gt;</span><span class="pln">
+  </span><span class="tag">&lt;/div&gt;</span><span class="pln">  
+</span><span class="tag">&lt;/div&gt;</span></code></pre>
+
+<p>changed span and offset numbers...</p>
+
+<p>But I cant get a simple box perfectly centered on a page :(</p>
+
+<p>I just want a 6-column-wide box centered...</p>
+
+<p></p><hr>
+edit:<p></p>
+
+<p>did it with </p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"container"</span><span class="tag">&gt;</span><span class="pln">
+  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"row"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"login-container"</span><span class="tag">&gt;</span><span class="pln">
+    </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"span8 offset2"</span><span class="tag">&gt;</span><span class="pln">
+       box
+    </span><span class="tag">&lt;/div&gt;</span><span class="pln">
+  </span><span class="tag">&lt;/div&gt;</span><span class="pln">
+</span><span class="tag">&lt;/div&gt;</span></code></pre>
+
+<p>But the box is too wide, is there any way I can do it with span7 ?</p>
+
+<p><code>span7 offset2</code> gives extra padding to the left <code>span7 offset3</code> extra padding to the right...</p>
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/css" class="post-tag js-gps-track" title="show questions tagged &#39;css&#39;" rel="tag">css</a> <a href="http://stackoverflow.com/questions/tagged/twitter-bootstrap" class="post-tag js-gps-track" title="show questions tagged &#39;twitter-bootstrap&#39;" rel="tag">twitter-bootstrap</a> <a href="http://stackoverflow.com/questions/tagged/twitter-bootstrap-2" class="post-tag js-gps-track" title="show questions tagged &#39;twitter-bootstrap-2&#39;" rel="tag">twitter-bootstrap-2</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/9382970" title="short permalink to this question" class="short-link" id="link-post-9382970">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/9382970/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/9382970/revisions" title="show all edits to this post">edited <span title="2015-12-10 03:19:46Z" class="relativetime">Dec 10 '15 at 3:19</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/5458425/darryl-mendonez"><div class="gravatar-wrapper-32"><img src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/euue5.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/5458425/darryl-mendonez">Darryl Mendonez</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">71</span><span title="2 silver badges"><span class="badge2"></span><span class="badgecount">2</span></span><span title="13 bronze badges"><span class="badge3"></span><span class="badgecount">13</span></span>
+        </div>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info user-hover">
+    <div class="user-action-time">
+        asked <span title="2012-02-21 18:23:43Z" class="relativetime">Feb 21 '12 at 18:23</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/376947/alex"><div class="gravatar-wrapper-32"><img src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/1b61fefdf47fd531f94a86516dba0521" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/376947/alex">Alex</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 14,360" dir="ltr">14.4k</span><span title="107 gold badges"><span class="badge1"></span><span class="badgecount">107</span></span><span title="316 silver badges"><span class="badge2"></span><span class="badgecount">316</span></span><span title="510 bronze badges"><span class="badge3"></span><span class="badgecount">510</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                    
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-9382970" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-11859356" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Are you looking to center a box horizontally on the page? Because the <code>container</code> class already does that, thought you might be looking to center a smaller box. Or are you looking to center a box both horizontally and vertically on the page?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/680398/andres-ilich" title="60,639 reputation" class="comment-user">Andres  Ilich</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#comment11859356_9382970"><span title="2012-02-22 00:10:05Z" class="relativetime-clean">Feb 22 '12 at 0:10</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-24202488" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="warm">13</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">a box thing you say? . . . .here in developer world we call that a div</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/642572/pythonian29033" title="2,296 reputation" class="comment-user">pythonian29033</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#comment24202488_9382970"><span title="2013-05-28 14:21:40Z" class="relativetime-clean">May 28 '13 at 14:21</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-54417117" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">What version of Bootstrap were you using? it should be reflected in the title as people looking this up will end up here and see outdated code.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1120027/jgallardo" title="4,742 reputation" class="comment-user">JGallardo</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#comment54417117_9382970"><span title="2015-10-23 18:32:21Z" class="relativetime-clean">Oct 23 '15 at 18:32</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-9382970" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#" onclick=""></a>
+        </div>         
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								6 Answers
+                                <span style="display:none;" itemprop="answerCount">6</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
+            active</a>
+        <a href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+            oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+            votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="9419480"></a>
+<div id="answer-9419480" class="answer accepted-answer" data-answerid="9419480" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="9419480">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">44</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>besides shrinking the div itself to the size you want, by reducing span size like so... <code>class="span6 offset3"</code>, <code>class="span4 offset4"</code>, etc... something as simple as <code>style="text-align: center"</code> on the div could have the effect you're looking for</p>
+
+<p>you can't use span7 with any set offset and get the span centered on the page (Because total spans = 12)</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/9419480" title="short permalink to this answer" class="short-link" id="link-post-9419480">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/9419480/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/9419480/revisions" title="show all edits to this post">edited <span title="2012-11-30 12:12:50Z" class="relativetime">Nov 30 '12 at 12:12</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/658606/ivan-a-bovin"><div class="gravatar-wrapper-32"><img src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/9535d7be17f9b1d7ef64c1e53bd7fd71" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/658606/ivan-a-bovin">ivan.a.bovin</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">701</span><span title="7 silver badges"><span class="badge2"></span><span class="badgecount">7</span></span><span title="12 bronze badges"><span class="badge3"></span><span class="badgecount">12</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-02-23 19:04:21Z" class="relativetime">Feb 23 '12 at 19:04</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/366493/csturtz"><div class="gravatar-wrapper-32"><img src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/70323f4fed3d8fe5a26b731b7e820180" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/366493/csturtz">csturtz</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">2,487</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="13 silver badges"><span class="badge2"></span><span class="badgecount">13</span></span><span title="27 bronze badges"><span class="badge3"></span><span class="badgecount">27</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-9419480" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-20289333" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Using class <code>offset*</code> works well. +1</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/375966/afshin-mehrabani" title="9,552 reputation" class="comment-user">Afshin Mehrabani</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#comment20289333_9419480"><span title="2013-01-27 08:16:40Z" class="relativetime-clean">Jan 27 '13 at 8:16</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-21210257" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="warm">11</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Consider Zuhaib Ali's answer. text-align: center doesn't work for centering elements within a &lt;div&gt;.  The offset* class isn't truly centering components.  It is merely creating the illusion of centering.  You can verify this by resizing the window and seeing that the components do not remain centered.  When you apply Zuhaib Ali's method, the components stay centered.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/931972/truelifecoder" title="1,285 reputation" class="comment-user">TrueLifeCoder</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#comment21210257_9419480"><span title="2013-02-26 03:13:58Z" class="relativetime-clean">Feb 26 '13 at 3:13</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-36759576" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Instead of adding inline styling (style="text-align:center"), add the class "center-block" and get centred content within your centred div.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/848184/shawn-taylor" title="8,298 reputation" class="comment-user">Shawn Taylor</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#comment36759576_9419480"><span title="2014-05-27 00:25:24Z" class="relativetime-clean">May 27 '14 at 0:25</span></a></span>
+                        <span class="edited-yes" title="this comment was edited 2 times"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-61823569" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">col-md-4 or col-lg-4 is equal a margin: 0 auto; ?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/944571/jruzafa" title="2,498 reputation" class="comment-user">jruzafa</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#comment61823569_9419480"><span title="2016-05-10 15:15:28Z" class="relativetime-clean">May 10 '16 at 15:15</span></a></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-9419480" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk197967070",4).setZone(44); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk197967070"></div>
+  
+<a name="14933082"></a>
+<div id="answer-14933082" class="answer" data-answerid="14933082" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="14933082">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">155</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Bootstrap's spans are floated to the left. All it takes to center them is override this behavior. I do this by adding this to my stylesheet:</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="pun">.</span><span class="pln">center </span><span class="pun">{</span><span class="pln">
+     </span><span class="kwd">float</span><span class="pun">:</span><span class="pln"> none</span><span class="pun">;</span><span class="pln">
+     margin</span><span class="pun">-</span><span class="pln">left</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">auto</span><span class="pun">;</span><span class="pln">
+     margin</span><span class="pun">-</span><span class="pln">right</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">auto</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>If you have this class defined, just add it to the span and you're good to go.</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"span7 center"</span><span class="tag">&gt;</span><span class="pln"> box </span><span class="tag">&lt;/div&gt;</span></code></pre>
+
+<p>Note that this custom center class must be defined <em>after</em> the bootstrap css. You could use <code>!important</code> but that isn't recommended. </p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/14933082" title="short permalink to this answer" class="short-link" id="link-post-14933082">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/14933082/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/14933082/revisions" title="show all edits to this post">edited <span title="2013-03-22 19:10:43Z" class="relativetime">Mar 22 '13 at 19:10</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/147057/max-taldykin"><div class="gravatar-wrapper-32"><img src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/cf9d83a95db2460ccb18f311fa8a766c" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/147057/max-taldykin">max taldykin</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">7,052</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="25 silver badges"><span class="badge2"></span><span class="badgecount">25</span></span><span title="55 bronze badges"><span class="badge3"></span><span class="badgecount">55</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2013-02-18 09:31:24Z" class="relativetime">Feb 18 '13 at 9:31</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1731393/zuhaib-ali"><div class="gravatar-wrapper-32"><img src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/ec8419cb89f2149e38d5515378ab6fcb" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1731393/zuhaib-ali">Zuhaib Ali</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">2,341</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="10 silver badges"><span class="badge2"></span><span class="badgecount">10</span></span><span title="24 bronze badges"><span class="badge3"></span><span class="badgecount">24</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-14933082" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-21210216" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="warm">5</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">YES!  Thank you, Zuhaib!  Worked perfectly.  This answer should be voted as the correct answer for this question.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/931972/truelifecoder" title="1,285 reputation" class="comment-user">TrueLifeCoder</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#comment21210216_14933082"><span title="2013-02-26 03:11:39Z" class="relativetime-clean">Feb 26 '13 at 3:11</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-22548348" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@ZuhaibAli Adding <code>float: none;</code> fix my problem.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/556553/sife" title="3,314 reputation" class="comment-user">SIFE</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#comment22548348_14933082"><span title="2013-04-06 00:19:27Z" class="relativetime-clean">Apr 6 '13 at 0:19</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-24058598" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I'm using Rails, so I just want to point out that in application.css, add <code>*= require bootstrap.min</code> <b>before</b> <code>*= require_self</code> and <code>*= require_tree</code></span>
+		            –&nbsp;<span class="comment-user">user2109908</span>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#comment24058598_14933082"><span title="2013-05-23 11:08:26Z" class="relativetime-clean">May 23 '13 at 11:08</span></a></span>
+                        <span class="edited-yes" title="this comment was edited 2 times"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-24727622" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This didn't work for me, but adding <code>display: table</code> seemed to fix it</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/908886/accipheran" title="3,010 reputation" class="comment-user">Accipheran</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#comment24727622_14933082"><span title="2013-06-13 18:29:52Z" class="relativetime-clean">Jun 13 '13 at 18:29</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-26238187" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Great answer! Working with this from now on.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/432168/serv-bot-22" title="398 reputation" class="comment-user">serv-bot 22</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#comment26238187_14933082"><span title="2013-07-30 17:18:41Z" class="relativetime-clean">Jul 30 '13 at 17:18</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-14933082" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="27164759"></a>
+<div id="answer-27164759" class="answer" data-answerid="27164759" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="27164759">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">31</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Bootstrap3 has the <code>.center-block</code> class that you can use. It is defined as</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="pun">.</span><span class="pln">center</span><span class="pun">-</span><span class="pln">block </span><span class="pun">{</span><span class="pln">
+  display</span><span class="pun">:</span><span class="pln"> block</span><span class="pun">;</span><span class="pln">
+  margin</span><span class="pun">-</span><span class="pln">left</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">auto</span><span class="pun">;</span><span class="pln">
+  margin</span><span class="pun">-</span><span class="pln">right</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">auto</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>Documentation <a href="http://getbootstrap.com/css/#helper-classes-center">here</a>.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/27164759" title="short permalink to this answer" class="short-link" id="link-post-27164759">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/27164759/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2014-11-27 06:56:21Z" class="relativetime">Nov 27 '14 at 6:56</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/147373/casey"><div class="gravatar-wrapper-32"><img src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/aa8ef1119fb9a18c7bcc7ab7b18dfd9d" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/147373/casey">Casey</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">5,959</span><span title="11 gold badges"><span class="badge1"></span><span class="badgecount">11</span></span><span title="52 silver badges"><span class="badge2"></span><span class="badgecount">52</span></span><span title="99 bronze badges"><span class="badge3"></span><span class="badgecount">99</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-27164759" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-27164759" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="23879044"></a>
+<div id="answer-23879044" class="answer" data-answerid="23879044" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="23879044">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">20</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>If you want to go full-bootstrap (and not the auto left/right way) you need a pattern that will fit within 12 columns e.g. 2 blanks, 8 content, 2 blanks. That's what this setup will do.
+It only covers the <em>-md-</em> variants, I tend to snap it to full size for small by adding col-xs-12</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"container"</span><span class="tag">&gt;</span><span class="pln">
+  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"col-md-8 col-md-offset-2"</span><span class="tag">&gt;</span><span class="pln">
+     box
+  </span><span class="tag">&lt;/div&gt;</span><span class="pln">
+</span><span class="tag">&lt;/div&gt;</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/23879044" title="short permalink to this answer" class="short-link" id="link-post-23879044">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/23879044/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2014-05-26 23:39:32Z" class="relativetime">May 26 '14 at 23:39</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/186212/craig"><div class="gravatar-wrapper-32"><img src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/5eb9459d5c709f848094f073dfe19186" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/186212/craig">Craig</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">5,973</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="24 silver badges"><span class="badge2"></span><span class="badgecount">24</span></span><span title="54 bronze badges"><span class="badge3"></span><span class="badgecount">54</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-23879044" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-40378453" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">is that a valid way of centering divs in boostrap?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/2128444/coder" title="342 reputation" class="comment-user">coder</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#comment40378453_23879044"><span title="2014-09-12 16:38:19Z" class="relativetime-clean">Sep 12 '14 at 16:38</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-40389977" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">The content of the div is not centered, but the div itself is.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/186212/craig" title="5,973 reputation" class="comment-user">Craig</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#comment40389977_23879044"><span title="2014-09-13 00:49:57Z" class="relativetime-clean">Sep 13 '14 at 0:49</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-23879044" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="12766523"></a>
+<div id="answer-12766523" class="answer" data-answerid="12766523" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="12766523">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">9</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Sounds like you just wanted to center align a single container.
+The bootstrap framework might be overcomplicating that one example, you could have just had a standalone div with your own styling, something like:</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"login-container"</span><span class="tag">&gt;</span><span class="pln">
+  </span><span class="com">&lt;!-- Your Login Form --&gt;</span><span class="pln">
+</span><span class="tag">&lt;/div&gt;</span></code></pre>
+
+<p>and style:</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="pun">.</span><span class="pln">login</span><span class="pun">-</span><span class="pln">container </span><span class="pun">{</span><span class="pln">
+  margin</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="kwd">auto</span><span class="pun">;</span><span class="pln">
+  width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">400px</span><span class="pun">;</span><span class="pln"> </span><span class="com">/* Whatever exact width you are looking for (not bound by preset bootstrap widths) */</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>That should work fine if you are nested somewhere within a bootstrap <code>.container</code> div.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/12766523" title="short permalink to this answer" class="short-link" id="link-post-12766523">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/12766523/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-10-07 06:07:40Z" class="relativetime">Oct 7 '12 at 6:07</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/601455/cstrat"><div class="gravatar-wrapper-32"><img src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/42265234b3c4e9cd8a7c888cc6112113" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/601455/cstrat">cstrat</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">845</span><span title="8 silver badges"><span class="badge2"></span><span class="badgecount">8</span></span><span title="14 bronze badges"><span class="badge3"></span><span class="badgecount">14</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-12766523" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-12766523" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="14694175"></a>
+<div id="answer-14694175" class="answer" data-answerid="14694175" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="14694175">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">3</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>add the class centercontents</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="com">/** Center the contents of the element **/</span><span class="pln">
+</span><span class="pun">.</span><span class="pln">centercontents </span><span class="pun">{</span><span class="pln">
+    text</span><span class="pun">-</span><span class="pln">align</span><span class="pun">:</span><span class="pln"> center </span><span class="pun">!</span><span class="pln">important</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/14694175" title="short permalink to this answer" class="short-link" id="link-post-14694175">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/14694175/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-02-04 19:37:11Z" class="relativetime">Feb 4 '13 at 19:37</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1247700/mrpix"><div class="gravatar-wrapper-32"><img src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/876fd618759d59e885c51752c90b85a6" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1247700/mrpix">mrpix</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">41</span><span title="2 bronze badges"><span class="badge3"></span><span class="badgecount">2</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-14694175" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-14694175" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+				    <div class="question-status">
+        <h2>                    <b>protected</b> by <a href="http://stackoverflow.com/users/250260/jorgesys">Jorgesys</a> <span dir="ltr"><span title="2013-12-17 17:26:12Z" class="relativetime">Dec 17 '13 at 17:26</span></span>
+</h2>
+        <p>
+Thank you for your interest in this question. 
+Because it has attracted low-quality or spam answers that had to be removed, posting an answer now requires 10 <a href="http://stackoverflow.com/help/whats-reputation">reputation</a> on this site (the <a href="http://stackoverflow.com/help/privileges/new-user">association bonus does not count</a>).
+<br><br>
+Would you like to answer one of these <a href="http://stackoverflow.com/unanswered?fromProtectedNotice=true">unanswered questions</a> instead?
+</p>
+    </div>
+
+
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/css" class="post-tag" title="show questions tagged &#39;css&#39;" rel="tag">css</a> <a href="http://stackoverflow.com/questions/tagged/twitter-bootstrap" class="post-tag" title="show questions tagged &#39;twitter-bootstrap&#39;" rel="tag">twitter-bootstrap</a> <a href="http://stackoverflow.com/questions/tagged/twitter-bootstrap-2" class="post-tag" title="show questions tagged &#39;twitter-bootstrap-2&#39;" rel="tag">twitter-bootstrap-2</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2012-02-21 18:23:43Z"><b>5 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>305541 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/9382970/how-to-center-a-div-with-bootstrap2?lastactivity" class="lastactivity-link" title="2015-12-10 03:19:46Z">1 year ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1962679771",[5,17,2221]).setZone(45); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1962679771"><div id="careersadsdoublehigh" style="display:none;"></div><img height="0px" width="0px" border="0" style="position: absolute; display: none !important;" src="http://engine.adzerk.net/i.gif?e=eyJhdiI6NDE0LCJhdCI6NSwiYnQiOjAsImNtIjo5MjEsImNoIjoxMTc4LCJjayI6e30sImNyIjoyNjg4LCJkaSI6IjFjOGY1MDNmYTZhZjQ0OTJhYTExZThiYzc3ZTE5ODcwIiwiZG0iOjEsImZjIjoyNDg1LCJmbCI6MjY2MywiaXAiOiI3OS4xMTkuMTAxLjI1MiIsImt3IjoiY3NzLHR3aXR0ZXItYm9vdHN0cmFwLHR3aXR0ZXItYm9vdHN0cmFwLTIiLCJudyI6MjIsInBjIjowLCJlYyI6MCwicHIiOjYxNzM3LCJydCI6MSwicmYiOiJodHRwczovL3d3dy5nb29nbGUucm8vIiwic3QiOjgyNzcsInVrIjoidWUxLWU3YzJlZGYyYjZhOTQ1MmVhYWJiNzA5YmE0MWVlMmVmIiwiem4iOjQ1LCJ0cyI6MTQ4ODIyMDIyMTU1OSwiYmYiOnRydWUsInBuIjoiYWR6ZXJrMTk2MjY3OTc3MSIsImZxIjowfQ&amp;s=Czg0_GEavr0vdSKuOVriH3SJ4QM"></div>
+            <div id="hireme" class="clc-jobs-multi blue tagged"><a class="top " href="https://stackoverflow.com/jobs" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=4zQtVd1oF3_Fg9XOyD-IiYmBgYGFAQSsdPoZsqM1GBiOAzEDM0PPBpAoIyNIgbSjDBOD72JmBkZmBv7WtOCFlol3Y-1nBwsyMdzqZWbgZmaY0HwmfJ3liUUJ9oxMycqz9wgzMfRMYmbgYmb42dhgu8NStD8TLCP9WpyBwUuCAWSSRYvEpg2WQScL7BlMv23-59Ped1XvFgA&amp;cr=10439&amp;ct=1&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs&amp;sig=LvGTGT3TUWoMIA"><span>Looking for a job?</span></a><div class="middle"><ul class="jobs"><li class="&quot;clc-dismissable&quot;"><div class="job-wrap"><a class="job" title="Lead .NET Developer at KHWS. Click to learn more." href="https://stackoverflow.com/jobs/135885/lead-net-developer-khws" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=4zQtVd1oF3_Fg9XOyD-IiYmBgYGFAQSsdPoZsqM1GBiOAzEDM0PPBpAoIyNIgbSjDBOD72JmBkZmBv7WtOCFlol3Y-1nBwsyMdzqZWbgZmaY0HwmfJ3liUUJ9oxMycqz9wgzMfRMYmbgYmb42dhgu8NStD8TLCP9WpyBwUuCAWSSRYvEpg2WQScL7BlMv23-59Ped1XvFgA&amp;cr=238413&amp;ct=0&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2F135885%2Flead-net-developer-khws&amp;sig=nYz2Sti-zdXAHQ"><div class="title">Lead .NET Developer</div><div><span class="company">KHWS</span><span class="location">London, UK</span></div><span class="post-tag">asp.net</span><span class="post-tag">umbraco</span></a></div><a class="clc-dismiss" data-clc-click="https://clc.stackoverflow.com/click?an=4zQtVd1oF3_Fg9XOyD-IiYmBgYGFAQSsdPoZsqM1GBiOAzEDM0PPBpAoIyNIgbSjDBOD72JmBkZmBv7WtOCFlol3Y-1nBwsyMdzqZWbgZmaY0HwmfJ3liUUJ9oxMycqz9wgzMfRMYmbgYmb42dhgu8NStD8TLCP9WpyBwUuCAWSSRYvEpg2WQScL7BlMv23-59Ped1XvFgA&amp;cr=238413&amp;ct=-1&amp;sig=w-Xex3v10i2eCA" data-clc-meta-target="-1"><span class="clc-tooltip above-left">dismiss this job</span></a></li><li class="&quot;clc-dismissable&quot;"><div class="job-wrap"><a class="job" title="(Junior) Backend Developer (m/w) .NET mit Schwerpunkt In Memory/Algorithmen at Comma Soft AG. Click to learn more." href="https://stackoverflow.com/jobs/133117/junior-backend-developer-m-w-net-mit-comma-soft-ag" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=4zQtVd1oF3_Fg9XOyD-IiYmBgYGFAQSsdPoZsqM1GBiOAzEDM0PPBpAoIyNIgbSjDBOD72JmBkZmBv7WtOCFlol3Y-1nBwsyMdzqZWbgZmaY0HwmfJ3liUUJ9oxMycqz9wgzMfRMYmbgYmb42dhgu8NStD8TLCP9WpyBwUuCAWSSRYvEpg2WQScL7BlMv23-59Ped1XvFgA&amp;cr=232922&amp;ct=0&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2F133117%2Fjunior-backend-developer-m-w-net-mit-comma-soft-ag&amp;sig=SjxMynlvkM6sLw"><div class="title">(Junior) Backend Developer (m/w) .NET mit Schwerpunkt In Memory/Algorithmen</div><div><span class="company">Comma Soft AG</span><span class="location">Bonn, Deutschland</span></div><div class="opts"><span class="opt salary">€40k - €75k</span><span class="opt relocate">Relocation</span></div><span class="post-tag highlight">c#</span><span class="post-tag">c++</span></a></div><a class="clc-dismiss" data-clc-click="https://clc.stackoverflow.com/click?an=4zQtVd1oF3_Fg9XOyD-IiYmBgYGFAQSsdPoZsqM1GBiOAzEDM0PPBpAoIyNIgbSjDBOD72JmBkZmBv7WtOCFlol3Y-1nBwsyMdzqZWbgZmaY0HwmfJ3liUUJ9oxMycqz9wgzMfRMYmbgYmb42dhgu8NStD8TLCP9WpyBwUuCAWSSRYvEpg2WQScL7BlMv23-59Ped1XvFgA&amp;cr=232922&amp;ct=-1&amp;sig=PGJ6NcL5fOAcIA" data-clc-meta-target="-1"><span class="clc-tooltip above-left">dismiss this job</span></a></li><li class="&quot;clc-dismissable&quot;"><div class="job-wrap"><a class="job" title="Robotic Process Automation Developer at OpusCapita Group. Click to learn more." href="https://stackoverflow.com/jobs/133692/robotic-process-automation-developer-opuscapita-group" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=4zQtVd1oF3_Fg9XOyD-IiYmBgYGFAQSsdPoZsqM1GBiOAzEDM0PPBpAoIyNIgbSjDBOD72JmBkZmBv7WtOCFlol3Y-1nBwsyMdzqZWbgZmaY0HwmfJ3liUUJ9oxMycqz9wgzMfRMYmbgYmb42dhgu8NStD8TLCP9WpyBwUuCAWSSRYvEpg2WQScL7BlMv23-59Ped1XvFgA&amp;cr=234124&amp;ct=0&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2F133692%2Frobotic-process-automation-developer-opuscapita-group&amp;sig=TmhvJLYRZgjBaQ"><div class="title">Robotic Process Automation Developer</div><div><span class="company">OpusCapita Group</span><span class="location">Toruń, Poland</span></div><span class="post-tag highlight">c#</span><span class="post-tag">vb.net</span></a></div><a class="clc-dismiss" data-clc-click="https://clc.stackoverflow.com/click?an=4zQtVd1oF3_Fg9XOyD-IiYmBgYGFAQSsdPoZsqM1GBiOAzEDM0PPBpAoIyNIgbSjDBOD72JmBkZmBv7WtOCFlol3Y-1nBwsyMdzqZWbgZmaY0HwmfJ3liUUJ9oxMycqz9wgzMfRMYmbgYmb42dhgu8NStD8TLCP9WpyBwUuCAWSSRYvEpg2WQScL7BlMv23-59Ped1XvFgA&amp;cr=234124&amp;ct=-1&amp;sig=3s-ic57D2q0C3g" data-clc-meta-target="-1"><span class="clc-tooltip above-left">dismiss this job</span></a></li><li class="&quot;clc-dismissable&quot;"><div class="job-wrap"><a class="job" title="QDelft zoekt een ervaren front-end ontwikkelaar at QDelft. Click to learn more." href="https://stackoverflow.com/jobs/114349/qdelft-zoekt-een-ervaren-front-end-ontwikkelaar-qdelft" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=4zQtVd1oF3_Fg9XOyD-IiYmBgYGFAQSsdPoZsqM1GBiOAzEDM0PPBpAoIyNIgbSjDBOD72JmBkZmBv7WtOCFlol3Y-1nBwsyMdzqZWbgZmaY0HwmfJ3liUUJ9oxMycqz9wgzMfRMYmbgYmb42dhgu8NStD8TLCP9WpyBwUuCAWSSRYvEpg2WQScL7BlMv23-59Ped1XvFgA&amp;cr=6218&amp;ct=0&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2F114349%2Fqdelft-zoekt-een-ervaren-front-end-ontwikkelaar-qdelft&amp;sig=CNMc_0oeTwq73A"><div class="title">QDelft zoekt een ervaren front-end ontwikkelaar</div><div><span class="company">QDelft</span><span class="location">Delft, Netherlands</span></div><span class="post-tag">.net</span><span class="post-tag">continuous-integration</span></a></div><a class="clc-dismiss" data-clc-click="https://clc.stackoverflow.com/click?an=4zQtVd1oF3_Fg9XOyD-IiYmBgYGFAQSsdPoZsqM1GBiOAzEDM0PPBpAoIyNIgbSjDBOD72JmBkZmBv7WtOCFlol3Y-1nBwsyMdzqZWbgZmaY0HwmfJ3liUUJ9oxMycqz9wgzMfRMYmbgYmb42dhgu8NStD8TLCP9WpyBwUuCAWSSRYvEpg2WQScL7BlMv23-59Ped1XvFgA&amp;cr=6218&amp;ct=-1&amp;sig=nAaFJgSWz3-b2w" data-clc-meta-target="-1"><span class="clc-tooltip above-left">dismiss this job</span></a></li></ul></div><img src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/impression.gif" class="impression" style="display: none;"></div>
+        <script>
+window.clc_request = 'AgCrbq4-X9QIAAAAADosjwACAAAAAgAAAAArAAAAfGNzc3x0d2l0dGVyLWJvb3RzdHJhcHx0d2l0dGVyLWJvb3RzdHJhcC0yfACrst3CIUJe9gpP';
+;(function(n){var t,u,r,i;try{if(typeof[].indexOf!="function")return;if(window.attachEvent&&!window.addEventListener)return;if(n.allowed[0]!=="*"&&n.allowed.indexOf(location.hostname)===-1)return;if(t=window,t.clc=t.clc||{},u=t.clc_request||t.clcfl_request,u||console.warn("clc_request missing"),t.clc.init=t.clc.init||[],t.clc.init.push(function(n){return n.load()}),t.clc.options){for(r in t.clc.options)n[r]=t.clc.options[r];t.clc.options=n}else t.clc.options=n;i=document.createElement("script");i.async=!0;i.src=n.lib;document.body.appendChild(i)}catch(f){console.error("[clc] Error in loader:",f)}}).call(null, {"azw":true,"kt":2000,"tto":true,"autoload":true,"d":{"sb":["hireme","clc-sb"],"tlb":["careers1","clc-tlb"],"mlb":["careers3","clc-mlb"]},"allowed":["stackoverflow.com","serverfault.com","blog.codinghorror.com","talent.stackoverflow.com"],"h":"clc.stackoverflow.com","u":"https://clc.stackoverflow.com/markup.js","lib":"https://cdn.sstatic.net/clc/clc.min.js?v=bd570ea4a858"});        </script>
+			
+
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/22433616?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">4</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/22433616/how-can-i-align-youtube-embedded-video-in-the-center-in-bootstrap?noredirect=1&amp;lq=1" class="question-hyperlink">How can I align YouTube embedded video in the center in bootstrap</a>
+</div>
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/19961458?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/19961458/centering-text-in-a-div-bootstrap?noredirect=1&amp;lq=1" class="question-hyperlink">Centering Text In a Div: Bootstrap</a>
+</div>
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/24292996?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/24292996/how-to-center-my-divs-with-bootstrap?noredirect=1&amp;lq=1" class="question-hyperlink">How to center my divs with bootstrap</a>
+</div>
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/17369595?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/17369595/problems-with-footer?noredirect=1&amp;lq=1" class="question-hyperlink">Problems with footer</a>
+</div>
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/21550891?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/21550891/centring-a-span-in-twitter-bootstrap?noredirect=1&amp;lq=1" class="question-hyperlink">Centring a span in twitter bootstrap</a>
+</div>			</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/114543?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">2854</div></a><a href="http://stackoverflow.com/questions/114543/horizontally-center-a-div-in-a-div?rq=1" class="question-hyperlink">Horizontally center a div in a div</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/396145?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">773</div></a><a href="http://stackoverflow.com/questions/396145/how-to-vertically-center-a-div-for-all-browsers?rq=1" class="question-hyperlink">How to vertically center a div for all browsers?</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/618097?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">458</div></a><a href="http://stackoverflow.com/questions/618097/how-do-you-easily-horizontally-center-a-div-using-css?rq=1" class="question-hyperlink">How do you easily horizontally center a &lt;div&gt; using CSS?</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/1776915?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">649</div></a><a href="http://stackoverflow.com/questions/1776915/how-to-center-absolutely-positioned-element-in-div?rq=1" class="question-hyperlink">How to center absolutely positioned element in div?</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/8865458?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">1196</div></a><a href="http://stackoverflow.com/questions/8865458/how-to-vertically-center-text-with-css?rq=1" class="question-hyperlink">How to vertically center text with CSS?</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/8878033?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">868</div></a><a href="http://stackoverflow.com/questions/8878033/how-to-make-twitter-bootstrap-menu-dropdown-on-hover-rather-than-click?rq=1" class="question-hyperlink">How to make twitter bootstrap menu dropdown on hover rather than click</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/12387036?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">6</div></a><a href="http://stackoverflow.com/questions/12387036/centering-odd-spans-with-twitter-bootstrap-grid?rq=1" class="question-hyperlink">Centering “odd” spans with Twitter Bootstrap grid</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/15446189?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">260</div></a><a href="http://stackoverflow.com/questions/15446189/how-can-i-get-my-twitter-bootstrap-buttons-to-right-align?rq=1" class="question-hyperlink">How can I get my Twitter Bootstrap buttons to right align?</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/18153234?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">716</div></a><a href="http://stackoverflow.com/questions/18153234/center-a-column-using-twitter-bootstrap-3?rq=1" class="question-hyperlink">Center a column using Twitter Bootstrap 3</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/41838115?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="http://stackoverflow.com/questions/41838115/bootstrap-div-with-left-image-and-button-at-bottom?rq=1" class="question-hyperlink">bootstrap , div with left image and button at bottom</a></div>
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module tex2jax_ignore">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-chemistry" title="Chemistry Stack Exchange"></div><a href="http://chemistry.stackexchange.com/questions/69371/what-does-teflon-give-on-decomposition" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:431 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What does teflon give on decomposition?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/120760/he-is-fixing-his-car" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    He is fixing his car
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/120800/two-grammatical-questions-over-sentences-extracted-from-the-economist" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Two Grammatical questions over sentences extracted from The Economist
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/347791/what-does-operator-in-front-of-a-variable-do-in-variable-expansion" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What does '#' operator in front of a variable do in variable expansion?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-superuser" title="Super User"></div><a href="http://superuser.com/questions/1183311/why-do-some-system-users-have-usr-bin-false-as-their-shell" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why do some system users have /usr/bin/false as their shell?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-cs" title="Computer Science Stack Exchange"></div><a href="http://cs.stackexchange.com/questions/70886/boolean-absorption" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:419 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Boolean absorption
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-spanish" title="Spanish Language Stack Exchange"></div><a href="http://spanish.stackexchange.com/questions/19883/what-is-more-conversational-te-lo-digo-or-yo-quiero-dec%c3%adrtelo" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:353 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is more conversational - "te lo digo" or "yo quiero decírtelo"?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-askubuntu" title="Ask Ubuntu"></div><a href="http://askubuntu.com/questions/887841/how-to-move-my-ext4-partition-ahead-of-my-boot-partition" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:89 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to move my ext4 partition ahead of my boot partition
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/111439/input-number-output-line-number" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Input number; Output line number
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/152430/what-maximum-password-length-to-choose-when-using-bcrypt" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What maximum password length to choose when using bcrypt?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-hinduism" title="Hinduism Stack Exchange"></div><a href="http://hinduism.stackexchange.com/questions/17370/what-do-scriptures-tells-us-about-kundalini" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:567 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What do Scriptures tells us about Kundalini?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/85715/why-do-papers-not-have-a-table-of-contents" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why do papers not have a table of contents?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="http://travel.stackexchange.com/questions/88840/rebooking-a-hotel-for-cheaper-price" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Rebooking a hotel for cheaper price
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a href="http://physics.stackexchange.com/questions/315134/easy-to-perform-quantitative-experiments-at-home" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Easy to perform quantitative experiments at home
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/2162668/average-of-age-in-a-family" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Average of age in a family
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/288930/what-is-the-difference-between-a-buzzer-and-a-speaker-and-are-there-any-other-ba" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is the difference between a buzzer and a speaker and are there any other basic electric/electronic things that output sound?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-gaming" title="Arqade"></div><a href="http://gaming.stackexchange.com/questions/301651/diacritics-in-steam-name" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:41 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Diacritics in steam name
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-photo" title="Photography Stack Exchange"></div><a href="http://photo.stackexchange.com/questions/87473/are-there-fake-canon-cameras" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:61 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are there fake Canon cameras?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-puzzling" title="Puzzling Stack Exchange"></div><a href="http://puzzling.stackexchange.com/questions/49559/livestreaming-hacker-poor-security-and-unwise-choices" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Livestreaming Hacker: poor security and unwise choices
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/85798/how-to-respond-to-enquiries-about-the-companys-financial-situation" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to respond to enquiries about the company's financial situation?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="http://travel.stackexchange.com/questions/88875/uk-visa-refused-because-the-immigration-officer-suspects-im-trying-to-live-in-t" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    UK visa refused because the immigration officer suspects I'm trying to live in the UK through successive visits. What are my options?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-serverfault" title="Server Fault"></div><a href="http://serverfault.com/questions/835191/does-a-wifi-repeater-handle-any-networking-on-behalf-of-the-router" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:2 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does a wifi repeater handle any networking on behalf of the router?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-movies" title="Movies &amp; TV Stack Exchange"></div><a href="http://movies.stackexchange.com/questions/69306/at-the-oscars-who-decides-where-everyone-sits" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:367 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    At the Oscars, who decides where everyone sits?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/42485787/how-can-one-use-all-dimensions-left-after-the-specified-one-without-explicitly" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can one use all dimensions left after the specified one, without explicitly listing them
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/9382970" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/9382970/ivc/a92f');});
+</script>
+<noscript>
+    &lt;div&gt;&lt;img src="/posts/9382970/ivc/a92f" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;
+</noscript><div style="display:none" id="prettify-lang">default</div></div>
+
+
+        </div>
+    </div><script async="" src="./css - How to center a div with Bootstrap2_ - Stack Overflow_files/clc.min.js.download"></script>
+    <div id="footer" class="categories">
+        <div class="footerwrap">            
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                    <a href="http://stackoverflow.com/company/about">about us</a>
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://stackoverflow.blog/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackoverflow.com/company/work-here">work here</a>
+                    <a href="https://www.stackoverflowbusiness.com/advertise">advertising info</a>
+                        <a href="http://stackoverflow.com/jobs/directory/developer-jobs">developer jobs directory</a>
+
+                    <a onclick="StackExchange.switchMobile(&quot;on&quot;)">mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                        <li><a href="http://softwareengineering.stackexchange.com/" title="professionals, academics, and students working within the systems development life cycle who care about creating, delivering, and maintaining software responsibly">Software Engineering</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="information security professionals">Information Security</a></li>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Wolfram Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="http://expressionengine.stackexchange.com/" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                        <li><a href="http://crypto.stackexchange.com/" title="software developers, mathematicians and others interested in cryptography">Cryptography</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://codereview.stackexchange.com/" title="peer programmer code reviews">Code Review</a></li>
+                        <li><a href="http://magento.stackexchange.com/" title="users of the Magento e-Commerce platform">Magento</a></li>
+                        <li><a href="http://dsp.stackexchange.com/" title="practitioners of the art and science of signal, image and video processing">Signal Processing</a></li>
+                        <li><a href="http://raspberrypi.stackexchange.com/" title="users and developers of hardware and software for Raspberry Pi">Raspberry Pi</a></li>
+                        <li><a href="http://codegolf.stackexchange.com/" title="programming puzzle enthusiasts and code golfers">Programming Puzzles &amp; Code Golf</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (7)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://movies.stackexchange.com/" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="http://music.stackexchange.com/" title="musicians, students, and enthusiasts">Music: Practice &amp; Theory</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (8)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://ell.stackexchange.com/" title="speakers of other languages learning English">English Language Learners</a></li>
+                        <li><a href="http://japanese.stackexchange.com/" title="students, teachers, and linguists wanting to discuss the finer points of the Japanese language">Japanese Language</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                        <li><a href="http://anime.stackexchange.com/" title="anime and manga fans">Anime &amp; Manga</a></li>
+                        <li><a href="http://mechanics.stackexchange.com/" title="mechanics and DIY enthusiast owners of cars, trucks, and motorcycles">Motor Vehicle Maintenance &amp; Repair</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (17)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://chemistry.stackexchange.com/" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="http://biology.stackexchange.com/" title="biology researchers, academics, and students">Biology</a></li>
+                        <li><a href="http://cs.stackexchange.com/" title="students, researchers and practitioners of computer science">Computer Science</a></li>
+                        <li><a href="http://philosophy.stackexchange.com/" title="those interested in the study of the fundamental nature of knowledge, reality, and existence">Philosophy</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (3)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="https://www.stackoverflowbusiness.com/talent">Stack Overflow Talent</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+            <div id="copyright">
+                site design / logo © 2017 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2017.2.27.25231
+            </div>
+                </div>
+    </div>
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled&lt;img src="https://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;&lt;/div&gt;
+    </noscript>
+
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    
+    
+        
+        ados.run.push(function () {
+                setTimeout(function () { $("#adzerk-user-match").remove(); }, window.AUMIframeDone ? 0 : 2000);
+                ados_setKeywords('css,twitter-bootstrap,twitter-bootstrap-2');; ados_load();
+        });   
+        
+</script>
+
+    <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-5620270-1');
+                ga('create', 'UA-5620270-59', {name: 'pageData', sampleRate: 5 });
+                ga('set', 'dimension2', '|css|twitter-bootstrap|twitter-bootstrap-2|');
+                ga('pageData.set', 'dimension2', '|css|twitter-bootstrap|twitter-bootstrap-2|');
+                ga('send', 'pageview');
+                ga('pageData.send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+                qc.async = true;
+                qc.src = (ssl ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                s.parentNode.insertBefore(qc, s);
+                _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+                            var sc=document.createElement('script');
+                sc.async=true;
+                sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+                s.parentNode.insertBefore(sc, s);
+                _comscore.push({ c1: "2", c2: "17440561" });
+        })();
+
+    </script>
+        
+    
+            <script type="text/javascript">
+                
+                (function(appendChild) {
+                    Node.prototype.appendChild = function() {
+                        var parent = this;
+                        var newNode = arguments[0];
+                        if (parent.nodeName === 'HEAD'
+                            && newNode
+                            && newNode.nodeName === 'SCRIPT'
+                            && newNode.src) {
+                            
+                            window.setTimeout(function() {
+                                var result = newNode.src.match(/^https:\/\/maps\.googleapis\.com\/maps\/api\/place\/js\/(\w+)Service\./i) || [];
+                                var service = result[1];
+                                if (service) {
+                                    if (service === 'Autocompletion') service =  2;
+                                    else if (service === 'Place') service = 1;
+                                    else service = 0;
+                                    StackExchange.using('gps', function() {
+                                        StackExchange.gps.track('google_maps_places_api.call', { service: service });
+                                    });
+                                }
+                            }, 0);
+                        }
+                        return appendChild.apply(this, arguments);
+                    };
+                })(Node.prototype.appendChild);
+            </script>
+    
+</body></html>

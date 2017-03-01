@@ -9,6 +9,7 @@ namespace DAL.Repositories
     {
         IEnumerable<ISBN> GetAllByBookId(int bookId);
         int AddISBN(int bookId, string value);
+        void RemoveISBNsByBookId(int bookId);
     }
 
     public partial class Repository : IISBNsRepository
@@ -51,5 +52,15 @@ namespace DAL.Repositories
 
             return bookDomainNr;
         }
+
+        public void RemoveISBNsByBookId(int bookId)
+        {
+            _dbRead.Execute(
+              "ISBNsRemoveByBookId",
+          new[] { 
+                new SqlParameter("@bookId", bookId), 
+            });
+        }
+
     }
 }

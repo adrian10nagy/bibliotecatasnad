@@ -19,21 +19,21 @@ namespace Admin.Helpers
         }
 
 
-        public void AddToMySession(
-            String SessionKeyName,
-            Object SessionItem)
-        {
-            Session[SessionKeyName] = SessionItem;
-        }
+        //public void AddToMySession(
+        //    String SessionKeyName,
+        //    Object SessionItem)
+        //{
+        //    Session[SessionKeyName] = SessionItem;
+        //}
 
-        public Object GetMySessionItem(String SessionKeyName)
-        {
-            return Session[SessionKeyName] as Object;
-        }
+        //public Object GetMySessionItem(String SessionKeyName)
+        //{
+        //    return Session[SessionKeyName] as Object;
+        //}
 
-        public void RemoveSessionItem(string sessionKeyName)
-        {
-            Session.Remove(sessionKeyName);
-        }
+        //public void RemoveSessionItem(string sessionKeyName)
+        //{
+        //    Session.Remove(sessionKeyName);
+        //}
     }
 }

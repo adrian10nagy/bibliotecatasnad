@@ -25,12 +25,12 @@ namespace Admin.Account
                     lblMessageLogin.Style.Add("font-size", "18px");
                     lblMessageLogin.Visible = true;
                 }
-                else if (Request["Message"] == "SessionTimeout")
-                {
-                    lblMessageLogin.Text = "Datorită inactivității, sesiunea a expirat. Loghează-te din nou";
-                    lblMessageLogin.Visible = true;
-                    lblMessageLogin.Style.Add("color", "red");
-                }
+                //else if (Request["Message"] == "SessionTimeout")
+                //{
+                //    lblMessageLogin.Text = "Datorită inactivității, sesiunea a expirat. Loghează-te din nou";
+                //    lblMessageLogin.Visible = true;
+                //    lblMessageLogin.Style.Add("color", "red");
+                //}
             }
         }
 
@@ -49,7 +49,7 @@ namespace Admin.Account
                 }
                 else
                 {
-                    SessionHelper.Instance.AddToMySession(CacheConstants.LoginUser, user);
+                    Session[SessionConstants.LoginUser] = user;
                     //add to cookie
                     Response.Redirect("~/");
                 }

@@ -5,7 +5,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="preLoadIcon"></div>
     <div class="x_panel">
         <div class="x_title">
             <asp:Label ID="lblStatus" runat="server"></asp:Label>
@@ -100,8 +99,6 @@
 
         $(window).load(function () {
             autoHideStatusLabel('<%=lblStatus.ClientID%>', 10000)
-            // Animate loader off screen
-            $(".preLoadIcon").fadeOut("slow");
         });
 
         $(document).ready(function () {

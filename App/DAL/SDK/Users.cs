@@ -47,5 +47,10 @@ namespace DAL.SDK
         {
             return _repository.GetUserForLogin(userName, password);
         }
+
+        public IEnumerable<User> GetUsersByDay(System.DateTime dateTime)
+        {
+            return _repository.GetUsersByDay(dateTime);
+        }
     }
 }

@@ -5,6 +5,7 @@ namespace BL.Managers
     using BL.Constants;
     using DAL.Entities;
     using DAL.SDK;
+    using System;
     using System.Collections.Generic;
 
     public static class UsersManager
@@ -55,6 +56,13 @@ namespace BL.Managers
         public static User GetUserForLogin(string userName, string password)
         {
             return Kit.Instance.Users.GetUserForLogin(userName, password);
+        }
+
+        public static List<User> GetUsersByDay(DateTime dateTime)
+        {
+            var users = Kit.Instance.Users.GetUsersByDay(dateTime) as List<User>;
+
+            return users;
         }
     }
 }

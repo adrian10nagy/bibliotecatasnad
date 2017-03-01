@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Add.aspx.cs" Inherits="Admin.Books.Add" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="preLoadIcon"></div>
 
     <div class="x_panel">
         <div class="x_title">
@@ -195,8 +194,6 @@
 
         $(window).load(function () {
             load();
-            // Animate loader off screen
-            $(".preLoadIcon").fadeOut("slow");
         });
 
     </script>

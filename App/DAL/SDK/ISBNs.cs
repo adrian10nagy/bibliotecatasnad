@@ -27,6 +27,11 @@ namespace DAL.SDK
         {
             return _repository.AddISBN(bookId, value);
         }
+
+        public void RemoveISBNsByBookId(int bookId)
+        {
+            _repository.RemoveISBNsByBookId(bookId);
+        }
     }
     
 }

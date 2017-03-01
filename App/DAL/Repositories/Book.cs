@@ -15,6 +15,7 @@ namespace DAL.Repositories
         void UpdateBook(Book book);
         void RemoveAuthors(int bookId);
         IEnumerable<Publisher> GetAllBookPublishersGrouped();
+        List<Book> GetBooksByDay(DateTime dateTime);
     }
 
     public partial class Repository : IBookRepository
@@ -115,6 +116,37 @@ namespace DAL.Repositories
             return publishers;
         }
 
+        public List<Book> GetBooksByDay(DateTime dateTime)
+        {
+            var books = new List<Book>();
+
+            _dbRead.Execute(
+                "BooksGetAllByDate",
+            new[]
+            {
+                new SqlParameter("@date", dateTime),
+            },
+               r => books.Add(new Book()
+               {
+                   Id = Read<int>(r, "Id"),
+                   Title = Read<string>(r, "Title"),
+                   PublishYear = Read<int?>(r, "PublishYear"),
+                   Volume = Read<string>(r, "Volume"),
+                   InternalNr = Read<string>(r, "InternalNr"),
+                   NrPages = Read<int>(r, "NrPages"),
+                   Publisher = new Publisher
+                   {
+                       Id = Read<int>(r, "Id_Publisher"),
+                       Name = Read<string>(r, "PublisherName"),
+                   },
+                   BookCondition = (BookCondition)Read<int>(r, "Id_BookCondition"),
+                   BookFormat = (BookFormat)Read<int>(r, "Id_BookFormat"),
+                   BookLanguage = (Language)Read<int>(r, "Id_Language"),
+                   LoanStatus = GetBookLoanStatus(Read<int>(r, "Id"))
+               }));
+
+            return books;
+        }
         #endregion
 
         #region Add

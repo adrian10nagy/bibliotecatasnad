@@ -3,40 +3,368 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Biblioteca Tășnad</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!--font-family: 'Metrophobic', sans-serif;-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600italic,600,700italic,700' rel='stylesheet' type='text/css'>
+    <!--font-family: 'Open Sans', sans-serif; -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,400italic,500,300italic,300,100,500italic' rel='stylesheet' type='text/css'>
+    <!--font-family: 'Roboto', sans-serif; -->
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+<body onload="load()" onunload="GUnload()">
 
+    <!--wrapper start-->
+    <div class="wrapper" id="wrapper">
+        <!-- Preloader -->
+        <div id="preloader">
+            <div id="status"></div>
+        </div>
+        <!--Header start -->
+        <header>
+            <!--Language start -->
+            <div class="container">
+                <div class="row relative">
+                    <ul class="language">
+                        <li>
+                            <a href="#" data-toggle="dropdown">English</a><i class="fa fa-caret-down"></i>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#" class="french">French</a></li>
+                                <li><a href="#" class="italian">Italian</a></li>
+                                <li><a href="#" class="spanish">Spanish</a></li>
+                                <li><a href="#" class="portuguese">Portuguese</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--/Language end -->
+            <!--menu start-->
+            <div class="menu">
+                <div class="navbar-wrapper">
+                    <div class="container">
+                        <!-- Navbar start -->
+                        <div class="navwrapper">
+                            <div class="navbar navbar-inverse navbar-static-top">
+                                <div class="container">
+                                    <div class="logo"><a href="#"><span class="img-circle">e</span>learn</a> </div>
+                                    <nav class="navArea">
+                                        <div class="navbar-header">
+                                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                                        </div>
+                                        <div class="navbar-collapse collapse">
+                                            <ul class="nav navbar-nav" id="navigation">
+                                                <li class="menuItem" id="home"><a href="#wrapper">Home</a></li>
+                                                <li class="menuItem"><a href="#features">features</a></li>
+                                                <li class="menuItem"><a href="#courses">courses</a></li>
+                                                <li class="menuItem"><a href="#teachers">teachers</a></li>
+                                                <li class="menuItem"><a href="#pricing">pricing</a></li>
+                                                <li class="menuItem"><a href="#testimonial">Testimonial</a></li>
+                                                <li><a href="blog-medium-image.html">blog</a></li>
+                                                <li class="menuItem"><a href="#contact">Contact</a></li>
+                                            </ul>
+                                        </div>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Navbar end -->
+                    </div>
+                </div>
+            </div>
+            <!-- start Search Div -->
+            <div class="row searchMain">
+                <div class="col-md-5 col-md-offset-3 col-xs-12">
+
+                    <div id="exTab2" class="container">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#1" data-toggle="tab">Căutare simplă</a>
+                            </li>
+                            <li>
+                                <a href="#2" data-toggle="tab">Căutare avansată</a>
+                            </li>
+                            <li>
+                                <a href="#3" data-toggle="tab">Căutare multicâmp</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content ">
+                            <div class="tab-pane active" id="1">
+                                @using (Html.BeginForm("SimpleSearch", "Carti", FormMethod.Get))
+                                {
+                                    <div class="form-group">
+                                        <div class="col-md-11 col-sm-11 col-xs-12">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Caută..." autocomplete="off" name="simpleSearchText" id="simpleSearchText">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="submit">
+                                                        <span class="glyphicon glyphicon-search"></span>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div id="simpleSearchSuggestions" class="col-md-11 col-sm-11 col-xs-12">
+                                        </div>
+                                    </div>
+                                    @Html.AntiForgeryToken();
+                                    @Html.ValidationSummary(true);
+                                }
+
+                            </div>
+                            <div class="tab-pane" id="2">
+                                @using (Html.BeginForm("AdvancedSearch", "Resource", FormMethod.Get))
+                                {
+                                    <div class="form-group">
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input type="text" class="form-control" placeholder="(opțional)" id="userFacebook" autocomplete="off">
+                                        </div>
+                                        <button class="btn btn-default" type="submit">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </div>
+                                    @Html.AntiForgeryToken();
+                                    @Html.ValidationSummary(true);
+                                }
+                            </div>
+                            <div class="tab-pane" id="3">
+                                @using (Html.BeginForm("MultifieldSearch", "Resource", FormMethod.Get))
+                                {
+                                    <div class="form-group">
+                                        <div><span>Titlu:</span> <input type="text" class="form-control"></div>
+                                        <div>
+                                            <span>Autor: </span><input type="text" class="form-control">
+                                        </div>
+                                        <div>
+                                            <span>Editura: </span><input type="text" class="form-control">
+                                        </div>
+                                        <button class="btn btn-primary" type="submit"> Caută </button>
+                                    </div>
+                                    @Html.AntiForgeryToken();
+                                    @Html.ValidationSummary(true);
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- end Search Div -->
+            <!--menu end-->
+            <!--Header form -->
+            @*<div class="container form-header">
+                    <div class="row">
+                        <div class="form-container col-md-6 col-xs-12">
+                            <h2>Caută carte<span>Din cele 4500 de cărți în bibliotecă</span></h2>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
+                                    Titlul <input type="text" placeholder="First name" class="normal small">
+                                    <input type="text" placeholder="Last name" class="normal small last">
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
+                                    Autor <input type="text" placeholder="Email Address" class="normal">
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
+                                    Limbă <select class="normal">
+                                        <option> Select Learning Program</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-row">
+                                    <textarea placeholder="Detail information" class="normal medium"></textarea>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <input type="button" class="button" value="Request Information">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <h3>Become a member<span>Get instant access to 4500 video courses</span></h3>
+
+                        </div>
+                    </div>
+                </div>*@
+            <!--/Header form -->
+
+        </header>
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+            <footer class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="pull-left">
+                            <p>&copy; 2015  eLearn Theme. All Rights Reserved</p>
+                        </div>
+                        <div class="pull-right"><a class="gototop smooth" href="#wrapper">Go To Top<i class="fa fa-chevron-up"></i></a></div>
+                    </div>
+                </div>
+            </footer>
+            <!--Footer end -->
+    </div>
+    <!--wrapper end-->
+    <!-- Start Style Switcher -->
+    <div class="switcher"></div>
+    <!-- End Style Switcher -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw" type="text/javascript"></script>
+    <script type="text/javascript">
+        "use strict";
+        //<![CDATA[
+        var map;
+
+        function load() {
+            if (GBrowserIsCompatible()) {
+                map = new GMap2(document.getElementById("map"));
+                map.setCenter(new GLatLng(-37.817682, 144.957595), 13);
+                document.getElementById("map").checked = true;
+                toggleZoom(false);
+            }
+        }
+
+        function toggleZoom(isChecked) {
+            if (isChecked) {
+                map.enableScrollWheelZoom();
+            } else {
+                map.disableScrollWheelZoom();
+            }
+        }
+
+        //]]>
+    </script>
+
+    <!--Home Testimonial -->
+    <script>
+
+
+    </script>
+
+    <!--for coundown jquary-->
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $(document).ready(function () {
+                //enabling stickUp on the '.navbar-wrapper' class
+                $('.navbar-wrapper').stickUp({
+                    parts: {
+                        0: 'banner',
+                        1: 'features',
+                        2: 'courses',
+                        3: 'teachers',
+                        4: 'pricing',
+                        5: 'testimonial',
+                        6: 'blog',
+                        7: 'contact'
+                    },
+                    itemClass: 'menuItem',
+                    itemHover: 'active',
+                    topMargin: 'auto'
+                });
+
+                // Video responsive
+                if ($(window).width() < 400) {
+                    $('.lb_mixed').rlightbox({
+                        videoWidth: 320,
+                        videoHeight: 280
+                    });
+                } if ($(window).width() < 640) {
+                    $('.lb_mixed').rlightbox({
+                        videoWidth: 600,
+                        videoHeight: 360
+                    });
+                } else {
+                    $('.lb_mixed').rlightbox({
+                        videoWidth: 640,
+                        videoHeight: 360
+                    });
+                }
+
+                // run rlightbox
+                $(".lb").rlightbox();
+                $(".lb_title-overwritten").rlightbox({ overwriteTitle: true });
+
+                var activeImage;
+
+                var getmaxHeight = 0;
+                $(".testimonialText li").each(function (index, element) {
+                    if ($(this).height() > getmaxHeight) {
+                        getmaxHeight = $(this).height();
+                        $(".footerTopContent").height(getmaxHeight);
+                    }
+                });
+
+                $(".testimonialText li").fadeTo("fast", 0);
+                $(".testimonialText li:first").fadeTo("fast", 1);
+                $(".imageSlide .imageBox").removeClass("activeImage");
+                $(".imageSlide .imageBox:first").addClass("activeImage");
+                $(".imageSlide .imageBox").mouseenter(function () {
+                    if (!$(this).hasClass("activeImage")) {
+                        var gi = $(this).index();
+                        //console.log(gi);
+                        $(".imageSlide .imageBox").removeClass("activeImage");
+                        $(this).addClass("activeImage");
+                        $(".testimonialText li").fadeTo("fast", 0);
+                        $(".testimonialText li:eq(" + gi + ")").fadeTo("fast", 1);
+                    }
+                })
+
+                // Video lightbox
+                $("a[data-rel^='prettyPhoto']").prettyPhoto();
+
+                // for client work jquary
+                var windowBottom = $(window).height() + 0;
+                var index = 0;
+                $(document).scroll(function () {
+                    divposition = parseInt($('.factabout').offset().top), 10;
+                    divsrollpos = parseInt($(window).scrollTop()), 10;
+                    ctop = parseInt(divposition - divsrollpos), 10;
+                    if (ctop < Math.round(windowBottom / 2)) {
+                        if (index == 0) {
+
+                            $('.timer').each(count);
+
+                        }
+                        index++;
+                    }
+                });
+
+
+
+                function count(options) {
+                    var $this = $(this);
+                    options = $.extend({}, options || {}, $this.data('countToOptions') || {});
+                    $this.countTo(options);
+                }
+
+
+            });
+
+        });
+
+        $('#simpleSearchText').keyup(function (e) {
+            var simpleSearchText = $('#simpleSearchText');
+            getSimpleSearchResults(simpleSearchText);
+        });
+
+        function getSimpleSearchResults(simpleSearchText) {
+            var simpleSearchTextValue = simpleSearchText.val();
+
+            var simpleSearchSuggestions = $('#simpleSearchSuggestions');
+
+            $.ajax({
+                url: "/Common/AsyncGetSimpleSearchSuggestions",
+                type: "GET",
+                data: { searchTerm: (simpleSearchTextValue) }
+            })
+                 .done(function (partialViewResult) {
+                     simpleSearchSuggestions.html(partialViewResult);
+                 });
+        }
+    </script>
+
 </body>
+
 </html>

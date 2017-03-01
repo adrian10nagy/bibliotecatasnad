@@ -32,6 +32,7 @@
         public Localities Localities { get { return new Localities(); } }
         public Publishers Publishers { get { return new Publishers(); } }
         public ISBNs ISBNs { get { return new ISBNs(); } }
+        public ErrorLogs ErrorLogs { get { return new ErrorLogs(); } }
 
         public void Dispose()
         {

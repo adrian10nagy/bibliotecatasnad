@@ -1,0 +1,22 @@
+﻿@using DAL.Entities;
+
+@{
+
+    var bookSuggestions = (List<Book>)ViewData["bookSuggestions"];
+}
+
+@if (bookSuggestions.Count > 0)
+{
+    <div class="simpleSuggestionBooks">
+        @foreach (var item in bookSuggestions)
+        {
+            <div class="simpleSuggestionBook">
+                <a href="~/Carte/Detalii/@item.Id">
+                    <div>
+                        @item.Title
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+}

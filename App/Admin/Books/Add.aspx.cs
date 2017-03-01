@@ -99,103 +99,11 @@ namespace Admin.Books
             }
         }
 
-        private void InitializeSources()
-        {
-            this.InitializeLanguages();
-            this.InitializeCondition();
-            this.InitializeBookFormat();
-            this.InitializePublishers();
-            this.InitializeDomains();
-            this.InitializeAuthors();   
-        }
-
-        private void InitializeAuthors()
-        {
-            var authors = AuthorsManager.GetAllAuthors();
-
-            var listItemAuthors = authors.Select(c => new ListItem
-            {
-                Text = c.Name,
-                Value = c.Id.ToString(),
-            }).ToArray();
-
-            drdBooksAutors.Items.AddRange(listItemAuthors);
-            drdBooksAutors.DataBind();
-        }
-
-        private void InitializeCondition()
-        {
-            var bookConditions = EnumUtil.GetValues<BookCondition>();
-
-            var listItemBookConditions = bookConditions.Select(c => new ListItem
-            {
-                Text = c.ToString(),
-                Value = ((int)c).ToString()
-            }).ToArray();
-
-            drpBookCondition.Items.AddRange(listItemBookConditions);
-            drpBookCondition.DataBind();
-        }
-
-        private void InitializeBookFormat()
-        {
-            var bookFrmats = EnumUtil.GetValues<BookFormat>().ToList();
-            bookFrmats = bookFrmats.Swap(0, 1).ToList();
-            var listItemBookFormats = bookFrmats.Select(c => new ListItem
-            {
-                Text = c.ToString(),
-                Value = ((int)c).ToString()
-            }).ToArray();
-
-            drpBookFormat.Items.AddRange(listItemBookFormats);
-            drpBookFormat.DataBind();
-        }
-
-        private void InitializePublishers()
-        {
-            var publishers = PublishersManager.GetAllPublishers();
-
-            var listItemPublishers = publishers.Select(c => new ListItem
-            {
-                Text = c.Name,
-                Value = c.Id.ToString(),
-            }).ToArray();
-
-            drdBookPublisher.Items.AddRange(listItemPublishers);
-            drdBookPublisher.DataBind();
-        }
-        
-        private void InitializeDomains()
-        {
-            var domains = BookDomainsManager.GetAllBookDomains();
-
-            var listItemDomains = domains.Select(c => new ListItem
-            {
-                Text = c.Name,
-                Value = c.Id.ToString(),
-            }).ToArray();
-
-            drdBookDomain.Items.AddRange(listItemDomains);
-            drdBookDomain.DataBind();
-        }
-        
-        private void InitializeLanguages()
-        {
-            var languages = EnumUtil.GetValues<Language>().ToList();
-            languages = languages.Swap(0, 1).ToList();
-            var listItemLanguages = languages.Select(c => new ListItem
-            {
-                Text = c.ToString(),
-                Value = ((int)c).ToString()
-            }).ToArray();
-
-            drpBookLanguage.Items.AddRange(listItemLanguages);
-            drpBookLanguage.DataBind();
-        }
-
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if(!this.ValidateData())
+            var user = Session[SessionConstants.LoginUser] as User;
+
+            if(!this.ValidateData(user))
             {
                 return;
             }
@@ -208,7 +116,7 @@ namespace Admin.Books
                 InternalNr = txtBookInternalNr.Text,
                 NrPages = txtBookNrPages.Text.ToNullableInt().Value,
                 AddedDate = DateTime.Now,
-                AddedBy = new User { Id = 1 },
+                AddedBy = new User { Id = user.Id },
                 Publisher = PublishersManager.GetAllPublishersById(drdBookPublisher.SelectedValue.ToNullableInt().Value),
                 BookCondition = (BookCondition)drpBookCondition.SelectedValue.ToNullableInt(),
                 Library = new Library { Id = 1 },
@@ -223,7 +131,7 @@ namespace Admin.Books
                 ISBNs = this.GetIsbns()
             };
 
-            if (!string.IsNullOrEmpty(lblBookId.Text) && lblBookId.Text.ToNullableInt() != 0)
+            if (!string.IsNullOrEmpty(lblBookId.Text) && lblBookId.Text.ToNullableInt() != null && lblBookId.Text.ToNullableInt() != 0)
             {
                 book.Id = lblBookId.Text.ToNullableInt().Value;
                 BooksManager.Update(book);
@@ -236,124 +144,6 @@ namespace Admin.Books
                 lblStatus.CssClass = "SuccessBox";
                 CleanFields();
             }
-        }
-
-        private bool ValidateData()
-        {
-            lblBookPublishYear.Attributes.CssStyle.Remove("color");
-            lblBookTitle.Attributes.CssStyle.Remove("color");
-            lblBookInternalNr.Attributes.CssStyle.Remove("color");
-            lblBookDomain.Attributes.CssStyle.Remove("color");
-            lblBookPublisher.Attributes.CssStyle.Remove("color");
-            lblBooksAutors.Attributes.CssStyle.Remove("color");
-            lblBookNrPages.Attributes.CssStyle.Remove("color");
-
-            bool isValid = true;
-
-            if (txtBookNrPages.Text.ToNullableInt() == null || txtBookNrPages.Text.ToNullableInt().Value == 0)
-            {
-                lblBookNrPages.Attributes.CssStyle.Add("color", "red");
-                isValid = false;
-            }
-
-            if(string.IsNullOrWhiteSpace(txtBookTitle.Text))
-            {
-                lblBookTitle.Attributes.CssStyle.Add("color", "red");
-                isValid = false;
-            }
-
-            
-            if(string.IsNullOrWhiteSpace(txtBookInternalNr.Text))
-            {
-                lblBookInternalNr.Attributes.CssStyle.Add("color", "red");
-                isValid = false;
-            }
-
-            if (drdBookDomain.SelectedIndex < 1)
-            {
-                lblBookDomain.Attributes.CssStyle.Add("color", "red");
-                isValid = false;
-            }
-
-            if (drdBookPublisher.SelectedIndex < 1)
-            {
-                lblBookPublisher.Attributes.CssStyle.Add("color", "red");
-                isValid = false;
-            }
-
-            if (bltBooksAuthorsSelected.Items.Count < 1)
-            {
-                lblBooksAutors.Attributes.CssStyle.Add("color", "red");
-                isValid = false;
-            }
-
-            return isValid;
-        }
-
-        private List<ISBN> GetIsbns()
-        {
-            var isbns = new List<ISBN>();
-            if (btnBookIsbnAddNew.Visible == false)
-            {
-                foreach (ListItem item in bltBookIsbnSelected.Items)
-                {
-                    var author = new ISBN
-                    {
-                        Value = item.Text,
-                    };
-                    isbns.Add(author);
-                }
-            }
-            else
-            {
-                var author = new ISBN
-                {
-                    Value = txtBookIsbn.Text,
-                };
-                isbns.Add(author);
-            }
-            return isbns;
-        }
-
-        private void CleanFields()
-        {
-            txtBookTitle.Text = string.Empty;
-            txtBookPublishYear.Text = string.Empty;
-            txtBookVolume.Text = string.Empty;
-            txtBookIsbn.Text = string.Empty;
-            txtBookInternalNr.Text = string.Empty;
-            txtBookNrPages.Text = string.Empty;
-            bltBooksAuthorsSelected.Items.Clear();
-            drdBookDomain.SelectedIndex = 0;
-            drdBookPublisher.SelectedIndex = 0;
-            btnBookAuthorsRemove.Visible = false;
-        }
-
-        private List<Author> GetAuthors()
-        {
-            var authors = new List<Author>();
-            foreach (ListItem item in bltBooksAuthorsSelected.Items)
-            {
-                var author = new Author
-                {
-                    Name = item.Text,
-                    Id = item.Value.ToNullableInt().Value
-                };
-                authors.Add(author);
-            }
-
-            return authors;
-        }
-
-        private ListItem[] TransformAuthorsToListItem(IEnumerable<Author> authors)
-        {
-            var listItems = authors.Select(c => new ListItem
-            {
-                Text = c.Name,
-                Value = c.Id.ToString(),
-            }).ToArray();
-
-            return listItems;
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -518,6 +308,224 @@ namespace Admin.Books
         protected void btnBookIsbnRemove_Click(object sender, EventArgs e)
         {
             bltBookIsbnSelected.Items.Clear();
+        }
+
+        private void InitializeSources()
+        {
+            this.InitializeLanguages();
+            this.InitializeCondition();
+            this.InitializeBookFormat();
+            this.InitializePublishers();
+            this.InitializeDomains();
+            this.InitializeAuthors();
+        }
+
+        private void InitializeAuthors()
+        {
+            var authors = AuthorsManager.GetAllAuthors();
+
+            var listItemAuthors = authors.Select(c => new ListItem
+            {
+                Text = c.Name,
+                Value = c.Id.ToString(),
+            }).ToArray();
+
+            drdBooksAutors.Items.AddRange(listItemAuthors);
+            drdBooksAutors.DataBind();
+        }
+
+        private void InitializeCondition()
+        {
+            var bookConditions = EnumUtil.GetValues<BookCondition>();
+
+            var listItemBookConditions = bookConditions.Select(c => new ListItem
+            {
+                Text = c.ToString(),
+                Value = ((int)c).ToString()
+            }).ToArray();
+
+            drpBookCondition.Items.AddRange(listItemBookConditions);
+            drpBookCondition.DataBind();
+        }
+
+        private void InitializeBookFormat()
+        {
+            var bookFrmats = EnumUtil.GetValues<BookFormat>().ToList();
+            bookFrmats = bookFrmats.Swap(0, 1).ToList();
+            var listItemBookFormats = bookFrmats.Select(c => new ListItem
+            {
+                Text = c.ToString(),
+                Value = ((int)c).ToString()
+            }).ToArray();
+
+            drpBookFormat.Items.AddRange(listItemBookFormats);
+            drpBookFormat.DataBind();
+        }
+
+        private void InitializePublishers()
+        {
+            var publishers = PublishersManager.GetAllPublishers();
+
+            var listItemPublishers = publishers.Select(c => new ListItem
+            {
+                Text = c.Name,
+                Value = c.Id.ToString(),
+            }).ToArray();
+
+            drdBookPublisher.Items.AddRange(listItemPublishers);
+            drdBookPublisher.DataBind();
+        }
+
+        private void InitializeDomains()
+        {
+            var domains = BookDomainsManager.GetAllBookDomains();
+
+            var listItemDomains = domains.Select(c => new ListItem
+            {
+                Text = "[" + c.CZU + "] " + c.Name,
+                Value = c.Id.ToString(),
+            }).ToArray();
+
+            drdBookDomain.Items.AddRange(listItemDomains);
+            drdBookDomain.DataBind();
+        }
+
+        private void InitializeLanguages()
+        {
+            var languages = EnumUtil.GetValues<Language>().ToList();
+            languages = languages.Swap(0, 1).ToList();
+            var listItemLanguages = languages.Select(c => new ListItem
+            {
+                Text = c.ToString(),
+                Value = ((int)c).ToString()
+            }).ToArray();
+
+            drpBookLanguage.Items.AddRange(listItemLanguages);
+            drpBookLanguage.DataBind();
+        }
+
+        private bool ValidateData(User user)
+        {
+            lblBookPublishYear.Attributes.CssStyle.Remove("color");
+            lblBookTitle.Attributes.CssStyle.Remove("color");
+            lblBookInternalNr.Attributes.CssStyle.Remove("color");
+            lblBookDomain.Attributes.CssStyle.Remove("color");
+            lblBookPublisher.Attributes.CssStyle.Remove("color");
+            lblBooksAutors.Attributes.CssStyle.Remove("color");
+            lblBookNrPages.Attributes.CssStyle.Remove("color");
+
+            bool isValid = true;
+
+            if (txtBookNrPages.Text.ToNullableInt() == null || txtBookNrPages.Text.ToNullableInt().Value == 0)
+            {
+                lblBookNrPages.Attributes.CssStyle.Add("color", "red");
+                isValid = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtBookTitle.Text))
+            {
+                lblBookTitle.Attributes.CssStyle.Add("color", "red");
+                isValid = false;
+            }
+
+
+            if (string.IsNullOrWhiteSpace(txtBookInternalNr.Text))
+            {
+                lblBookInternalNr.Attributes.CssStyle.Add("color", "red");
+                isValid = false;
+            }
+
+            if (drdBookDomain.SelectedIndex < 1)
+            {
+                lblBookDomain.Attributes.CssStyle.Add("color", "red");
+                isValid = false;
+            }
+
+            if (drdBookPublisher.SelectedIndex < 1)
+            {
+                lblBookPublisher.Attributes.CssStyle.Add("color", "red");
+                isValid = false;
+            }
+
+            if (bltBooksAuthorsSelected.Items.Count < 1)
+            {
+                lblBooksAutors.Attributes.CssStyle.Add("color", "red");
+                isValid = false;
+            }
+
+            if (user == null || user.Id == 0)
+            {
+                isValid = false;
+                Response.Redirect("~/Account/Login.aspx?Message=Timeout");
+            }
+
+            return isValid;
+        }
+
+        private List<ISBN> GetIsbns()
+        {
+            var isbns = new List<ISBN>();
+            if (btnBookIsbnAddNew.Visible == true)
+            {
+                foreach (ListItem item in bltBookIsbnSelected.Items)
+                {
+                    var author = new ISBN
+                    {
+                        Value = item.Text,
+                    };
+                    isbns.Add(author);
+                }
+            }
+            else
+            {
+                var author = new ISBN
+                {
+                    Value = txtBookIsbn.Text,
+                };
+                isbns.Add(author);
+            }
+            return isbns;
+        }
+
+        private void CleanFields()
+        {
+            txtBookTitle.Text = string.Empty;
+            txtBookPublishYear.Text = string.Empty;
+            txtBookVolume.Text = string.Empty;
+            txtBookIsbn.Text = string.Empty;
+            txtBookInternalNr.Text = string.Empty;
+            txtBookNrPages.Text = string.Empty;
+            bltBooksAuthorsSelected.Items.Clear();
+            drdBookDomain.SelectedIndex = 0;
+            drdBookPublisher.SelectedIndex = 0;
+            btnBookAuthorsRemove.Visible = false;
+        }
+
+        private List<Author> GetAuthors()
+        {
+            var authors = new List<Author>();
+            foreach (ListItem item in bltBooksAuthorsSelected.Items)
+            {
+                var author = new Author
+                {
+                    Name = item.Text,
+                    Id = item.Value.ToNullableInt().Value
+                };
+                authors.Add(author);
+            }
+
+            return authors;
+        }
+
+        private ListItem[] TransformAuthorsToListItem(IEnumerable<Author> authors)
+        {
+            var listItems = authors.Select(c => new ListItem
+            {
+                Text = c.Name,
+                Value = c.Id.ToString(),
+            }).ToArray();
+
+            return listItems;
         }
     }
 }

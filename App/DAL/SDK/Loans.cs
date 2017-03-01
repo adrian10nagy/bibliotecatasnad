@@ -49,7 +49,7 @@ namespace DAL.SDK
             _repository.Remove(loanId);
         }
 
-        public IEnumerable<Loan> GetLoansByDay(DateTime datetime)
+        public List<Loan> GetLoansByDay(DateTime datetime)
         {
             return _repository.GetLoansByDay(datetime);
         }

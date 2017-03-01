@@ -41,7 +41,7 @@ namespace BL.Managers
 
         public static List<Loan> GetLoansByDay(DateTime datetime)
         {
-             var loans = Kit.Instance.Loans.GetLoansByDay(datetime) as List<Loan>;
+             var loans = Kit.Instance.Loans.GetLoansByDay(datetime);
 
              return loans;
         }

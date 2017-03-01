@@ -988,7 +988,7 @@ a {
 
 footer {
     background: #fff;
-    padding: 15px 20px;
+    padding: 5px 30px;
     display: block;
 }
 
@@ -4948,4 +4948,14 @@ ul.notifications {
     height: 100%;
     z-index: 9999;
     background: url(/Content/images/Preloader.gif) center no-repeat #fff;
+}
+
+.noVisibility{
+    display:none;
+}
+
+
+/* dashboard */
+.tile_count .count_top i {
+    margin-right: 5px;
 }

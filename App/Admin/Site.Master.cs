@@ -16,10 +16,10 @@ namespace Admin
     {
         protected void Page_Init(object sender, EventArgs e)
         {
-            var user = SessionHelper.Instance.GetMySessionItem(CacheConstants.LoginUser) as User;
+            var user = Session[SessionConstants.LoginUser] as User;
             if(user == null || user.Id == 0)
             {
-                Response.Redirect("~/Account/Login.aspx?Message=SessionTimeout");
+               Response.Redirect("~/Account/Login.aspx");
             }
             else
             {

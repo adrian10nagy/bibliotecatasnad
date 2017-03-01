@@ -11,6 +11,5 @@ namespace BL.Constants
         public static string BooksGetAll = "BooksGetAll";
         public static string LoansGetAllActive = "LoansGetAllActive";
         public static string LoansGetAllFinished = "LoansGetAllFinished";
-        public static string LoginUser = "LoginUser";
     }
 }

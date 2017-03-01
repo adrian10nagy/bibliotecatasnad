@@ -1,0 +1,35 @@
+﻿@model IEnumerable<DAL.Entities.Book>
+
+@{
+    ViewBag.Title = "Cauta";
+    var searchTerm = (string)ViewData["searchTerm"];
+}
+
+<h2>Cauta</h2>
+
+<div class="BooksResultMain">
+    @if (@Model.Count() > 0)
+    {
+        <div>Rezultate pentru <strong>@searchTerm</strong></div>
+        <div class="BooksResultsAll">
+
+            @foreach (var item in Model)
+            {
+                <div class="BooksResultBook">
+                    <a href="~/Carte/Detalii/@item.Id">
+                        <div class="BooksResultBookItem">
+                            <span>
+                                @item.Title
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+
+    }
+    else
+    {
+        <div>Căutarea nu a returnat nici un rezultat pentu <strong>@searchTerm</strong></div>
+    }
+</div>

@@ -21,5 +21,6 @@ BEGIN
     -- Insert statements for procedure here
 	SELECT [Id]
       ,[Name]
+	  ,[CZU]
   FROM [BookDomains]
 END

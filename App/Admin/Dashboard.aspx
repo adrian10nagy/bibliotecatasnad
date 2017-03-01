@@ -6,29 +6,39 @@
     <div class="row tile_count" runat="server">
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-user"></i>Total Utilizatori</span>
-            <asp:Label ID="txtTotalUsers" class="count" runat="server" ></asp:Label>
+            <asp:Label ID="txtTotalUsers" class="count" runat="server"></asp:Label>
             <%--<span class="count_bottom"><i class="green">4% </i>From last Week</span>--%>
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-clock-o"></i>Total cărți</span>
-            <asp:Label ID="txtTotalBooks" class="count" runat="server" ></asp:Label>
+            <span class="count_top"><i class="fa fa-book"></i>Total cărți</span>
+            <asp:Label ID="txtTotalBooks" class="count" runat="server"></asp:Label>
             <%--<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i>From last Week</span>--%>
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-user"></i>Total cărți împrumutate</span>
-            <asp:Label ID="txtTotalLoans" class="count" runat="server" ></asp:Label>
-<%--            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i>From last Week</span>--%>
+            <span class="count_top"><i class="fa fa-address-card-o"></i>Total cărți împrumutate</span>
+            <asp:Label ID="txtTotalLoans" class="count" runat="server"></asp:Label>
+            <%--            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i>From last Week</span>--%>
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-user"></i>Cărți împrumutate azi</span>
-            <asp:Label ID="txtTotalLoansToday" class="count" runat="server" ></asp:Label>
-<%--            <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i>From last Week</span>--%>
+            <span class="count_top"><i class="fa fa-address-card-o"></i>Cărți împrumutate azi</span>
+            <asp:Label ID="txtTotalLoansToday" class="count" runat="server"></asp:Label>
+            <%--            <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i>From last Week</span>--%>
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-book"></i>Cărți adăugate azi</span>
+            <asp:Label ID="txtTotalBooksToday" class="count" runat="server"></asp:Label>
+            <%--            <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i>From last Week</span>--%>
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i>Utilizatori adăugați azi</span>
+            <asp:Label ID="txtTotalUsersToday" class="count" runat="server"></asp:Label>
+            <%--            <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i>From last Week</span>--%>
         </div>
     </div>
     <!-- /top tiles -->
 
     <div class="row">
-      <%--  <div class="col-md-12 col-sm-12 col-xs-12">
+        <%--  <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="dashboard_graph">
 
                 <div class="row x_title">
@@ -97,14 +107,13 @@
                 <div class="clearfix"></div>
             </div>
         </div>--%>
-
     </div>
     <br />
 
     <div class="row">
 
 
-        <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="col-md-4 col-sm-4 col-xs-12 noVisibility">
             <div class="x_panel tile fixed_height_320 overflow_hidden">
                 <div class="x_title">
                     <h2>Cărți pe Edituri</h2>
@@ -113,7 +122,7 @@
                 <div class="x_content">
                     <table class="" style="width: 100%">
                         <tr>
-                            <th style="width: 37%;">
+                            <th style="width: 42%;">
                                 <p>Top 5</p>
                             </th>
                             <th>
@@ -130,38 +139,8 @@
                                 <canvas id="canvas1" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
                             </td>
                             <td>
-                                <table class="tile_info">
-                                    <tr>
-                                        <td>
-                                            <p><i class="fa fa-square blue"></i>IOS </p>
-                                        </td>
-                                        <td>10%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p><i class="fa fa-square green"></i>Android </p>
-                                        </td>
-                                        <td>40%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p><i class="fa fa-square purple"></i>Blackberry </p>
-                                        </td>
-                                        <td>10%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p><i class="fa fa-square aero"></i>Symbian </p>
-                                        </td>
-                                        <td>15%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p><i class="fa fa-square red"></i>Others </p>
-                                        </td>
-                                        <td>30%</td>
-                                    </tr>
-                                </table>
+                                <asp:Table ID="tblTopPulishers" runat="server" CssClass="tile_info">
+                                </asp:Table>
                             </td>
                         </tr>
                     </table>
@@ -170,8 +149,8 @@
         </div>
 
 
-        
-       <%-- <div class="col-md-4 col-sm-4 col-xs-12">
+
+        <%-- <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="x_panel tile fixed_height_320">
                 <div class="x_title">
                     <h2>App Versions</h2>
@@ -281,7 +260,7 @@
         </div>--%>
 
 
-<%--        <div class="col-md-4 col-sm-4 col-xs-12">
+        <%--        <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="x_panel tile fixed_height_320">
                 <div class="x_title">
                     <h2>Quick Settings</h2>
@@ -332,14 +311,13 @@
                 </div>
             </div>
         </div>--%>
-
     </div>
 
 </asp:Content>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainScript" runat="server">
-        <script src='<%= ResolveUrl("~/Scripts/dashboard.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Scripts/dashboard.js") %>'></script>
 </asp:Content>
 
 

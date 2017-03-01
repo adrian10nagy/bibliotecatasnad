@@ -9,7 +9,7 @@ namespace Admin.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            SessionHelper.Instance.RemoveSessionItem(CacheConstants.LoginUser);
+            Session.Remove(SessionConstants.LoginUser);
             Response.Redirect("~/Account/Login.aspx?Message=Logout");
         }
     }

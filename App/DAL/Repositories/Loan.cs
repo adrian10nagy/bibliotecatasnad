@@ -14,7 +14,7 @@ namespace DAL.Repositories
         IEnumerable<Loan> GetAllFinishedLoans();
         void ReturnBook(int loanId, DateTime dateTime);
         void Remove(int loanId);
-        IEnumerable<Loan> GetLoansByDay(DateTime datetime);
+        List<Loan> GetLoansByDay(DateTime datetime);
         IEnumerable<Loan> GetLoansByUserId(int userId);
         IEnumerable<Loan> GetLoansByBookId(int bookId);
         LoanStatus GetBookLoanStatus(int bookId);
@@ -99,7 +99,7 @@ namespace DAL.Repositories
             return loans; 
         }
 
-        public IEnumerable<Loan> GetLoansByDay(DateTime datetime)
+        public List<Loan> GetLoansByDay(DateTime datetime)
         {
             var loans = new List<Loan>();
 

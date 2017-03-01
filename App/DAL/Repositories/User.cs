@@ -10,6 +10,7 @@ namespace DAL.Repositories
     {
         User GetUserById(int id);
         IEnumerable<User> GetAllUsers();
+        IEnumerable<User> GetUsersByDay(DateTime dateTime);
         User GetUserByEmailPass(string email, string pass);
         int InsertUser(User user);
         User GetUserByEmail(string email);
@@ -120,6 +121,41 @@ namespace DAL.Repositories
             _dbRead.Execute(
                 "UserGetAll",
             null,
+                r => users.Add(new User()
+                {
+                    Id = Read<int>(r, "Id"),
+                    FirstName = Read<string>(r, "FirstName"),
+                    LastName = Read<string>(r, "LastName"),
+                    Username = Read<string>(r, "UserName"),
+                    HomeAddress = Read<string>(r, "HomeAddress"),
+                    Birthdate = Read<DateTime>(r, "Birthdate"),
+                    Phone = Read<string>(r, "Phone"),
+                    Email = Read<string>(r, "Email"),
+                    FacebookAddress = Read<string>(r, "FacebookAddress"),
+                    JoinDate = Read<DateTime>(r, "JoinDate"),
+                    Flags = Read<UserFlag>(r, "Flags"),
+                    Gender = Read<Gender>(r, "Gender"),
+                    Locality = new Locality()
+                    {
+                        Id = Read<int>(r, "Id_Locality"),
+                        Name = Read<string>(r, "Locality"),
+                    },
+                    UserType = Read<UserType>(r, "Id_UserType"),
+                    Nationality = Read<Nationality>(r, "Id_Nationality")
+                }));
+
+            return users;
+        }
+
+        public IEnumerable<User> GetUsersByDay(DateTime dateTime)
+        {
+            var users = new List<User>();
+            _dbRead.Execute(
+                "UsersGetAllByDate",
+            new[]
+            {
+                new SqlParameter("@date", dateTime),
+            },
                 r => users.Add(new User()
                 {
                     Id = Read<int>(r, "Id"),

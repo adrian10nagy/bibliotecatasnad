@@ -25,6 +25,7 @@
                 {
                     Id = Read<int>(r, "Id"),
                     Name = Read<string>(r, "Name"),
+                    CZU = Read<string>(r, "CZU"),
                 }));
 
             return publishers;

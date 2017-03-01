@@ -13,8 +13,8 @@ using System.Collections.Generic;
     public class Dataset
     {
         public string[] Data;
+        public string[] Percentage;
         public string[] BackgroundColor;
-        public string[] HoverBackgroundColor;
-        
+        public string[] SquareColors;
     }
 }

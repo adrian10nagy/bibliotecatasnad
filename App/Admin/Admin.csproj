@@ -116,6 +116,7 @@
     <Content Include="Content\daterangepicker.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Images\img.png" />
+    <Content Include="Content\Images\Preloader.gif" />
     <Content Include="Content\responsive.bootstrap.min.css" />
     <Content Include="Content\select2.min.css" />
     <Content Include="Error.aspx" />
@@ -218,6 +219,7 @@
     <Content Include="Site.Mobile.Master" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="SessionHeartbeat.ashx" />
+    <None Include="Properties\PublishProfiles\Profile1.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

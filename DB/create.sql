@@ -1,5 +1,11 @@
 use bibliotecaTasnad
 
+create table ErrorLogs(
+	Id	int not null primary key identity(1,1),
+	[Message] nvarchar(MAX) not null,
+	Created datetime not null,
+)
+
 create table Localities(
 	Id	int not null primary key identity(1,1),
 	Name nvarchar(25) not null

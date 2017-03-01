@@ -5,5 +5,6 @@ namespace DAL.Entities
     {
         public int Id;
         public string Name;
+        public string CZU;
     }
 }

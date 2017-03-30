@@ -1,0 +1,113 @@
+﻿@model DAL.Entities.Book
+@using DAL.Entities;
+
+@{
+    ViewBag.Title = "Detalii";
+    var BookStatusClass = "BookStatus" + (int)Model.BookStatus;
+    var href = "/Cont/LogarePartiala";
+
+    if (Session["userId"] != null)
+    {
+        href = "/Carti/RezervaPartial";
+    }
+
+}
+
+
+<div class="container">
+    <h2>@Model.Title</h2>
+    <div>
+        Starea cărții:
+        <span class=@BookStatusClass> @Model.BookStatus </span>
+        @if (Model.BookStatus == LoanReservedBookStatus.Rezervată)
+        {
+            @:- până la @Model.ReservedUntil
+        }
+    </div>
+
+    @if (Model.BookStatus == LoanReservedBookStatus.Disponibilă)
+    {
+        <div class="BookDetailsBookaBook">
+            <input type="button" id="change_password" href=@href class="btn btn-primary" value="Rezervă cartea" />
+        </div>
+    }
+
+    <hr />
+    @if (Model.Authors.Count > 1)
+    {
+        <h3>Autori:</h3>
+
+    }
+    else
+    {
+        <h3>Autor:</h3>
+    }
+
+    @foreach (var item in Model.Authors)
+    {
+        <h4>@item.Name</h4>
+    }
+
+    <h3>Detalii:</h3>
+    <div>Editura: <strong> @Model.Publisher.Name</strong></div>
+    <div>An apariție: <strong> @Model.PublishYear</strong> </div>
+    <div>Număr pagini: <strong> @Model.NrPages</strong> </div>
+    <div>Limba: <strong> @Model.BookLanguage</strong> </div>
+    <div>Volum: <strong> @Model.Volume</strong> </div>
+    <div>
+        ISBN:
+        @if (Model.ISBNs.Count > 0)
+        {
+            foreach (var isbn in @Model.ISBNs)
+            {
+                <strong> @isbn.Value </strong>
+            }
+        }
+        else
+        {
+            <strong> necunoscut </strong>
+        }
+    </div>
+    <div>Domeniu: <strong> @Model.BookDomain.Name</strong> </div>
+</div>
+<p>
+    @Html.ActionLink("Înapoi la toate cărțile", "Index")
+</p>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+
+        $('#change_password').click(function () {
+
+            var url = $(this).attr("Href");
+            $.ajax({
+                url: url,
+                data: { bookId: @Model.Id},
+
+                success: function (data) {
+                    if (data != '') {
+                        $.colorbox({ html: data, scrolling: false, opacity: 0.85 });
+                    }
+                    else {
+                        alert(url);
+                        window.location = url;
+                    }
+                }
+
+            });
+
+            return false;
+        });
+
+    });
+
+</script>

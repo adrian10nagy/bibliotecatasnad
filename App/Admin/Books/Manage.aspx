@@ -20,9 +20,9 @@
                     <asp:TableHeaderRow TableSection="TableHeader">
                         <asp:TableHeaderCell>#</asp:TableHeaderCell>
                         <asp:TableHeaderCell>#</asp:TableHeaderCell>
-                        <asp:TableHeaderCell>Disponibilitate</asp:TableHeaderCell>
-                        <asp:TableHeaderCell>ISBN</asp:TableHeaderCell>
+                        <asp:TableHeaderCell>Disponibilă</asp:TableHeaderCell>
                         <asp:TableHeaderCell>Număr de inventar</asp:TableHeaderCell>
+                        <asp:TableHeaderCell>ISBN</asp:TableHeaderCell>
                         <asp:TableHeaderCell>Title</asp:TableHeaderCell>
                         <asp:TableHeaderCell>An Apariție</asp:TableHeaderCell>
                         <asp:TableHeaderCell>Autor(i)</asp:TableHeaderCell>

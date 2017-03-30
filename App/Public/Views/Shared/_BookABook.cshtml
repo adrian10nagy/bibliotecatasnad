@@ -1,0 +1,12 @@
+﻿@model DAL.Entities.Book
+
+<div class="container">
+    <h3>Ținem cartea rezervată 3 zile, până în @DateTime.Now.AddDays(3)</h3>
+    <h4>După această dată rezervarea va expira</h4>
+    <strong>@Model.Title</strong>
+    @using (Html.BeginForm("Rezerva", "Carti", FormMethod.Post))
+    {
+        <input type="hidden" id="bookId" name="bookId" class="btn btn-primary" value="@Model.Id" />
+        <input type="submit" class="btn btn-primary" value="Rezervă cartea" />
+    }
+</div>

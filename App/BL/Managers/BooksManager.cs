@@ -17,19 +17,31 @@ namespace BL.Managers
             return Kit.Instance.Books.GetBookCount();
         }
 
-
         public static IEnumerable<Book> GetAllBooks()
         {
             var books = CacheHelper.Instance.GetMyCachedItem(CacheConstants.BooksGetAll) as List<Book>;
             if (books == null || books.Count == 0)
             {
                 books = Kit.Instance.Books.GetAllBooks() as List<Book>;
+                books = books.OrderBy(b => b.InternalNr).ToList();
                 foreach (var item in books)
                 {
                     item.ISBNs = Kit.Instance.ISBNs.GetAllByBookId(item.Id) as List<ISBN>;
                     item.Authors = BooksManager.GetBookAuthorsByBookId(item.Id) as List<Author>;
                 }
                 CacheHelper.Instance.AddToMyCache(CacheConstants.BooksGetAll, books, MyCachePriority.Default);
+            }
+
+            return books;
+        }
+
+        public static IEnumerable<Book> GetAllBooksWithDomain()
+        {
+            var books = Kit.Instance.Books.GetAllBooksWithDomain() as List<Book>;
+            books = books.OrderBy(b => b.InternalNr).ToList();
+            foreach (var item in books)
+            {
+                item.Authors = BooksManager.GetBookAuthorsByBookId(item.Id) as List<Author>;
             }
 
             return books;
@@ -117,6 +129,35 @@ namespace BL.Managers
             return book;
         }
 
+        public static List<Book> GetBooksByDay(DateTime dateTime)
+        {
+            var books = Kit.Instance.Books.GetBooksByDay(dateTime);
+
+            return books;
+        }
+
+        public static IEnumerable<Book> GetBooksByAuthorId(int id)
+        {
+            var books = Kit.Instance.Books.GetBooksByAuthorId(id);
+            foreach (var item in books)
+            {
+                 item.Authors = BooksManager.GetBookAuthorsByBookId(item.Id) as List<Author>;
+            }
+
+            return books;
+        }
+
+        public static IEnumerable<Book> GetBooksByPublisherId(int id)
+        {
+            var books = Kit.Instance.Books.GetBooksByPublisherId(id);
+            foreach (var item in books)
+            {
+                item.Authors = BooksManager.GetBookAuthorsByBookId(item.Id) as List<Author>;
+            }
+
+            return books;
+        }
+
         public static void AddBook(DAL.Entities.Book book)
         {
             CacheHelper.Instance.RemoveMyCachedItem(CacheConstants.BooksGetAll);
@@ -170,9 +211,13 @@ namespace BL.Managers
             }
         }
 
-        public static List<Book> GetBooksByDay(DateTime dateTime)
+        public static List<Book> GetBooksLastAdded(int nr)
         {
-            var books = Kit.Instance.Books.GetBooksByDay(dateTime);
+            var books = Kit.Instance.Books.GetBooksLastAdded(nr) as List<Book>;
+            foreach (var item in books)
+            {
+                item.Authors = GetBookAuthorsByBookId(item.Id) as List<Author>;
+            }
 
             return books;
         }

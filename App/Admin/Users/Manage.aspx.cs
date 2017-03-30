@@ -38,7 +38,7 @@ namespace Admin.Users
                 TableRow row = new TableRow();
                 HyperLink link = new HyperLink
                 {
-                    NavigateUrl = "~/Loans/Search.aspx?userId=" + user.Id,
+                    NavigateUrl = "~/Loans/InProgress.aspx?userId=" + user.Id,
                     CssClass = "toClickOn",
                     Text = "Vezi împrumuturi"
                 };

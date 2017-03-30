@@ -1,0 +1,25 @@
+﻿@model IEnumerable<DAL.Entities.Publisher>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+
+            <!-- items being paged -->
+            <div class="list-group margin-top-50">
+                <a href="#" class="list-group-item active">
+                    Edituri                        
+                </a>
+
+                @foreach (var item in Model)
+                {
+                    @Html.ActionLink(item.Name, "Detalii", "Edituri", new { id = item.Id }, new { @class = "list-group-item" })
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

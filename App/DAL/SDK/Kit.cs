@@ -33,6 +33,7 @@
         public Publishers Publishers { get { return new Publishers(); } }
         public ISBNs ISBNs { get { return new ISBNs(); } }
         public ErrorLogs ErrorLogs { get { return new ErrorLogs(); } }
+        public Reservations Reservations { get { return new Reservations(); } }
 
         public void Dispose()
         {

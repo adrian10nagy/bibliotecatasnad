@@ -129,3 +129,11 @@ create table Loans(
 	ReturnedDate datetime null,
 	Id_ReturnedBookCondition int null foreign key REFERENCES BookConditions(Id)	
 )
+
+create table Reservations(
+	Id	int not null primary key identity(1,1),
+	Id_User int not null foreign key REFERENCES Users(Id),
+	Id_Book int not null foreign key REFERENCES Books(Id), 
+	ReservedDate datetime not null,
+	Flags int default 1,	
+)

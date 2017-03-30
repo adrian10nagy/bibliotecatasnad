@@ -1,0 +1,38 @@
+﻿@using DAL.Entities;
+
+@{
+    var groupedBooks = (IEnumerable<IGrouping<string, Book>>)ViewData["bookGroups"];
+    ViewBag.Title = "Index";
+}
+
+<link href="/Content/DomeniiCarti.css" rel="stylesheet" type="text/css" />
+
+<div class="container margin-top-150">
+    <div class="row">
+            <h3>Domenii</h3>
+            <!-- tabs -->
+            <div class="tabbable tabs-left">
+                <ul class="nav nav-tabs col-md-3">
+                    @foreach (var group in groupedBooks)
+                    {
+                        var domainName = group.First().BookDomain.Name;
+                        <li><a href="#@group.Key" data-toggle="tab">@domainName</a></li>
+                    }
+                </ul>
+                <div class="tab-content col-md-8">
+                    @foreach (var group in groupedBooks)
+                    {
+                        <div class="tab-pane" id="@group.Key">
+                            @foreach (var book in group)
+                            {
+                                @Html.ActionLink(@book.Title + "- de " + @book.Authors[0].Name, "Detalii", "Carti", new { id = @book.Id }, null)<br />
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- /tabs -->
+    </div><!-- /row -->
+</div>
+
+@Scripts.Render("~/Scripts/DomeniiCarti.js")

@@ -27,6 +27,12 @@ namespace DAL.SDK
             return _repository.GetAllBooks();
 
         }
+
+        public IEnumerable<Book> GetAllBooksWithDomain()
+        {
+            return _repository.GetAllBooksWithDomain();
+        }
+        
         #endregion
 
         public int AddBook(Book book)
@@ -54,10 +60,29 @@ namespace DAL.SDK
             return _repository.GetAllBookPublishersGrouped();
         }
 
-
         public List<Book> GetBooksByDay(DateTime dateTime)
         {
             return _repository.GetBooksByDay(dateTime);
+        }
+
+        public List<Book> GetBooksByTitlePublisherDomain(string title, int? publisherId, int? domainId)
+        {
+            return _repository.GetBooksByTitlePublisherDomain(title, publisherId, domainId);
+        }
+
+        public IEnumerable<Book> GetBooksByAuthorId(int id)
+        {
+            return _repository.GetBooksByAuthorId(id);
+        }
+
+        public IEnumerable<Book> GetBooksByPublisherId(int id)
+        {
+            return _repository.GetBooksByPublisherId(id);
+        }
+
+        public IEnumerable<Book> GetBooksLastAdded(int nr)
+        {
+            return _repository.GetBooksLastAdded(nr);
         }
     }
 }

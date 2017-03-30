@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DAL.Entities.Book>
+
+@{
+    ViewBag.Title = "Detalii";
+    var publisher = (string)ViewData["publisherName"];
+}
+
+<br />
+<p></p>
+
+
+@if (@Model.Count() > 0)
+{
+    <h3>Cărțile editurii "<strong>@publisher</strong>"</h3>
+    <div class="BooksResultsAll">
+        @foreach (var item in Model)
+        {
+            <div class="SearchresultBox">
+                <a href="~/Carti/Detalii/@item.Id">
+                    <h3>@item.Title</h3>
+                    <h4>@item.Authors[0].Name</h4>
+                    <h5>@item.Publisher.Name</h5>
+                    <h5>@item.PublishYear</h5>
+                </a>
+            </div>
+        }
+    </div>
+
+}
+else
+{
+    <div>Căutarea nu a returnat nici o carte pentu editura <strong>@publisher</strong></div>
+}

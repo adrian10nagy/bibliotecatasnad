@@ -12,8 +12,16 @@
 
         <div class="x_content form-horizontal form-label-left">
             <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                <asp:Label ID="lblBookInternalNr" runat="server" Text="Nr de inventar*" AssociatedControlID="txtBookInternalNr"></asp:Label>
-                <asp:TextBox ID="txtBookInternalNr" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                    <ContentTemplate>
+                        <asp:Label ID="lblBookInternalNr" runat="server" Text="Număr de inventar*" AssociatedControlID="txtBookInternalNr"></asp:Label>
+                        <asp:TextBox ID="txtBookInternalNr" runat="server" CssClass="form-control" autocomplete="off" OnTextChanged="txtBookInternalNr_TextChanged" AutoPostBack="true" CausesValidation="false">
+                        </asp:TextBox>
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="txtBookInternalNr" EventName="TextChanged" />
+                    </Triggers>
+                </asp:UpdatePanel>
             </div>
 
             <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
@@ -23,7 +31,7 @@
                         <asp:LinkButton ID="lnkBookIsbnAddNew" runat="server" CssClass="control-label col-md-10 col-sm-10 col-xs-12" OnClick="lnkBookIsbnAddNew_Click" CausesValidation="false">
                         Mai multe ISBN-uri? Click aici
                         </asp:LinkButton><br />
-                        <asp:TextBox ID="txtBookIsbn" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                        <asp:TextBox ID="txtBookIsbn" runat="server" CssClass="form-control" autocomplete="off" OnUnload="txtBookIsbn_Unload" AutoPostBack="true"></asp:TextBox>
                         <asp:BulletedList ID="bltBookIsbnSelected" Visible="false" runat="server"></asp:BulletedList>
                         <asp:Button ID="btnBookIsbnAddNew" AutoPostBack="true" CausesValidation="false" Visible="false" Text="Adaugă ISBN-ul" runat="server" CssClass="btn btn-info" OnClick="btnBookIsbnAddNew_Click" />
                         <asp:Button ID="btnBookIsbnRemove" AutoPostBack="true" CausesValidation="false" Visible="false" Text="Șterge ISBN-urile" runat="server" CssClass="btn btn-danger" OnClick="btnBookIsbnRemove_Click" />
@@ -34,6 +42,7 @@
                     </Triggers>
                 </asp:UpdatePanel>
             </div>
+
             <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                 <asp:Label ID="lblBookTitle" runat="server" Text="Titlul*" AssociatedControlID="txtBookTitle"></asp:Label>
                 <asp:TextBox ID="txtBookTitle" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
@@ -42,7 +51,7 @@
             <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                 <asp:Label ID="lblBookNrPages" runat="server" Text="Număr pagini*" AssociatedControlID="txtBookNrPages"></asp:Label>
                 <asp:TextBox ID="txtBookNrPages" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtBookNrPages" CssClass="field-validation-error" ErrorMessage="Numarul paginilor este obliogatorie" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtBookNrPages" CssClass="field-validation-error" ErrorMessage="Numarul paginilor este obligatoriu" />
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                 <div>

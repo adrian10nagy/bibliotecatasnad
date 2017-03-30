@@ -1,16 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
+﻿
 namespace Public.Controllers
 {
-    public class HomeController : Controller
+    using BL.Managers;
+    using Public.Models;
+    using System.Web.Mvc;
+
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
-            return View();
+            var mainmodel = new MainPageModel
+            {
+                BookNumber = BooksManager.GetBooksNrAll(),
+                LastAddedBooks = BooksManager.GetBooksLastAdded(20)
+            };
+
+            return View(mainmodel);
         }
 
         public ActionResult About()
@@ -22,7 +27,7 @@ namespace Public.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "";
 
             return View();
         }

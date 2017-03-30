@@ -63,5 +63,10 @@ namespace DAL.SDK
         {
             return _repository.GetLoansByBookId(bookId);
         }
+
+        public LoanReservedBookStatus GetBookLoanStatus(int bookId)
+        {
+            return _repository.GetBookLoanStatus(bookId);
+        }
     }
 }

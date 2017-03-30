@@ -58,6 +58,7 @@
     <Compile Include="Entities\Locality.cs" />
     <Compile Include="Entities\Nationality.cs" />
     <Compile Include="Entities\Publisher.cs" />
+    <Compile Include="Entities\Reservation.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserFlag.cs" />
     <Compile Include="Entities\UserType.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Repositories\Locality.cs" />
     <Compile Include="Repositories\Publisher.cs" />
     <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\Reservation.cs" />
     <Compile Include="Repositories\User.cs" />
     <Compile Include="SDK\Authors.cs" />
     <Compile Include="SDK\BookAuthors.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="SDK\Loans.cs" />
     <Compile Include="SDK\Localities.cs" />
     <Compile Include="SDK\Publishers.cs" />
+    <Compile Include="SDK\Reservations.cs" />
     <Compile Include="SDK\Users.cs" />
     <Compile Include="Settings\Configure.cs" />
     <Compile Include="Settings\SqlDatabase.cs" />

@@ -64,5 +64,12 @@ namespace BL.Managers
 
             return users;
         }
+
+        public static User GetUserByEmail(string userEmail)
+        {
+            var users = Kit.Instance.Users.GetUserByEmail(userEmail);
+
+            return users;
+        }
     }
 }

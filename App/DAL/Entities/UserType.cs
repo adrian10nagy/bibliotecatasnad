@@ -13,6 +13,7 @@ namespace DAL.Entities
         Muncitor = 1006,
         Funcționar = 1007,
         Technicieni = 1008,
-        Intelectuali = 1009
+        Intelectuali = 1009,
+        Nesetat = 1010,
     }
 }

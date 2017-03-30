@@ -16,6 +16,11 @@ namespace DAL.Repositories
         void RemoveAuthors(int bookId);
         IEnumerable<Publisher> GetAllBookPublishersGrouped();
         List<Book> GetBooksByDay(DateTime dateTime);
+        List<Book> GetBooksByTitlePublisherDomain(string title, int? publisherId, int? domainId);
+        IEnumerable<Book> GetBooksByAuthorId(int id);
+        IEnumerable<Book> GetBooksByPublisherId(int id);
+        IEnumerable<Book> GetAllBooksWithDomain();
+        IEnumerable<Book> GetBooksLastAdded(int nr);
     }
 
     public partial class Repository : IBookRepository
@@ -95,7 +100,60 @@ namespace DAL.Repositories
                     BookCondition = (BookCondition)Read<int>(r, "Id_BookCondition"),
                     BookFormat = (BookFormat)Read<int>(r, "Id_BookFormat"),
                     BookLanguage = (Language)Read<int>(r, "Id_Language"),
-                    LoanStatus = GetBookLoanStatus(Read<int>(r, "Id"))
+                    BookStatus = GetBookLoanStatus(Read<int>(r, "Id"))
+                }));
+
+            return books;
+        }
+
+        public IEnumerable<Book> GetAllBooksWithDomain()
+        {
+            var books = new List<Book>();
+            _dbRead.Execute(
+                "BooksGetAllWithDomain",
+            null,
+                r => books.Add(new Book()
+                {
+                    Id = Read<int>(r, "Id"),
+                    Title = Read<string>(r, "Title"),
+                    PublishYear = Read<int?>(r, "PublishYear"),
+                    Volume = Read<string>(r, "Volume"),
+                    InternalNr = Read<string>(r, "InternalNr"),
+                    NrPages = Read<int>(r, "NrPages"),
+                    Publisher = new Publisher
+                    {
+                        Id = Read<int>(r, "Id_Publisher"),
+                        Name = Read<string>(r, "PublisherName"),
+                    },
+                    BookCondition = (BookCondition)Read<int>(r, "Id_BookCondition"),
+                    BookFormat = (BookFormat)Read<int>(r, "Id_BookFormat"),
+                    BookLanguage = (Language)Read<int>(r, "Id_Language"),
+                    BookStatus = GetBookLoanStatus(Read<int>(r, "Id")),
+                    BookDomain = new BookDomain
+                    {
+                        Id = Read<int>(r, "Id_BookDomain"),
+                        Name = Read<string>(r, "DomainName"),
+                        CZU = Read<string>(r, "CZU"),
+                    }
+                }));
+
+            return books;
+        }
+
+        public IEnumerable<Book> GetBooksLastAdded(int nr)
+        {
+
+            var books = new List<Book>();
+            _dbRead.Execute(
+                "BooksGetLast",
+             new[]
+            {
+                new SqlParameter("@nr", nr),
+            },
+                r => books.Add(new Book()
+                {
+                    Id = Read<int>(r, "Id"),
+                    Title = Read<string>(r, "Title")
                 }));
 
             return books;
@@ -142,11 +200,110 @@ namespace DAL.Repositories
                    BookCondition = (BookCondition)Read<int>(r, "Id_BookCondition"),
                    BookFormat = (BookFormat)Read<int>(r, "Id_BookFormat"),
                    BookLanguage = (Language)Read<int>(r, "Id_Language"),
-                   LoanStatus = GetBookLoanStatus(Read<int>(r, "Id"))
+                   BookStatus = GetBookLoanStatus(Read<int>(r, "Id"))
                }));
 
             return books;
         }
+
+        public List<Book> GetBooksByTitlePublisherDomain(string title, int? publisherId, int? domainId)
+        {
+            var books = new List<Book>();
+
+            _dbRead.Execute(
+                "BooksGetByTitlePublisherDomain",
+            new[]
+            {
+                new SqlParameter("@title", title),
+                new SqlParameter("@publisherId", publisherId),
+                new SqlParameter("@domainId", domainId),
+            },
+               r => books.Add(new Book()
+               {
+                   Id = Read<int>(r, "Id"),
+                   Title = Read<string>(r, "Title"),
+                   PublishYear = Read<int?>(r, "PublishYear"),
+                   Volume = Read<string>(r, "Volume"),
+                   InternalNr = Read<string>(r, "InternalNr"),
+                   NrPages = Read<int>(r, "NrPages"),
+                   Publisher = new Publisher
+                   {
+                       Id = Read<int>(r, "Id_Publisher"),
+                       Name = Read<string>(r, "PublisherName"),
+                   },
+                   BookCondition = (BookCondition)Read<int>(r, "Id_BookCondition"),
+                   BookFormat = (BookFormat)Read<int>(r, "Id_BookFormat"),
+                   BookLanguage = (Language)Read<int>(r, "Id_Language"),
+                   BookStatus = GetBookLoanStatus(Read<int>(r, "Id"))
+               }));
+
+            return books;
+        }
+
+        public IEnumerable<Book> GetBooksByAuthorId(int id)
+        {
+            var books = new List<Book>();
+
+            _dbRead.Execute(
+                "BooksGetByAuthorId",
+            new[]
+            {
+                new SqlParameter("@id", id),
+            },
+               r => books.Add(new Book()
+               {
+                   Id = Read<int>(r, "Id"),
+                   Title = Read<string>(r, "Title"),
+                   PublishYear = Read<int?>(r, "PublishYear"),
+                   Volume = Read<string>(r, "Volume"),
+                   InternalNr = Read<string>(r, "InternalNr"),
+                   NrPages = Read<int>(r, "NrPages"),
+                   Publisher = new Publisher
+                   {
+                       Id = Read<int>(r, "Id_Publisher"),
+                       Name = Read<string>(r, "PublisherName"),
+                   },
+                   BookCondition = (BookCondition)Read<int>(r, "Id_BookCondition"),
+                   BookFormat = (BookFormat)Read<int>(r, "Id_BookFormat"),
+                   BookLanguage = (Language)Read<int>(r, "Id_Language"),
+                   BookStatus = GetBookLoanStatus(Read<int>(r, "Id"))
+               }));
+
+            return books;
+        }
+
+        public IEnumerable<Book> GetBooksByPublisherId(int id)
+        {
+            var books = new List<Book>();
+
+            _dbRead.Execute(
+                "BooksGetByPublisherId",
+            new[]
+            {
+                new SqlParameter("@id", id),
+            },
+               r => books.Add(new Book()
+               {
+                   Id = Read<int>(r, "Id"),
+                   Title = Read<string>(r, "Title"),
+                   PublishYear = Read<int?>(r, "PublishYear"),
+                   Volume = Read<string>(r, "Volume"),
+                   InternalNr = Read<string>(r, "InternalNr"),
+                   NrPages = Read<int>(r, "NrPages"),
+                   Publisher = new Publisher
+                   {
+                       Id = id,
+                       Name = Read<string>(r, "PublisherName"),
+                   },
+                   BookCondition = (BookCondition)Read<int>(r, "Id_BookCondition"),
+                   BookFormat = (BookFormat)Read<int>(r, "Id_BookFormat"),
+                   BookLanguage = (Language)Read<int>(r, "Id_Language"),
+                   BookStatus = GetBookLoanStatus(Read<int>(r, "Id"))
+               }));
+
+            return books;
+        }
+
         #endregion
 
         #region Add

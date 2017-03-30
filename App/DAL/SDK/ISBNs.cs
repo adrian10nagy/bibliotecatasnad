@@ -32,6 +32,11 @@ namespace DAL.SDK
         {
             _repository.RemoveISBNsByBookId(bookId);
         }
+
+        public int? GetBookIdByISBN(string isbn)
+        {
+            return _repository.GetBookIdByISBN(isbn);
+        }
     }
     
 }

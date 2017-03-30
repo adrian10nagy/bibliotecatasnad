@@ -48,7 +48,8 @@ a.read:hover,
 .author a,
 span.hoverBox h4,
 .navbar.navbar-inverse.navbar-static-top a:hover{
-	color:#f5d76e;
+	/*color:#f5d76e;*/
+    color: #000000;
 }
 .inner-page .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus{
 	color:#f5d76e !important;
@@ -59,7 +60,6 @@ span.hoverBox h4,
 .membership_listing span,
 ul.pricing-boxes li.best-plan .btn-primary,
 .plan-name.color,
-.imageBox.activeImage,
 ul.hover-social-icons li a:hover{
 	background-color:#f5d76e;
 }
@@ -98,4 +98,20 @@ ul.pricing-boxes li.best-plan .plan-name:after {
 ul.pricing-boxes li.best-plan .btn-primary,
 input.normal, select.normal, textarea.normal{
 	border-color:#e5cd00;
+}
+
+.navbar.navbar-inverse.navbar-static-top
+li.open ul.dropdown-menu li a:hover {
+    color:black;
+    text-decoration:none;
+    padding-bottom:29px;
+}
+
+.logo a span{
+	margin-top: -10px;
+    margin-right:8px;
+}
+
+ul.footerLinks li span a{
+	color:#f5d76e;
 }

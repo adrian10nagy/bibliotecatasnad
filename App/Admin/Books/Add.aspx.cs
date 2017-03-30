@@ -40,9 +40,9 @@ namespace Admin.Books
         }
 
         protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!this.Page.IsPostBack)
             {
+            if (!this.Page.IsPostBack)
+            {   
                 InitializeSources();
                 btnBookAuthorsRemove.Visible = false;
 
@@ -117,7 +117,7 @@ namespace Admin.Books
                 NrPages = txtBookNrPages.Text.ToNullableInt().Value,
                 AddedDate = DateTime.Now,
                 AddedBy = new User { Id = user.Id },
-                Publisher = PublishersManager.GetAllPublishersById(drdBookPublisher.SelectedValue.ToNullableInt().Value),
+                Publisher = PublishersManager.GetPublishersById(drdBookPublisher.SelectedValue.ToNullableInt().Value),
                 BookCondition = (BookCondition)drpBookCondition.SelectedValue.ToNullableInt(),
                 Library = new Library { Id = 1 },
                 BookFormat = (BookFormat)drpBookFormat.SelectedValue.ToNullableInt(),
@@ -139,6 +139,13 @@ namespace Admin.Books
             }
             else
             {
+                if (ValidateInternalNr(txtBookInternalNr.Text))
+                {
+                    lblBookInternalNr.Text = "Număr de inventar*- Numărul de inventar există deja!";
+                    lblBookInternalNr.Attributes.CssStyle.Add("color", "red");
+                    return;
+                }
+
                 BooksManager.AddBook(book);
                 lblStatus.Text = BookConstants.AddSuccess;
                 lblStatus.CssClass = "SuccessBox";
@@ -155,7 +162,7 @@ namespace Admin.Books
         {
             if (drdBooksAutors.SelectedValue.ToNullableInt() != 0)
             {
-                var author = AuthorsManager.GetAllById(drdBooksAutors.SelectedValue.ToNullableInt().Value);
+                var author = AuthorsManager.GetById(drdBooksAutors.SelectedValue.ToNullableInt().Value);
                 if (author != null)
                 {
                     var listItem = new ListItem
@@ -207,16 +214,24 @@ namespace Admin.Books
             if(txtBookAuthorsAddNew.Text.Trim() == string.Empty)
             {
                 txtBookAuthorsAddNew.CssClass = "";
-
             }
             else
             {
-                var author = AuthorsManager.Add(txtBookAuthorsAddNew.Text);
+                var existentAuthor = AuthorsManager.GetOneAuthorByInput(txtBookAuthorsAddNew.Text);
                 var listItem = new ListItem
                 {
-                   Text = author.Name,
-                   Value = author.Id.ToString()
+                    Text = txtBookAuthorsAddNew.Text
                 };
+
+                if(existentAuthor != null)
+                {
+                    listItem.Value = existentAuthor.Id.ToString();
+                }
+                else
+                {
+                    var author = AuthorsManager.Add(txtBookAuthorsAddNew.Text);
+                    listItem.Value = author.Id.ToString();
+                }
 
                 bltBooksAuthorsSelected.Items.Add(listItem);
                 txtBookAuthorsAddNew.Visible = false;
@@ -224,6 +239,7 @@ namespace Admin.Books
                 drdBooksAutors.Visible = true;
                 drdBooksAutors.SelectedIndex = 0;
                 btnBookAuthorsRemove.Visible = true;
+                lnkBookAuthorsAddNew.Text = "Nu există? Click aici";
             }
         }
 
@@ -275,7 +291,6 @@ namespace Admin.Books
                 lnkBookIsbnAddNew.Text = "Un singur ISBN? Click aici";
                 btnBookIsbnAddNew.Visible = true;
                 bltBookIsbnSelected.Visible = true;
-                btnBookIsbnRemove.Visible = true;
                 txtBookIsbn.Text = string.Empty;
             }
             else
@@ -290,6 +305,7 @@ namespace Admin.Books
 
         protected void btnBookIsbnAddNew_Click(object sender, EventArgs e)
         {
+            lblBookIsbn.Text = "test 1";
             if (txtBookIsbn.Text.Trim() != string.Empty)
             {
                 bltBookIsbnSelected.Items.Add(new ListItem
@@ -298,6 +314,7 @@ namespace Admin.Books
                 });
                 txtBookIsbn.Text = string.Empty;
                 txtBookIsbn.CssClass = txtBookIsbn.CssClass.Replace("requiredFieldError", "");
+                btnBookIsbnRemove.Visible = true;
             }
             else
             {
@@ -307,6 +324,7 @@ namespace Admin.Books
 
         protected void btnBookIsbnRemove_Click(object sender, EventArgs e)
         {
+            btnBookIsbnRemove.Visible = false;
             bltBookIsbnSelected.Items.Clear();
         }
 
@@ -393,7 +411,6 @@ namespace Admin.Books
         private void InitializeLanguages()
         {
             var languages = EnumUtil.GetValues<Language>().ToList();
-            languages = languages.Swap(0, 1).ToList();
             var listItemLanguages = languages.Select(c => new ListItem
             {
                 Text = c.ToString(),
@@ -497,8 +514,18 @@ namespace Admin.Books
             txtBookNrPages.Text = string.Empty;
             bltBooksAuthorsSelected.Items.Clear();
             drdBookDomain.SelectedIndex = 0;
+
             drdBookPublisher.SelectedIndex = 0;
+            drdBookPublisher.Visible = true;
+            btnBookPublisherAddNew.Visible = false;
+            txtBookPublisherAddNew.Visible = false;
+            lnkBookPublisherAddNew.Text = "Nu există? Click aici";
+
             btnBookAuthorsRemove.Visible = false;
+            btnBookAuthorAddNew.Visible = false;
+            txtBookAuthorsAddNew.Visible = false;
+            drdBooksAutors.Visible = true;
+            lnkBookAuthorsAddNew.Text = "Nu există? Click aici";
         }
 
         private List<Author> GetAuthors()
@@ -526,6 +553,43 @@ namespace Admin.Books
             }).ToArray();
 
             return listItems;
+        }
+
+        bool ValidateInternalNr(string internalNr)
+        {
+            var result = true;
+
+            var books = BooksManager.GetAllBooks();
+            var bookWithSameInternalNr = books.Where(b => b.InternalNr.ToLower() == internalNr.ToLower()).ToList();
+
+            if (bookWithSameInternalNr != null && bookWithSameInternalNr.Count() < 1)
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
+        protected void txtBookInternalNr_TextChanged(object sender, EventArgs e)
+        {
+            lblBookInternalNr.Text = "Număr de inventar*";
+            lblBookInternalNr.Attributes.CssStyle.Remove("color");
+            if (!string.IsNullOrEmpty(txtBookInternalNr.Text))
+            {
+                if (ValidateInternalNr(txtBookInternalNr.Text))
+                {
+                    lblBookInternalNr.Text = "Număr de inventar*- Numărul de inventar există deja!";
+                    lblBookInternalNr.Attributes.CssStyle.Add("color", "red");
+                }
+            }
+        }
+
+        protected void txtBookIsbn_Unload(object sender, EventArgs e)
+        {
+            if(Page.IsPostBack)
+            {
+
+            }
         }
     }
 }

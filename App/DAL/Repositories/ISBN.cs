@@ -2,6 +2,7 @@
 namespace DAL.Repositories
 {
     using DAL.Entities;
+    using System;
     using System.Collections.Generic;
     using System.Data.SqlClient;
 
@@ -10,6 +11,7 @@ namespace DAL.Repositories
         IEnumerable<ISBN> GetAllByBookId(int bookId);
         int AddISBN(int bookId, string value);
         void RemoveISBNsByBookId(int bookId);
+        int? GetBookIdByISBN(string isbn);
     }
 
     public partial class Repository : IISBNsRepository
@@ -34,6 +36,11 @@ namespace DAL.Repositories
                 }));
 
             return isbns;
+        }
+
+        public int? GetBookIdByISBN(string isbn)
+        {
+            throw new Exception();
         }
 
         #endregion

@@ -78,5 +78,10 @@ namespace BL.Managers
         {
             return Kit.Instance.Loans.GetLoansByBookId(bookId) as List<Loan>;
         }
+
+        public static LoanReservedBookStatus GetBookLoanStatus(int bookId)
+        {
+            return Kit.Instance.Loans.GetBookLoanStatus(bookId);
+        }
     }
 }

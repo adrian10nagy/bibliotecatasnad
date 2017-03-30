@@ -4,6 +4,7 @@ using BL.Constants;
 using DAL.Entities;
 using DAL.SDK;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BL.Managers
 {
@@ -15,6 +16,7 @@ namespace BL.Managers
             if (publishers == null || publishers.Count == 0)
             {
                 publishers = Kit.Instance.Publishers.GetAll() as List<Publisher>;
+                publishers = publishers.OrderBy(p => p.Name).ToList();
                 CacheHelper.Instance.AddToMyCache(CacheConstants.BookPublishersGetAll, publishers, MyCachePriority.Default);
             }
 
@@ -33,7 +35,7 @@ namespace BL.Managers
         }
 
 
-        public static Publisher GetAllPublishersById(int id)
+        public static Publisher GetPublishersById(int id)
         {
             var publishers = (List<Publisher>)GetAllPublishers();
             Publisher publisher = null;

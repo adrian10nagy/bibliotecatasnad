@@ -54,9 +54,15 @@ namespace Admin.Books
 
                 TableCell bookStatus = new TableCell
                 {
-                    Text = book.LoanStatus.ToString()
+                    Text = book.BookStatus.ToString()
                 };
                 row.Cells.Add(bookStatus);
+
+                TableCell bookInternalNr = new TableCell
+                {
+                    Text = book.InternalNr
+                };
+                row.Cells.Add(bookInternalNr);
 
                 var bookIsbns = book.ISBNs.Select(b => b.Value);
                 TableCell bookIsbn = new TableCell
@@ -64,12 +70,6 @@ namespace Admin.Books
                     Text = string.Join(", ", bookIsbns)
                 };
                 row.Cells.Add(bookIsbn);
-
-                TableCell bookInternalNr = new TableCell
-                {
-                    Text = book.InternalNr
-                };
-                row.Cells.Add(bookInternalNr);
 
                 TableCell bookTitle = new TableCell
                 {

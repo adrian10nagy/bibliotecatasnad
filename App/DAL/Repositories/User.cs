@@ -11,7 +11,6 @@ namespace DAL.Repositories
         User GetUserById(int id);
         IEnumerable<User> GetAllUsers();
         IEnumerable<User> GetUsersByDay(DateTime dateTime);
-        User GetUserByEmailPass(string email, string pass);
         int InsertUser(User user);
         User GetUserByEmail(string email);
         int GetUserCount();
@@ -68,24 +67,32 @@ namespace DAL.Repositories
 
         public User GetUserByEmail(string email)
         {
-            throw new NotImplementedException();
 
             User user = null;
 
             _dbRead.Execute(
-                "UserGetByEmail",
+                "UsersGetByEmail",
             new[] { 
-                new SqlParameter("@Email", email), 
+                new SqlParameter("@email", email), 
             },
                 r => user = new User()
                 {
                     Id = Read<int>(r, "Id"),
                     FirstName = Read<string>(r, "FirstName"),
                     LastName = Read<string>(r, "LastName"),
-                    Email = Read<string>(r, "Email"),
-                    Flags = Read<UserFlag>(r, "Flags"),
-                    JoinDate = Read<DateTime>(r, "JoinDate"),
-                    UserType = Read<UserType>(r, "Id_type"),
+                    Username = Read<string>(r, "UserName"),
+                    HomeAddress = Read<string>(r, "HomeAddress"),
+                    Birthdate = Read<DateTime>(r, "Birthdate"),
+                    Phone = Read<string>(r, "Phone"),
+                    Email = email,
+                    FacebookAddress = Read<string>(r, "FacebookAddress"),
+                    Gender = Read<Gender>(r, "Gender"),
+                    Locality = new Locality()
+                    {
+                        Id = Read<int>(r, "Id_Locality"),
+                    },
+                    UserType = Read<UserType>(r, "Id_UserType"),
+                    Nationality = Read<Nationality>(r, "Id_Nationality")
                 });
 
             return user;
@@ -180,31 +187,6 @@ namespace DAL.Repositories
                 }));
 
             return users;
-        }
-
-        public User GetUserByEmailPass(string email, string pass)
-        {
-            throw new NotImplementedException();
-            var user = new User();
-
-            _dbRead.Execute(
-                "UserGetByNamePass",
-            new[] { 
-                new SqlParameter("@Password", pass), 
-                new SqlParameter("@Email", email) 
-            },
-                r => user = new User()
-                {
-                    Id = Read<int>(r, "Id"),
-                    FirstName = Read<string>(r, "FirstName"),
-                    LastName = Read<string>(r, "LastName"),
-                    Email = Read<string>(r, "Email"),
-                    Flags = Read<UserFlag>(r, "Flags"),
-                    JoinDate = Read<DateTime>(r, "JoinDate"),
-                    UserType = Read<UserType>(r, "Id_type"),
-                });
-
-            return user;
         }
 
         #endregion

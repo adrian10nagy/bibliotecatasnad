@@ -3,20 +3,57 @@
 @{
 
     var bookSuggestions = (List<Book>)ViewData["bookSuggestions"];
+    var authorsSuggestions = (List<Author>)ViewData["authorsSuggestions"];
+    var domainsSuggestions = (List<BookDomain>)ViewData["domainsSuggestions"];
 }
 
 @if (bookSuggestions.Count > 0)
 {
     <div class="simpleSuggestionBooks">
+        <span>Cărți</span>
         @foreach (var item in bookSuggestions)
         {
-            <div class="simpleSuggestionBook">
-                <a href="~/Carte/Detalii/@item.Id">
+            <a href="~/Carti/Detalii/@item.Id">
+                <div class="simpleSuggestionBook">
                     <div>
                         @item.Title
                     </div>
-                </a>
-            </div>
+                </div>
+            </a>
+        }
+    </div>
+}
+
+@if (authorsSuggestions.Count > 0)
+{
+    <div class="simpleSuggestionBooks">
+        <span>Autori</span>
+        @foreach (var item in authorsSuggestions)
+        {
+            <a href="~/Autori/Detalii/@item.Id">
+                <div class="simpleSuggestionBook">
+                    <div>
+                        @item.Name
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+}
+
+@if (domainsSuggestions.Count > 0)
+{
+    <div class="simpleSuggestionBooks">
+        <span>Domenii</span>
+        @foreach (var item in domainsSuggestions)
+        {
+            <a href="~/Carti/index#@item.CZU">
+                <div class="simpleSuggestionBook">
+                    <div>
+                        @item.Name
+                    </div>
+                </div>
+            </a>
         }
     </div>
 }

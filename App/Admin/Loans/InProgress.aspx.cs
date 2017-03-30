@@ -5,6 +5,7 @@
     using BL.Managers;
     using DAL.Entities;
     using System;
+    using System.Collections.Generic;
     using System.Web.UI;
     using System.Web.UI.WebControls;
 
@@ -12,16 +13,29 @@
     {
         protected void Page_Init(object sender, EventArgs e)
         {
-            InitializeLoansTable();
+            List<Loan> loans = null;
+
+            if (!Page.IsPostBack)
+            {
+                if (!string.IsNullOrEmpty(Request["userId"]) && Request["userId"].ToNullableInt() != null)
+                {
+                    loans = LoansManager.GetLoansByUserId(Request["userId"].ToNullableInt().Value);
+                }
+            }
+
+            InitializeLoansTable(loans);
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!string.IsNullOrEmpty(Request["message"]) && Request["message"] == "LoanAddedSuccess")
             {
                 lblMessage.Text = FlowMessages.LoanAddedSuccess;
                 lblMessage.CssClass = "SuccessBox";
             }
+
+            
         }
 
         protected void btnReturnBook_Click(object sender, EventArgs e)
@@ -56,11 +70,20 @@
             btnLoanRemove.Visible = true;
         }
 
-        private void InitializeLoansTable()
+        private void InitializeLoansTable(List<Loan> loans = null)
         {
-            var loans = LoansManager.GetActiveLoans();
+            var inputLoans = new List<Loan>();
 
-            foreach (Loan loan in loans)
+            if (loans == null)
+            {
+                inputLoans = LoansManager.GetActiveLoans();
+            }
+            else
+            {
+                inputLoans = loans;
+            }
+
+            foreach (Loan loan in inputLoans)
             {
                 TableRow row = new TableRow();
                 var btnLoanReturn = new Button 

@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
+﻿
 namespace Public.Controllers
 {
-    public class ContController : Controller
+    using BL.Managers;
+    using DAL.Entities;
+    using Public.Models;
+    using System;
+    using System.Web.Mvc;
+    using BL.Helpers;
+
+    public class ContController : BaseController
     {
-        // GET: Cont
         public ActionResult Index()
         {
             return View();
@@ -16,73 +17,86 @@ namespace Public.Controllers
 
         public ActionResult Logare()
         {
+            if (Session["userId"] != null)
+            {
+                return RedirectToAction("Delogare");
+            }
+
             return View();
         }
 
-        // GET: Cont/Create
-        public ActionResult Create()
+        public ActionResult Împrumuturi()
         {
-            return View();
+            if (Session["userId"] == null)
+            {
+                return RedirectToAction("Logare");
+            }
+
+            var loans = LoansManager.GetLoansByUserId(Session["userId"].ToString().ToNullableInt().Value);
+
+            return View(loans);
         }
 
-        // POST: Cont/Create
+        [HttpGet]
+        public ActionResult LogarePartiala(MainPageModel model)
+        {
+            return PartialView("_LoginModal");
+        }
+
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult AsyncUserLogin(string userEmail, string userPass)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            var user = UsersManager.GetUserForLogin(userEmail, userPass);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (user == null || user.Id == 0)
             {
-                return View();
+                return Json(new { response = JSONResponse.IncorrectAuthentication });
             }
+
+            Session["userId"] = user.Id;
+            Session["userType"] = (int)user.UserType;
+            Session["userFirstName"] = user.FirstName;
+            Session["userLastName"] = user.LastName;
+
+            return Json(new { response = JSONResponse.Success });
         }
 
-        // GET: Cont/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Cont/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult AsyncUserRegister(string userSurame, string userName, string userEmail, string userPass)
         {
-            try
-            {
-                // TODO: Add update logic here
+            var exitsUsername = UsersManager.GetUserByEmail(userEmail);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if(exitsUsername != null)
             {
-                return View();
+                return Json(new { result = JSONResponse.EmailExists });
             }
+
+            var user = UsersManager.Add(new User
+            {
+                FirstName = userName,
+                LastName = userSurame,
+                Email = userEmail,
+                JoinDate = DateTime.Now,
+                Flags = UserFlag.Default,
+                Gender = Gender.Nesetată,
+                Locality = new Locality { Id = 1 },
+                Nationality = Nationality.Alta,
+                UserType = UserType.Nesetat,
+                Birthdate = DateTime.Now
+
+            });
+
+            return AsyncUserLogin(userEmail, userPass);
         }
 
-        // GET: Cont/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delogare()
         {
-            return View();
-        }
+            Session.Remove("userId");
+            Session.Remove("userType");
+            Session.Remove("userFirstName");
+            Session.Remove("userLastName");
 
-        // POST: Cont/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }

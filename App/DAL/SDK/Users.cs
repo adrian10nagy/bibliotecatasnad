@@ -52,5 +52,10 @@ namespace DAL.SDK
         {
             return _repository.GetUsersByDay(dateTime);
         }
+
+        public User GetUserByEmail(string userEmail)
+        {
+            return _repository.GetUserByEmail(userEmail);
+        }
     }
 }

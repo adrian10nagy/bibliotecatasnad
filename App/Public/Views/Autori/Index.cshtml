@@ -1,0 +1,53 @@
+﻿@model Public.Models.IndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+           
+            <!-- items being paged -->
+            <ul>
+                @foreach (var item in Model.Items)
+                {
+                    <li>@Html.ActionLink(item.Name, "Detalii", "Autori", new { id = item.Id }, null) </li>
+                }
+            </ul>
+
+            <!-- pager -->
+            @if (Model.Pager.EndPage > 1)
+            {
+                <ul class="pagination">
+                    @if (Model.Pager.CurrentPage > 1)
+                    {
+                        <li>
+                            @Html.ActionLink("Prima Pagină", "Index", "Autori", null, null)
+                        </li>
+                        <li>
+                            @Html.ActionLink("Precedentă", "Index", "Autori", new { page = (Model.Pager.CurrentPage - 1) }, null)
+                        </li>
+                    }
+
+                    @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+                    {
+                        <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                            @Html.ActionLink(@page.ToString(), "Index", "Autori", new { page = @page }, null)
+                        </li>
+                    }
+
+                    @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                    {
+                        <li>
+                            @Html.ActionLink("Următoarea", "Index", "Autori", new { page = (Model.Pager.CurrentPage + 1) }, null)
+                        </li>
+                        <li>
+                            @Html.ActionLink("Ultima", "Index", "Autori", new { page = (Model.Pager.TotalPages) }, null)
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+</div>

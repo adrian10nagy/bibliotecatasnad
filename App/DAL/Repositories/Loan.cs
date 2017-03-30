@@ -17,7 +17,7 @@ namespace DAL.Repositories
         List<Loan> GetLoansByDay(DateTime datetime);
         IEnumerable<Loan> GetLoansByUserId(int userId);
         IEnumerable<Loan> GetLoansByBookId(int bookId);
-        LoanStatus GetBookLoanStatus(int bookId);
+        LoanReservedBookStatus GetBookLoanStatus(int bookId);
     }
 
     public partial class Repository : ILoanRepository
@@ -204,9 +204,9 @@ namespace DAL.Repositories
             return loans;
         }
 
-        public LoanStatus GetBookLoanStatus(int bookId)
+        public LoanReservedBookStatus GetBookLoanStatus(int bookId)
         {
-            var bookstatus = LoanStatus.Necunoscut;
+            var bookstatus = LoanReservedBookStatus.Necunoscută;
 
             _dbRead.Execute(
                 "LoansGetBookSatus",
@@ -215,7 +215,7 @@ namespace DAL.Repositories
                 new SqlParameter("@bookId", bookId),
 
             },
-                r => bookstatus = (LoanStatus)Read<int>(r, "bookstatus")
+                r => bookstatus = (LoanReservedBookStatus)Read<int>(r, "bookstatus")
                 );
 
             return bookstatus;

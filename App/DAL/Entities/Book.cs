@@ -23,6 +23,7 @@ namespace DAL.Entities
         public BookSubject BookSubject;
         public Language BookLanguage;
         public List<Author> Authors;
-        public LoanStatus LoanStatus;
+        public LoanReservedBookStatus BookStatus;
+        public DateTime? ReservedUntil;
     }
 }

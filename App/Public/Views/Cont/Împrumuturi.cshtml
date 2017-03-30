@@ -1,0 +1,43 @@
+﻿@model IEnumerable<DAL.Entities.Loan>
+
+@{
+    ViewBag.Title = "Împrumuturi";
+}
+
+<br />
+<br />
+<h3>Împrumuturile mele</h3>
+
+<table class="table">
+    <tr>
+        <th>Titlu</th>
+        <th>Dată împrumut</th>
+        <th>Dată retur</th>
+        <th>Stare</th>
+        <th></th>
+    </tr>
+
+    @foreach (var loan in Model)
+    {
+        <tr>
+            @foreach (var book in loan.Books)
+            {
+                <td>@book.Title</td>
+                <td>@loan.LoanDate</td>
+                <td>@loan.ReturnedDate</td>
+                <td>
+                    @if (loan.ReturnedDate == null)
+                    {
+                        @:Nereturnată
+                     }
+                    else
+                    {
+                        @:Returnată
+                    }
+            </td>
+            <td>@Html.ActionLink("Vezi carte", "Detalii", "Carti", new { id = @book.Id }, null) </td>
+            }
+        </tr>
+    }
+
+</table>

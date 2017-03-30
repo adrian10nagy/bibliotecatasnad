@@ -1,9 +1,8 @@
-
 use [bibliotecaTasnad]
 GO
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[BooksGetAllByDate]') AND type in (N'P', N'PC'))
-	DROP PROCEDURE [dbo].[BooksGetAllByDate]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[BooksGetByAuthorId]') AND type in (N'P', N'PC'))
+	DROP PROCEDURE [dbo].[BooksGetByAuthorId]
 GO
 
 SET ANSI_NULLS ON
@@ -15,8 +14,8 @@ GO
 -- Author:		Adrian Nagy
 -- Create date: 12/02/2017
 -- =============================================
-CREATE PROCEDURE [dbo].[BooksGetAllByDate]
-@date date
+CREATE PROCEDURE [dbo].[BooksGetByAuthorId]
+@id int
 AS
 BEGIN
 	
@@ -34,8 +33,9 @@ SELECT B.[Id]
       ,B.[Id_Language]
   FROM dbo.[Books] B
   Inner Join Publishers P
-  ON B.Id_Publisher = P.Id
-	WHERE B.[AddedDate] > @date
-	AND B.[AddedDate] < dateadd(DD, 1, @date)
+	ON B.Id_Publisher = P.Id
+  Inner Join BookAuthors BA
+	ON BA.Id_Book = B.Id
+	WHERE BA.[Id_author] = @id
 
 END

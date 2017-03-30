@@ -1,87 +1,104 @@
 ﻿@{
     ViewBag.Title = "Logare";
 }
+
 <link href="/Content/animate.min.css" rel="stylesheet" type="text/css" />
+<link href="/Content/custom.css" rel="stylesheet" type="text/css" />
 
-<form>
-    <div>
-        <a class="hiddenanchor" id="signup"></a>
-        <a class="hiddenanchor" id="signin"></a>
+<div>
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
 
-        <div class="login_wrapper">
-            <div class="animate form login_form">
+    <div class="login_wrapper">
+        <form>
+            <div class="animate form login_form row">
                 <section class="login_content">
                     <div class="formDiv">
-                        <h1>Loghează-te</h1>
+                        <h1>Intră în cont</h1>
+                        <div id="loginFormDivLoginMessage"></div>
                         <div>
-                            <input type="text" class="form-control has-feedback-left" id="txtUserName" placeholder="Utilizator" autocomplete="off" />
+                            <input type="text" name="loginUserEmail" class="form-control has-feedback-left" id="loginUserEmail" placeholder="Utilizator" autocomplete="off" />
                         </div>
                         <div>
-                            <input type="password" class="form-control has-feedback-left" id="txtUserPassword" placeholder="Parolă" />
+                            <input type="password" name="loginUserPassword" class="form-control has-feedback-left" id="loginUserPassword" placeholder="Parolă" />
                         </div>
                         <div>
-                            <asp:button id="btnAccountLogin" text="Loghează-te" cssclass="btn btn-default submit" onclick="btnAccountLogin_Click" />
+                            <input type="submit" onclick="login('/Home/Index'); return false;" name="btnUserLogin" value="Loghează-te" id="btnUserLogin" class="btn btn-default submit">
                             <a class="reset_pass" href="#">Am uitat parola</a>
                         </div>
                         <div class="clearfix"></div>
                         <div class="separator">
                             <p class="change_link">
                                 Nou pe site?
-
                                 <a href="#signup" class="to_register">Crează-ți cont </a>
                             </p>
-                            <div class="clearfix"></div>
-                            <br />
-                            <div>
-                                <h1><i class="fa fa-paw"></i> Biblioteca Tășnad</h1>
-                                <p>©<%= DateTime.Now.Year.ToString() %>. Toate drepturile rezervate.</p>
-                            </div>
                         </div>
                     </div>
                 </section>
             </div>
-
-            <div id="register" class="animate form registration_form">
-                <section class="login_content">
-                    <div class="formDiv">
-                        <h1>Crează cont</h1>
-                        <asp:label id="lblMessageCreate"></asp:label>
-                        <div>
-                            <input type="text" class="form-control" placeholder="Utilizator" />
+        </form>
+        <div id="register" class="animate form registration_form">
+            <section class="login_content">
+                <div class="formDiv">
+                    <h1>Creează-ți cont</h1>
+                    <div id="loginFormDivCreateMessage"></div>
+                    <div>
+                        <div class="col-md-3">
+                            <label for="txtUserName"> Nume</label>
                         </div>
-                        <div>
-                            <input type="email" class="form-control" placeholder="Email" />
-                        </div>
-                        <div>
-                            <input type="password" class="form-control" placeholder="Parolă" autocomplete="off" />
-                        </div>
-                        <div>
-                            <input type="password" class="form-control" placeholder="Reintrodu Parolă" autocomplete="off" />
-                        </div>
-                        <div>
-                            <asp:button id="btnAccountCreate" text="Crează cont" cssclass="btn btn-default submit" onclick="btnAccountCreate_Click" />
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="separator">
-                            <p class="change_link">
-                                Ai cont?
-
-                                <a href="#signin" class="to_register">Loghează-te </a>
-                            </p>
-
-                            <div class="clearfix"></div>
-                            <br />
-
-                            <div>
-                                <h1><i class="fa fa-paw"></i>Biblioteca Tășnad</h1>
-                                <p>©<%= DateTime.Now.Year.ToString() %>. Toate drepturile rezervate.</p>
-                            </div>
+                        <div class="col-md-9">
+                            <input type="text" name="txtUserName" id="txtUserName" class="form-control" />
                         </div>
                     </div>
-                </section>
-            </div>
+                    <div>
+                        <div class="col-md-3">
+                            <label for="txtUserSurame"> Prenume</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" name="txtUserSurame" id="txtUserSurame" class="form-control" />
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-md-3">
+                            <label for="registerUserEmail"> Email</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="email" name="registerUserEmail" id="registerUserEmail" class="form-control" />
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-md-3">
+                            <label for="registerUserPassword"> Parola</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="password" name="registerUserPassword" id="registerUserPassword" class="form-control" autocomplete="off" />
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-md-3">
+                            <label for="registerUserPasswordVerify"> Reintrodu parola</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="password" name="registerUserPasswordVerify" id="registerUserPasswordVerify" class="form-control" autocomplete="off" />
+                        </div>
+                    </div>
+                    <div>
+                        <input type="button" name="btnUserRegister" value="Crează cont" id="btnUserRegister" class="btn btn-default submit">
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="separator">
+                        <p class="change_link">
+                            Ai cont?
+                            <a href="#signin" class="to_register">Loghează-te </a>
+                        </p>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
-</form>
+</div>
+
+@section ScriptsLogare{
+    @Scripts.Render("~/bundles/logare")
+}

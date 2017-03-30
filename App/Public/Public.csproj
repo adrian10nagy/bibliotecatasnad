@@ -113,39 +113,85 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AutoriController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CartiController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\ContController.cs" />
+    <Compile Include="Controllers\EdituriController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\IndexViewModel.cs" />
+    <Compile Include="Models\JSONResponse.cs" />
+    <Compile Include="Models\LibraryItemModel.cs" />
+    <Compile Include="Models\MainPageModel.cs" />
+    <Compile Include="Models\Pager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\colorbox.css" />
+    <Content Include="Content\custom.css" />
     <Content Include="Content\default.css" />
+    <Content Include="Content\DomeniiCarti.css" />
+    <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\bookBackground.png" />
+    <Content Include="Content\Images\border.png" />
+    <Content Include="Content\Images\controls.png" />
+    <Content Include="Content\Images\flag.png" />
+    <Content Include="Content\Images\loading.gif" />
+    <Content Include="Content\Images\loading_background.png" />
+    <Content Include="Content\Images\logo-WithText.png" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\logo.svg" />
+    <Content Include="Content\Images\preloader.gif" />
+    <Content Include="Content\Images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\Images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\Images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\Images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\Images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\Images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\jquery-ui-1.8.16.custom.css" />
+    <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\lightbox.min.css" />
     <Content Include="Content\main.css" />
+    <Content Include="Content\nprogress.css" />
     <Content Include="Content\prettyPhoto.css" />
-    <Content Include="Content\switcher.css" />
+    <Content Include="Content\select2.min.css" />
+    <Content Include="Content\tether.css" />
+    <Content Include="Content\tether.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\bootstrap.min.js.map">
+      <DependentUpon>bootstrap.min.js</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\custom.js" />
+    <Content Include="Scripts\DomeniiCarti.js" />
+    <Content Include="Scripts\HomeIndex.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-1.11.2.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.classyloader.min.js" />
+    <Content Include="Scripts\jquery.colorbox.js" />
     <Content Include="Scripts\jquery.contact.js" />
     <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.countTo.js" />
@@ -163,13 +209,16 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\logare.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr.custom.26633.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\select2.full.min.js" />
     <Content Include="Scripts\slideroption.js" />
     <Content Include="Scripts\stickUp.js" />
-    <Content Include="Scripts\styleswitch.js" />
+    <Content Include="Scripts\tether.js" />
+    <Content Include="Scripts\tether.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -189,10 +238,20 @@
     <Content Include="Views\Cont\Logare.cshtml" />
     <Content Include="Views\Shared\_SearchSuggestions.cshtml" />
     <Content Include="Views\Carti\Cauta.cshtml" />
+    <Content Include="Views\Autori\Index.cshtml" />
+    <Content Include="Views\Carti\Detalii.cshtml" />
+    <Content Include="Views\Edituri\Index.cshtml" />
+    <Content Include="Views\Edituri\Detalii.cshtml" />
+    <Content Include="Views\Carti\Index.cshtml" />
+    <Content Include="Views\Autori\test.cshtml" />
+    <Content Include="Views\Shared\_LoginModal.cshtml" />
+    <Content Include="Views\Shared\_BookABook.cshtml" />
+    <Content Include="Views\Carti\Inexistentă.cshtml" />
+    <Content Include="Views\Cont\Împrumuturi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\Common\" />
   </ItemGroup>
   <ItemGroup>

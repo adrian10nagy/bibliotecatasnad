@@ -10,6 +10,7 @@ namespace Admin.Loans
     using System.Web.UI.WebControls;
     using BL.Helpers;
     using DAL.Entities;
+    using System.Text;
 
     public partial class NewLoan : System.Web.UI.Page
     {
@@ -30,6 +31,12 @@ namespace Admin.Loans
                 return;
             }
 
+            if (!this.ValidateReserved())
+            {
+                btnForceSubmit.Visible = true;
+                return;
+            }
+
             var loan = new Loan
             {
                 User = new User
@@ -40,10 +47,56 @@ namespace Admin.Loans
                 Books = GetLoanBooks()
             };
 
+            //Add Loan
             LoansManager.Add(loan);
+
+            //update reservations to completed
+            var reservations = GetAllReservedBooksFromSelectedByUserId(drdLoanUserAll.SelectedValue.ToNullableInt().Value);
+            foreach (var item in reservations)
+            {
+                ReservationsManager.UpdateReservationByBookId(item.Book.Id, ReservationFlags.Completată);    
+            }
+
             Response.Redirect("~/Loans/InProgress.aspx?Message=LoanAddedSuccess");
         }
 
+        protected void btnForceSubmit_Click(object sender, EventArgs e)
+        {
+            if (!ValidateInput())
+            {
+                return;
+            }
+
+            var loan = new Loan
+            {
+                User = new User
+                {
+                    Id = drdLoanUserAll.SelectedValue.ToNullableInt().Value
+                },
+                LoanDate = DateTime.Now,
+                Books = GetLoanBooks()
+            };
+
+            //Add Loan
+            LoansManager.Add(loan);
+
+            //update reservations to canceled if user that loand is not the one who reserved
+            var reservationsCanceled = GetAllReservedBooksFromSelectedByNotUserId(drdLoanUserAll.SelectedValue.ToNullableInt().Value);
+            foreach (var item in reservationsCanceled)
+            {
+                ReservationsManager.UpdateReservationByBookId(item.Book.Id, ReservationFlags.Anulată);
+            }
+
+            //update reservations to completed 
+            var reservationsCompleted = GetAllReservedBooksFromSelectedByUserId(drdLoanUserAll.SelectedValue.ToNullableInt().Value);
+            foreach (var item in reservationsCompleted)
+            {
+                ReservationsManager.UpdateReservationByBookId(item.Book.Id, ReservationFlags.Completată);
+            }
+
+            Response.Redirect("~/Loans/InProgress.aspx?Message=LoanAddedSuccess");
+        }
+ 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Loans/InProgress.aspx");
@@ -83,6 +136,30 @@ namespace Admin.Loans
             btnLoanBookRemove.Visible = false;
         }
 
+        private bool ValidateReserved()
+        {
+            var isValid = true;
+            StringBuilder sb = new StringBuilder();
+
+            foreach (ListItem bookItem in bltLoanBooksSelected.Items)
+            {
+                var reservation = ReservationsManager.GetActiveReservationByBookId(bookItem.Value.ToNullableInt().Value);
+                if (reservation != null)
+                {
+                    if (reservation.User.Id != drdLoanUserAll.SelectedValue.ToNullableInt().Value)
+                    {
+                        sb.Append("Cartea " + bookItem.Text + " este rezervată pentru " + reservation.User.FirstName + " " + reservation.User.LastName + "<br>");
+
+                        isValid = false;
+                    }
+                }
+            }
+            lblErrorMessage.Text = sb.ToString();
+            lblErrorMessage.Visible = !isValid;
+
+            return isValid;
+        }
+
         private List<Book> GetLoanBooks()
         {
             var books = new List<Book>();
@@ -99,6 +176,54 @@ namespace Admin.Loans
             }
 
             return books;
+        }
+
+        private List<Reservation> GetAllReservedBooksFromSelectedByUserId(int userId)
+        {
+            var reservations = new List<Reservation>();
+
+            foreach (ListItem bookItem in bltLoanBooksSelected.Items)
+            {
+                var reservation = ReservationsManager.GetActiveReservationByBookId(bookItem.Value.ToNullableInt().Value);
+                if (reservation != null)
+                {
+                    if (reservation.User.Id == userId)
+                    {
+                        reservation.Book = new Book
+                        {
+                            Id = bookItem.Value.ToNullableInt().Value,
+                            Title = bookItem.Text
+                        };
+                        reservations.Add(reservation);
+                    }
+                }
+            }
+
+            return reservations;
+        }
+
+        private List<Reservation> GetAllReservedBooksFromSelectedByNotUserId(int userId)
+        {
+            var reservations = new List<Reservation>();
+
+            foreach (ListItem bookItem in bltLoanBooksSelected.Items)
+            {
+                var reservation = ReservationsManager.GetActiveReservationByBookId(bookItem.Value.ToNullableInt().Value);
+                if (reservation != null)
+                {
+                    if (reservation.User.Id != userId)
+                    {
+                        reservation.Book = new Book
+                        {
+                            Id = bookItem.Value.ToNullableInt().Value,
+                            Title = bookItem.Text
+                        };
+                        reservations.Add(reservation);
+                    }
+                }
+            }
+
+            return reservations;
         }
 
         private bool ValidateInput()
@@ -156,5 +281,6 @@ namespace Admin.Loans
             drdLoanUserAll.Items.AddRange(listItemBooks);
             drdLoanUserAll.DataBind();
         }
+
     }
 }

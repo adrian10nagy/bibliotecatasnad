@@ -1,10 +1,11 @@
 ﻿
 namespace DAL.Entities
 {
-    public enum LoanStatus
+    public enum LoanReservedBookStatus
     {
-        Necunoscut = 0,
+        Necunoscută = 0,
         Disponibilă = 1,
-        Închiriată = 2
+        Închiriată = 2,
+        Rezervată = 3
     }
 }

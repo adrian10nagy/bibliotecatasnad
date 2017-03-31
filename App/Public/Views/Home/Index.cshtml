@@ -86,13 +86,23 @@
                     </ul>
                 </div>
             </div>
-            </div>
-        
+        </div>
+
     </div>
 </section>
 
-<!--/Membership features end --> 
-
+<!--/Membership features end -->
 @section ScriptsHomeIndex{
     @Scripts.Render("~/bundles/HomeIndex")
+}
+
+
+@if (@Model.Flags == Public.Models.PageQueryParam.NewUser)
+{
+    <!--/Membership features end -->
+    <script>
+        window.onload = function () {
+            notifyNewUser();
+        };
+    </script>
 }

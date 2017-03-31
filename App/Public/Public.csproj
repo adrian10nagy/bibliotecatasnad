@@ -180,6 +180,7 @@
     <Content Include="Scripts\bootstrap.min.js.map">
       <DependentUpon>bootstrap.min.js</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\biblioSofia.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\DomeniiCarti.js" />
@@ -212,6 +213,7 @@
     <Content Include="Scripts\logare.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr.custom.26633.js" />
+    <Content Include="Scripts\notify.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\select2.full.min.js" />
@@ -247,7 +249,7 @@
     <Content Include="Views\Shared\_LoginModal.cshtml" />
     <Content Include="Views\Shared\_BookABook.cshtml" />
     <Content Include="Views\Carti\Inexistentă.cshtml" />
-    <Content Include="Views\Cont\Împrumuturi.cshtml" />
+    <Content Include="Views\Cont\Imprumuturi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

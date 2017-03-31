@@ -8,5 +8,11 @@ namespace Public.Models
     {
         public int BookNumber { get; set; }
         public List<Book> LastAddedBooks { get; set; }
+        public PageQueryParam Flags { get; set; }
+    }
+
+    public enum PageQueryParam{
+        None = 0,
+        NewUser = 1
     }
 }

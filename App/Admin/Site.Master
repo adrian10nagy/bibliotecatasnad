@@ -123,9 +123,8 @@
                                                 <span class="badge bg-red pull-right">50%</span>
                                                 <span>Settings</span>
                                             </a>
-                                        </li>
-                                        <li><a href="javascript:;">Help</a></li>--%>
-                                        <li><a href="~/Contact.aspx" runat="server"><i class="fa fa-info pull-right"></i>Date conact administrator</a></li>
+                                        </li>--%>
+                                        <li><a href="~/Contact.aspx" runat="server"><i class="fa fa-info pull-right"></i>Date contact administrator</a></li>
                                         <li><a href="~/Account/Logout.aspx" runat="server"><i class="fa fa-sign-out pull-right"></i>Delogare</a></li>
                                     </ul>
                                 </li>

@@ -20,5 +20,6 @@ namespace DAL.Entities
         public UserType UserType;
         public Nationality Nationality;
         public Gender Gender;
+        public string Password;
     }
 }

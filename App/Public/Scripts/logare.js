@@ -8,8 +8,7 @@ window.onload = function () {
 function login(address) {
     var userEmail = $("#loginUserEmail");
     var userPass = $("#loginUserPassword");
-    if (address == null)
-    {
+    if (address == null) {
         address = window.location.href;
     }
 
@@ -18,7 +17,7 @@ function login(address) {
 }
 
 $(document).ready(function () {
-    
+
     $("#btnUserRegister").on("click", function () {
         return RegisterUser();
     });
@@ -109,17 +108,15 @@ function RegisterUser() {
             type: "POST",
             data: { userSurame: userSurame.val(), userName: userName.val(), userEmail: email.val(), userPass: password.val() },
             success: function (xhr) {
-                if (xhr.result == 1) {
-                    window.location.href = "/Home/Index";
+                if (xhr.response == 1) {
+                    window.location.href = "/Home/Index?newRegister=true";
                 }
-                else if (xhr.result == 4) {
+                else if (xhr.response == 4) {
                     $("#loginFormDivCreateMessage").text('Acest email a fost deja folosit!');
                     email.css("border", "2px solid red");
                 }
                 else {
-
-                    email.val(" Email deja folosit");
-                    email.css("border", "2px solid red");
+                    $("#loginFormDivCreateMessage").text('Eroare internă, te rugâm contactează-ne și descrie-ne problema!');
                 }
             }
         })

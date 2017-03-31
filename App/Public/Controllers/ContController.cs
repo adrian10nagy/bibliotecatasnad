@@ -25,7 +25,7 @@ namespace Public.Controllers
             return View();
         }
 
-        public ActionResult Împrumuturi()
+        public ActionResult Imprumuturi()
         {
             if (Session["userId"] == null)
             {
@@ -68,7 +68,7 @@ namespace Public.Controllers
 
             if(exitsUsername != null)
             {
-                return Json(new { result = JSONResponse.EmailExists });
+                return Json(new { response = JSONResponse.EmailExists });
             }
 
             var user = UsersManager.Add(new User
@@ -82,8 +82,9 @@ namespace Public.Controllers
                 Locality = new Locality { Id = 1 },
                 Nationality = Nationality.Alta,
                 UserType = UserType.Nesetat,
-                Birthdate = DateTime.Now
-
+                Birthdate = DateTime.Now,
+                Password = userPass,
+                Username = userEmail
             });
 
             return AsyncUserLogin(userEmail, userPass);

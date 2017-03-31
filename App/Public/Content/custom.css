@@ -16,7 +16,7 @@ a.hiddenanchor {
 .login_wrapper {
     right: 0px;
     margin: 0px auto;
-    margin-top: 8%;
+    margin-top: 130px;
     max-width: 350px;
     position: relative;
 }
@@ -100,7 +100,6 @@ a.hiddenanchor {
     position: relative;
     text-align: center;
     text-shadow: 0 1px 0 #fff;
-    min-width: 400px;
 }
 
     .login_content a,

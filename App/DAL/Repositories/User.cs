@@ -213,6 +213,7 @@ namespace DAL.Repositories
                 new SqlParameter("@LocalityId", user.Locality.Id), 
                 new SqlParameter("@UserType", user.UserType), 
                 new SqlParameter("@NationalityId", user.Nationality), 
+                new SqlParameter("@Password", user.Password), 
             },
                 r =>
                 userId = Read<int>(r, "Id")

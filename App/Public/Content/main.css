@@ -2324,7 +2324,9 @@ ul.list {
 }
 
 .searchMain {
-    margin-top: 120px;
+    margin-top: 150px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 .simpleSuggestionBooks {
@@ -2396,6 +2398,7 @@ ul.list {
     background-color: white;
     z-index: 99;
     margin-top: 34px;
+    min-height: 0px; 
 }
 
 span.select2.select2-container.select2-container--default {
@@ -2403,7 +2406,7 @@ span.select2.select2-container.select2-container--default {
 }
 
 .container.body-content {
-    min-height: 600px;
+    min-height: 730px;
 }
 
 .margin-top-50 {
@@ -2456,4 +2459,8 @@ span.select2.select2-container.select2-container--default {
 
 .BookDetailsBookaBook {
     padding-top: 10px;
+}
+
+.BooksResultMain{
+    margin-top: 25px;
 }

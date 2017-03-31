@@ -24,4 +24,5 @@ BEGIN
 	SELECT top(@nr) [Id]
       ,[Title]
   FROM dbo.[Books] 
+    order by [AddedDate] desc
 END

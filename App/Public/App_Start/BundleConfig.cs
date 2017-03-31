@@ -44,6 +44,7 @@ namespace Public
                 //"~/Scripts/jquery.countTo.js",
                 //"~/Scripts/jquery.cookie.js",
                       "~/Scripts/select2.full.min.js",
+                      "~/Scripts/notify.min.js",
                       "~/Scripts/jquery.colorbox.js",
                 //"~/Scripts/respond.js",
                       "~/Scripts/custom.js"));

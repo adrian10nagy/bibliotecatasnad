@@ -46,6 +46,7 @@ namespace Public.Controllers
             ViewData["searchTerm"] = simpleSearchText;
             ViewData["domains"] = domains;
             ViewData["authors"] = authors;
+
             return View("Cauta", books);
         }
 

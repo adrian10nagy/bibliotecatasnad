@@ -22,6 +22,9 @@ namespace Public
             bundles.Add(new ScriptBundle("~/bundles/HomeIndex").Include(
                       "~/Scripts/HomeIndex.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/general").Include(
+                      "~/Scripts/General.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/modernizr.custom.26633.js",
                       "~/Scripts/tether.js",

@@ -7,6 +7,7 @@
     public interface IBookDomainsRepository
     {
         IEnumerable<BookDomain> GetAllBookDomains();
+        BookDomain GetBookDomainById(int id);
         int AddBookDomain(string name);
     }
 
@@ -29,6 +30,27 @@
                 }));
 
             return publishers;
+        }
+
+        public BookDomain GetBookDomainById(int id)
+        {
+            BookDomain domain = null;
+
+            _dbRead.Execute(
+                "BookDomainsGetById",
+            new[]
+            {
+                new SqlParameter("@id", id),
+                
+            },
+                r => domain = new BookDomain()
+                {
+                    Id = id,
+                    Name = Read<string>(r, "Name"),
+                    CZU = Read<string>(r, "CZU"),
+                });
+
+            return domain;
         }
 
         #endregion

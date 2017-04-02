@@ -37,7 +37,7 @@ namespace BL.Managers
 
         public static IEnumerable<Book> GetAllBooksWithDomain()
         {
-            var books = Kit.Instance.Books.GetAllBooksWithDomain() as List<Book>;
+            var books = Kit.Instance.Books.GetAllBooksWithDomain();
             books = books.OrderBy(b => b.InternalNr).ToList();
             foreach (var item in books)
             {
@@ -45,6 +45,18 @@ namespace BL.Managers
             }
 
             return books;
+        }
+
+        public static IEnumerable<Book> GetAllBooksByDomainId(int domainId)
+        {
+            var books = Kit.Instance.Books.GetAllBooksByDomainId(domainId);
+            foreach (var item in books)
+            {
+                item.Authors = BooksManager.GetBookAuthorsByBookId(item.Id) as List<Author>;
+            }
+
+            return books;
+
         }
 
         public static BookPublishersChart GetBookPublisherForChart()

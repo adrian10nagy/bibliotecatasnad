@@ -20,6 +20,7 @@ namespace DAL.Repositories
         IEnumerable<Book> GetBooksByAuthorId(int id);
         IEnumerable<Book> GetBooksByPublisherId(int id);
         IEnumerable<Book> GetAllBooksWithDomain();
+        IEnumerable<Book> GetAllBooksByDomainId(int domainId);
         IEnumerable<Book> GetBooksLastAdded(int nr);
     }
 
@@ -132,6 +133,44 @@ namespace DAL.Repositories
                     BookDomain = new BookDomain
                     {
                         Id = Read<int>(r, "Id_BookDomain"),
+                        Name = Read<string>(r, "DomainName"),
+                        CZU = Read<string>(r, "CZU"),
+                    }
+                }));
+
+            return books;
+        }
+
+        public IEnumerable<Book> GetAllBooksByDomainId(int domainId)
+        {
+
+            var books = new List<Book>();
+            _dbRead.Execute(
+                "BooksGetAllByDomainId",
+              new[]
+            {
+                new SqlParameter("@domainId", domainId),
+            },
+                r => books.Add(new Book()
+                {
+                    Id = Read<int>(r, "Id"),
+                    Title = Read<string>(r, "Title"),
+                    PublishYear = Read<int?>(r, "PublishYear"),
+                    Volume = Read<string>(r, "Volume"),
+                    InternalNr = Read<string>(r, "InternalNr"),
+                    NrPages = Read<int>(r, "NrPages"),
+                    Publisher = new Publisher
+                    {
+                        Id = Read<int>(r, "Id_Publisher"),
+                        Name = Read<string>(r, "PublisherName"),
+                    },
+                    BookCondition = (BookCondition)Read<int>(r, "Id_BookCondition"),
+                    BookFormat = (BookFormat)Read<int>(r, "Id_BookFormat"),
+                    BookLanguage = (Language)Read<int>(r, "Id_Language"),
+                    BookStatus = GetBookLoanStatus(Read<int>(r, "Id")),
+                    BookDomain = new BookDomain
+                    {
+                        Id = domainId,
                         Name = Read<string>(r, "DomainName"),
                         CZU = Read<string>(r, "CZU"),
                     }

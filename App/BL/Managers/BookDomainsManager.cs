@@ -21,6 +21,13 @@ namespace BL.Managers
             return bookDomains;
         }
 
+        public static BookDomain GetBookDomainById(int id)
+        {
+            var bookDomains = Kit.Instance.BookDomains.GetBookDomainById(id);
+
+            return bookDomains;
+        }
+
         public static IEnumerable<BookDomain> GetAllBookDomainsByInput(string input)
         {
             var publishers = (List<BookDomain>)GetAllBookDomains();
@@ -39,7 +46,7 @@ namespace BL.Managers
             if (id != 0)
             {
                 domains = domains.FindAll(a => a.Id == id);
-                if(domains.Count >= 0)
+                if(domains.Count > 0)
                 {
                     bookDomain = domains[0];
                 }

@@ -16,13 +16,18 @@
                     @foreach (var group in groupedBooks)
                     {
                         var domainName = group.First().BookDomain.Name;
-                        <li><a href="#@group.Key" data-toggle="tab">@domainName</a></li>
+                        var key = @group.Key.Replace('.', '-').Replace('/','_');
+                        <li><a href="#@key" class="goToTop" data-toggle="tab">@domainName</a></li>
                     }
                 </ul>
                 <div class="tab-content col-md-8">
                     @foreach (var group in groupedBooks)
                     {
-                        <div class="tab-pane" id="@group.Key">
+                        var key = @group.Key.Replace('.', '-').Replace('/', '_');
+                        var domainName = group.First().BookDomain.Name;
+
+                        <div class="tab-pane" id="@key">
+                            <h3>@domainName</h3>
                             @foreach (var book in group)
                             {
                                 @Html.ActionLink(@book.Title + "- de " + @book.Authors[0].Name, "Detalii", "Carti", new { id = @book.Id }, null)<br />
@@ -36,3 +41,4 @@
 </div>
 
 @Scripts.Render("~/Scripts/DomeniiCarti.js")
+

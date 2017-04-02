@@ -5,6 +5,7 @@ namespace Admin.Books
     using BL.Constants;
     using BL.Helpers;
     using BL.Managers;
+    using BL.Services;
     using DAL.Entities;
     using System;
     using System.Collections.Generic;
@@ -588,7 +589,7 @@ namespace Admin.Books
         {
             if(Page.IsPostBack)
             {
-
+                //IsbnService.GetBook(txtBookIsbn.Text);
             }
         }
     }

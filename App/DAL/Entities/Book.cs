@@ -12,7 +12,7 @@ namespace DAL.Entities
         public string Volume;
         public List<ISBN> ISBNs;
         public string InternalNr;
-        public int NrPages;
+        public int? NrPages;
         public DateTime AddedDate;
         public User AddedBy;
         public Publisher Publisher;

@@ -6,12 +6,12 @@
     <title>@ViewBag.Title - Biblioteca Tășnad</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    @*<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <!--font-family: 'Metrophobic', sans-serif;-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600italic,600,700italic,700' rel='stylesheet' type='text/css'>
     <!--font-family: 'Open Sans', sans-serif; -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,400italic,500,300italic,300,100,500italic' rel='stylesheet' type='text/css'>
-    <!--font-family: 'Roboto', sans-serif; -->
+    <!--font-family: 'Roboto', sans-serif; -->*@
 
 </head>
 <body>
@@ -61,6 +61,7 @@
                                                 <li>@Html.ActionLink("Domenii", "Index", "Carti", null, null)</li>
                                                 <li>@Html.ActionLink("Autori", "Index", "Autori", null, null)</li>
                                                 <li>@Html.ActionLink("Edituri", "Index", "Edituri", null, null)</li>
+                                                <li>@Html.ActionLink("Despre", "Despre", "Home", null, null)</li>
                                                 <li>@Html.ActionLink("Contact", "Contact", "Home", null, null)</li>
                                                 @if (Session["userId"] != null && Session["userId"] != "0")
                                                 {
@@ -72,6 +73,7 @@
                                                         <ul class="dropdown-menu dropdown-usermenu pull-right">
                                                             <li>@*<a href="~/Cont/Setări"><i class="fa fa-info pull-right"></i>Setări cont</a>*@</li>
                                                             <li><a href="~/Cont/Imprumuturi">Împrumuturile mele</a></li>
+                                                            <li role="separator" class="divider"></li>
                                                             <li><a href="~/Cont/Delogare"><i class="fa fa-sign-out pull-right"></i>Delogare</a></li>
                                                         </ul>
                                                     </li>                                                
@@ -240,51 +242,11 @@
     <!--wrapper end-->
     @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/general")
     @RenderSection("scripts", required: false)
     @RenderSection("ScriptsLogare", required: false)
     @RenderSection("ScriptsHomeIndex", required: false)
 
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            $("#multiFieldAuthors").select2({
-                placeholder: "--- Orice autor ---",
-                allowClear: true
-            });
-
-            $("#multiFieldPublishers").select2({
-                placeholder: "--- Orice Editură ---",
-                allowClear: true
-            });
-
-            $("#multiFieldDomains").select2({
-                placeholder: "--- Orice domeniu ---",
-                allowClear: true
-            });
-
-
-        });
-
-        $('#simpleSearchText').keyup(function (e) {
-            var simpleSearchText = $('#simpleSearchText');
-            getSimpleSearchResults(simpleSearchText);
-        });
-
-        function getSimpleSearchResults(simpleSearchText) {
-            var simpleSearchTextValue = simpleSearchText.val();
-
-            var simpleSearchSuggestions = $('#simpleSearchSuggestions');
-
-            $.ajax({
-                url: "/Common/AsyncGetSimpleSearchSuggestions",
-                type: "GET",
-                data: { searchTerm: (simpleSearchTextValue) }
-            })
-                 .done(function (partialViewResult) {
-                     simpleSearchSuggestions.html(partialViewResult);
-                 });
-        }
-    </script>
 
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -294,15 +256,6 @@
 
             ga('create', 'UA-63899600-6', 'auto');
             ga('send', 'pageview');
-
-    </script>
-
-    <script type="text/javascript">
-        $(function () {
-            $("[rel='tooltip']").tooltip({
-                placement: "bottom"
-            });
-        });
 
     </script>
 </body>

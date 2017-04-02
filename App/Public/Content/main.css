@@ -1438,7 +1438,6 @@ ul.pricing-boxes {
 
     ul.pricing-boxes.three li {
         width: 33%; /*width: 313px;*/
-        ;
     }
 
     ul.pricing-boxes li.best-plan .btn-primary {
@@ -2461,6 +2460,6 @@ span.select2.select2-container.select2-container--default {
     padding-top: 10px;
 }
 
-.BooksResultMain{
-    margin-top: 25px;
+.panel-title{
+    color:white;
 }

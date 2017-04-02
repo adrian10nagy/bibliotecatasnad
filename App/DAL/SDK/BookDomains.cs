@@ -21,6 +21,11 @@ namespace DAL.SDK
             return _repository.GetAllBookDomains();
         }
 
+        public BookDomain GetBookDomainById(int id)
+        {
+            return _repository.GetBookDomainById(id);
+        }
+
         #endregion
 
         public int AddBookDomain(string name)

@@ -20,4 +20,10 @@ $(document).ready(function () {
         return false;
       }
     }
-  });
+    });
+
+    $('.goToTop').on("click", function () {
+        window.scrollTo(0, 0);
+    });
+
+

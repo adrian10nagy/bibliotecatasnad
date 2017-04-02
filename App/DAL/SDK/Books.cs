@@ -32,6 +32,11 @@ namespace DAL.SDK
         {
             return _repository.GetAllBooksWithDomain();
         }
+
+        public IEnumerable<Book> GetAllBooksByDomainId(int domainId)
+        {
+            return _repository.GetAllBooksByDomainId(domainId);
+        }
         
         #endregion
 

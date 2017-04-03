@@ -15,7 +15,7 @@
         {
             <a href="~/Carti/Detalii/@item.Id">
                 <div class="simpleSuggestionBook">
-                    <div>
+                    <div class="simpleSuggestionItem">
                         @item.Title
                     </div>
                 </div>
@@ -32,7 +32,7 @@
         {
             <a href="~/Autori/Detalii/@item.Id">
                 <div class="simpleSuggestionBook">
-                    <div>
+                    <div class="simpleSuggestionItem">
                         @item.Name
                     </div>
                 </div>
@@ -49,7 +49,7 @@
         {
             <a href="~/Carti/index#@item.CZU">
                 <div class="simpleSuggestionBook">
-                    <div>
+                    <div class="simpleSuggestionItem">
                         @item.Name
                     </div>
                 </div>
@@ -57,3 +57,15 @@
         }
     </div>
 }
+
+
+<script>
+
+    $(document).ready(function () {
+        document.body.style.cursor = 'help';
+        $('.simpleSuggestionItem').click(function () {
+            document.body.style.cursor = 'wait';
+        });
+    });
+
+</script>

@@ -22,6 +22,10 @@ namespace Public
             bundles.Add(new ScriptBundle("~/bundles/HomeIndex").Include(
                       "~/Scripts/HomeIndex.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/CartiDetalii").Include(
+                      "~/Scripts/CartiDetalii.js"));
+
+
             bundles.Add(new ScriptBundle("~/bundles/general").Include(
                       "~/Scripts/General.js"));
 

@@ -28,7 +28,7 @@
     @if (Model.BookStatus == LoanReservedBookStatus.Disponibilă)
     {
         <div class="BookDetailsBookaBook">
-            <input type="button" id="change_password" href=@href class="btn btn-primary" value="Rezervă cartea" />
+            <input type="button" id="change_password" href=@href class="btn btn-primary" onclick="openBookDetailsPopup('@href', @Model.Id)" value="Rezervă cartea" />
         </div>
     }
 
@@ -70,44 +70,11 @@
     </div>
     <div>Domeniu: <strong> @Model.BookDomain.Name</strong> </div>
 </div>
+<br />
 <p>
     @Html.ActionLink("Înapoi la toate cărțile", "Index")
 </p>
 
-
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-
-<script type="text/javascript">
-
-
-    $(document).ready(function () {
-
-
-        $('#change_password').click(function () {
-
-            var url = $(this).attr("Href");
-            $.ajax({
-                url: url,
-                data: { bookId: @Model.Id},
-
-                success: function (data) {
-                    if (data != '') {
-                        $.colorbox({ html: data, scrolling: false, opacity: 0.85 });
-                    }
-                    else {
-                        alert(url);
-                        window.location = url;
-                    }
-                }
-
-            });
-
-            return false;
-        });
-
-    });
-
-</script>
+@section ScriptsCartiDetalii{
+    @Scripts.Render("~/bundles/CartiDetalii")
+}

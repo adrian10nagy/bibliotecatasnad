@@ -183,6 +183,7 @@
     </Content>
     <None Include="Properties\PublishProfiles\biblioSofia.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\CartiDetalii.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\DomeniiCarti.js" />
     <Content Include="Scripts\General.js" />

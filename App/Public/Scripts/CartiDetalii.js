@@ -11,7 +11,6 @@ function openBookDetailsPopup(url, data) {
                 $.colorbox({ html: data, scrolling: false, opacity: 0.85 });
             }
             else {
-                alert(url);
                 window.location = url;
             }
         }

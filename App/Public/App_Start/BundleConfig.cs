@@ -17,21 +17,21 @@ namespace Public
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/logare").Include(
-                      "~/Scripts/logare.js"));
+                      "~/Scripts/logare.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/HomeIndex").Include(
-                      "~/Scripts/HomeIndex.js"));
+                      "~/Scripts/HomeIndex.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/CartiDetalii").Include(
-                      "~/Scripts/CartiDetalii.js"));
+                      "~/Scripts/CartiDetalii.min.js"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/general").Include(
-                      "~/Scripts/General.js"));
+                      "~/Scripts/General.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/modernizr.custom.26633.js",
-                      "~/Scripts/tether.js",
+                      "~/Scripts/tether.min.js",
                       "~/Scripts/jquery-3.1.1.min.js",
                       "~/Scripts/bootstrap.min.js",
                 //"~/Scripts/jquery.placeholder.js",
@@ -50,24 +50,24 @@ namespace Public
                 //"~/Scripts/slideroption.js",
                 //"~/Scripts/jquery.countTo.js",
                 //"~/Scripts/jquery.cookie.js",
+                //"~/Scripts/respond.js",
                       "~/Scripts/select2.full.min.js",
                       "~/Scripts/notify.min.js",
-                      "~/Scripts/jquery.colorbox.js",
-                //"~/Scripts/respond.js",
-                      "~/Scripts/custom.js"));
+                      "~/Scripts/jquery.colorbox.min.js",
+                      "~/Scripts/custom.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/tether.css",
+                      "~/Content/tether.min.css",
                       "~/Content/bootstrap.min.css",
-                      "~/Content/main.css",
-                      "~/Content/default.css",
+                      "~/Content/main.min.css",
+                      "~/Content/default.min.css",
                       "~/Content/font-awesome.min.css",
                       "~/Content/jquery-ui.min.css",
                 //"~/Content/jquery-ui-1.8.16.custom.css",
                       "~/Content/lightbox.min.css",
-                      "~/Content/prettyPhoto.css",
+                      "~/Content/prettyPhoto.min.css",
                       "~/Content/select2.min.css",
-                      "~/Content/colorbox.css"
+                      "~/Content/colorbox.min.css"
                       ));
 
         }

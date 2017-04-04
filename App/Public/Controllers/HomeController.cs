@@ -11,7 +11,7 @@ namespace Public.Controllers
         {
             bool newUserParam = Request.QueryString["newRegister"] != null && Request.QueryString["newRegister"].ToString() == "true"? true : false;
             var flags = PageQueryParam.None;
-
+             
             if(newUserParam)
             {
                 flags = PageQueryParam.NewUser;

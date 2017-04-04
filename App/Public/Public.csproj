@@ -230,6 +230,7 @@
     <Content Include="Scripts\custom.min.js.map">
       <DependentUpon>custom.min.js</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\BiblioSofiaDev.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\CartiDetalii.js" />
     <Content Include="Scripts\custom.js" />

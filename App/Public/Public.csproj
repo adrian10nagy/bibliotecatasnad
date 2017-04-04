@@ -134,13 +134,29 @@
   <ItemGroup>
     <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
     <Content Include="Content\colorbox.css" />
+    <Content Include="Content\colorbox.min.css">
+      <DependentUpon>colorbox.css</DependentUpon>
+    </Content>
     <Content Include="Content\custom.css" />
+    <Content Include="Content\custom.min.css">
+      <DependentUpon>custom.css</DependentUpon>
+    </Content>
     <Content Include="Content\default.css" />
+    <Content Include="Content\default.min.css">
+      <DependentUpon>default.css</DependentUpon>
+    </Content>
     <Content Include="Content\DomeniiCarti.css" />
+    <Content Include="Content\DomeniiCarti.min.css">
+      <DependentUpon>DomeniiCarti.css</DependentUpon>
+    </Content>
     <Content Include="Content\font-awesome.css" />
-    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\font-awesome.min.css">
+      <DependentUpon>font-awesome.css</DependentUpon>
+    </Content>
     <Content Include="Content\Images\bookBackground.png" />
     <Content Include="Content\Images\border.png" />
     <Content Include="Content\Images\controls.png" />
@@ -161,11 +177,22 @@
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\lightbox.min.css" />
     <Content Include="Content\main.css" />
+    <Content Include="Content\main.min.css">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
     <Content Include="Content\nprogress.css" />
     <Content Include="Content\prettyPhoto.css" />
+    <Content Include="Content\prettyPhoto.min.css">
+      <DependentUpon>prettyPhoto.css</DependentUpon>
+    </Content>
     <Content Include="Content\select2.min.css" />
+    <Content Include="Content\Site.min.css">
+      <DependentUpon>Site.css</DependentUpon>
+    </Content>
     <Content Include="Content\tether.css" />
-    <Content Include="Content\tether.min.css" />
+    <Content Include="Content\tether.min.css">
+      <DependentUpon>tether.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -182,48 +209,66 @@
       <DependentUpon>bootstrap.min.js</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\biblioSofia.pubxml" />
+    <Content Include="Scripts\CartiDetalii.min.js">
+      <DependentUpon>CartiDetalii.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\custom.min.js">
+      <DependentUpon>custom.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\General.min.js">
+      <DependentUpon>General.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HomeIndex.min.js.map">
+      <DependentUpon>HomeIndex.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\CartiDetalii.min.js.map">
+      <DependentUpon>CartiDetalii.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\General.min.js.map">
+      <DependentUpon>General.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\custom.min.js.map">
+      <DependentUpon>custom.min.js</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\CartiDetalii.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\DomeniiCarti.js" />
     <Content Include="Scripts\General.js" />
     <Content Include="Scripts\HomeIndex.js" />
+    <Content Include="Scripts\HomeIndex.min.js">
+      <DependentUpon>HomeIndex.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.colorbox.min.js.map">
+      <DependentUpon>jquery.colorbox.min.js</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-1.11.2.min.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
-    <Content Include="Scripts\jquery.classyloader.min.js" />
     <Content Include="Scripts\jquery.colorbox.js" />
-    <Content Include="Scripts\jquery.contact.js" />
-    <Content Include="Scripts\jquery.cookie.js" />
-    <Content Include="Scripts\jquery.countTo.js" />
-    <Content Include="Scripts\jquery.easing.js" />
-    <Content Include="Scripts\jquery.flexslider.js" />
-    <Content Include="Scripts\jquery.isotope.js" />
-    <Content Include="Scripts\jquery.mousewheel.js" />
-    <Content Include="Scripts\jquery.placeholder.js" />
-    <Content Include="Scripts\jquery.prettyPhoto.js" />
-    <Content Include="Scripts\jquery.subscribe.js" />
-    <Content Include="Scripts\jquery.superslides.js" />
-    <Content Include="Scripts\jquery.ui.rlightbox.js" />
-    <Content Include="Scripts\jquery.ui.widget.min.js" />
+    <Content Include="Scripts\jquery.colorbox.min.js">
+      <DependentUpon>jquery.colorbox.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\logare.js" />
+    <Content Include="Scripts\logare.min.js">
+      <DependentUpon>logare.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr.custom.26633.js" />
     <Content Include="Scripts\notify.min.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\select2.full.min.js" />
     <Content Include="Scripts\slideroption.js" />
-    <Content Include="Scripts\stickUp.js" />
     <Content Include="Scripts\tether.js" />
-    <Content Include="Scripts\tether.min.js" />
+    <Content Include="Scripts\tether.min.js">
+      <DependentUpon>tether.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -253,6 +298,12 @@
     <Content Include="Views\Carti\Inexistentă.cshtml" />
     <Content Include="Views\Cont\Imprumuturi.cshtml" />
     <Content Include="Views\Home\Despre.cshtml" />
+    <Content Include="Scripts\logare.min.js.map">
+      <DependentUpon>logare.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\tether.min.js.map">
+      <DependentUpon>tether.min.js</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

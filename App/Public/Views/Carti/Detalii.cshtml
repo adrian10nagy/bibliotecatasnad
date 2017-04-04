@@ -28,7 +28,7 @@
     @if (Model.BookStatus == LoanReservedBookStatus.Disponibilă)
     {
         <div class="BookDetailsBookaBook">
-            <input type="button" id="change_password" href=@href class="btn btn-primary" onclick="openBookDetailsPopup('@href', @Model.Id)" value="Rezervă cartea" />
+            <input type="button" href=@href class="btn btn-primary" onclick="openBookDetailsPopup('@href', @Model.Id)" value="Rezervă cartea" />
         </div>
     }
 

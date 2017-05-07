@@ -16,7 +16,8 @@ GO
 -- Create date: 03/02/2017
 -- =============================================
 CREATE PROCEDURE [dbo].[BooksGetLast]
-@nr int
+@nr int,
+@libraryId int
 AS
 BEGIN
 	
@@ -24,5 +25,6 @@ BEGIN
 	SELECT top(@nr) [Id]
       ,[Title]
   FROM dbo.[Books] 
+  WHERE [Id_Library] = @libraryId
     order by [AddedDate] desc
 END

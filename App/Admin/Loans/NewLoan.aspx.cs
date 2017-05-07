@@ -11,6 +11,7 @@ namespace Admin.Loans
     using BL.Helpers;
     using DAL.Entities;
     using System.Text;
+    using BL.Constants;
 
     public partial class NewLoan : System.Web.UI.Page
     {
@@ -18,8 +19,10 @@ namespace Admin.Loans
         {
             if (!Page.IsPostBack)
             {
-                InitializeBooks();
-                InitializeUsers();
+                var user = Session[SessionConstants.LoginUser] as User;
+
+                InitializeBooks(user.Library.Id);
+                InitializeUsers(user.Library.Id);
                 btnLoanBookRemove.Visible = false;
             }
         }
@@ -48,7 +51,8 @@ namespace Admin.Loans
             };
 
             //Add Loan
-            LoansManager.Add(loan);
+            var user = Session[SessionConstants.LoginUser] as User;
+            LoansManager.Add(loan, user.Library.Id);
 
             //update reservations to completed
             var reservations = GetAllReservedBooksFromSelectedByUserId(drdLoanUserAll.SelectedValue.ToNullableInt().Value);
@@ -77,8 +81,10 @@ namespace Admin.Loans
                 Books = GetLoanBooks()
             };
 
+            var user = Session[SessionConstants.LoginUser] as User;
+
             //Add Loan
-            LoansManager.Add(loan);
+            LoansManager.Add(loan, user.Library.Id);
 
             //update reservations to canceled if user that loand is not the one who reserved
             var reservationsCanceled = GetAllReservedBooksFromSelectedByNotUserId(drdLoanUserAll.SelectedValue.ToNullableInt().Value);
@@ -256,9 +262,9 @@ namespace Admin.Loans
             return userIsValid && bookIsValid;
         }
 
-        private void InitializeBooks()
+        private void InitializeBooks(int libraryId)
         {
-            var books = BooksManager.GetAllBooks();
+            var books = BooksManager.GetAllBooks(libraryId);
             var listItemBooks = books.Select(c => new ListItem
             {
                 Text = c.Title + "[" + c.InternalNr + "]",
@@ -269,9 +275,9 @@ namespace Admin.Loans
             drdLoanBooksAll.DataBind();
         }
 
-        private void InitializeUsers()
+        private void InitializeUsers(int libraryId)
         {
-            var users = UsersManager.GetUsersAll();
+            var users = UsersManager.GetUsersAll(libraryId);
             var listItemBooks = users.Select(c => new ListItem
             {
                 Text = c.FirstName + " " + c.LastName + "[" + c.Username + "]",

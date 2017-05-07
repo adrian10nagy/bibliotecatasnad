@@ -1,6 +1,7 @@
 ﻿namespace Admin.Loans
 {
     using Admin.Helpers;
+    using BL.Constants;
     using BL.Helpers;
     using BL.Managers;
     using DAL.Entities;
@@ -14,16 +15,17 @@
         protected void Page_Init(object sender, EventArgs e)
         {
             List<Loan> loans = null;
+            var user = Session[SessionConstants.LoginUser] as User;
 
             if (!Page.IsPostBack)
             {
-                if (!string.IsNullOrEmpty(Request["userId"]) && Request["userId"].ToNullableInt() != null)
+                if (user != null)
                 {
-                    loans = LoansManager.GetLoansByUserId(Request["userId"].ToNullableInt().Value);
+                    loans = LoansManager.GetActiveLoans(user.Library.Id);
                 }
             }
 
-            InitializeLoansTable(loans);
+            InitializeLoansTable(user.Library.Id, loans);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -35,18 +37,21 @@
                 lblMessage.CssClass = "SuccessBox";
             }
 
-            
+
         }
 
         protected void btnReturnBook_Click(object sender, EventArgs e)
         {
-            LoansManager.ReturnBook(lblLoanId.Text.ToNullableInt().Value, DateTime.Now);
+            var user = Session[SessionConstants.LoginUser] as User;
+            LoansManager.ReturnBook(lblLoanId.Text.ToNullableInt().Value, DateTime.Now, user.Library.Id);
             Response.Redirect("~/Loans/InProgress.aspx");
         }
 
         protected void btnLoanRemove_Click(object sender, EventArgs e)
         {
-            LoansManager.Remove(lblLoanId.Text.ToNullableInt().Value);
+            var user = Session[SessionConstants.LoginUser] as User;
+
+            LoansManager.Remove(lblLoanId.Text.ToNullableInt().Value, user.Library.Id);
             Response.Redirect("~/Loans/InProgress.aspx");
         }
 
@@ -70,13 +75,13 @@
             btnLoanRemove.Visible = true;
         }
 
-        private void InitializeLoansTable(List<Loan> loans = null)
+        private void InitializeLoansTable(int libraryId, List<Loan> loans = null)
         {
             var inputLoans = new List<Loan>();
 
             if (loans == null)
             {
-                inputLoans = LoansManager.GetActiveLoans();
+                inputLoans = LoansManager.GetActiveLoans(libraryId);
             }
             else
             {
@@ -86,14 +91,14 @@
             foreach (Loan loan in inputLoans)
             {
                 TableRow row = new TableRow();
-                var btnLoanReturn = new Button 
-                { 
-                    ID = "BtnLoan"+loan.Id,
+                var btnLoanReturn = new Button
+                {
+                    ID = "BtnLoan" + loan.Id,
                     Text = "Returnează cartea",
                     CssClass = "btn btn-primary",
                     CausesValidation = false,
                     CommandName = loan.Id.ToString(),
-                    CommandArgument = "Sigur dorești să returneazi cartea " + loan.Books[0].Title + "[ " + loan.Books[0].InternalNr + " ] închiriată de "+ loan.User.FirstName + " " + loan.User.LastName + " ?"
+                    CommandArgument = "Sigur dorești să returneazi cartea " + loan.Books[0].Title + "[ " + loan.Books[0].InternalNr + " ] închiriată de " + loan.User.FirstName + " " + loan.User.LastName + " ?"
                 };
                 btnLoanReturn.Click += this.loanReturnBtn_Click;
                 TableCell loanIdCell = new TableCell();

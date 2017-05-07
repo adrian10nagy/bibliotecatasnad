@@ -63,5 +63,22 @@ namespace BL.Managers
 
             return publisher;
         }
+
+        public static Publisher GetOnePublisherByInput(string input)
+        {
+            List<Publisher> publishers = (List<Publisher>)GetAllPublishers();
+
+            Publisher author = null;
+            if (!string.IsNullOrEmpty(input))
+            {
+                var initialPublishers = publishers.Where(a => a.Name.ToLower() == input.ToLower()).ToList();
+                if (initialPublishers != null && initialPublishers.Count() > 0)
+                {
+                    author = initialPublishers[0];
+                }
+            }
+
+            return author;
+        }
     }
 }

@@ -8,13 +8,13 @@ namespace DAL.Repositories
 
     public interface ILoanRepository
     {
-        int GetLoanCount();
+        int GetLoanCount(int libraryId);
         void AddLoan(int bookId, int userId, DateTime loanDate);
-        IEnumerable<Loan> GetAllActiveLoans();
-        IEnumerable<Loan> GetAllFinishedLoans();
+        IEnumerable<Loan> GetAllActiveLoans(int libraryId);
+        IEnumerable<Loan> GetAllFinishedLoans(int libraryId);
         void ReturnBook(int loanId, DateTime dateTime);
         void Remove(int loanId);
-        List<Loan> GetLoansByDay(DateTime datetime);
+        List<Loan> GetLoansByDay(DateTime datetime, int libraryId);
         IEnumerable<Loan> GetLoansByUserId(int userId);
         IEnumerable<Loan> GetLoansByBookId(int bookId);
         LoanReservedBookStatus GetBookLoanStatus(int bookId);
@@ -24,25 +24,31 @@ namespace DAL.Repositories
     {
         #region Get
 
-        public int GetLoanCount()
+        public int GetLoanCount(int libraryId)
         {
             int user = 0;
 
             _dbRead.Execute(
                 "LoansGetCount",
-            null,
+            new[]
+            {
+                new SqlParameter("@libraryId", libraryId)
+            },
                 r => user = Read<int>(r, "num"));
 
             return user;
         }
 
-        public IEnumerable<Loan> GetAllActiveLoans()
+        public IEnumerable<Loan> GetAllActiveLoans(int libraryId)
         {
             var loans = new List<Loan>();
 
             _dbRead.Execute(
                 "LoansGetAllActive",
-            null,
+            new[]
+            {
+                new SqlParameter("@libraryId", libraryId)
+            },
                 r => loans.Add(new Loan()
                 {
                     Id = Read<int>(r, "Id"),
@@ -67,13 +73,16 @@ namespace DAL.Repositories
             return loans;
         }
 
-        public IEnumerable<Loan> GetAllFinishedLoans()
+        public IEnumerable<Loan> GetAllFinishedLoans(int libraryId)
         {
             var loans = new List<Loan>();
 
             _dbRead.Execute(
                 "LoansGetAllFinished",
-            null,
+            new[]
+            {
+                new SqlParameter("@libraryId", libraryId)
+            },
                 r => loans.Add(new Loan()
                 {
                     Id = Read<int>(r, "Id"),
@@ -99,7 +108,7 @@ namespace DAL.Repositories
             return loans; 
         }
 
-        public List<Loan> GetLoansByDay(DateTime datetime)
+        public List<Loan> GetLoansByDay(DateTime datetime, int libraryId)
         {
             var loans = new List<Loan>();
 
@@ -108,6 +117,7 @@ namespace DAL.Repositories
             new[]
             {
                 new SqlParameter("@date", datetime),
+                new SqlParameter("@libraryId", libraryId),
             },
                 r => loans.Add(new Loan()
                 {

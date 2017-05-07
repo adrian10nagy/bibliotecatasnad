@@ -13,6 +13,7 @@
 
     <asp:ContentPlaceHolder ID="MainStyle" runat="server">
     </asp:ContentPlaceHolder>
+    <meta name="description" content="Administrare Biblioteca Tăsnad" />
 </head>
 <body class="nav-md">
     <form runat="server">
@@ -22,7 +23,7 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="~/" class="site_title" runat="server"><i class="fa fa-paw"></i><span>Biblioteca Tășnad</span></a>
+                            <a href="~/" class="site_title" runat="server"><i class="fa fa-paw"></i><asp:Label ID="txtWelcomeLibrary" runat="server"></asp:Label></a>
                         </div>
 
                         <div class="clearfix"></div>
@@ -35,7 +36,8 @@
                             <div class="profile_info">
                                 <span>Bun venit,</span>
                                 <h2>
-                                    <asp:Label ID="txtWelcomeUserName" runat="server"></asp:Label></h2>
+                                    <asp:Label ID="txtWelcomeUserName" runat="server"></asp:Label>
+                                </h2>
                             </div>
                         </div>
                         <!-- /menu profile quick info -->
@@ -199,7 +201,7 @@
                 </div>
                 <!-- /top navigation -->
 
-                <asp:ScriptManager runat="server">
+                <asp:ScriptManager runat="server" ID="scriptManager">
                     <Scripts>
                         <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
                         <%--Framework Scripts--%>
@@ -227,7 +229,7 @@
                 <!-- footer content -->
                 <footer>
                     <div class="pull-right">
-                        Biblioteca Tășnad - Site realizat de <a href="https://colorlib.com">Abovo România</a>
+                        <asp:Label ID="txtWelcomeLibraryFooter" runat="server"></asp:Label> - Site realizat de <a href="https://colorlib.com">Abovo România</a>
                     </div>
                     <div class="clearfix"></div>
                 </footer>

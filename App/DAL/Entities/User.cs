@@ -21,5 +21,6 @@ namespace DAL.Entities
         public Nationality Nationality;
         public Gender Gender;
         public string Password;
+        public Library Library;
     }
 }

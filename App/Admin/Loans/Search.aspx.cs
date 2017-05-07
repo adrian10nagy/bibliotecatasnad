@@ -8,6 +8,7 @@ namespace Admin.Loans
     using System.Collections.Generic;
     using System.Web.UI;
     using System.Web.UI.WebControls;
+    using BL.Constants;
 
     public partial class Search : System.Web.UI.Page
     {
@@ -15,11 +16,12 @@ namespace Admin.Loans
         {
             if (!Page.IsPostBack)
             {
+                var user = Session[SessionConstants.LoginUser] as User;
                 var loans = new List<Loan>();
 
                 if (!string.IsNullOrEmpty(Request["day"]))
                 {
-                    loans = LoansManager.GetLoansByDay(Convert.ToDateTime(Request["day"]));
+                    loans = LoansManager.GetLoansByDay(Convert.ToDateTime(Request["day"]), user.Library.Id);
                 }
                 else if (!string.IsNullOrEmpty(Request["userId"]) && Request["userId"].ToNullableInt() != null)
                 {

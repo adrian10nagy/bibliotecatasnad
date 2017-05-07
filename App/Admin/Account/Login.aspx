@@ -10,7 +10,8 @@
     <link href="/Content/animate.min.css" rel="stylesheet" type="text/css" />
     <link href="/Content/custom.min.css" rel="stylesheet" type="text/css" />
 
-    <title>Biblioteca Tășnad- Logare</title>
+    <title>Biblioteca- Logare</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body class="login">
     <form runat="server">
@@ -44,7 +45,7 @@
                                 <div class="clearfix"></div>
                                 <br />
                                 <div>
-                                    <h1><i class="fa fa-paw"></i> Biblioteca Tășnad</h1>
+                                    <h1><i class="fa fa-paw"></i>BiblioSofia</h1>
                                     <p>©<%= DateTime.Now.Year.ToString() %>. Toate drepturile rezervate.</p>
                                 </div>
                             </div>
@@ -86,7 +87,7 @@
                                 <br />
 
                                 <div>
-                                    <h1><i class="fa fa-paw"></i>Biblioteca Tășnad</h1>
+                                    <h1><i class="fa fa-paw"></i>BiblioSofia</h1>
                                     <p>©<%= DateTime.Now.Year.ToString() %>. Toate drepturile rezervate.</p>
                                 </div>
                             </div>

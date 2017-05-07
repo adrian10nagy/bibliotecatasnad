@@ -1,8 +1,10 @@
 ﻿
 namespace Admin
 {
+    using BL.Constants;
     using BL.Entities;
     using BL.Managers;
+    using DAL.Entities;
     using System;
     using System.Linq;
     using System.Web.Script.Serialization;
@@ -16,9 +18,11 @@ namespace Admin
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public static BookPublishersChart AsyncGetBookDomains()
         {
+            var user = System.Web.HttpContext.Current.Session[SessionConstants.LoginUser] as User;
+
             // instantiate a serializer
             JavaScriptSerializer TheSerializer = new JavaScriptSerializer();
-            var publishers = BooksManager.GetBookPublisherForChart();
+            var publishers = BooksManager.GetBookPublisherForChart(user.Library.Id);
             // var jsonValue = TheSerializer.Serialize(products);
             
             return publishers;
@@ -26,17 +30,18 @@ namespace Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var user = Session[SessionConstants.LoginUser] as User;
 
             string cellText = " <p><i class='fa fa-square {0}'></i>{1} </p>";
 
-            txtTotalUsers.Text = UsersManager.GetUserNrAll().ToString();
-            txtTotalBooks.Text = BooksManager.GetBooksNrAll().ToString();
-            txtTotalLoans.Text = LoansManager.GetLoansNrAll().ToString();
-            txtTotalLoansToday.Text = LoansManager.GetLoansByDay(DateTime.Now).Count().ToString();
-            txtTotalBooksToday.Text = BooksManager.GetBooksByDay(DateTime.Now).Count().ToString();
-            txtTotalUsersToday.Text = UsersManager.GetUsersByDay(DateTime.Now).Count().ToString();
+            txtTotalUsers.Text = UsersManager.GetUserNrAll(user.Library.Id).ToString();
+            txtTotalBooks.Text = BooksManager.GetBooksNrAll(user.Library.Id).ToString();
+            txtTotalLoans.Text = LoansManager.GetLoansNrAll(user.Library.Id).ToString();
+            txtTotalLoansToday.Text = LoansManager.GetLoansByDay(DateTime.Now, user.Library.Id).Count().ToString();
+            txtTotalBooksToday.Text = BooksManager.GetBooksByDay(DateTime.Now, user.Library.Id).Count().ToString();
+            txtTotalUsersToday.Text = UsersManager.GetUsersByDay(DateTime.Now, user.Library.Id).Count().ToString();
 
-            var publishers = BooksManager.GetBookPublisherForChart();
+            var publishers = BooksManager.GetBookPublisherForChart(user.Library.Id);
 
             for (int i = 0; i < publishers.Labels.Count(); i++)
 			{

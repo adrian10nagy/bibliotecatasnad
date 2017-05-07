@@ -15,6 +15,7 @@ GO
 -- Create date: 27/01/2017
 -- =============================================
 CREATE PROCEDURE [dbo].[UserGetAll]
+@libraryId int
 AS
 BEGIN
 	
@@ -32,10 +33,11 @@ BEGIN
       ,U.[Flags]
       ,U.[Gender]
       ,U.[Id_Locality]
-      ,U.[Id_UserType]
       ,U.[Id_Nationality]
+      ,U.[Id_UserType]
 	  ,L.Name as Locality
   FROM dbo.[Users] U
-  Inner Join Localities L
+  Inner Join [Localities] L
   ON U.Id_Locality = L.Id
+  AND U.Id_Library = @libraryId
 END

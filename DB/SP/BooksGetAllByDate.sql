@@ -15,7 +15,8 @@ GO
 -- Create date: 12/02/2017
 -- =============================================
 CREATE PROCEDURE [dbo].[BooksGetAllByDate]
-@date date
+@date date,
+@libraryId int
 AS
 BEGIN
 	
@@ -36,5 +37,6 @@ SELECT B.[Id]
   ON B.Id_Publisher = P.Id
 	WHERE B.[AddedDate] > @date
 	AND B.[AddedDate] < dateadd(DD, 1, @date)
+	AND B.Id_Library = @libraryId
 
 END

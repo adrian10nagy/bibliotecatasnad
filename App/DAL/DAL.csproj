@@ -69,6 +69,7 @@
     <Compile Include="Repositories\BookDomain.cs" />
     <Compile Include="Repositories\ErrorLog.cs" />
     <Compile Include="Repositories\ISBN.cs" />
+    <Compile Include="Repositories\Library.cs" />
     <Compile Include="Repositories\Loan.cs" />
     <Compile Include="Repositories\Locality.cs" />
     <Compile Include="Repositories\Publisher.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="SDK\ErrorLogs.cs" />
     <Compile Include="SDK\ISBNs.cs" />
     <Compile Include="SDK\Kit.cs" />
+    <Compile Include="SDK\Libraries.cs" />
     <Compile Include="SDK\Loans.cs" />
     <Compile Include="SDK\Localities.cs" />
     <Compile Include="SDK\Publishers.cs" />

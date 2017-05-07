@@ -28,7 +28,10 @@ CREATE PROCEDURE [dbo].[BooksAdd]
 	@Title nvarchar(MAX),
 	@PublisherId int,
 	@PublishYear int = null,
-	@Volume nvarchar(50) = null
+	@Volume nvarchar(50) = null,
+	@Description nvarchar(MAX) = null,
+	@ImageUrl nvarchar(MAX) = null,
+	@PreviewLink nvarchar(MAX) = null
 AS
 BEGIN
 	SET NOCOUNT ON;
@@ -51,7 +54,10 @@ BEGIN
       ,[Id_BookFormat]
       ,[Id_BookDomain]
       ,[Id_BookSubject]
-      ,[Id_Language])
+      ,[Id_Language]
+      ,[Description]
+      ,[ImageUrl]
+      ,[PreviewLink])
 	values(
 		@Title,
 		@PublishYear,
@@ -66,8 +72,10 @@ BEGIN
 		@BookFormatId,
 		@BookDomainId,
 		@BookSubjectId,
-		@BookLanguageId
-	)
+		@BookLanguageId,
+		@Description,
+		@ImageUrl,
+		@PreviewLink)
 
 		select @id = cast(Scope_Identity() as int)
 	end

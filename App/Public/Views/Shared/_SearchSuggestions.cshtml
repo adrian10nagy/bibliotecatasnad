@@ -13,7 +13,7 @@
         <span>Cărți</span>
         @foreach (var item in bookSuggestions)
         {
-            <a href="~/Carti/Detalii/@item.Id">
+            <a href="~/Carti/Detalii/@item.Id?title=@item.Title.Trim().Replace(' ', '-')">
                 <div class="simpleSuggestionBook">
                     <div class="simpleSuggestionItem">
                         @item.Title
@@ -30,7 +30,7 @@
         <span>Autori</span>
         @foreach (var item in authorsSuggestions)
         {
-            <a href="~/Autori/Detalii/@item.Id">
+            <a href="~/Autori/Detalii/@item.Id?name=@item.Name.Trim().Replace(' ', '-')">
                 <div class="simpleSuggestionBook">
                     <div class="simpleSuggestionItem">
                         @item.Name

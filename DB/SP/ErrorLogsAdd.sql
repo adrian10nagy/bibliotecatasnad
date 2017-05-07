@@ -25,7 +25,7 @@ BEGIN
 		Insert into [dbo].ErrorLogs
 		(
 		[Message],
-		Created
+		Created 
 		)
 		values
 		(

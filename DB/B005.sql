@@ -1,0 +1,3 @@
+ALTER TABLE 
+Libraries 
+alter COLUMN Name NVARCHAR(200);

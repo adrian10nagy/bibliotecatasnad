@@ -25,5 +25,9 @@ namespace DAL.Entities
         public List<Author> Authors;
         public LoanReservedBookStatus BookStatus;
         public DateTime? ReservedUntil;
+        public string Description;
+        public string ImageUrl;
+        public string PreviewLink;
+        public string SelfLink;
     }
 }

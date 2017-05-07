@@ -60,16 +60,15 @@
         <br />
         <br />
         <div class="heading">
-            <h1><span>Ultimele 20 de cărți adăugate</span></h1>
+            <h1><span>Ultimele cărți adăugate</span></h1>
             <div class="row sec_top_gp">
 
                 <div class="imageSlide">
                     @foreach (var book in @Model.LastAddedBooks)
                     {
                         <div class="imageBox">
-                            @Html.ActionLink(@book.Title, "Detalii", "Carti", new { id = @book.Id }, null)
+                            @Html.ActionLink(@book.Title, "Detalii", "Carti", new { id = @book.Id, title = @book.Title.Trim().Replace(' ', '-') }, null)
                         </div>
-
                     }
                 </div>
                 <div class="footerTopContent" style="height: 140px;">

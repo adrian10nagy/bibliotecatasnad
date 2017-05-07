@@ -15,10 +15,11 @@ GO
 -- Description:
 -- =============================================
 CREATE PROCEDURE [dbo].[UsersGetCount]
+@libraryId int
 AS
 BEGIN
 	
 	SELECT count(1) as num
-	FROM [bibliotecaTasnad].[dbo].[Users]
-
+	FROM [bibliotecaTasnad].[dbo].[Users] U
+	WHERE U.Id_Locality = @libraryId
 END

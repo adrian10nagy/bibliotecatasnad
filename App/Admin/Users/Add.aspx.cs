@@ -97,6 +97,7 @@ namespace Admin.Users
         protected void btnSave_Click(object sender, EventArgs e)
         {
             this.ValidateInputs();
+            var sessionUser = Session[SessionConstants.LoginUser] as User;
 
             var user = new User
             {
@@ -113,26 +114,30 @@ namespace Admin.Users
                 {
                     Id = drpUserCity.SelectedValue.ToNullableInt().Value
                 },
+                Library = new Library
+                {
+                    Id = sessionUser.Library.Id
+                },
                 Flags = UserFlag.Default,
                 UserType = (UserType)drpUsertype.SelectedValue.ToNullableInt(),
                 Nationality = (Nationality)drpUserNationality.SelectedValue.ToNullableInt(),
-                Gender = (Gender)userGender.SelectedValue.ToNullableInt()
+                Gender = (Gender)userGender.SelectedValue.ToNullableInt(),
+                Username = sessionUser.Username
             };
 
             if (!string.IsNullOrEmpty(lblUserId.Text) && lblUserId.Text.ToNullableInt() != 0)
             {
                 user.Id = lblUserId.Text.ToNullableInt().Value;
-                UsersManager.Update(user);
+                UsersManager.Update(user, sessionUser.Library.Id);
                 Response.Redirect("~/Users/Manage.aspx?Message=UserUpdatedSuccess");
             }
             else
             {
-                UsersManager.Add(user);
+                UsersManager.Add(user, sessionUser.Library.Id);
                 lblStatus.Text = FlowMessages.UserAddSuccess;
                 lblStatus.CssClass = "SuccessBox";
                 CleanFields();
             }
-
         }
 
         private void ValidateInputs()

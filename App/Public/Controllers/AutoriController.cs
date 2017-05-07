@@ -27,10 +27,19 @@ namespace Public.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Detalii(int id)
+        public ActionResult Detalii(int id, string name = null)
         {
-            IEnumerable<Book> books = BooksManager.GetBooksByAuthorId(id);
             var author = AuthorsManager.GetById(id);
+            if (author == null)
+            {
+                RedirectToAction("Index");
+            }
+            else if (name == null)
+            {
+                return this.RedirectToAction("Detalii", new { id = author.Id, name = author.Name.Replace(' ', '-') });
+            }
+
+            IEnumerable<Book> books = BooksManager.GetBooksByAuthorId(id, 1);
 
             ViewData["author"] = author;
             ViewData["searchTerm"] = author.Name;

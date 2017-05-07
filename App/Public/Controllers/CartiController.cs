@@ -9,13 +9,14 @@ namespace Public.Controllers
     using System.Linq;
     using Public.Models;
     using System;
+    using BL.Constants;
 
     public class CartiController : BaseController
     {
         [HttpGet]
         public ActionResult Index()
         {
-            var books = BooksManager.GetAllBooksWithDomain().Where(b => b.BookDomain.CZU != "4");
+            var books = BooksManager.GetAllBooksWithDomain(1).Where(b => b.BookDomain.CZU != "4");
 
             var bookGroups = books.GroupBy(b => b.BookDomain.CZU);
 
@@ -28,7 +29,7 @@ namespace Public.Controllers
         {
             return View();
         }
-        
+
         [HttpGet]
         public ActionResult SimpleSearch(string simpleSearchText)
         {
@@ -38,7 +39,7 @@ namespace Public.Controllers
 
             if (!string.IsNullOrEmpty(simpleSearchText) && simpleSearchText.Length > 1)
             {
-                books = SearchManager.GetBooksBySimpleSearch(simpleSearchText);
+                books = SearchManager.GetBooksBySimpleSearch(simpleSearchText, 1);
                 authors = SearchManager.GetAuthorsBySimpleSearch(simpleSearchText);
                 domains = SearchManager.GetBookDomainsBySimpleSearch(simpleSearchText);
             }
@@ -57,7 +58,7 @@ namespace Public.Controllers
             var authors = new List<Author>();
             var domains = new List<BookDomain>();
 
-            books = SearchManager.GetBooksByMultiFieldSearch(multiFieldTitle, multiFieldPublishers.ToNullableInt(), multiFieldDomains.ToNullableInt(), multiFieldAuthors.ToNullableInt());
+            books = SearchManager.GetBooksByMultiFieldSearch(multiFieldTitle, multiFieldPublishers.ToNullableInt(), multiFieldDomains.ToNullableInt(), multiFieldAuthors.ToNullableInt(), 1);
             foreach (var item in books)
             {
                 item.Authors = BooksManager.GetBookAuthorsByBookId(item.Id) as List<Author>;
@@ -65,11 +66,12 @@ namespace Public.Controllers
             ViewData["books"] = books;
             ViewData["domains"] = domains;
             ViewData["authors"] = authors;
+            ViewData["searchTerm"] = multiFieldTitle;
 
             return View("Cauta", books);
         }
 
-        public ActionResult Detalii(int? id = null)
+        public ActionResult Detalii(int? id = null, string title = null)
         {
             if (id == null)
             {
@@ -81,16 +83,18 @@ namespace Public.Controllers
             {
                 return RedirectToAction("Inexistentă");
             }
-            else
+            else if (title == null)
             {
-                book.BookStatus = LoansManager.GetBookLoanStatus(book.Id);
-                if (book.BookStatus == LoanReservedBookStatus.Disponibilă)
+                return this.RedirectToAction("Detalii", new { id = book.Id, title = book.Title.Replace(' ', '-') });
+            }
+
+            book.BookStatus = LoansManager.GetBookLoanStatus(book.Id);
+            if (book.BookStatus == LoanReservedBookStatus.Disponibilă)
+            {
+                book.ReservedUntil = ReservationsManager.IsReservedGetDate(id.Value);
+                if (book.ReservedUntil != null)
                 {
-                    book.ReservedUntil = ReservationsManager.IsReservedGetDate(id.Value);
-                    if(book.ReservedUntil != null)
-                    {
-                        book.BookStatus = LoanReservedBookStatus.Rezervată;
-                    }
+                    book.BookStatus = LoanReservedBookStatus.Rezervată;
                 }
             }
 

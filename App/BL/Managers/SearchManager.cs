@@ -8,7 +8,7 @@ namespace BL.Managers
 
     public class SearchManager
     {
-        public static List<Book> GetBooksBySimpleSearch(string searchterm)
+        public static List<Book> GetBooksBySimpleSearch(string searchterm, int libraryId)
         {
             var books = new List<Book>();
             if (string.IsNullOrEmpty(searchterm))
@@ -16,7 +16,7 @@ namespace BL.Managers
                 return books;
             }
 
-            var allBooks = BooksManager.GetAllBooks();
+            var allBooks = BooksManager.GetAllBooks(libraryId);
             foreach (var item in allBooks)
             {
                 if(item.Title.ToLower().Contains(searchterm.ToLower()))
@@ -68,14 +68,14 @@ namespace BL.Managers
             return bookDomains;
         }
 
-        public static List<Book> GetBooksByMultiFieldSearch(string title, int? publisherId, int? domainId, int? authorId)
+        public static List<Book> GetBooksByMultiFieldSearch(string title, int? publisherId, int? domainId, int? authorId, int libraryId)
         {
             var resultBoks = new List<Book>();
 
             int? publisherIdNullable = (publisherId == 0 || publisherId == null)?null : (int?)publisherId;
             int? domainIdNullable = (domainId == 0 || domainId == null)?null : (int?)domainId;
 
-            var books = Kit.Instance.Books.GetBooksByTitlePublisherDomain(title, publisherIdNullable, domainIdNullable);
+            var books = Kit.Instance.Books.GetBooksByTitlePublisherDomain(title, publisherIdNullable, domainIdNullable, libraryId);
 
             if (authorId.HasValue)
             {

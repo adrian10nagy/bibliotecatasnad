@@ -2,6 +2,7 @@
 namespace Admin.Loans
 {
     using Admin.Helpers;
+    using BL.Constants;
     using BL.Managers;
     using DAL.Entities;
     using System;
@@ -19,7 +20,8 @@ namespace Admin.Loans
 
         private void InitializeLoansTable()
         {
-            var loans = LoansManager.GetFinishedLoans();
+            var user = Session[SessionConstants.LoginUser] as User;
+            var loans = LoansManager.GetFinishedLoans(user.Library.Id);
 
             foreach (Loan loan in loans)
             {

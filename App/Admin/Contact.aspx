@@ -2,13 +2,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h3><%: Title %></h3>
-    <address>
-        Tășnad<br />
-        jud. Satu-Mare, 445300<br />
-        <abbr title="Phone">Telefon:</abbr>
-        425.555.0100 
-    </address>
-
+    
     <address>
         <strong>Telefon</strong><br />
         Roxana Chioran:   0741255820<br />

@@ -15,6 +15,7 @@ GO
 -- Create date: 03/02/2017
 -- =============================================
 CREATE PROCEDURE [dbo].[BooksGetAllForManage]
+@libraryId int
 AS
 BEGIN
 	
@@ -33,4 +34,6 @@ BEGIN
   FROM dbo.[Books] B
   Inner Join Publishers P
   ON B.Id_Publisher = P.Id
+  where B.Id_Library = @libraryId
+
 END

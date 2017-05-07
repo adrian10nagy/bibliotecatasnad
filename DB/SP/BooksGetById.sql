@@ -35,6 +35,9 @@ BEGIN
 	  ,BS.Name as SubjectName
 	  ,B.[Id_BookDomain]
 	  ,BD.Name as DomainName
+	  ,B.[Description]
+	  ,B.[ImageUrl]
+	  ,B.[PreviewLink] 
   FROM dbo.[Books] B
 	Inner Join Publishers P
   ON B.Id_Publisher = P.Id

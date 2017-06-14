@@ -7,5 +7,6 @@ namespace DAL.Entities
         public string Name;
         public string Description;
         public string Contact;
+        public string Domain;
     }
 }

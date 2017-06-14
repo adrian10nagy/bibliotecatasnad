@@ -376,6 +376,7 @@
 @media (min-width: 480px) {
     .nav_menu {
         position: static;
+        -webkit-box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.2);
     }
 }
 
@@ -4169,8 +4170,7 @@ a.hiddenanchor {
 
 .login_content .formDiv input[type="submit"],
 #content .formDiv .submit {
-    float: left;
-    margin-left: 38px;
+    margin: 0 auto;
 }
 
 .button a {
@@ -4281,6 +4281,10 @@ div[data-role="editor-toolbar"] {
 
 .select2-container--default.select2-container--focus .select2-selection--multiple {
     border: 1px solid #ccc;
+}
+
+.select2-container {
+    max-width: 100%;
 }
 
 /** /Select2 **/
@@ -4914,7 +4918,7 @@ ul.notifications {
 }
 
 .paddingLeft160 {
-    padding-left: 160px;
+    padding-left: 171px;
 }
 
 .marginRight40 {
@@ -4948,26 +4952,30 @@ ul.notifications {
     background: url(/Content/images/Preloader.gif) center no-repeat #fff;
 }
 
-.noVisibility{
-    display:none;
+.noVisibility {
+    display: none;
 }
 
 /* dashboard */
-.tile_count .count_top i { 
+.tile_count .count_top i {
     margin-right: 5px;
 }
 
-.BookIsbnSuggestion{
-    cursor:pointer;
+.BookIsbnSuggestion {
+    cursor: pointer;
 }
 
-.imagheCenter{
-    margin:auto;
-    display:block
+.imagheCenter {
+    margin: auto;
+    display: block;
 }
 
-.tbBookAddBookSuggestions>tbody tr:hover,
-.tbBookAddBookSuggestions>tbody tr td a:hover{
-    background-color:#2A3F54;
-    color:white;
+.tbBookAddBookSuggestions > tbody tr:hover,
+.tbBookAddBookSuggestions > tbody tr td a:hover {
+    background-color: #2A3F54;
+    color: white;
+}
+
+.textAlignRight{
+    text-align:right;
 }

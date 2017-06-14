@@ -62,5 +62,11 @@ namespace Admin
             }
 
         }
+
+        protected void lnkMainSearch_Click(object sender, EventArgs e)
+        {
+            var user = Session[SessionConstants.LoginUser] as User;
+            // var book = BooksManager.GetBookByISBN(txtMainSearch.Text, user.Library.Id);
+        }
     }
 }

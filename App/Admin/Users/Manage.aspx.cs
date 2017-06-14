@@ -42,7 +42,7 @@ namespace Admin.Users
                 {
                     NavigateUrl = "~/Loans/InProgress.aspx?userId=" + user.Id,
                     CssClass = "toClickOn",
-                    Text = "Vezi împrumuturi"
+                    Text = "Împrumuturi"
                 };
                 TableCell userId = new TableCell();
                 userId.Controls.Add(link);

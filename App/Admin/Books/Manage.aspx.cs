@@ -39,7 +39,7 @@ namespace Admin.Books
                 {
                     NavigateUrl = "~/Loans/Search.aspx?bookId=" + book.Id,
                     CssClass = "toClickOn",
-                    Text = "Vezi împrumuturi"
+                    Text = "Împrumuturi"
                 };
                 TableCell bookId = new TableCell();
                 bookId.Controls.Add(link);

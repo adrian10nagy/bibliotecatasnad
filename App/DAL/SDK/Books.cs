@@ -88,5 +88,10 @@ namespace DAL.SDK
         {
             return _repository.GetBooksLastAdded(nr, libraryId);
         }
+
+        public Book GetBookByISBN(string isbn, int libraryId)
+        {
+            return _repository.GetBookByISBN(isbn, libraryId);
+        }
     }
 }

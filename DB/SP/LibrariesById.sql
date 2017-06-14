@@ -27,6 +27,7 @@ BEGIN
       ,[Name]
 	  ,[Description]
 	  ,[Contact]
+	  ,[Domain]
   FROM Libraries
   where Id = @id
 END

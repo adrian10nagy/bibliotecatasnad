@@ -23,7 +23,7 @@
                 <div class="animate form login_form">
                     <section class="login_content">
                         <div class="formDiv">
-                            <h1>Loghează-te</h1>
+                            <h1>Intră în cont</h1>
                             <asp:Label ID="lblMessageLogin" runat="server" Visible="false"></asp:Label>
                             <div>
                                 <input type="text" class="form-control has-feedback-left" id="txtUserName" placeholder="Utilizator" runat="server" autocomplete="off" />
@@ -32,7 +32,7 @@
                                 <input type="password" class="form-control has-feedback-left" id="txtUserPassword" placeholder="Parolă" runat="server" />
                             </div>
                             <div>
-                                <asp:Button ID="btnAccountLogin" runat="server" Text="Loghează-te" CssClass="btn btn-default submit" OnClick="btnAccountLogin_Click" />
+                                <asp:Button ID="btnAccountLogin" runat="server" Text="Intră în cont" CssClass="btn btn-default submit" OnClick="btnAccountLogin_Click" />
                                 <%--<a class="reset_pass" href="#">Am uitat parola</a>--%>
                             </div>
                             <div class="clearfix"></div>
@@ -79,8 +79,7 @@
                             <div class="separator">
                                 <p class="change_link">
                                     Ai cont?
-                 
-                                <a href="#signin" class="to_register">Loghează-te </a>
+                                <a href="#signin" class="to_register">Intră în cont</a>
                                 </p>
 
                                 <div class="clearfix"></div>

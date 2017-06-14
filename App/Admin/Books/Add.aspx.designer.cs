@@ -58,6 +58,15 @@ namespace Admin.Books {
         protected global::System.Web.UI.WebControls.TextBox txtBookInternalNr;
         
         /// <summary>
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
+        
+        /// <summary>
         /// UpdatePanel3 control.
         /// </summary>
         /// <remarks>
@@ -182,6 +191,15 @@ namespace Admin.Books {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtBookTitle;
+        
+        /// <summary>
+        /// lnkTitleLookUp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkTitleLookUp;
         
         /// <summary>
         /// lblBookNrPages control.

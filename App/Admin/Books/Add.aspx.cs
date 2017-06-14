@@ -673,12 +673,12 @@ namespace Admin.Books
             {
                 if (row.RowIndex == gvBookSuggestions.SelectedIndex)
                 {
-                    txtBookTitle.Text = Server.HtmlDecode(gvBookSuggestions.Rows[row.RowIndex].Cells[0].Text);
-                    txtBookPublisherAddNew.Text = Server.HtmlDecode(gvBookSuggestions.Rows[row.RowIndex].Cells[1].Text);
-                    txtBookAuthorsAddNew.Text = Server.HtmlDecode(gvBookSuggestions.Rows[row.RowIndex].Cells[2].Text);
-                    txtBookPublishYear.Text = Server.HtmlDecode(gvBookSuggestions.Rows[row.RowIndex].Cells[3].Text);
-                    txtBookNrPages.Text = Server.HtmlDecode(gvBookSuggestions.Rows[row.RowIndex].Cells[4].Text);
-                    var language = Server.HtmlDecode(gvBookSuggestions.Rows[row.RowIndex].Cells[5].Text);
+                    txtBookTitle.Text = Server.HtmlDecode(gvBookSuggestions.Rows[row.RowIndex].Cells[1].Text);
+                    txtBookPublisherAddNew.Text = Server.HtmlDecode(gvBookSuggestions.Rows[row.RowIndex].Cells[2].Text);
+                    txtBookAuthorsAddNew.Text = Server.HtmlDecode(gvBookSuggestions.Rows[row.RowIndex].Cells[3].Text);
+                    txtBookPublishYear.Text = Server.HtmlDecode(gvBookSuggestions.Rows[row.RowIndex].Cells[4].Text);
+                    txtBookNrPages.Text = Server.HtmlDecode(gvBookSuggestions.Rows[row.RowIndex].Cells[5].Text);
+                    var language = Server.HtmlDecode(gvBookSuggestions.Rows[row.RowIndex].Cells[6].Text);
                     if (drpBookLanguage.Items.FindByText(language) != null)
                     {
                         var selectedValue = drpBookLanguage.Items.FindByText(language);

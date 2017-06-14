@@ -10,6 +10,6 @@
         <strong>Email: </strong><br />
         Roxana Chioran:   c_roxana_l@yahoo.com<br />
         Adrian Nagy:   adrian1nagy@yahoo.com<br /><br />
-        <strong>Facebook- Adrian :</strong>   <a href="https://www.facebook.com/Adrian1Nagy">Click aici</a><br />
+        <strong>Facebook- Adrian :</strong>   <a href="https://www.facebook.com/Adrian1Nagy" target="_blank">Click aici</a><br />
     </address>
 </asp:Content>

@@ -27,7 +27,7 @@ $(document).ready(function () {
     function bookPublisherData() {
         $.ajax({
             type: "POST",
-            url: "Dashboard.aspx/AsyncGetBookDomains",
+            url: "/Dashboard.aspx/AsyncGetBookDomains",
             data: '{}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",

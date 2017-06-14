@@ -239,5 +239,12 @@ namespace BL.Managers
 
             return books;
         }
+
+        public static Book GetBookByISBN(string isbn, int libraryId)
+        {
+            Book book = Kit.Instance.Books.GetBookByISBN(isbn, libraryId);
+
+            return book;
+        }
     }
 }

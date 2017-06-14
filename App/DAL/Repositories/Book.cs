@@ -22,6 +22,7 @@ namespace DAL.Repositories
         IEnumerable<Book> GetAllBooksWithDomain(int libraryId);
         IEnumerable<Book> GetAllBooksByDomainId(int domainId, int libraryId);
         IEnumerable<Book> GetBooksLastAdded(int nr, int libraryId);
+        Book GetBookByISBN(string isbn, int libraryId);
     }
 
     public partial class Repository : IBookRepository
@@ -36,6 +37,51 @@ namespace DAL.Repositories
                 "BooksGetById",
              new[] { 
                 new SqlParameter("@bookId", bookId),
+             },
+                r => book = new Book()
+                {
+                    Id = Read<int>(r, "Id"),
+                    Title = Read<string>(r, "Title"),
+                    PublishYear = Read<int?>(r, "PublishYear"),
+                    Volume = Read<string>(r, "Volume"),
+                    InternalNr = Read<string>(r, "InternalNr"),
+                    NrPages = Read<int>(r, "NrPages"),
+                    Description = Read<string>(r, "Description"),
+                    ImageUrl = Read<string>(r, "ImageUrl"),
+                    PreviewLink = Read<string>(r, "PreviewLink"),
+                    Publisher = new Publisher
+                    {
+                        Id = Read<int>(r, "Id_Publisher"),
+                        Name = Read<string>(r, "PublisherName"),
+                    },
+                    BookCondition = (BookCondition)Read<int>(r, "Id_BookCondition"),
+                    BookFormat = (BookFormat)Read<int>(r, "Id_BookFormat"),
+                    BookLanguage = (Language)Read<int>(r, "Id_Language"),
+                    BookSubject = new BookSubject
+                    {
+                        Id = Read<int>(r, "Id_BookSubject"),
+                        Name = Read<string>(r, "SubjectName"),
+                    },
+                    BookDomain = new BookDomain
+                    {
+                        Id = Read<int>(r, "Id_BookDomain"),
+                        Name = Read<string>(r, "DomainName"),
+                    }
+                });
+
+            return book;
+        }
+
+        public Book GetBookByISBN(string isbn, int libraryId)
+        {
+
+            Book book = null;
+
+            _dbRead.Execute(
+                "BooksGetByIsbn",
+             new[] { 
+                new SqlParameter("@isbn", isbn),
+                new SqlParameter("@libraryId", libraryId),
              },
                 r => book = new Book()
                 {

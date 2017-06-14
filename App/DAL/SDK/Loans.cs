@@ -17,9 +17,9 @@ namespace DAL.SDK
 
         #region Get
 
-        public int GetLoanCount()
+        public int GetLoanCount(int libraryId)
         {
-            return _repository.GetLoanCount();
+            return _repository.GetLoanCount(libraryId);
         }
 
         #endregion
@@ -29,14 +29,14 @@ namespace DAL.SDK
             _repository.AddLoan(bookId, UserId, loanDate);
         }
 
-        public IEnumerable<Loan> GetAllActiveLoans()
+        public IEnumerable<Loan> GetAllActiveLoans(int libraryId)
         {
-            return _repository.GetAllActiveLoans();
+            return _repository.GetAllActiveLoans(libraryId);
         }
 
-        public IEnumerable<Loan> GetAllFinishedLoans()
+        public IEnumerable<Loan> GetAllFinishedLoans(int libraryId)
         {
-            return _repository.GetAllFinishedLoans();
+            return _repository.GetAllFinishedLoans(libraryId);
         }
 
         public void ReturnBook(int loanId, DateTime dateTime)
@@ -49,9 +49,9 @@ namespace DAL.SDK
             _repository.Remove(loanId);
         }
 
-        public List<Loan> GetLoansByDay(DateTime datetime)
+        public List<Loan> GetLoansByDay(DateTime datetime, int libraryId)
         {
-            return _repository.GetLoansByDay(datetime);
+            return _repository.GetLoansByDay(datetime, libraryId);
         }
 
         public IEnumerable<Loan> GetLoansByUserId(int userId)

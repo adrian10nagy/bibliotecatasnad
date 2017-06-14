@@ -26,6 +26,7 @@ CREATE PROCEDURE [dbo].[UsersUpdate]
 	@FacebookAddress nvarchar(MAX) = null,
 	@Gender int,
 	@LocalityId int,
+	@LibraryId int,
 	@NationalityId int,
 	@UserType int
 AS
@@ -46,7 +47,7 @@ BEGIN
       ,[Id_Locality] = @LocalityId
       ,[Id_UserType] = @UserType
       ,[Id_Nationality] = @NationalityId
-	
+	  ,[Id_Library] = @LibraryId	
 		Where Id = @Id
 	END
 END

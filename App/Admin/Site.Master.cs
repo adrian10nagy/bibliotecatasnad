@@ -25,6 +25,8 @@ namespace Admin
             {
                 txtWelcomeUserName.Text = user.FirstName + " " + user.LastName;
                 txtMenuTopUserName.Text = user.FirstName + " " + user.LastName;
+                txtWelcomeLibrary.Text = "Biblioteca " + user.Library.Name;
+                txtWelcomeLibraryFooter.Text = "Biblioteca " + user.Library.Name;
             }
         }
 

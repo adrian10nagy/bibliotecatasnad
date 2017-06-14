@@ -16,7 +16,8 @@ GO
 -- Create date: 12/02/2017
 -- =============================================
 CREATE PROCEDURE [dbo].[BooksGetByPublisherId]
-@id int
+@id int,
+@libraryId int
 AS
 BEGIN
 	
@@ -35,5 +36,6 @@ SELECT B.[Id]
   Inner Join Publishers P
 	ON B.Id_Publisher = P.Id
 	WHERE B.[Id_Publisher] = @id
+	AND B.Id_Publisher = @libraryId
 
 END

@@ -12,6 +12,7 @@ namespace Admin.Users
     using DAL.Entities;
     using BL.Helpers;
     using Admin.Helpers;
+    using BL.Constants;
 
     public partial class Manage : System.Web.UI.Page
     {
@@ -31,7 +32,8 @@ namespace Admin.Users
 
         private void InitializeUsersTable()
         {
-            var users = UsersManager.GetUsersAll();
+            var sessionUser = Session[SessionConstants.LoginUser] as User;
+            var users = UsersManager.GetUsersAll(sessionUser.Library.Id);
 
             foreach (User user in users)
             {
@@ -40,7 +42,7 @@ namespace Admin.Users
                 {
                     NavigateUrl = "~/Loans/InProgress.aspx?userId=" + user.Id,
                     CssClass = "toClickOn",
-                    Text = "Vezi împrumuturi"
+                    Text = "Împrumuturi"
                 };
                 TableCell userId = new TableCell();
                 userId.Controls.Add(link);

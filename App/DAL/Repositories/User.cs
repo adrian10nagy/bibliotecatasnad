@@ -9,13 +9,14 @@ namespace DAL.Repositories
     public interface IUserRepository
     {
         User GetUserById(int id);
-        IEnumerable<User> GetAllUsers();
-        IEnumerable<User> GetUsersByDay(DateTime dateTime);
+        IEnumerable<User> GetAllUsers(int libraryId);
+        IEnumerable<User> GetUsersByDay(DateTime dateTime, int libraryId);
         int InsertUser(User user);
         User GetUserByEmail(string email);
-        int GetUserCount();
+        int GetUserCount(int libraryId);
         void UpdateUser(User user);
         User GetUserForLogin(string userName, string password);
+        int UpdateUser(int userId, string passwordOld, string passwordNew);
     }
 
     public partial class Repository : IUserRepository
@@ -53,13 +54,16 @@ namespace DAL.Repositories
             return user;
         }
 
-        public int GetUserCount()
+        public int GetUserCount(int libraryId)
         {
             int user = 0;
 
             _dbRead.Execute(
                 "UsersGetCount",
-            null,
+            new[]
+            {
+                new SqlParameter("@libraryId", libraryId)
+            },
                 r => user = Read<int>(r, "num"));
 
             return user;
@@ -67,7 +71,6 @@ namespace DAL.Repositories
 
         public User GetUserByEmail(string email)
         {
-
             User user = null;
 
             _dbRead.Execute(
@@ -116,18 +119,30 @@ namespace DAL.Repositories
                     Email = Read<string>(r, "Email"),
                     Flags = Read<UserFlag>(r, "Flags"),
                     UserType = Read<UserType>(r, "Id_usertype"),
+                    Locality = new Locality()
+                    {
+                        Id = Read<int>(r, "Id_Locality"),
+                        Name = Read<string>(r, "Locality"),
+                    },
+                    Library = new Library()
+                    {
+                        Id = Read<int>(r, "LibraryId"),
+                        Name = Read<string>(r, "LibraryName"),
+                    }
                 });
 
             return user;
         }
 
-
-        public IEnumerable<User> GetAllUsers()
+        public IEnumerable<User> GetAllUsers(int libraryId)
         {
             var users = new List<User>();
             _dbRead.Execute(
                 "UserGetAll",
-            null,
+            new[]
+            {
+                new SqlParameter("@libraryId", libraryId)
+            },
                 r => users.Add(new User()
                 {
                     Id = Read<int>(r, "Id"),
@@ -154,7 +169,7 @@ namespace DAL.Repositories
             return users;
         }
 
-        public IEnumerable<User> GetUsersByDay(DateTime dateTime)
+        public IEnumerable<User> GetUsersByDay(DateTime dateTime, int libraryId)
         {
             var users = new List<User>();
             _dbRead.Execute(
@@ -162,6 +177,7 @@ namespace DAL.Repositories
             new[]
             {
                 new SqlParameter("@date", dateTime),
+                new SqlParameter("@libraryId", libraryId),
             },
                 r => users.Add(new User()
                 {
@@ -211,6 +227,7 @@ namespace DAL.Repositories
                 new SqlParameter("@Flags", user.Flags), 
                 new SqlParameter("@Gender", user.Gender), 
                 new SqlParameter("@LocalityId", user.Locality.Id), 
+                new SqlParameter("@LibraryId", user.Library.Id), 
                 new SqlParameter("@UserType", user.UserType), 
                 new SqlParameter("@NationalityId", user.Nationality), 
                 new SqlParameter("@Password", user.Password), 
@@ -242,9 +259,29 @@ namespace DAL.Repositories
                 new SqlParameter("@FacebookAddress", user.FacebookAddress), 
                 new SqlParameter("@Gender", user.Gender), 
                 new SqlParameter("@LocalityId", user.Locality.Id), 
+                new SqlParameter("@LibraryId", user.Library.Id), 
                 new SqlParameter("@UserType", user.UserType),
-                new SqlParameter("@NationalityId", user.Nationality)
+                new SqlParameter("@NationalityId", user.Nationality),
+                new SqlParameter("@NationalityId", user.Library.Id)
                });
+        }
+
+        public int UpdateUser(int userId, string passwordOld, string passwordNew)
+        {
+            int result = 0;
+
+            _dbRead.Execute(
+               "UsersUpdatePassword",
+           new[] { 
+                new SqlParameter("@id", userId), 
+                new SqlParameter("@passwordOld", passwordOld),
+                new SqlParameter("@passwordNew", passwordNew)
+               },
+                r =>
+                result = Read<int>(r, "result")
+                );
+
+            return result;
         }
 
         #endregion

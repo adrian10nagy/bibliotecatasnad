@@ -25,21 +25,15 @@ namespace Admin.Account
                     lblMessageLogin.Style.Add("font-size", "18px");
                     lblMessageLogin.Visible = true;
                 }
-                //else if (Request["Message"] == "SessionTimeout")
-                //{
-                //    lblMessageLogin.Text = "Datorită inactivității, sesiunea a expirat. Loghează-te din nou";
-                //    lblMessageLogin.Visible = true;
-                //    lblMessageLogin.Style.Add("color", "red");
-                //}
             }
         }
 
         protected void btnAccountLogin_Click(object sender, EventArgs e)
         {
-            if(this.ValidateLogin())
+            if (this.ValidateLogin())
             {
                 User user = UsersManager.GetUserForLogin(txtUserName.Value, txtUserPassword.Value);
-                if(user == null || user.UserType != UserType.Administrator)
+                if (user == null || user.UserType != UserType.Administrator)
                 {
                     txtUserName.Style.Add("border", "1px solid red");
                     txtUserPassword.Style.Add("border", "1px solid red");

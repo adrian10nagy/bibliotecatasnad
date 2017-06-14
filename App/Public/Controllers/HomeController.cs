@@ -19,8 +19,8 @@ namespace Public.Controllers
 
             var mainmodel = new MainPageModel
             {
-                BookNumber = BooksManager.GetBooksNrAll(),
-                LastAddedBooks = BooksManager.GetBooksLastAdded(20),
+                BookNumber = BooksManager.GetBooksNrAll(1), // todo find library Id
+                LastAddedBooks = BooksManager.GetBooksLastAdded(20, 1), // todo find library Id
                 Flags = flags
             };
 
@@ -29,12 +29,16 @@ namespace Public.Controllers
 
         public ActionResult Despre()
         {
-            return View();
+            var library = LibrariesManager.GetLibraryById(1);
+
+            return View(library);
         }
 
         public ActionResult Contact()
         {
-            return View();
+            var library = LibrariesManager.GetLibraryById(1);
+
+            return View(library);
         }
     }
 }

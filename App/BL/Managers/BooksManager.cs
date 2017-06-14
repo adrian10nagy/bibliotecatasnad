@@ -12,32 +12,34 @@ namespace BL.Managers
 
     public static class BooksManager
     {
-        public static int GetBooksNrAll()
+        public static int GetBooksNrAll(int libraryId)
         {
-            return Kit.Instance.Books.GetBookCount();
+            return Kit.Instance.Books.GetBookCount(libraryId);
         }
 
-        public static IEnumerable<Book> GetAllBooks()
+        public static IEnumerable<Book> GetAllBooks(int libraryId)
         {
-            var books = CacheHelper.Instance.GetMyCachedItem(CacheConstants.BooksGetAll) as List<Book>;
+            var bookcacheKey = string.Format(CacheConstants.BooksGetAll, libraryId);
+            var books = CacheHelper.Instance.GetMyCachedItem(bookcacheKey) as List<Book>;
+
             if (books == null || books.Count == 0)
             {
-                books = Kit.Instance.Books.GetAllBooks() as List<Book>;
+                books = Kit.Instance.Books.GetAllBooks(libraryId) as List<Book>;
                 books = books.OrderBy(b => b.InternalNr).ToList();
                 foreach (var item in books)
                 {
                     item.ISBNs = Kit.Instance.ISBNs.GetAllByBookId(item.Id) as List<ISBN>;
                     item.Authors = BooksManager.GetBookAuthorsByBookId(item.Id) as List<Author>;
                 }
-                CacheHelper.Instance.AddToMyCache(CacheConstants.BooksGetAll, books, MyCachePriority.Default);
+                CacheHelper.Instance.AddToMyCache(bookcacheKey, books, MyCachePriority.Default);
             }
 
             return books;
         }
 
-        public static IEnumerable<Book> GetAllBooksWithDomain()
+        public static IEnumerable<Book> GetAllBooksWithDomain(int libraryId)
         {
-            var books = Kit.Instance.Books.GetAllBooksWithDomain();
+            var books = Kit.Instance.Books.GetAllBooksWithDomain(libraryId);
             books = books.OrderBy(b => b.InternalNr).ToList();
             foreach (var item in books)
             {
@@ -47,22 +49,21 @@ namespace BL.Managers
             return books;
         }
 
-        public static IEnumerable<Book> GetAllBooksByDomainId(int domainId)
+        public static IEnumerable<Book> GetAllBooksByDomainId(int domainId, int libraryId)
         {
-            var books = Kit.Instance.Books.GetAllBooksByDomainId(domainId);
+            var books = Kit.Instance.Books.GetAllBooksByDomainId(domainId, libraryId);
             foreach (var item in books)
             {
                 item.Authors = BooksManager.GetBookAuthorsByBookId(item.Id) as List<Author>;
             }
 
             return books;
-
         }
 
-        public static BookPublishersChart GetBookPublisherForChart()
+        public static BookPublishersChart GetBookPublisherForChart(int libraryId)
         {
             var maxPublishers = 4;
-            var bookPublishers = Kit.Instance.Books.GetAllBookPublishersGrouped() as List<Publisher>;
+            var bookPublishers = Kit.Instance.Books.GetAllBookPublishersGrouped(libraryId) as List<Publisher>;
 
             var topPublishers = new List<Publisher>();
             for (int i = 0; i < maxPublishers; i++)
@@ -75,6 +76,7 @@ namespace BL.Managers
             {
                 otherPublishers.Add(bookPublishers[i]);
             }
+
             topPublishers.Add(new Publisher
             {
                 Name = "Altele",
@@ -91,16 +93,15 @@ namespace BL.Managers
             string[] datas = new string[maxPublishers + 1];
             string[] percentage = new string[maxPublishers + 1];
             var booksNumber = (double)bookPublishers.Sum(p => p.Id);
-            for (int i = 0; i < maxPublishers+1; i++)
+            for (int i = 0; i < maxPublishers + 1; i++)
             {
-                var x = (double)bookPublishers.Sum(p => p.Id);
-                var xx = (double)topPublishers[i].Id / booksNumber;
-                var xxx = xx * 100;
-
                 labels.Add(topPublishers[i].Name);
                 datas[i] = topPublishers[i].Id.ToString();
-                percentage[i] = (((double)topPublishers[i].Id / (double)booksNumber) * 100).ToString();
+                var percentageValue = (((double)topPublishers[i].Id / (double)booksNumber) * 100);
+                percentageValue = System.Math.Round(percentageValue, 2);
+                percentage[i] = percentageValue.ToString();
             }
+
             result.Labels = labels;
             result.Dataset.Data = datas;
             result.Dataset.Percentage = percentage;
@@ -141,27 +142,16 @@ namespace BL.Managers
             return book;
         }
 
-        public static List<Book> GetBooksByDay(DateTime dateTime)
+        public static List<Book> GetBooksByDay(DateTime dateTime, int libraryId)
         {
-            var books = Kit.Instance.Books.GetBooksByDay(dateTime);
+            var books = Kit.Instance.Books.GetBooksByDay(dateTime, libraryId);
 
             return books;
         }
 
-        public static IEnumerable<Book> GetBooksByAuthorId(int id)
+        public static IEnumerable<Book> GetBooksByAuthorId(int id, int libraryId)
         {
-            var books = Kit.Instance.Books.GetBooksByAuthorId(id);
-            foreach (var item in books)
-            {
-                 item.Authors = BooksManager.GetBookAuthorsByBookId(item.Id) as List<Author>;
-            }
-
-            return books;
-        }
-
-        public static IEnumerable<Book> GetBooksByPublisherId(int id)
-        {
-            var books = Kit.Instance.Books.GetBooksByPublisherId(id);
+            var books = Kit.Instance.Books.GetBooksByAuthorId(id, libraryId);
             foreach (var item in books)
             {
                 item.Authors = BooksManager.GetBookAuthorsByBookId(item.Id) as List<Author>;
@@ -170,9 +160,22 @@ namespace BL.Managers
             return books;
         }
 
-        public static void AddBook(DAL.Entities.Book book)
+        public static IEnumerable<Book> GetBooksByPublisherId(int id, int libraryId)
         {
-            CacheHelper.Instance.RemoveMyCachedItem(CacheConstants.BooksGetAll);
+            var books = Kit.Instance.Books.GetBooksByPublisherId(id, libraryId);
+            foreach (var item in books)
+            {
+                item.Authors = BooksManager.GetBookAuthorsByBookId(item.Id) as List<Author>;
+            }
+
+            return books;
+        }
+
+        public static void AddBook(Book book, int libraryId)
+        {
+            var bookcacheKey = string.Format(CacheConstants.BooksGetAll, libraryId);
+
+            CacheHelper.Instance.RemoveMyCachedItem(bookcacheKey);
 
             book.Id = Kit.Instance.Books.AddBook(book);
             AddBookAuthors(book);
@@ -196,20 +199,23 @@ namespace BL.Managers
             }
         }
 
-        public static void Update(Book book)
+        public static void Update(Book book, int libraryId)
         {
-            
-            CacheHelper.Instance.RemoveMyCachedItem(CacheConstants.BooksGetAll);
+            var bookcacheKey = string.Format(CacheConstants.BooksGetAll, libraryId);
+
+            CacheHelper.Instance.RemoveMyCachedItem(bookcacheKey);
+
             //Update Book
             Kit.Instance.Books.UpdateBook(book);
+
             // Update Authors
             var bookAuthorsBeforeChange = BooksManager.GetBookAuthorsByBookId(book.Id) as List<Author>;
-            var authorsAreTheSame = (string.Join(", ", bookAuthorsBeforeChange.Select(i => i.Id)) == string.Join(", ", book.Authors.Select(i => i.Id)));           
+            var authorsAreTheSame = (string.Join(", ", bookAuthorsBeforeChange.Select(i => i.Id)) == string.Join(", ", book.Authors.Select(i => i.Id)));
 
             // Update ISBNS
             var bookIsbnsBeforeChange = Kit.Instance.ISBNs.GetAllByBookId(book.Id) as List<ISBN>;
             var isbnsAreTheSame = (string.Join(", ", bookIsbnsBeforeChange.Select(i => i.Value)) == string.Join(", ", book.ISBNs.Select(i => i.Value)));
-            
+
             if (!authorsAreTheSame)
             {
                 Kit.Instance.Books.RemoveAuthors(book.Id);
@@ -223,15 +229,22 @@ namespace BL.Managers
             }
         }
 
-        public static List<Book> GetBooksLastAdded(int nr)
+        public static List<Book> GetBooksLastAdded(int nr, int libraryId)
         {
-            var books = Kit.Instance.Books.GetBooksLastAdded(nr) as List<Book>;
+            var books = Kit.Instance.Books.GetBooksLastAdded(nr, libraryId) as List<Book>;
             foreach (var item in books)
             {
                 item.Authors = GetBookAuthorsByBookId(item.Id) as List<Author>;
             }
 
             return books;
+        }
+
+        public static Book GetBookByISBN(string isbn, int libraryId)
+        {
+            Book book = Kit.Instance.Books.GetBookByISBN(isbn, libraryId);
+
+            return book;
         }
     }
 }

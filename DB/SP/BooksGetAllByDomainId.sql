@@ -16,7 +16,8 @@ GO
 -- Create date: 03/02/2017
 -- =============================================
 CREATE PROCEDURE [dbo].[BooksGetAllByDomainId]
-	@domainId int
+	@domainId int,
+	@libraryId int
 AS
 BEGIN
 	
@@ -40,4 +41,5 @@ BEGIN
   Inner Join BookDomains BD
 	ON BD.Id = B.Id_BookDomain
 	WHERE B.Id_BookDomain = @domainId
+	AND B.Id_Library = @libraryId
 END

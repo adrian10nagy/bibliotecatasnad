@@ -15,6 +15,7 @@ GO
 -- Create date: 12/02/2017
 -- =============================================
 CREATE PROCEDURE [dbo].[LoansGetAllFinished]
+@libraryId int
 AS
 BEGIN
 	
@@ -34,5 +35,5 @@ SELECT L.[Id]
 	INNER JOIN Books B
 		ON L.Id_Book = B.Id
 	WHERE L.ReturnedDate is not null
-
+	AND B.Id_Library = @libraryId
 END

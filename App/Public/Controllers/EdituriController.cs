@@ -14,11 +14,20 @@ namespace Public.Controllers
             return View(publishers);
         }
 
-        public ActionResult Detalii(int id)
+        public ActionResult Detalii(int id, string name = null)
         {
-            var books = BooksManager.GetBooksByPublisherId(id);
-
             var publisher = PublishersManager.GetPublishersById(id);
+
+            if(publisher == null)
+            {
+                return RedirectToAction("Inexistentă");
+            }
+            else if(name == null)
+            {
+                return this.RedirectToAction("Detalii", new { id = publisher.Id, name = publisher.Name.Replace(' ', '-') });
+            }
+
+            var books = BooksManager.GetBooksByPublisherId(id, 1);
 
             if (publisher != null)
             {

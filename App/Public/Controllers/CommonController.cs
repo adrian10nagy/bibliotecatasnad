@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using BL.Managers;
 using System.Web.Mvc;
+using DAL.Entities;
+using BL.Constants;
 
 namespace Public.Controllers
 {
@@ -12,7 +14,7 @@ namespace Public.Controllers
         [HttpGet]
         public ActionResult AsyncGetSimpleSearchSuggestions(string searchTerm)
         {
-            var bookSuggestions = SearchManager.GetBooksBySimpleSearch(searchTerm).Take(10).ToList();
+            var bookSuggestions = SearchManager.GetBooksBySimpleSearch(searchTerm, 1).Take(10).ToList(); // to do add library id logic
             var authorsSuggestions = SearchManager.GetAuthorsBySimpleSearch(searchTerm).Take(5).ToList();
             var domainsSuggestions = SearchManager.GetBookDomainsBySimpleSearch(searchTerm).Take(5).ToList();
 

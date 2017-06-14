@@ -1,0 +1,43 @@
+﻿@model int
+@using Public.Models;
+
+@{
+    ViewBag.Title = "Setări";
+
+    var flag = (PageQueryParam)ViewData["flags"];
+    
+}
+
+<h2>Setări</h2>
+@using (Html.BeginForm("SchimbaParola", "Cont", FormMethod.Post))
+{
+    <fieldset>
+        <legend>Schimbă:</legend>
+        Parolă curentă: <input type="password" name="passwordOld"><br><br>
+        Parolă nouă: <input type="password" name="passwordNew"><br><br>
+        Reintrodu parola nouă: <input type="password" name="passwordNewCheck"><br>
+        <input type="hidden" name="userId" value="@Model.ToString()"><br>
+        <input type="submit" class="btn btn-primary" value="Schimbă parola"><br>
+    </fieldset>
+
+}
+
+
+@if (flag == Public.Models.PageQueryParam.PasswordChangeTrue)
+{
+    <!--/Membership features end -->
+    <script>
+        window.onload = function () {
+            notify("Parolă schimbată cu succes", 'success');
+        };
+    </script>
+}
+else if (flag == Public.Models.PageQueryParam.PasswordChangeFalse)
+{
+    <!--/Membership features end -->
+    <script>
+        window.onload = function () {
+            notify("Parola NU a fost schimbată, te rugăm încercă din nou", 'warn');
+        };
+    </script>
+}

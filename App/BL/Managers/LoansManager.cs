@@ -10,62 +10,74 @@ namespace BL.Managers
 
     public static class LoansManager
     {
-        public static int GetLoansNrAll()
+        public static int GetLoansNrAll(int libraryId)
         {
-            return Kit.Instance.Loans.GetLoanCount();
+            return Kit.Instance.Loans.GetLoanCount(libraryId);
         }
 
-        public static List<Loan> GetActiveLoans()
+        public static List<Loan> GetActiveLoans(int libraryId)
         {
-            var loans = CacheHelper.Instance.GetMyCachedItem(CacheConstants.LoansGetAllActive) as List<Loan>;
+            var activeLoansCacheKey = string.Format(CacheConstants.LoansGetAllActive, libraryId);
+
+            var loans = CacheHelper.Instance.GetMyCachedItem(activeLoansCacheKey) as List<Loan>;
             if (loans == null || loans.Count == 0)
             {
-                loans = Kit.Instance.Loans.GetAllActiveLoans() as List<Loan>;
-                CacheHelper.Instance.AddToMyCache(CacheConstants.LoansGetAllActive, loans, MyCachePriority.Default);
+                loans = Kit.Instance.Loans.GetAllActiveLoans(libraryId) as List<Loan>;
+                CacheHelper.Instance.AddToMyCache(activeLoansCacheKey, loans, MyCachePriority.Default);
             }
 
             return loans;
         }
 
-        public static List<Loan> GetFinishedLoans()
+        public static List<Loan> GetFinishedLoans(int libraryId)
         {
-            var loans = CacheHelper.Instance.GetMyCachedItem(CacheConstants.LoansGetAllFinished) as List<Loan>;
+            var finishedLoansCacheKey = string.Format(CacheConstants.LoansGetAllFinished, libraryId);
+            var loans = CacheHelper.Instance.GetMyCachedItem(finishedLoansCacheKey) as List<Loan>;
+
             if (loans == null || loans.Count == 0)
             {
-                loans = Kit.Instance.Loans.GetAllFinishedLoans() as List<Loan>;
-                CacheHelper.Instance.AddToMyCache(CacheConstants.LoansGetAllFinished, loans, MyCachePriority.Default);
+                loans = Kit.Instance.Loans.GetAllFinishedLoans(libraryId) as List<Loan>;
+                CacheHelper.Instance.AddToMyCache(finishedLoansCacheKey, loans, MyCachePriority.Default);
             }
 
             return loans;
         }
 
-        public static List<Loan> GetLoansByDay(DateTime datetime)
+        public static List<Loan> GetLoansByDay(DateTime datetime, int libraryId)
         {
-             var loans = Kit.Instance.Loans.GetLoansByDay(datetime);
+            var loans = Kit.Instance.Loans.GetLoansByDay(datetime, libraryId);
 
              return loans;
         }
 
-        public static void Add(Loan loan)
+        public static void Add(Loan loan, int libraryId)
         {
-            CacheHelper.Instance.RemoveMyCachedItem(CacheConstants.LoansGetAllActive);
+            var activeLoansCacheKey = string.Format(CacheConstants.LoansGetAllFinished, libraryId);
+
+            CacheHelper.Instance.RemoveMyCachedItem(activeLoansCacheKey);
             foreach (var item in loan.Books)
             {
                 Kit.Instance.Loans.AddLoan(item.Id, loan.User.Id, loan.LoanDate);
             }
         }
 
-        public static void ReturnBook(int loanId, DateTime dateTime)
+        public static void ReturnBook(int loanId, DateTime dateTime, int libraryId)
         {
-            CacheHelper.Instance.RemoveMyCachedItem(CacheConstants.LoansGetAllActive);
-            CacheHelper.Instance.RemoveMyCachedItem(CacheConstants.LoansGetAllFinished);
+            var activeLoansCacheKey = string.Format(CacheConstants.LoansGetAllActive, libraryId);
+            var finishedLoansCacheKey = string.Format(CacheConstants.LoansGetAllFinished, libraryId);
+
+            CacheHelper.Instance.RemoveMyCachedItem(activeLoansCacheKey);
+            CacheHelper.Instance.RemoveMyCachedItem(finishedLoansCacheKey);
             Kit.Instance.Loans.ReturnBook(loanId, dateTime);
         }
 
-        public static void Remove(int loanId)
+        public static void Remove(int loanId, int libraryId)
         {
-            CacheHelper.Instance.RemoveMyCachedItem(CacheConstants.LoansGetAllActive);
-            CacheHelper.Instance.RemoveMyCachedItem(CacheConstants.LoansGetAllFinished);
+            var activeLoansCacheKey = string.Format(CacheConstants.LoansGetAllActive, libraryId);
+            var finishedLoansCacheKey = string.Format(CacheConstants.LoansGetAllFinished, libraryId);
+
+            CacheHelper.Instance.RemoveMyCachedItem(activeLoansCacheKey);
+            CacheHelper.Instance.RemoveMyCachedItem(finishedLoansCacheKey);
             Kit.Instance.Loans.Remove(loanId);
         }
 

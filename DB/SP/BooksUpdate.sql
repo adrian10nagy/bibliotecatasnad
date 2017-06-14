@@ -23,12 +23,15 @@ CREATE PROCEDURE [dbo].[BooksUpdate]
 	@BookLanguageId int,
 	@BookSubjectId int,
 	@InternalNr nvarchar(MAX),
-	@LibraryId nvarchar(MAX),
+	@LibraryId int,
 	@NrPages int,
 	@PublisherId int,
 	@PublishYear int = null,
 	@Title nvarchar(MAX),
-	@Volume nvarchar(MAX) = null
+	@Volume nvarchar(MAX) = null,
+	@Description nvarchar(MAX) = null,
+	@ImageUrl nvarchar(MAX) = null,
+	@PreviewLink nvarchar(MAX) = null
 AS
 BEGIN
 	SET NOCOUNT ON;
@@ -47,7 +50,9 @@ BEGIN
       ,[Id_BookDomain] = @BookDomainId 
       ,[Id_BookSubject] = @BookSubjectId
       ,[Id_Language] = @BookLanguageId
-	
+	  ,[Description] = @Description
+	  ,[ImageUrl] = @ImageUrl
+	  ,[PreviewLink] = @PreviewLink
 		Where Id = @Id
 	END
 END

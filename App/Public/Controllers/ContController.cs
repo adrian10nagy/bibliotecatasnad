@@ -37,10 +37,52 @@ namespace Public.Controllers
             return View(loans);
         }
 
-        [HttpGet]
         public ActionResult LogarePartiala(MainPageModel model)
         {
             return PartialView("_LoginModal");
+        }
+
+        public ActionResult Setări()
+        {
+            if (Session["userId"] == null)
+            {
+                return RedirectToAction("Logare");
+            }
+
+            var flags = PageQueryParam.None;
+
+            if(Request.QueryString["passwordchange"] != null)
+            {
+                flags = PageQueryParam.PasswordChangeFalse;
+                if(Request.QueryString["passwordchange"].ToString() == "true")
+                {
+                    flags = PageQueryParam.PasswordChangeTrue;
+                }
+            }
+
+            var userId = Session["userId"].ToString().ToNullableInt().Value;
+            ViewData["flags"] = flags;
+
+            return View(userId);
+        }
+
+        [HttpPost]
+        public ActionResult SchimbaParola(string passwordOld, string passwordNew, string passwordNewCheck, string userId)
+        {
+            var result = false;
+            if(!string.IsNullOrEmpty(passwordOld) && !string.IsNullOrEmpty(passwordNew) && 
+                !string.IsNullOrEmpty(passwordNewCheck) && userId.ToNullableInt().HasValue &&
+                passwordNew.CompareTo(passwordNewCheck) == 0)
+            {
+                result = UsersManager.UpdateUserPassword(userId.ToNullableInt().Value, passwordOld, passwordNew, 1);
+            }
+
+            if (result)
+            {
+                return this.RedirectToAction("Setări", new { passwordchange = "true" });
+            }
+
+            return this.RedirectToAction("Setări", new { passwordchange = "false" });
         }
 
         [HttpPost]
@@ -57,6 +99,8 @@ namespace Public.Controllers
             Session["userType"] = (int)user.UserType;
             Session["userFirstName"] = user.FirstName;
             Session["userLastName"] = user.LastName;
+
+            var x = Session["userId"] == null;
 
             return Json(new { response = JSONResponse.Success });
         }
@@ -80,12 +124,13 @@ namespace Public.Controllers
                 Flags = UserFlag.Default,
                 Gender = Gender.Nesetată,
                 Locality = new Locality { Id = 1 },
+                Library = new Library { Id = 1 },
                 Nationality = Nationality.Alta,
                 UserType = UserType.Nesetat,
                 Birthdate = DateTime.Now,
                 Password = userPass,
                 Username = userEmail
-            });
+            }, 1);
 
             return AsyncUserLogin(userEmail, userPass);
         }

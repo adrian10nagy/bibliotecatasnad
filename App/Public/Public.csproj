@@ -293,7 +293,6 @@
     <Content Include="Views\Edituri\Index.cshtml" />
     <Content Include="Views\Edituri\Detalii.cshtml" />
     <Content Include="Views\Carti\Index.cshtml" />
-    <Content Include="Views\Autori\test.cshtml" />
     <Content Include="Views\Shared\_LoginModal.cshtml" />
     <Content Include="Views\Shared\_BookABook.cshtml" />
     <Content Include="Views\Carti\Inexistentă.cshtml" />
@@ -305,6 +304,7 @@
     <Content Include="Scripts\tether.min.js.map">
       <DependentUpon>tether.min.js</DependentUpon>
     </Content>
+    <Content Include="Views\Cont\Setări.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

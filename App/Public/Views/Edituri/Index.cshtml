@@ -16,7 +16,7 @@
 
                 @foreach (var item in Model)
                 {
-                    @Html.ActionLink(item.Name, "Detalii", "Edituri", new { id = item.Id }, new { @class = "list-group-item" })
+                    @Html.ActionLink(item.Name, "Detalii", "Edituri", new { id = item.Id, name = item.Name.Trim().Replace(' ', '-') }, new { @class = "list-group-item" })
                 }
             </div>
 

@@ -8,6 +8,7 @@ namespace Admin.Books
     using System.Web.UI;
     using System.Web.UI.WebControls;
     using System.Linq;
+    using BL.Constants;
 
     public partial class Manage : System.Web.UI.Page
     {
@@ -27,7 +28,9 @@ namespace Admin.Books
 
         private void InitializeUsersTable()
         {
-            var books = BooksManager.GetAllBooks();
+            var user = Session[SessionConstants.LoginUser] as User;
+
+            var books = BooksManager.GetAllBooks(user.Library.Id);
 
             foreach (Book book in books)
             {
@@ -36,7 +39,7 @@ namespace Admin.Books
                 {
                     NavigateUrl = "~/Loans/Search.aspx?bookId=" + book.Id,
                     CssClass = "toClickOn",
-                    Text = "Vezi împrumuturi"
+                    Text = "Împrumuturi"
                 };
                 TableCell bookId = new TableCell();
                 bookId.Controls.Add(link);

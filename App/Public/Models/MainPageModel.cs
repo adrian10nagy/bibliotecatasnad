@@ -13,6 +13,8 @@ namespace Public.Models
 
     public enum PageQueryParam{
         None = 0,
-        NewUser = 1
+        NewUser = 1,
+        PasswordChangeTrue = 2,
+        PasswordChangeFalse = 3
     }
 }

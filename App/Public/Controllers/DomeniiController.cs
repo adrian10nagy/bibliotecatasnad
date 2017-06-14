@@ -19,7 +19,7 @@ namespace Public.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var books = BooksManager.GetAllBooksByDomainId(id);
+            var books = BooksManager.GetAllBooksByDomainId(id, 1); // todo find library
 
             ViewData["searchTerm"] = domain.Name;
 

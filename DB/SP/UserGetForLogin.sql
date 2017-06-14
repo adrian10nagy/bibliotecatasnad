@@ -20,14 +20,22 @@ CREATE PROCEDURE [dbo].[UserGetForLogin]
 AS
 BEGIN
 	
-	SELECT top 1 
-	   [Id]
-	  ,[FirstName]
-      ,[LastName]
-      ,[Email] 
-	  ,[Flags]
-      ,[Id_UserType]
-	FROM [dbo].[Users]
+	SELECT top 1
+	   U.[Id]
+	  ,U.[FirstName]
+      ,U.[LastName]
+      ,U.[Email] 
+	  ,U.[Flags]
+      ,U.[Id_UserType]
+	  ,U.Id_Locality
+	  ,L.Name as Locality
+	  ,Lib.Id as LibraryId
+	  ,Lib.Name as LibraryName
+	FROM [dbo].[Users] U
+		INNER JOIN Localities L
+		ON U.Id_Locality = L.Id
+		INNER JOIN Libraries Lib
+		ON U.Id_Library = Lib.Id
 	   where [PasswordHashed] = @password
 	   AND [UserName] = @username
 

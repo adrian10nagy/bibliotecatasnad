@@ -34,6 +34,7 @@
         public ISBNs ISBNs { get { return new ISBNs(); } }
         public ErrorLogs ErrorLogs { get { return new ErrorLogs(); } }
         public Reservations Reservations { get { return new Reservations(); } }
+        public Libraries Libraries { get { return new Libraries(); } }
 
         public void Dispose()
         {

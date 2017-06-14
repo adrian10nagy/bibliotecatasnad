@@ -11,7 +11,7 @@
         <asp:Label ID="lblMessage" runat="server"></asp:Label>
         <div class="x_panel">
             <div class="x_title">
-                <h2>Utilizatori <small>ai bibliotecii din Tășnad</small></h2>
+                <h2>Utilizatorii <small>bibliotecii</small></h2>
 
                 <div class="clearfix"></div>
             </div>

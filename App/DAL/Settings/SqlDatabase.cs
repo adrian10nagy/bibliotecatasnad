@@ -31,48 +31,6 @@ namespace DAL.Settings
             CommandTypeSet = commandType;
         }
 
-        //return Object
-        #region Execute Scalar
-        public Object ExecuteScalar(string query)
-        {
-            return ExecuteScalar(query, null);
-        }
-
-        public Object ExecuteScalar(string query, ParameterType[] parameters)
-        {
-            return ExecuteScalar(ConnectionStringSet, CommandTypeSet, query, parameters);
-        }
-
-        public Object ExecuteScalar(string connectionString, System.Data.CommandType commandType, string query, ParameterType[] parameters)
-        {
-            Object result = null;
-
-            using (var connection = new ConnectionType())
-            using (var command = new CommandType())
-            {
-                command.Connection = connection;
-                command.CommandType = commandType;
-                command.CommandText = query;
-                if (parameters != null)
-                {
-                    foreach (var parameter in parameters)
-                    {
-                        command.Parameters.Add(parameter);
-                    }
-                }
-
-                connection.ConnectionString = connectionString;
-                connection.Open();
-
-                result = command.ExecuteScalar();
-
-                connection.Close();
-            }
-            return result;
-        }
-        #endregion
-
-
         #region Execute
         public List<Object> Execute(string query, ParameterType[] parameters)
         {

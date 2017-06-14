@@ -17,7 +17,8 @@ GO
 CREATE PROCEDURE [dbo].[BooksGetByTitlePublisherDomain]
 @title nvarchar(MAX),
 @publisherId int = null,
-@domainId int = null
+@domainId int = null,
+@libraryId int
 AS
 BEGIN
 	
@@ -38,6 +39,7 @@ BEGIN
 		  Inner Join Publishers P
 		  ON B.Id_Publisher = P.Id
 			WHERE B.Title like '%' + @title +'%'
+			AND B.Id_Library = @libraryId
 			
 	ELSE IF(@publisherId IS NULL and @domainId IS NOT null)
 		SELECT B.[Id]
@@ -56,6 +58,8 @@ BEGIN
 		  ON B.Id_Publisher = P.Id
 			WHERE B.Title like '%' + @title +'%'
 			AND B.Id_BookDomain = @domainId
+			AND B.Id_Library = @libraryId
+
 	ELSE IF(@domainId IS NULL and @publisherId IS NOT null)
 		SELECT B.[Id]
 			  ,B.[Title]
@@ -73,6 +77,8 @@ BEGIN
 		  ON B.Id_Publisher = P.Id
 			WHERE B.Title like '%' + @title +'%'
 			AND B.Id_Publisher = @publisherId
+			AND B.Id_Library = @libraryId
+
 	ELSE
 		SELECT B.[Id]
 			  ,B.[Title]
@@ -91,4 +97,6 @@ BEGIN
 			WHERE B.Title like '%' + @title +'%'
 			AND B.Id_Publisher = @publisherId
 			AND B.Id_BookDomain = @domainId
+			AND B.Id_Library = @libraryId
+
 END

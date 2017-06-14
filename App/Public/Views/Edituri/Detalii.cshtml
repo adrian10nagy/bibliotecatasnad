@@ -16,7 +16,7 @@
         @foreach (var item in Model)
         {
             <div class="SearchresultBox">
-                <a href="~/Carti/Detalii/@item.Id">
+                <a href="~/Carti/Detalii/@item.Id?title=@item.Title.Trim().Replace(' ', '-')">
                     <h3>@item.Title</h3>
                     <h4>@item.Authors[0].Name</h4>
                     <h5>@item.Publisher.Name</h5>

@@ -9,13 +9,19 @@ namespace Admin.Books
     using DAL.Entities;
     using System;
     using System.Collections.Generic;
+    using System.Data;
+    using System.Drawing;
     using System.Linq;
-    using System.Text;
+    using System.Web.UI.HtmlControls;
     using System.Web.UI.WebControls;
 
     public partial class Add : System.Web.UI.Page
     {
-                
+        private const string DoesNotExist = "Nu există? Click aici";
+        private const string ExistGoBack = "Revino la lista inițială";
+
+        #region WebMethods
+
         [System.Web.Services.WebMethod]
         public static Author AsyncAddAuthor(string name)
         {
@@ -32,7 +38,7 @@ namespace Admin.Books
             return publisher;
         }
 
-         [System.Web.Services.WebMethod]
+        [System.Web.Services.WebMethod]
         public static BookDomain AsyncAddDomain(string name)
         {
             BookDomain bookDomain = BookDomainsManager.Add(name);
@@ -40,10 +46,12 @@ namespace Admin.Books
             return bookDomain;
         }
 
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
-            {
+        {
             if (!this.Page.IsPostBack)
-            {   
+            {
                 InitializeSources();
                 btnBookAuthorsRemove.Visible = false;
 
@@ -61,8 +69,11 @@ namespace Admin.Books
                         drpBookCondition.SelectedValue = ((int)book.BookCondition).ToString();
                         drpBookFormat.SelectedValue = ((int)book.BookFormat).ToString();
                         drdBookDomain.SelectedValue = book.BookDomain.Id.ToString();
-                        txtBookSubject.Value = book.BookSubject.Name;
+                        txtBookSubject.Text = book.BookSubject.Name;
                         drpBookLanguage.SelectedValue = ((int)book.BookLanguage).ToString();
+                        txtBookDescription.InnerText = book.Description;
+                        txtBookImage.Text = book.ImageUrl;
+                        txtBookPreviewLink.Text = book.PreviewLink;
                         foreach (var item in book.Authors)
                         {
                             bltBooksAuthorsSelected.Items.Add(new ListItem
@@ -85,7 +96,9 @@ namespace Admin.Books
                             bltBookIsbnSelected.Visible = true;
                             btnBookIsbnRemove.Visible = true;
                             btnBookIsbnAddNew.Visible = true;
-                        }else if(book.ISBNs.Count == 1){
+                        }
+                        else if (book.ISBNs.Count == 1)
+                        {
                             txtBookIsbn.Text = book.ISBNs[0].Value;
                         }
 
@@ -104,7 +117,7 @@ namespace Admin.Books
         {
             var user = Session[SessionConstants.LoginUser] as User;
 
-            if(!this.ValidateData(user))
+            if (!this.ValidateData(user))
             {
                 return;
             }
@@ -120,22 +133,26 @@ namespace Admin.Books
                 AddedBy = new User { Id = user.Id },
                 Publisher = PublishersManager.GetPublishersById(drdBookPublisher.SelectedValue.ToNullableInt().Value),
                 BookCondition = (BookCondition)drpBookCondition.SelectedValue.ToNullableInt(),
-                Library = new Library { Id = 1 },
+                Library = new Library { Id = user.Library.Id },
                 BookFormat = (BookFormat)drpBookFormat.SelectedValue.ToNullableInt(),
                 BookDomain = BookDomainsManager.GetAllBookDomainsById(drdBookDomain.SelectedValue.ToNullableInt().Value),
-                BookSubject = new BookSubject {
-                   Name = txtBookSubject.Value,
-                   Id = 1
+                BookSubject = new BookSubject
+                {
+                    Name = txtBookSubject.Text,
+                    Id = 1
                 },
                 BookLanguage = (Language)drpBookLanguage.SelectedValue.ToNullableInt(),
                 Authors = this.GetAuthors(),
-                ISBNs = this.GetIsbns()
+                ISBNs = this.GetIsbns(),
+                PreviewLink = txtBookPreviewLink.Text,
+                ImageUrl = txtBookImage.Text,
+                Description = txtBookDescription.InnerText
             };
 
             if (!string.IsNullOrEmpty(lblBookId.Text) && lblBookId.Text.ToNullableInt() != null && lblBookId.Text.ToNullableInt() != 0)
             {
                 book.Id = lblBookId.Text.ToNullableInt().Value;
-                BooksManager.Update(book);
+                BooksManager.Update(book, user.Library.Id);
                 Response.Redirect("~/Books/Manage.aspx?Message=BookUpdatedSuccess");
             }
             else
@@ -147,7 +164,7 @@ namespace Admin.Books
                     return;
                 }
 
-                BooksManager.AddBook(book);
+                BooksManager.AddBook(book, user.Library.Id);
                 lblStatus.Text = BookConstants.AddSuccess;
                 lblStatus.CssClass = "SuccessBox";
                 CleanFields();
@@ -194,16 +211,31 @@ namespace Admin.Books
 
         protected void lnkBookAuthorsAddNew_Click(object sender, EventArgs e)
         {
+            ChangeBookAuthorAddNewVisibility();
+        }
+
+        private void ChangeBookAuthorAddNewVisibility(bool addNewVisible = false)
+        {
+            if(addNewVisible)
+            {
+                lnkBookAuthorsAddNew.Text = ExistGoBack;
+                drdBooksAutors.Visible = false;
+                txtBookAuthorsAddNew.Visible = true;
+                btnBookAuthorAddNew.Visible = true;
+
+                return;
+            }
+
             if (txtBookAuthorsAddNew.Visible == false)
             {
-                lnkBookAuthorsAddNew.Text = "Revino la lista inițială";
+                lnkBookAuthorsAddNew.Text = ExistGoBack;
                 drdBooksAutors.Visible = false;
                 txtBookAuthorsAddNew.Visible = true;
                 btnBookAuthorAddNew.Visible = true;
             }
             else
             {
-                lnkBookAuthorsAddNew.Text = "Nu există? Click aici";
+                lnkBookAuthorsAddNew.Text = DoesNotExist;
                 drdBooksAutors.Visible = true;
                 txtBookAuthorsAddNew.Visible = false;
                 btnBookAuthorAddNew.Visible = false;
@@ -212,7 +244,7 @@ namespace Admin.Books
 
         protected void btnBookAuthorAddNew_Click(object sender, EventArgs e)
         {
-            if(txtBookAuthorsAddNew.Text.Trim() == string.Empty)
+            if (txtBookAuthorsAddNew.Text.Trim() == string.Empty)
             {
                 txtBookAuthorsAddNew.CssClass = "";
             }
@@ -224,7 +256,7 @@ namespace Admin.Books
                     Text = txtBookAuthorsAddNew.Text
                 };
 
-                if(existentAuthor != null)
+                if (existentAuthor != null)
                 {
                     listItem.Value = existentAuthor.Id.ToString();
                 }
@@ -240,24 +272,39 @@ namespace Admin.Books
                 drdBooksAutors.Visible = true;
                 drdBooksAutors.SelectedIndex = 0;
                 btnBookAuthorsRemove.Visible = true;
-                lnkBookAuthorsAddNew.Text = "Nu există? Click aici";
+                lnkBookAuthorsAddNew.Text = DoesNotExist;
             }
         }
 
         protected void lnkBookPublisherAddNew_Click(object sender, EventArgs e)
         {
-            if (txtBookPublisherAddNew.Visible == false)
+            ChangeBookPublisherAddNewVisibility();
+        }
+
+        private void ChangeBookPublisherAddNewVisibility(bool addNewVisible = false)
+        {
+            if (addNewVisible)
             {
+                lnkBookPublisherAddNew.Text = ExistGoBack;
                 txtBookPublisherAddNew.Visible = true;
                 btnBookPublisherAddNew.Visible = true;
-                lnkBookPublisherAddNew.Text = "Revino la lista inițială";
+                drdBookPublisher.Visible = false;
+
+                return;
+            }
+
+            if (txtBookPublisherAddNew.Visible == false)
+            {
+                lnkBookPublisherAddNew.Text = ExistGoBack;
+                txtBookPublisherAddNew.Visible = true;
+                btnBookPublisherAddNew.Visible = true;
                 drdBookPublisher.Visible = false;
             }
             else
             {
+                lnkBookPublisherAddNew.Text = DoesNotExist;
                 txtBookPublisherAddNew.Visible = false;
                 btnBookPublisherAddNew.Visible = false;
-                lnkBookPublisherAddNew.Text = "Nu există? Click aici";
                 drdBookPublisher.Visible = true;
             }
         }
@@ -270,12 +317,21 @@ namespace Admin.Books
             }
             else
             {
-                var publisher = PublishersManager.Add(txtBookPublisherAddNew.Text);
+                var existentPublisher = PublishersManager.GetOnePublisherByInput(txtBookPublisherAddNew.Text);
                 var listItem = new ListItem
                 {
-                    Text = publisher.Name,
-                    Value = publisher.Id.ToString()
+                    Text = txtBookPublisherAddNew.Text
                 };
+
+                if (existentPublisher != null)
+                {
+                    listItem.Value = existentPublisher.Id.ToString();
+                }
+                else
+                {
+                    var publisher = PublishersManager.Add(txtBookPublisherAddNew.Text);
+                    listItem.Value = publisher.Id.ToString();
+                }
 
                 drdBookPublisher.Visible = true;
                 InitializePublishers();
@@ -332,7 +388,7 @@ namespace Admin.Books
         private void InitializeSources()
         {
             this.InitializeLanguages();
-            this.InitializeCondition();
+            this.InitializeBookCondition();
             this.InitializeBookFormat();
             this.InitializePublishers();
             this.InitializeDomains();
@@ -353,7 +409,7 @@ namespace Admin.Books
             drdBooksAutors.DataBind();
         }
 
-        private void InitializeCondition()
+        private void InitializeBookCondition()
         {
             var bookConditions = EnumUtil.GetValues<BookCondition>();
 
@@ -507,26 +563,34 @@ namespace Admin.Books
 
         private void CleanFields()
         {
+            // clear fields
             txtBookTitle.Text = string.Empty;
             txtBookPublishYear.Text = string.Empty;
             txtBookVolume.Text = string.Empty;
             txtBookIsbn.Text = string.Empty;
             txtBookInternalNr.Text = string.Empty;
             txtBookNrPages.Text = string.Empty;
+            lnkBookAuthorsAddNew.Text = DoesNotExist;
+            lblBooksSuggestions.Text = string.Empty;
+            txtBookImage.Text = string.Empty;
+            txtBookPreviewLink.Text = string.Empty;
+            txtBookDescription.InnerText = string.Empty;
+            txtBookAuthorsAddNew.Text = string.Empty;
+            txtBookPublisherAddNew.Text = string.Empty;
             bltBooksAuthorsSelected.Items.Clear();
             drdBookDomain.SelectedIndex = 0;
-
             drdBookPublisher.SelectedIndex = 0;
-            drdBookPublisher.Visible = true;
-            btnBookPublisherAddNew.Visible = false;
-            txtBookPublisherAddNew.Visible = false;
-            lnkBookPublisherAddNew.Text = "Nu există? Click aici";
 
-            btnBookAuthorsRemove.Visible = false;
-            btnBookAuthorAddNew.Visible = false;
+            // ajust visibility
+            drdBookPublisher.Visible = true;
+            txtBookPublisherAddNew.Visible = false;
+            lnkBookPublisherAddNew.Text = DoesNotExist;
             txtBookAuthorsAddNew.Visible = false;
             drdBooksAutors.Visible = true;
-            lnkBookAuthorsAddNew.Text = "Nu există? Click aici";
+            
+            btnBookAuthorsRemove.Visible = false;
+            btnBookAuthorAddNew.Visible = false;
+            btnBookPublisherAddNew.Visible = false;
         }
 
         private List<Author> GetAuthors()
@@ -559,8 +623,9 @@ namespace Admin.Books
         bool ValidateInternalNr(string internalNr)
         {
             var result = true;
+            var user = Session[SessionConstants.LoginUser] as User;
 
-            var books = BooksManager.GetAllBooks();
+            var books = BooksManager.GetAllBooks(user.Library.Id);
             var bookWithSameInternalNr = books.Where(b => b.InternalNr.ToLower() == internalNr.ToLower()).ToList();
 
             if (bookWithSameInternalNr != null && bookWithSameInternalNr.Count() < 1)
@@ -585,12 +650,154 @@ namespace Admin.Books
             }
         }
 
-        protected void txtBookIsbn_Unload(object sender, EventArgs e)
+        protected void OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
-            if(Page.IsPostBack)
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                //IsbnService.GetBook(txtBookIsbn.Text);
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gvBookSuggestions, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click pentru a aduce în editare";
             }
+        }
+
+        protected void OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            gvBookSuggestions.Visible = false;
+            ChangeBookAuthorAddNewVisibility(true);
+            ChangeBookPublisherAddNewVisibility(true);
+            bltBooksAuthorsSelected.Items.Clear();
+            drdBooksAutors.SelectedIndex = 0;
+            drdBooksAutors.DataBind();
+            btnBookAuthorsRemove.Visible = false;
+
+            foreach (GridViewRow row in gvBookSuggestions.Rows)
+            {
+                if (row.RowIndex == gvBookSuggestions.SelectedIndex)
+                {
+                    txtBookTitle.Text = Server.HtmlDecode(gvBookSuggestions.Rows[row.RowIndex].Cells[1].Text);
+                    txtBookPublisherAddNew.Text = Server.HtmlDecode(gvBookSuggestions.Rows[row.RowIndex].Cells[2].Text);
+                    txtBookAuthorsAddNew.Text = Server.HtmlDecode(gvBookSuggestions.Rows[row.RowIndex].Cells[3].Text);
+                    txtBookPublishYear.Text = Server.HtmlDecode(gvBookSuggestions.Rows[row.RowIndex].Cells[4].Text);
+                    txtBookNrPages.Text = Server.HtmlDecode(gvBookSuggestions.Rows[row.RowIndex].Cells[5].Text);
+                    var language = Server.HtmlDecode(gvBookSuggestions.Rows[row.RowIndex].Cells[6].Text);
+                    if (drpBookLanguage.Items.FindByText(language) != null)
+                    {
+                        var selectedValue = drpBookLanguage.Items.FindByText(language);
+                        drpBookLanguage.SelectedValue = selectedValue.Value;
+                    }
+                    HiddenField bookDescriereFull = row.Cells[0].FindControl("DescriereFull") as HiddenField;
+                    txtBookDescription.InnerText = bookDescriereFull != null ? bookDescriereFull.Value : string.Empty;
+
+                    HiddenField bookImageUrl = row.Cells[0].FindControl("ImageUrl") as HiddenField;
+                    txtBookImage.Text = bookImageUrl != null ? bookImageUrl.Value : string.Empty;
+
+                    HiddenField bookPreviewlink = row.Cells[0].FindControl("PreviewLink") as HiddenField;
+                    txtBookPreviewLink.Text = bookPreviewlink != null ? bookPreviewlink.Value : string.Empty;
+                    
+                    break;
+                }
+            }
+        }
+
+        protected void lnkIsbnLookUp_Click(object sender, EventArgs e)
+        {
+            lnkIsbnSuggestionsRemove.Visible = true;
+            var isbns = GetIsbns();
+            List<Book> books = new List<Book>();
+            foreach (var item in isbns)
+            {
+                if (!string.IsNullOrEmpty(item.Value))
+                {
+                    var book = IsbnService.GetBook(item.Value);
+                    if (book != null && book.Count() != 0 && book[0] != null)
+                    {
+                        books.AddRange(book);
+                    }
+                }
+            }
+
+            // adds independent but mandatory info to books
+            var user = Session[SessionConstants.LoginUser] as User;
+            foreach (var item in books)
+            {
+                if (item != null)
+                {
+                    item.AddedBy = new User
+                    {
+                        Id = user.Id
+                    };
+
+                    item.AddedDate = DateTime.Now;
+                    item.Library = new Library
+                    {
+                        Id = user.Library.Id
+                    };
+                }
+            }
+
+            lblBooksSuggestions.Text = books.Count().ToString() + " sugestii";
+
+            DataTable dt = new DataTable();
+            dt.Columns.AddRange(new DataColumn[10] 
+            { 
+                new DataColumn("Title"), 
+                new DataColumn("Editura"), 
+                new DataColumn("Autor(i)"), 
+                new DataColumn("An Apariție"), 
+                new DataColumn("Nr. pagini"), 
+                new DataColumn("Limbă"), 
+                new DataColumn("DescrierePreview"),
+                new DataColumn("DescriereFull"),
+                new DataColumn("ImageUrl"),
+                new DataColumn("PreviewLink")
+            });
+
+
+            foreach (Book book in books)
+            {
+                // authors
+                string authors = "Fără autor(i)";
+                if (book.Authors.Count >= 1)
+                {
+                    authors = book.Authors[0].Name;
+                }
+
+                if (book.Authors.Count > 1)
+                {
+                    var count = book.Authors.Count() - 1;
+                    authors = authors + " + " + count;
+                }
+
+                // book description
+                var description = book.Description != null ? book.Description.Substring(0, Math.Min(book.Description.Length, 250)) + "..." : string.Empty;
+
+                // book publisher
+                var publisher = (book.Publisher != null) ? book.Publisher.Name : string.Empty;
+
+                DataRow dr = dt.NewRow();
+                DataColumn dcol = new DataColumn();
+                dr["Title"] = book.Title;
+                dr["Editura"] = publisher;
+                dr["Autor(i)"] = authors;
+                dr["An Apariție"] = book.PublishYear;
+                dr["Nr. pagini"] = book.NrPages;
+                dr["Limbă"] = book.BookLanguage;
+                dr["DescrierePreview"] = description;
+                dr["DescriereFull"] = book.Description;
+                dr["ImageUrl"] = book.ImageUrl;
+                dr["PreviewLink"] = book.PreviewLink;
+
+                dt.Rows.Add(dr);
+            }
+
+            gvBookSuggestions.DataSource = dt;
+            gvBookSuggestions.DataBind();
+            gvBookSuggestions.Visible = true;
+        }
+
+        protected void lnkIsbnSuggestionsRemove_Click(object sender, EventArgs e)
+        {
+            gvBookSuggestions.Visible = false;
+            lnkIsbnSuggestionsRemove.Visible = false;
         }
     }
 }

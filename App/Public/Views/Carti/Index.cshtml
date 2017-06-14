@@ -30,7 +30,7 @@
                             <h3>@domainName</h3>
                             @foreach (var book in group)
                             {
-                                @Html.ActionLink(@book.Title + "- de " + @book.Authors[0].Name, "Detalii", "Carti", new { id = @book.Id }, null)<br />
+                                @Html.ActionLink(@book.Title + "- de " + @book.Authors[0].Name, "Detalii", "Carti", new { id = @book.Id, title = @book.Title.Trim().Replace(' ', '-') }, null)<br />
                             }
                         </div>
                     }

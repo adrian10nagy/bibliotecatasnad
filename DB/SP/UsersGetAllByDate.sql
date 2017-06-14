@@ -1,5 +1,3 @@
-
-
 use [bibliotecaTasnad]
 GO
 
@@ -17,7 +15,8 @@ GO
 -- Create date: 12/02/2017
 -- =============================================
 CREATE PROCEDURE [dbo].[UsersGetAllByDate]
-@date date
+@date date,
+@libraryId int
 AS
 BEGIN
 	
@@ -43,5 +42,6 @@ SELECT U.[Id]
   ON U.Id_Locality = L.Id
 	WHERE U.[JoinDate] > @date
 	AND U.[JoinDate] < dateadd(DD, 1, @date)
+	AND U.Id_Locality = @libraryId
 
 END

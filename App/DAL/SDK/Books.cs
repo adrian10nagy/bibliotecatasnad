@@ -17,25 +17,24 @@ namespace DAL.SDK
 
         #region Get
 
-        public int GetBookCount()
+        public int GetBookCount(int libraryId)
         {
-            return _repository.GetBookCount();
+            return _repository.GetBookCount(libraryId);
         }
 
-        public IEnumerable<Book> GetAllBooks()
+        public IEnumerable<Book> GetAllBooks(int libraryId)
         {
-            return _repository.GetAllBooks();
-
+            return _repository.GetAllBooks(libraryId);
         }
 
-        public IEnumerable<Book> GetAllBooksWithDomain()
+        public IEnumerable<Book> GetAllBooksWithDomain(int libraryId)
         {
-            return _repository.GetAllBooksWithDomain();
+            return _repository.GetAllBooksWithDomain(libraryId);
         }
 
-        public IEnumerable<Book> GetAllBooksByDomainId(int domainId)
+        public IEnumerable<Book> GetAllBooksByDomainId(int domainId, int libraryId)
         {
-            return _repository.GetAllBooksByDomainId(domainId);
+            return _repository.GetAllBooksByDomainId(domainId, libraryId);
         }
         
         #endregion
@@ -60,34 +59,39 @@ namespace DAL.SDK
             _repository.RemoveAuthors(bookId);
         }
 
-        public IEnumerable<Publisher> GetAllBookPublishersGrouped()
+        public IEnumerable<Publisher> GetAllBookPublishersGrouped(int libraryId)
         {
-            return _repository.GetAllBookPublishersGrouped();
+            return _repository.GetAllBookPublishersGrouped(libraryId);
         }
 
-        public List<Book> GetBooksByDay(DateTime dateTime)
+        public List<Book> GetBooksByDay(DateTime dateTime, int libraryId)
         {
-            return _repository.GetBooksByDay(dateTime);
+            return _repository.GetBooksByDay(dateTime, libraryId);
         }
 
-        public List<Book> GetBooksByTitlePublisherDomain(string title, int? publisherId, int? domainId)
+        public List<Book> GetBooksByTitlePublisherDomain(string title, int? publisherId, int? domainId, int libraryId)
         {
-            return _repository.GetBooksByTitlePublisherDomain(title, publisherId, domainId);
+            return _repository.GetBooksByTitlePublisherDomain(title, publisherId, domainId, libraryId);
         }
 
-        public IEnumerable<Book> GetBooksByAuthorId(int id)
+        public IEnumerable<Book> GetBooksByAuthorId(int id, int libraryId)
         {
-            return _repository.GetBooksByAuthorId(id);
+            return _repository.GetBooksByAuthorId(id, libraryId);
         }
 
-        public IEnumerable<Book> GetBooksByPublisherId(int id)
+        public IEnumerable<Book> GetBooksByPublisherId(int id, int libraryId)
         {
-            return _repository.GetBooksByPublisherId(id);
+            return _repository.GetBooksByPublisherId(id, libraryId);
         }
 
-        public IEnumerable<Book> GetBooksLastAdded(int nr)
+        public IEnumerable<Book> GetBooksLastAdded(int nr, int libraryId)
         {
-            return _repository.GetBooksLastAdded(nr);
+            return _repository.GetBooksLastAdded(nr, libraryId);
+        }
+
+        public Book GetBookByISBN(string isbn, int libraryId)
+        {
+            return _repository.GetBookByISBN(isbn, libraryId);
         }
     }
 }

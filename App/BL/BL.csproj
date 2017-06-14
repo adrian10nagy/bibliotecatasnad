@@ -53,6 +53,7 @@
     <Compile Include="Managers\BookDomainsManager.cs" />
     <Compile Include="Managers\BooksManager.cs" />
     <Compile Include="Managers\ISBNsManager.cs" />
+    <Compile Include="Managers\LibrariesManager.cs" />
     <Compile Include="Managers\LoansManager.cs" />
     <Compile Include="Managers\LocalitiesManager.cs" />
     <Compile Include="Managers\LogsManager.cs" />

@@ -43,3 +43,22 @@ $(function () {
         placement: "bottom"
     });
 });
+
+function notify(message, notifyType) {
+    $.notify(
+        message,
+        {
+            className: notifyType,
+            clickToHide: true,
+            autoHide: true,
+            autoHideDelay: 11000,
+            arrowShow: true,
+            showAnimation: 'slideDown',
+            showDuration: 2000,
+            hideAnimation: 'slideUp',
+            hideDuration: 2000,
+            globalPosition: 'right',
+            gap: 4
+
+        });
+}

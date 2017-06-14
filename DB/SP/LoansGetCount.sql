@@ -15,10 +15,14 @@ GO
 -- Description:
 -- =============================================
 CREATE PROCEDURE [dbo].[LoansGetCount]
+@libraryId int
 AS
 BEGIN
 	
 	SELECT count(1) as num
-	FROM [bibliotecaTasnad].[dbo].[Loans]
-
+	FROM [bibliotecaTasnad].[dbo].[Loans] L
+	Inner Join Books B
+		ON L.Id_Book = B.Id
+	where B.Id_Library = @libraryId
+	
 END

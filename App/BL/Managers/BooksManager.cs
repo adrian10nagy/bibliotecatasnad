@@ -62,10 +62,20 @@ namespace BL.Managers
 
         public static BookPublishersChart GetBookPublisherForChart(int libraryId)
         {
-            var maxPublishers = 4;
-            var bookPublishers = Kit.Instance.Books.GetAllBookPublishersGrouped(libraryId) as List<Publisher>;
-
+            var result = new BookPublishersChart()
+            {
+                Dataset = new Dataset(),
+                Labels = new List<string>()
+            };
             var topPublishers = new List<Publisher>();
+            var maxPublishers = 4;
+
+            var bookPublishers = Kit.Instance.Books.GetAllBookPublishersGrouped(libraryId) as List<Publisher>;
+            if(bookPublishers.Count < 4)
+            {
+                return result;
+            }
+
             for (int i = 0; i < maxPublishers; i++)
             {
                 topPublishers.Add(bookPublishers[i]);
@@ -83,11 +93,7 @@ namespace BL.Managers
                 Id = otherPublishers.Sum(p => p.Id)
             });
 
-            var result = new BookPublishersChart()
-            {
-                Dataset = new Dataset(),
-                Labels = new List<string>()
-            };
+           
 
             var labels = new List<string>();
             string[] datas = new string[maxPublishers + 1];

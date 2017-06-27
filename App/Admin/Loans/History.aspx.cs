@@ -1,7 +1,7 @@
 ﻿
 namespace Admin.Loans
 {
-    using Admin.Helpers;
+    using Helpers.Constants;
     using BL.Constants;
     using BL.Managers;
     using DAL.Entities;

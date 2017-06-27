@@ -5,9 +5,9 @@ namespace BL.Services
     using IsbnLookupService;
     using System.Collections.Generic;
 
-    public static class IsbnService
+    public static class GoogleBookWarehouseService
     {
-        public static List<Book> GetBook(string isbn)
+        public static List<Book> GetBookByIsbn(string isbn)
         {
             string addressOld = "https://www.googleapis.com/books/v1/volumes?q={0}";
             string addressNew = "https://www.googleapis.com/books/v1/volumes?q=isbn:{0}";
@@ -19,6 +19,22 @@ namespace BL.Services
 
             var bookLibNet = RequestManager.GetcontentFromLibrarieNet(isbn);
             if(bookLibNet != null)
+            {
+                result.Add(bookLibNet);
+            }
+
+            return result;
+        }
+
+        public static List<Book> GetBookByTitle(string title)
+        {
+            string addressOld = "https://www.googleapis.com/books/v1/volumes?q={0}";
+
+            List<string> selfLinks = new List<string>();
+            var result = RequestManager.GetBookFromGoogleApi(title, addressOld);
+
+            var bookLibNet = RequestManager.GetcontentFromLibrarieNet(title);
+            if (bookLibNet != null)
             {
                 result.Add(bookLibNet);
             }

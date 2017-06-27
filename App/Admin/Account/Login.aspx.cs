@@ -11,7 +11,7 @@ namespace Admin.Account
     using DAL.Entities;
     using BL.Cache;
     using BL.Constants;
-    using Admin.Helpers;
+    using Helpers.Constants;
     public partial class Login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -33,7 +33,7 @@ namespace Admin.Account
             if (this.ValidateLogin())
             {
                 User user = UsersManager.GetUserForLogin(txtUserName.Value, txtUserPassword.Value);
-                if (user == null || user.UserType != UserType.Administrator)
+                if (user == null || user.UserType != UserType.Administrator || UserRightsManager.UserHasAccess(new UserRight{ User = user, Functionality=Functionality.AdminLogin}))
                 {
                     txtUserName.Style.Add("border", "1px solid red");
                     txtUserPassword.Style.Add("border", "1px solid red");

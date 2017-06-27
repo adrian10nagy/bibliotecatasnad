@@ -14,7 +14,20 @@
             <div class="x_content">
                 <div class="dashboard-widget-content">
                     <ul class="quick-list">
-                        <li><i class="fa fa-line-chart"></i><a href="#">Evoluție</a></li>
+                        <li>
+                            <i class="fa fa-calendar-o"></i> 
+                            <asp:LinkButton ID="btnLibraryAdd" Text="Adaugă" runat="server" OnClick="btnLibraryAdd_Click"></asp:LinkButton>
+                        </li>
+                        <li>
+                        </li>
+                        <li><i class="fa fa-bar-chart"></i><a href="#">Auto Renewal</a> </li>
+                        <li><i class="fa fa-line-chart"></i><a href="#">Achievements</a>
+                        </li>
+                        <li><i class="fa fa-bar-chart"></i><a href="#">Auto Renewal</a> </li>
+                        <li><i class="fa fa-line-chart"></i><a href="#">Achievements</a>
+                        </li>
+                        <li><i class="fa fa-area-chart"></i><a href="#">Logout</a>
+                        </li>
                     </ul>
                     <div class="sidebar-widget">
                         <h4>Grad acoperire</h4>
@@ -29,13 +42,25 @@
             </div>
         </div>
     </div>
-    <%-- Grad acoperire --%>
+    <asp:Panel class="col-md-4 col-sm-4 col-xs-12" runat="server" visible="false" id="pnlAddPartner">
+        <div class="x_panel tile fixed_height_320">
+            <div class="x_title">
+                <h2>Adaugă o bibliotecă nouă</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <asp:TextBox ID="txtPartenerAddName" runat="server"></asp:TextBox>
+                <asp:Button ID="btnPartnerAddSubmit" runat="server" OnClick="btnPartnerAddSubmit_Click" Text="Adaugă" CssClass="" CausesValidation="false"></asp:Button>
+            </div>
+            </div>
 
+    </asp:Panel>
+
+    <%-- Grad acoperire --%>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainScript" runat="server">
-    <script src='<%= ResolveUrl("~/Scripts/dashboard.js") %>'></script>
 
-     <script>
+    <script>
         var opts = {
             lines: 12,
             angle: 0,
@@ -51,13 +76,13 @@
             strokeColor: '#F0F3F3',
             generateGradient: true
         };
-         var target = document.getElementById('canvas-cuverage-id'),
-            gauge = new Gauge(target).setOptions(opts);
+        var target = document.getElementById('canvas-cuverage-id'),
+           gauge = new Gauge(target).setOptions(opts);
 
         gauge.maxValue = 319;
         gauge.animationSpeed = 32;
-        gauge.set(1);
+        gauge.set(100);
         gauge.setTextField(document.getElementById("gauge-current"));
 
-        </script>
+    </script>
 </asp:Content>

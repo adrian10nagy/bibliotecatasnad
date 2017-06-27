@@ -3,6 +3,7 @@ namespace IsbnLookupService
 {
     using DAL.Entities;
     using DAL.SDK;
+    using IsbnLookupService.Models;
     using Newtonsoft.Json.Linq;
     using System;
     using System.Collections.Generic;
@@ -21,8 +22,7 @@ namespace IsbnLookupService
 
         // goodreads api
         // https://www.goodreads.com/book/isbn/0441172717?callback=myCallback&format=xml&key=syXyeRzn3oRl7gdY1hR2Fg
-        // 9789736898655
-        // 9789734622870
+        // 9789736898655, 9789734622870
 
         public static List<Book> GetBookFromGoogleApi(string isbn, string address, List<Book> addedBooks = null)
         {
@@ -109,10 +109,17 @@ namespace IsbnLookupService
                 {
                 }
                 else if (DateTime.TryParseExact(item.volumeInfo.publishedDate,
-                      "dd-mm-yyyy",
+                      "dd-MM-yyyy",
                       CultureInfo.InvariantCulture,
                       DateTimeStyles.None,
                       out bookPublishedDate))
+                {
+                }
+                else if (DateTime.TryParseExact(item.volumeInfo.publishedDate,
+                 "yyyy-MM",
+                 CultureInfo.InvariantCulture,
+                 DateTimeStyles.None,
+                 out bookPublishedDate))
                 {
                 }
                 else

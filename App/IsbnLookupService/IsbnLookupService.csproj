@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IsbnLookupService</RootNamespace>
     <AssemblyName>IsbnLookupService</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,7 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities.cs" />
+    <Compile Include="Models\BookApiResponse.cs" />
+    <Compile Include="Models\BooksApiResponse.cs" />
+    <Compile Include="Models\GoogleApiResponse.cs" />
+    <Compile Include="Models\ImageLink.cs" />
     <Compile Include="RequestManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

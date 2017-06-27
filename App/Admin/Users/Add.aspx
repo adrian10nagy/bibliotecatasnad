@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Add.aspx.cs" Inherits="Admin.Users.Add" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainStyle" runat="server">
- 
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -37,6 +36,12 @@
                 <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
             </div>
             <div class="item form-group">
+                <label class="control-label col-md-2 col-sm-2 col-xs-12" runat="server" id="lblUserUsername">Nume de utilizator</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" class="form-control" id="UserUsername" runat="server" autocomplete="off">
+                </div>
+            </div>
+            <div class="item form-group">
                 <label class="control-label col-md-2 col-sm-2 col-xs-12">Data nașterii</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <input id="userBirthday" class="form-control date-picker" required="required" type="text" runat="server" autocomplete="off">
@@ -64,7 +69,7 @@
                 </div>
             </div>
             <div class="item form-group">
-                <label class="control-label col-md-2 col-sm-2 col-xs-12">Tipul membrului</label>
+                <label class="control-label col-md-2 col-sm-2 col-xs-12" runat="server" id="lblUserType">Tipul membrului</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <asp:DropDownList ID="drpUsertype" runat="server" CssClass="form-control"></asp:DropDownList>
                 </div>

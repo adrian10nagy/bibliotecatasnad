@@ -103,6 +103,15 @@ namespace Admin.Books {
         protected global::System.Web.UI.WebControls.TextBox txtBookIsbn;
         
         /// <summary>
+        /// lnkIsbnLookUp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button lnkIsbnLookUp;
+        
+        /// <summary>
         /// bltBookIsbnSelected control.
         /// </summary>
         /// <remarks>
@@ -137,15 +146,6 @@ namespace Admin.Books {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblBooksSuggestions;
-        
-        /// <summary>
-        /// lnkIsbnLookUp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkIsbnLookUp;
         
         /// <summary>
         /// lnkIsbnSuggestionsRemove control.
@@ -199,7 +199,16 @@ namespace Admin.Books {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkTitleLookUp;
+        protected global::System.Web.UI.WebControls.Button lnkTitleLookUp;
+        
+        /// <summary>
+        /// lnkTitleSuggestionsRemove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkTitleSuggestionsRemove;
         
         /// <summary>
         /// lblBookNrPages control.
@@ -364,24 +373,6 @@ namespace Admin.Books {
         protected global::System.Web.UI.WebControls.DropDownList drpBookLanguage;
         
         /// <summary>
-        /// lblBookVolume control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBookVolume;
-        
-        /// <summary>
-        /// txtBookVolume control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBookVolume;
-        
-        /// <summary>
         /// lblBookDomain control.
         /// </summary>
         /// <remarks>
@@ -452,6 +443,24 @@ namespace Admin.Books {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList drpBookFormat;
+        
+        /// <summary>
+        /// lblBookVolume control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBookVolume;
+        
+        /// <summary>
+        /// txtBookVolume control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBookVolume;
         
         /// <summary>
         /// lblBookSubject control.

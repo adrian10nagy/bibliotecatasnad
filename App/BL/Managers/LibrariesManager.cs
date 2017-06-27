@@ -11,5 +11,10 @@ namespace BL.Managers
             var library = Kit.Instance.Libraries.GetLibraryById(id);
             return library;
         }
+
+        public static void Add(Library library)
+        {
+            Kit.Instance.Libraries.Add(library);
+        }
     }
 }

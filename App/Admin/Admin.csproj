@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Admin</RootNamespace>
     <AssemblyName>Admin</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -21,6 +21,7 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,10 +45,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
@@ -76,6 +75,7 @@
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -103,6 +103,8 @@
     <Content Include="About.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Logout.aspx" />
+    <Content Include="Account\Settings.aspx" />
+    <Content Include="Admin\UserRights.aspx" />
     <Content Include="Books\Add.aspx" />
     <Content Include="Books\Manage.aspx" />
     <Content Include="Contact.aspx" />
@@ -115,7 +117,10 @@
     <Content Include="Content\dataTables.bootstrap.min.css" />
     <Content Include="Content\daterangepicker.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\bookBackground.svg" />
     <Content Include="Content\Images\img.png" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\logo5.png" />
     <Content Include="Content\Images\Preloader.gif" />
     <Content Include="Content\responsive.bootstrap.min.css" />
     <Content Include="Content\select2.min.css" />
@@ -250,6 +255,20 @@
     <Compile Include="Account\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\Settings.aspx.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Settings.aspx.designer.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserRights.aspx.cs">
+      <DependentUpon>UserRights.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserRights.aspx.designer.cs">
+      <DependentUpon>UserRights.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -297,12 +316,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\ErrorMessages.cs" />
-    <Compile Include="Helpers\FlowMessages.cs" />
-    <Compile Include="Helpers\SessionHelper.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Helpers\Web.cs" />
+    <Compile Include="Helpers\Constants\ErrorMessages.cs" />
+    <Compile Include="Helpers\Constants\FlowMessages.cs" />
     <Compile Include="Loans\History.aspx.cs">
       <DependentUpon>History.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

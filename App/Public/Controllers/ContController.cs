@@ -42,7 +42,7 @@ namespace Public.Controllers
             return PartialView("_LoginModal");
         }
 
-        public ActionResult Setări()
+        public ActionResult Setari()
         {
             if (Session["userId"] == null)
             {
@@ -79,10 +79,10 @@ namespace Public.Controllers
 
             if (result)
             {
-                return this.RedirectToAction("Setări", new { passwordchange = "true" });
+                return this.RedirectToAction("Setari", new { passwordchange = "true" });
             }
 
-            return this.RedirectToAction("Setări", new { passwordchange = "false" });
+            return this.RedirectToAction("Setari", new { passwordchange = "false" });
         }
 
         [HttpPost]

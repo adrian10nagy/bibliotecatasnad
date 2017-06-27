@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DAL</RootNamespace>
     <AssemblyName>DAL</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,6 +51,7 @@
     <Compile Include="Entities\BookLanguage.cs" />
     <Compile Include="Entities\BookSubject.cs" />
     <Compile Include="Entities\ErrorLog.cs" />
+    <Compile Include="Entities\Functionality.cs" />
     <Compile Include="Entities\Gender.cs" />
     <Compile Include="Entities\ISBN.cs" />
     <Compile Include="Entities\Library.cs" />
@@ -61,6 +63,7 @@
     <Compile Include="Entities\Reservation.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserFlag.cs" />
+    <Compile Include="Entities\UserRight.cs" />
     <Compile Include="Entities\UserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Author.cs" />
@@ -76,6 +79,7 @@
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\Reservation.cs" />
     <Compile Include="Repositories\User.cs" />
+    <Compile Include="Repositories\UserRight.cs" />
     <Compile Include="SDK\Authors.cs" />
     <Compile Include="SDK\BookAuthors.cs" />
     <Compile Include="SDK\BookDomains.cs" />
@@ -88,6 +92,7 @@
     <Compile Include="SDK\Localities.cs" />
     <Compile Include="SDK\Publishers.cs" />
     <Compile Include="SDK\Reservations.cs" />
+    <Compile Include="SDK\UserRights.cs" />
     <Compile Include="SDK\Users.cs" />
     <Compile Include="Settings\Configure.cs" />
     <Compile Include="Settings\SqlDatabase.cs" />

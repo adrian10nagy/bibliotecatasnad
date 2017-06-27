@@ -1,7 +1,7 @@
 ﻿
 namespace Admin
 {
-    using Admin.Helpers;
+    using Helpers.Constants;
     using System;
     using System.Collections.Generic;
     using System.Linq;

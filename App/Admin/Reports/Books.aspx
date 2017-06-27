@@ -57,10 +57,10 @@
 
                         <div class="sidebar-widget">
                             <h4>Grad de acoperire</h4>
-                            <canvas width="150" height="80" id="foo2" class="" style="width: 160px; height: 100px;"></canvas>
+                            <canvas width="150" height="80" id="cnvTotalBooks" class="" style="width: 160px; height: 100px;"></canvas>
                             <div class="goal-wrapper">
                                 <span class="gauge-value pull-left">$</span>
-                                <span id="gauge-text2" class="gauge-value pull-left">0</span>
+                                <span id="gauge-left-text" class="gauge-value pull-left">0</span>
                                 <span id="goal-text2" class="goal-value pull-right">50,000</span>
                             </div>
                         </div>
@@ -77,29 +77,42 @@
 
     <!-- gauge.js -->
     <script>
+        $.ajax({
+            type: "POST",
+            url: "Books.aspx/AsyncGetBooksNr",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (partialViewResult) {
+                var opts2 = {
+                    lines: 12,
+                    angle: 0,
+                    lineWidth: 0.4,
+                    pointer: {
+                        length: 0.75,
+                        strokeWidth: 0.042,
+                        color: '#1D212A'
+                    },
+                    limitMax: 'false',
+                    colorStart: '#1ABC9C',
+                    colorStop: '#1ABC9C',
+                    strokeColor: '#F0F3F3',
+                    generateGradient: true
+                };
+                var target = document.getElementById('cnvTotalBooks'),
+                    gauge2 = new Gauge(target).setOptions(opts2);
 
-        var opts2 = {
-            lines: 12,
-            angle: 0,
-            lineWidth: 0.4,
-            pointer: {
-                length: 0.75,
-                strokeWidth: 0.042,
-                color: '#1D212A'
+                gauge2.maxValue = 50000;
+                gauge2.setMinValue(0);
+                gauge2.animationSpeed = 32;
+                gauge2.set(partialViewResult.d);
+                gauge2.setTextField(document.getElementById("gauge-left-text"));
             },
-            limitMax: 'false',
-            colorStart: '#1ABC9C',
-            colorStop: '#1ABC9C',
-            strokeColor: '#F0F3F3',
-            generateGradient: true
-        };
-        var target = document.getElementById('foo2'),
-            gauge2 = new Gauge(target).setOptions(opts2);
+            failure: function (response) {
+                alert("Eroare de server, te rugăm contactează administratorul de sistem");
+            }
+        })
 
-        gauge2.maxValue = 50000;
-        gauge2.animationSpeed = 32;
-        gauge2.set(453);
-        gauge2.setTextField(document.getElementById("gauge-text2"));
+       
 
     </script>
     <!-- /gauge.js -->

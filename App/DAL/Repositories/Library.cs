@@ -9,6 +9,7 @@ namespace DAL.Repositories
     public interface ILibraryRepository
     {
         Library GetLibraryById(int id);
+        void Add(Library library);
     }
 
     public partial class Repository : ILibraryRepository
@@ -33,5 +34,16 @@ namespace DAL.Repositories
             return user;
         }
 
+        public void Add(Library library)
+        {
+            _dbRead.ExecuteNonQuery(
+                "LibrariesAdd",
+                new[] { 
+                    new SqlParameter("@Name", library.Name), 
+                    new SqlParameter("@Description", library.Description), 
+                    new SqlParameter("@Domain", library.Domain), 
+                    new SqlParameter("@Contact", library.Contact), 
+                });
+        }
     }
 }

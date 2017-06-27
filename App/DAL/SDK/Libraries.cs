@@ -18,5 +18,10 @@ namespace DAL.SDK
         {
             return _repository.GetLibraryById(id);
         }
+
+        public void Add(Library library)
+        {
+            _repository.Add(library);
+        }
     }
 }

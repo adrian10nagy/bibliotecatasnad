@@ -261,7 +261,6 @@ namespace DAL.Repositories
                 new SqlParameter("@LocalityId", user.Locality.Id), 
                 new SqlParameter("@LibraryId", user.Library.Id), 
                 new SqlParameter("@UserType", user.UserType),
-                new SqlParameter("@NationalityId", user.Nationality),
                 new SqlParameter("@NationalityId", user.Library.Id)
                });
         }

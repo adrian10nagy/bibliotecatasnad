@@ -1,5 +1,5 @@
 ﻿<%@ Page EnableEventValidation="false" ValidateRequest="false" Title="" Language="C#" MasterPageFile="~/Site.Master"
-    AutoEventWireup="true" CodeBehind="Add.aspx.cs" Inherits="Admin.Books.Add" MaintainScrollPositionOnPostback="true" %>
+    AutoEventWireup="true" CodeBehind="Add.aspx.cs" Inherits="Admin.Books.Add" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -28,16 +28,20 @@
                 <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                     <ContentTemplate>
                         <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                            <asp:Label ID="lblBookIsbn" runat="server" Text="ISBN*" AssociatedControlID="txtBookIsbn" CssClass="col-md-2 col-sm-2 col-xs-12"></asp:Label>
+                            <asp:Label ID="lblBookIsbn" runat="server" Text="ISBN" AssociatedControlID="txtBookIsbn" CssClass="col-md-2 col-sm-2 col-xs-12"></asp:Label>
                             <asp:LinkButton ID="lnkBookIsbnAddNew" runat="server" CssClass="control-label col-md-10 col-sm-10 col-xs-12" OnClick="lnkBookIsbnAddNew_Click" CausesValidation="false">
                         Mai multe ISBN-uri? Click aici
                             </asp:LinkButton><br />
-                            <asp:TextBox ID="txtBookIsbn" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                            <div class="input-group">
+                                <asp:TextBox ID="txtBookIsbn" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                                <div class="input-group-btn">
+                                    <asp:Button ID="lnkIsbnLookUp" CssClass="form-control" Text="Caută" runat="server" OnClick="lnkIsbnLookUp_Click" CausesValidation="false"></asp:Button>
+                                </div>
+                            </div>
                             <asp:BulletedList ID="bltBookIsbnSelected" Visible="false" runat="server"></asp:BulletedList>
                             <asp:Button ID="btnBookIsbnAddNew" AutoPostBack="true" CausesValidation="false" Visible="false" Text="Adaugă ISBN-ul" runat="server" CssClass="btn btn-info" OnClick="btnBookIsbnAddNew_Click" />
                             <asp:Button ID="btnBookIsbnRemove" AutoPostBack="true" CausesValidation="false" Visible="false" Text="Șterge ISBN-urile" runat="server" CssClass="btn btn-danger" OnClick="btnBookIsbnRemove_Click" />
                             <asp:Label ID="lblBooksSuggestions" runat="server" Text="" CausesValidation="false"></asp:Label>
-                            <asp:LinkButton ID="lnkIsbnLookUp" Text="Caută" runat="server" OnClick="lnkIsbnLookUp_Click" CausesValidation="false"></asp:LinkButton>
                             <asp:LinkButton ID="lnkIsbnSuggestionsRemove" Text="Șterge sugestii" runat="server" OnClick="lnkIsbnSuggestionsRemove_Click" CausesValidation="false" Visible="false"></asp:LinkButton>
                         </div>
 
@@ -75,9 +79,13 @@
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                             <asp:Label ID="lblBookTitle" runat="server" Text="Titlul*" AssociatedControlID="txtBookTitle"></asp:Label>
+                            <div class="input-group">
                             <asp:TextBox ID="txtBookTitle" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtBookTitle" CssClass="field-validation-error" ErrorMessage="Titlul este obligatoriu." />
-                            <asp:LinkButton ID="lnkTitleLookUp" Text="Caută" runat="server" OnClick="lnkTitleLookUp_Click" CausesValidation="false"></asp:LinkButton>
+                                <div class="input-group-btn">
+                                    <asp:Button ID="lnkTitleLookUp" CssClass="form-control" Text="Caută" runat="server" OnClick="lnkTitleLookUp_Click" CausesValidation="false"></asp:Button>
+                                </div>
+                            </div>
+                            <asp:LinkButton ID="lnkTitleSuggestionsRemove" Text="Șterge sugestii" runat="server" OnClick="lnkIsbnSuggestionsRemove_Click" CausesValidation="false" Visible="false"></asp:LinkButton>
                         </div>
                     </ContentTemplate>
                     <Triggers>
@@ -153,12 +161,6 @@
                     </div>
                 </div>
                 <div class="item form-group">
-                    <asp:Label class="control-label col-md-2 col-sm-2 col-xs-12" ID="lblBookVolume" runat="server" Text="Volum" AssociatedControlID="txtBookVolume"></asp:Label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <asp:TextBox ID="txtBookVolume" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
-                    </div>
-                </div>
-                <div class="item form-group">
                     <asp:Label class="control-label col-md-2 col-sm-2 col-xs-12 widthMax543" ID="lblBookDomain" runat="server" Text="Domeniul*" AssociatedControlID="drdBookDomain"></asp:Label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <asp:DropDownList ID="drdBookDomain" CssClass="select2_single select2MinWidth350" runat="server">
@@ -169,7 +171,7 @@
                 <div class="item form-group">
                     <asp:Label class="control-label col-md-2 col-sm-2 col-xs-12" ID="lblBookPublishYear" runat="server" Text="Anul publicării" AssociatedControlID="txtBookPublishYear"></asp:Label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <asp:TextBox ID="txtBookPublishYear" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                        <asp:TextBox ID="txtBookPublishYear" placeholder="opțional" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
                     </div>
                 </div>
                 <div class="item form-group">
@@ -185,30 +187,36 @@
                     </div>
                 </div>
                 <div class="item form-group">
+                    <asp:Label class="control-label col-md-2 col-sm-2 col-xs-12" ID="lblBookVolume" runat="server" Text="Volum" AssociatedControlID="txtBookVolume"></asp:Label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <asp:TextBox ID="txtBookVolume" runat="server" placeholder="opțional" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="item form-group">
                     <asp:Label class="control-label col-md-2 col-sm-2 col-xs-12" ID="lblBookSubject" runat="server" Text="Subiectul" AssociatedControlID="txtBookSubject"></asp:Label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <asp:TextBox ID="txtBookSubject" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                        <asp:TextBox ID="txtBookSubject" runat="server" placeholder="opțional" CssClass="form-control" autocomplete="off"></asp:TextBox>
                     </div>
                 </div>
 
                 <div class="item form-group">
                     <asp:Label class="control-label col-md-2 col-sm-2 col-xs-12" ID="lblBookImage" runat="server" Text="Imagine" AssociatedControlID="txtBookImage"></asp:Label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <asp:TextBox ID="txtBookImage" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                        <asp:TextBox ID="txtBookImage" runat="server" placeholder="opțional" CssClass="form-control" autocomplete="off"></asp:TextBox>
                     </div>
                 </div>
 
                 <div class="item form-group">
                     <asp:Label class="control-label col-md-2 col-sm-2 col-xs-12" ID="Label1" runat="server" Text="Link de prezentare" AssociatedControlID="txtBookPreviewLink"></asp:Label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <asp:TextBox ID="txtBookPreviewLink" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                        <asp:TextBox ID="txtBookPreviewLink" runat="server" placeholder="opțional" CssClass="form-control" autocomplete="off"></asp:TextBox>
                     </div>
                 </div>
 
                 <div class="item form-group">
                     <asp:Label class="control-label col-md-2 col-sm-2 col-xs-12" ID="lblBookDescription" runat="server" Text="Descriere" AssociatedControlID="txtBookDescription"></asp:Label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <textarea type="text" rows="10" id="txtBookDescription" runat="server" class="form-control" autocomplete="off" />
+                        <textarea type="text" rows="10" id="txtBookDescription" placeholder="opțional" runat="server" class="form-control" autocomplete="off" />
                     </div>
                 </div>
             </div>

@@ -11,7 +11,7 @@ namespace Admin.Users
     using System.Web.UI.WebControls;
     using DAL.Entities;
     using BL.Helpers;
-    using Admin.Helpers;
+    using Helpers.Constants;
     using BL.Constants;
 
     public partial class Manage : System.Web.UI.Page

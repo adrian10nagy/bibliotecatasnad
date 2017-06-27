@@ -19,7 +19,7 @@ CREATE PROCEDURE [dbo].[UsersGetCount]
 AS
 BEGIN
 	
-	SELECT count(1) as num
+		SELECT count(1) as num
 	FROM [bibliotecaTasnad].[dbo].[Users] U
-	WHERE U.Id_Locality = @libraryId
+	WHERE U.Id_Library = @libraryId
 END

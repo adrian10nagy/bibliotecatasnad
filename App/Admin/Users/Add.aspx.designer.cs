@@ -67,6 +67,24 @@ namespace Admin.Users {
         protected global::System.Web.UI.HtmlControls.HtmlInputText userPhone;
         
         /// <summary>
+        /// lblUserUsername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblUserUsername;
+        
+        /// <summary>
+        /// UserUsername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText UserUsername;
+        
+        /// <summary>
         /// userBirthday control.
         /// </summary>
         /// <remarks>
@@ -101,6 +119,15 @@ namespace Admin.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList userGender;
+        
+        /// <summary>
+        /// lblUserType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblUserType;
         
         /// <summary>
         /// drpUsertype control.

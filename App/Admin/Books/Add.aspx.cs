@@ -1,7 +1,7 @@
 ﻿
 namespace Admin.Books
 {
-    using Admin.Helpers;
+    using Helpers.Constants;
     using BL.Constants;
     using BL.Helpers;
     using BL.Managers;
@@ -168,6 +168,7 @@ namespace Admin.Books
                 lblStatus.Text = BookConstants.AddSuccess;
                 lblStatus.CssClass = "SuccessBox";
                 CleanFields();
+                InitializeSources();
             }
         }
 
@@ -216,7 +217,7 @@ namespace Admin.Books
 
         private void ChangeBookAuthorAddNewVisibility(bool addNewVisible = false)
         {
-            if(addNewVisible)
+            if (addNewVisible)
             {
                 lnkBookAuthorsAddNew.Text = ExistGoBack;
                 drdBooksAutors.Visible = false;
@@ -405,6 +406,8 @@ namespace Admin.Books
                 Value = c.Id.ToString(),
             }).ToArray();
 
+            drdBooksAutors.Items.Clear();
+            drdBooksAutors.Items.Add(new ListItem());
             drdBooksAutors.Items.AddRange(listItemAuthors);
             drdBooksAutors.DataBind();
         }
@@ -419,6 +422,7 @@ namespace Admin.Books
                 Value = ((int)c).ToString()
             }).ToArray();
 
+            drpBookCondition.Items.Clear();
             drpBookCondition.Items.AddRange(listItemBookConditions);
             drpBookCondition.DataBind();
         }
@@ -433,6 +437,7 @@ namespace Admin.Books
                 Value = ((int)c).ToString()
             }).ToArray();
 
+            drpBookFormat.Items.Clear();
             drpBookFormat.Items.AddRange(listItemBookFormats);
             drpBookFormat.DataBind();
         }
@@ -447,6 +452,8 @@ namespace Admin.Books
                 Value = c.Id.ToString(),
             }).ToArray();
 
+            drdBookPublisher.Items.Clear();
+            drdBookPublisher.Items.Add(new ListItem());
             drdBookPublisher.Items.AddRange(listItemPublishers);
             drdBookPublisher.DataBind();
         }
@@ -461,6 +468,8 @@ namespace Admin.Books
                 Value = c.Id.ToString(),
             }).ToArray();
 
+            drdBookDomain.Items.Clear();
+            drdBookDomain.Items.Add(new ListItem());
             drdBookDomain.Items.AddRange(listItemDomains);
             drdBookDomain.DataBind();
         }
@@ -474,6 +483,7 @@ namespace Admin.Books
                 Value = ((int)c).ToString()
             }).ToArray();
 
+            drpBookLanguage.Items.Clear();
             drpBookLanguage.Items.AddRange(listItemLanguages);
             drpBookLanguage.DataBind();
         }
@@ -587,7 +597,7 @@ namespace Admin.Books
             lnkBookPublisherAddNew.Text = DoesNotExist;
             txtBookAuthorsAddNew.Visible = false;
             drdBooksAutors.Visible = true;
-            
+
             btnBookAuthorsRemove.Visible = false;
             btnBookAuthorAddNew.Visible = false;
             btnBookPublisherAddNew.Visible = false;
@@ -668,6 +678,9 @@ namespace Admin.Books
             drdBooksAutors.SelectedIndex = 0;
             drdBooksAutors.DataBind();
             btnBookAuthorsRemove.Visible = false;
+            lnkIsbnSuggestionsRemove.Visible = false;
+            lnkTitleSuggestionsRemove.Visible = false;
+            lblBooksSuggestions.Visible = false;
 
             foreach (GridViewRow row in gvBookSuggestions.Rows)
             {
@@ -692,7 +705,7 @@ namespace Admin.Books
 
                     HiddenField bookPreviewlink = row.Cells[0].FindControl("PreviewLink") as HiddenField;
                     txtBookPreviewLink.Text = bookPreviewlink != null ? bookPreviewlink.Value : string.Empty;
-                    
+
                     break;
                 }
             }
@@ -707,7 +720,7 @@ namespace Admin.Books
             {
                 if (!string.IsNullOrEmpty(item.Value))
                 {
-                    var book = IsbnService.GetBook(item.Value);
+                    var book = GoogleBookWarehouseService.GetBookByIsbn(item.Value);
                     if (book != null && book.Count() != 0 && book[0] != null)
                     {
                         books.AddRange(book);
@@ -716,26 +729,40 @@ namespace Admin.Books
             }
 
             // adds independent but mandatory info to books
-            var user = Session[SessionConstants.LoginUser] as User;
-            foreach (var item in books)
-            {
-                if (item != null)
-                {
-                    item.AddedBy = new User
-                    {
-                        Id = user.Id
-                    };
+            //var user = Session[SessionConstants.LoginUser] as User;
+            //foreach (var item in books)
+            //{
+            //    if (item != null)
+            //    {
+            //        item.AddedBy = new User
+            //        {
+            //            Id = user.Id
+            //        };
 
-                    item.AddedDate = DateTime.Now;
-                    item.Library = new Library
-                    {
-                        Id = user.Library.Id
-                    };
-                }
-            }
+            //        item.AddedDate = DateTime.Now;
+            //        item.Library = new Library
+            //        {
+            //            Id = user.Library.Id
+            //        };
+            //    }
+            //}
 
             lblBooksSuggestions.Text = books.Count().ToString() + " sugestii";
+            lblBooksSuggestions.Visible = true;
 
+            DataTable dt = MapBooksToDataTable(books);
+            BindDataBookPanel(dt);
+        }
+
+        private void BindDataBookPanel(DataTable dt)
+        {
+            gvBookSuggestions.DataSource = dt;
+            gvBookSuggestions.DataBind();
+            gvBookSuggestions.Visible = true;
+        }
+
+        private DataTable MapBooksToDataTable(List<Book> books)
+        {
             DataTable dt = new DataTable();
             dt.Columns.AddRange(new DataColumn[10] 
             { 
@@ -761,27 +788,24 @@ namespace Admin.Books
                     authors = book.Authors[0].Name;
                 }
 
-                if (book.Authors.Count > 1)
-                {
-                    var count = book.Authors.Count() - 1;
-                    authors = authors + " + " + count;
-                }
-
                 // book description
-                var description = book.Description != null ? book.Description.Substring(0, Math.Min(book.Description.Length, 250)) + "..." : string.Empty;
+                var bookDescriptionPreview = book.Description != null ? book.Description.Substring(0, Math.Min(book.Description.Length, 250)) + "..." : string.Empty;
 
                 // book publisher
-                var publisher = (book.Publisher != null) ? book.Publisher.Name : string.Empty;
+                book.Publisher = new Publisher
+                {
+                    Name = (book.Publisher != null) ? book.Publisher.Name : string.Empty
+                };
 
                 DataRow dr = dt.NewRow();
                 DataColumn dcol = new DataColumn();
                 dr["Title"] = book.Title;
-                dr["Editura"] = publisher;
+                dr["Editura"] = book.Publisher.Name;
                 dr["Autor(i)"] = authors;
                 dr["An Apariție"] = book.PublishYear;
                 dr["Nr. pagini"] = book.NrPages;
                 dr["Limbă"] = book.BookLanguage;
-                dr["DescrierePreview"] = description;
+                dr["DescrierePreview"] = bookDescriptionPreview;
                 dr["DescriereFull"] = book.Description;
                 dr["ImageUrl"] = book.ImageUrl;
                 dr["PreviewLink"] = book.PreviewLink;
@@ -789,15 +813,32 @@ namespace Admin.Books
                 dt.Rows.Add(dr);
             }
 
-            gvBookSuggestions.DataSource = dt;
-            gvBookSuggestions.DataBind();
-            gvBookSuggestions.Visible = true;
+            return dt;
         }
 
         protected void lnkIsbnSuggestionsRemove_Click(object sender, EventArgs e)
         {
             gvBookSuggestions.Visible = false;
             lnkIsbnSuggestionsRemove.Visible = false;
+            lnkTitleSuggestionsRemove.Visible = false;
+            lblBooksSuggestions.Visible = false;
+        }
+
+        protected void lnkTitleLookUp_Click(object sender, EventArgs e)
+        {
+            lnkTitleSuggestionsRemove.Visible = true;
+            List<Book> books = new List<Book>();
+            if (!string.IsNullOrEmpty(txtBookTitle.Text))
+            {
+                var book = GoogleBookWarehouseService.GetBookByTitle(txtBookTitle.Text);
+                if (book != null && book.Count() != 0 && book[0] != null)
+                {
+                    books.AddRange(book);
+                }
+            }
+
+            DataTable dt = MapBooksToDataTable(books);
+            BindDataBookPanel(dt);
         }
     }
 }

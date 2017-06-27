@@ -6,6 +6,7 @@ namespace Admin.Reports
     using DAL.Entities;
     using System;
     using System.Linq;
+    using System.Web;
     using System.Web.UI.WebControls;
 
     public partial class Books : System.Web.UI.Page
@@ -35,6 +36,16 @@ namespace Admin.Reports
 
                 tblTopPulishers.Rows.Add(row);
             }
+        }
+
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static int AsyncGetBooksNr()
+        {
+            var user = HttpContext.Current.Session[SessionConstants.LoginUser] as User;
+
+            int booksNr = BooksManager.GetBooksNrAll(user.Library.Id);
+
+            return booksNr;
         }
     }
 }

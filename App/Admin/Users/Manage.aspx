@@ -11,15 +11,10 @@
         <asp:Label ID="lblMessage" runat="server"></asp:Label>
         <div class="x_panel">
             <div class="x_title">
-                <h2>Utilizatorii <small>bibliotecii</small></h2>
-
+                <h2>Utilizatori</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <p class="text-muted font-13 m-b-30">
-                    Puteți căuta după orice criteriu
-                   
-                </p>
                 <asp:Table ID="datatableResponsive" runat="server" class="table table-striped table-bordered dt-responsive nowrap" CellSpacing="0" Width="100%" ClientIDMode="Static">
                     <asp:TableHeaderRow TableSection="TableHeader">
                         <asp:TableHeaderCell>#</asp:TableHeaderCell>

@@ -1,5 +1,5 @@
 ﻿
-namespace Admin.Helpers
+namespace Admin.Helpers.Constants
 {
     public static class FlowMessages
     {

@@ -35,7 +35,8 @@
         public ErrorLogs ErrorLogs { get { return new ErrorLogs(); } }
         public Reservations Reservations { get { return new Reservations(); } }
         public Libraries Libraries { get { return new Libraries(); } }
-
+        public UserRights UserRights { get { return new UserRights(); } }
+        
         public void Dispose()
         {
             throw new NotImplementedException();

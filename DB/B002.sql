@@ -15,3 +15,8 @@ create table UserRights(
 	Id_user int not null  foreign key REFERENCES Users(Id),
 	Id_functionality int not null  foreign key REFERENCES Functionalities(Id)
 )
+
+Insert into UserRights values( 1, 1)
+Insert into UserRights values( 1, 2)
+Insert into UserRights values( 1, 3)
+Insert into UserRights values( 1, 4)

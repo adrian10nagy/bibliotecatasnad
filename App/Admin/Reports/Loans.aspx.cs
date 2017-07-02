@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Admin.Reports
 {
-    public partial class Loans : System.Web.UI.Page
+    public partial class Loans : RaportsBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {

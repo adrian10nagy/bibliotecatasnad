@@ -26,7 +26,8 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="~/" class="site_title" runat="server"><asp:Image AlternateText="Ultilizator" ID="MainLogo" CssClass="img-circle profile_img" runat="server" />
+                            <a href="~/" class="site_title" runat="server">
+                                <asp:Image AlternateText="Ultilizator" ID="MainLogo" CssClass="img-circle profile_img" runat="server" />
                                 <asp:Label ID="txtWelcomeLibrary" runat="server"></asp:Label></a>
                         </div>
 
@@ -53,44 +54,37 @@
                             <div class="menu_section">
                                 <h3>General</h3>
                                 <ul class="nav side-menu">
-                                    <li><a><i class="fa fa-home"></i>Home <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li><a href="Dashboard.aspx" runat="server">Dashboard</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a><i class="fa fa-book"></i>Cărți <span class="fa fa-chevron-down"></span></a>
+                                    <li runat="server" id="mainMenuDashboard"><a href="Dashboard.aspx" runat="server"><i class="fa fa-home"></i>Acasă</a></li>
+                                    <li runat="server" id="mainMenuBooks"><a><i class="fa fa-book"></i>Cărți <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="~/Books/Add.aspx" runat="server">Adaugă</a></li>
                                             <li><a href="~/Books/Manage.aspx" runat="server">Administrează</a></li>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-address-book"></i>Utilizatori <span class="fa fa-chevron-down"></span></a>
+                                    <li runat="server" id="mainMenuUsers"><a><i class="fa fa-address-book"></i>Utilizatori <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="~/Users/Add.aspx" runat="server">Adaugă</a></li>
                                             <li><a href="~/Users/Manage.aspx" runat="server">Administrează</a></li>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-file-text"></i>Împrumuturi <span class="fa fa-chevron-down"></span></a>
+                                    <li runat="server" id="mainMenuLoans"><a><i class="fa fa-file-text"></i>Împrumuturi <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="~/Loans/NewLoan.aspx" runat="server">Adaugă</a></li>
                                             <li><a href="~/Loans/History.aspx" runat="server">Istoric</a></li>
                                             <li><a href="~/Loans/InProgress.aspx" runat="server">În desfășurare</a></li>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-bar-chart"></i>Rapoarte <span class="label label-success pull-right">În curând</span></a>
+                                    <li runat="server" id="mainMenuRaports"><a><i class="fa fa-bar-chart"></i>Rapoarte <span class="label label-success pull-right">În curând</span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="~/Reports/Loans.aspx" runat="server">Împrumuturi</a></li>
                                             <li><a href="~/Reports/Books.aspx" runat="server">Cărți</a></li>
                                         </ul>
                                     </li>
-                                    <%if ((Session["LoginUser"] as User).Id == 1)
-                                      { %>
-                                    <li><a><i class="fa fa-tachometer"></i>Admin <span class="fa fa-chevron-down"></span></a>
+                                    <li runat="server" id="mainMenuAdmin"><a><i class="fa fa-tachometer"></i>Admin <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="~/Admin/InternalAdmin.aspx" runat="server">Admin</a></li>
                                             <li><a href="~/Admin/UserRights.aspx" runat="server">Drepturi</a></li>
                                         </ul>
-                                        <%} %>
                                     </li>
                                 </ul>
                             </div>

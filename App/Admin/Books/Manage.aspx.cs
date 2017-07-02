@@ -10,7 +10,7 @@ namespace Admin.Books
     using System.Linq;
     using BL.Constants;
 
-    public partial class Manage : System.Web.UI.Page
+    public partial class Manage : BooksBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {

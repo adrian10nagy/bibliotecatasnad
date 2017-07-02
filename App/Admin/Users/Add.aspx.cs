@@ -10,7 +10,7 @@ namespace Admin.Users
     using System.Linq;
     using System.Web.UI.WebControls;
 
-    public partial class Add : System.Web.UI.Page
+    public partial class Add : UsersBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {

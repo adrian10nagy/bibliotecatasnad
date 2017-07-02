@@ -7,9 +7,11 @@ namespace IsbnLookupService
     using Newtonsoft.Json.Linq;
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Globalization;
     using System.Net;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using System.Web.Script.Serialization;
 
     public static class RequestManager
@@ -20,10 +22,15 @@ namespace IsbnLookupService
             return book;
         }
 
-        // goodreads api
+        /// <summary>
+        /// Gets the book data from Google API ex 9789736898655, 9789734622870
+        ///  goodreads api
         // https://www.goodreads.com/book/isbn/0441172717?callback=myCallback&format=xml&key=syXyeRzn3oRl7gdY1hR2Fg
-        // 9789736898655, 9789734622870
-
+        /// </summary>
+        /// <param name="isbn"></param>
+        /// <param name="address"></param>
+        /// <param name="addedBooks"></param>
+        /// <returns></returns>
         public static List<Book> GetBookFromGoogleApi(string isbn, string address, List<Book> addedBooks = null)
         {
             var books = new List<Book>();
@@ -35,8 +42,8 @@ namespace IsbnLookupService
             }
 
             if (addedBooks == null)
-            { 
-                addedBooks = new List<Book>(); 
+            {
+                addedBooks = new List<Book>();
             }
 
             try
@@ -66,18 +73,74 @@ namespace IsbnLookupService
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 ErrorLog er = new ErrorLog();
                 er.CreatedDate = DateTime.Now;
                 er.Message = "Method: GetBookFromGoogleApi: Address: " + address +
-                    " isbn: "+ isbn+ 
-                    " InnerException: " + e.InnerException+
+                    " isbn: " + isbn +
+                    " InnerException: " + e.InnerException +
                     " Message: " + e.Message;
                 Kit.Instance.ErrorLogs.AddErrorLog(er);
             }
 
             return books;
+        }
+
+        /// <summary>
+        /// Gets the book data from Google API ex 9789736898655, 9789734622870
+        ///  goodreads api
+        // https://www.goodreads.com/book/isbn/0441172717?callback=myCallback&format=xml&key=syXyeRzn3oRl7gdY1hR2Fg
+        /// </summary>
+        /// <param name="isbn"></param>
+        /// <param name="address"></param>
+        /// <param name="addedBooks"></param>
+        /// <returns></returns>
+        public static async Task<List<Book>> GetBookFromGoogleApiAsync(string isbn, string address)
+        {
+                var books = new List<Book>();
+                // validate input
+                if (string.IsNullOrEmpty(isbn))
+                {
+                    return books;
+                }
+
+                try
+                {
+                    using (WebClient client = new WebClient())
+                    {
+                        client.Encoding = System.Text.Encoding.UTF8;
+                        var downloadString = client.DownloadString(string.Format(address, isbn));
+
+                        JavaScriptSerializer js = new JavaScriptSerializer();
+                        GoogleApiResponse googleBooks = js.Deserialize<GoogleApiResponse>(downloadString);
+                        if (googleBooks.totalItems > 0)
+                        {
+                            foreach (var item in googleBooks.items)
+                            {
+                                    var bookDownloadString = client.DownloadString(item.selfLink);
+                                    BooksApiResponse bookResponse = js.Deserialize<BooksApiResponse>(bookDownloadString);
+
+                                    // map to Book
+                                    var book = MapGoogleApiBookToDalBook(bookResponse, isbn);
+                                    books.Add(book);
+                            }
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    ErrorLog er = new ErrorLog();
+                    er.CreatedDate = DateTime.Now;
+                    er.Message = "Method: GetBookFromGoogleApi: Address: " + address +
+                        " isbn: " + isbn +
+                        " InnerException: " + e.InnerException +
+                        " Message: " + e.Message;
+                    Kit.Instance.ErrorLogs.AddErrorLog(er);
+                    return books;
+                }
+
+                return books;
         }
 
         private static Book MapGoogleApiBookToDalBook(BooksApiResponse item, string isbn)

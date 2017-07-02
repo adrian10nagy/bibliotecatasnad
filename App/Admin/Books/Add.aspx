@@ -255,7 +255,7 @@
         }
 
         $(document).ready(function () {
-            autoHideStatusLabel('<%=lblStatus.ClientID%>', 10000);
+            autoHideStatusLabel('<%=lblStatus.ClientID%>', 7000);
 
             $("#<%=drdBookPublisher.ClientID%>").select2({
                 placeholder: "Alege o editură",

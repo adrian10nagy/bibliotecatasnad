@@ -49,6 +49,60 @@ namespace Admin {
         protected global::System.Web.UI.WebControls.Label txtWelcomeUserName;
         
         /// <summary>
+        /// mainMenuDashboard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mainMenuDashboard;
+        
+        /// <summary>
+        /// mainMenuBooks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mainMenuBooks;
+        
+        /// <summary>
+        /// mainMenuUsers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mainMenuUsers;
+        
+        /// <summary>
+        /// mainMenuLoans control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mainMenuLoans;
+        
+        /// <summary>
+        /// mainMenuRaports control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mainMenuRaports;
+        
+        /// <summary>
+        /// mainMenuAdmin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mainMenuAdmin;
+        
+        /// <summary>
         /// txtMenuTopUserName control.
         /// </summary>
         /// <remarks>

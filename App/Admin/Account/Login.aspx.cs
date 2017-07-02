@@ -1,17 +1,12 @@
 ﻿
 namespace Admin.Account
 {
-    using BL.Managers;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using System.Web.UI;
-    using System.Web.UI.WebControls;
-    using DAL.Entities;
-    using BL.Cache;
     using BL.Constants;
-    using Helpers.Constants;
+    using BL.Managers;
+    using DAL.Entities;
+    using System;
+    using System.Web.UI;
+
     public partial class Login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -33,7 +28,7 @@ namespace Admin.Account
             if (this.ValidateLogin())
             {
                 User user = UsersManager.GetUserForLogin(txtUserName.Value, txtUserPassword.Value);
-                if (user == null || user.UserType != UserType.Administrator || UserRightsManager.UserHasAccess(new UserRight{ User = user, Functionality=Functionality.AdminLogin}))
+                if (user == null || !UserRightsManager.CanLogin(user.Id))
                 {
                     txtUserName.Style.Add("border", "1px solid red");
                     txtUserPassword.Style.Add("border", "1px solid red");
@@ -65,11 +60,6 @@ namespace Admin.Account
             }
 
             return result;
-        }
-
-        protected void btnAccountCreate_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

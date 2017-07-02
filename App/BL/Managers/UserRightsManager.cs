@@ -24,5 +24,57 @@ namespace BL.Managers
         {
             return Kit.Instance.UserRights.UserHasAccess(userRight);
         }
+
+        public static bool CanLogin(int userId)
+        {
+            return UserRightsManager.UserHasAccess(
+                new UserRight
+                {
+                    User = new User
+                    {
+                        Id = userId
+                    },
+                    Functionality = Functionality.AdminLogin
+                });
+        }
+
+        public static bool CanAccessBooksModule(int userId)
+        {
+            return UserRightsManager.UserHasAccess(
+                new UserRight
+                {
+                    User = new User
+                    {
+                        Id = userId
+                    },
+                    Functionality = Functionality.ManageBooks
+                });
+        }
+
+        public static bool CanAccesUsersModule(int userId)
+        {
+            return UserRightsManager.UserHasAccess(
+                new UserRight
+                {
+                    User = new User
+                    {
+                        Id = userId
+                    },
+                    Functionality = Functionality.ManageUsers
+                });
+        }
+
+        public static bool CanAccessRaportsModule(int userId)
+        {
+            return UserRightsManager.UserHasAccess(
+                new UserRight
+                {
+                    User = new User
+                    {
+                        Id = userId
+                    },
+                    Functionality = Functionality.Raports
+                });
+        }
     }
 }

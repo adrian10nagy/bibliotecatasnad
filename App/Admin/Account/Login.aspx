@@ -37,54 +37,13 @@
                             </div>
                             <div class="clearfix"></div>
                             <div class="separator">
-                              <%--  <p class="change_link">
+                                <%--  <p class="change_link">
                                     Nou pe site?
                                
                                 <a href="#signup" class="to_register">Crează-ți cont </a>
                                 </p>--%>
                                 <div class="clearfix"></div>
                                 <br />
-                                <div>
-                                    <h1><i class="fa fa-paw"></i>BiblioSofia</h1>
-                                    <p>©<%= DateTime.Now.Year.ToString() %>. Toate drepturile rezervate.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-
-                <div id="register" class="animate form registration_form">
-                    <section class="login_content">
-                        <div class="formDiv">
-                            <h1>Crează cont</h1>
-                            <asp:Label ID="lblMessageCreate" runat="server" Visible="false"></asp:Label>
-                            <div>
-                                <input type="text" class="form-control" placeholder="Utilizator" />
-                            </div>
-                            <div>
-                                <input type="email" class="form-control" placeholder="Email" />
-                            </div>
-                            <div>
-                                <input type="password" class="form-control" placeholder="Parolă" autocomplete="off"/>
-                            </div>
-                            <div>
-                                <input type="password" class="form-control" placeholder="Reintrodu Parolă" autocomplete="off" />
-                            </div>
-                            <div>
-                                <asp:Button ID="btnAccountCreate" runat="server" Text="Crează cont" CssClass="btn btn-default submit" OnClick="btnAccountCreate_Click" />
-                            </div>
-
-                            <div class="clearfix"></div>
-
-                            <div class="separator">
-                                <p class="change_link">
-                                    Ai cont?
-                                <a href="#signin" class="to_register">Intră în cont</a>
-                                </p>
-
-                                <div class="clearfix"></div>
-                                <br />
-
                                 <div>
                                     <h1><i class="fa fa-paw"></i>BiblioSofia</h1>
                                     <p>©<%= DateTime.Now.Year.ToString() %>. Toate drepturile rezervate.</p>

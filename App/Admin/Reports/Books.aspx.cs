@@ -9,7 +9,7 @@ namespace Admin.Reports
     using System.Web;
     using System.Web.UI.WebControls;
 
-    public partial class Books : System.Web.UI.Page
+    public partial class Books : RaportsBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {

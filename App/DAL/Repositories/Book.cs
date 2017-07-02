@@ -23,6 +23,7 @@ namespace DAL.Repositories
         IEnumerable<Book> GetAllBooksByDomainId(int domainId, int libraryId);
         IEnumerable<Book> GetBooksLastAdded(int nr, int libraryId);
         Book GetBookByISBN(string isbn, int libraryId);
+        int GetBookCountByAddedUser(int userId, int libraryId);
     }
 
     public partial class Repository : IBookRepository
@@ -481,6 +482,22 @@ namespace DAL.Repositories
           new[] { 
                 new SqlParameter("@bookId", bookId), 
             });
+        }
+
+
+        public int GetBookCountByAddedUser(int userId, int libraryId)
+        {
+            int user = 0;
+
+            _dbRead.Execute(
+                "BooksGetCountByAddedUserId",
+            new[] { 
+                new SqlParameter("@userId", userId),
+                new SqlParameter("@libraryId", libraryId),
+             },
+                r => user = Read<int>(r, "num"));
+
+            return user;
         }
     }
 }

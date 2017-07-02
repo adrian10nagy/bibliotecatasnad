@@ -3,6 +3,7 @@ namespace Admin
 {
     using BL.Cache;
     using BL.Constants;
+    using BL.Managers;
     using DAL.Entities;
     using System;
     using System.Collections.Generic;
@@ -35,6 +36,17 @@ namespace Admin
             var user = Session[SessionConstants.LoginUser] as User;
 
             LoadMainLogoImage(user);
+            SetMenuVisibility(user);
+        }
+
+        private void SetMenuVisibility(User user)
+        {
+            mainMenuDashboard.Visible = true;
+            mainMenuBooks.Visible = UserRightsManager.CanAccessBooksModule(user.Id);
+            mainMenuUsers.Visible = UserRightsManager.CanAccesUsersModule(user.Id);
+            mainMenuRaports.Visible = UserRightsManager.CanAccessRaportsModule(user.Id);
+            mainMenuLoans.Visible = true;
+            mainMenuAdmin.Visible = user.Id == 1;
         }
 
         private void LoadMainLogoImage(User user)

@@ -14,7 +14,7 @@ namespace Admin.Users
     using Helpers.Constants;
     using BL.Constants;
 
-    public partial class Manage : System.Web.UI.Page
+    public partial class Manage : UsersBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {

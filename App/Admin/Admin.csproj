@@ -285,6 +285,9 @@
     <Compile Include="Books\Add.aspx.designer.cs">
       <DependentUpon>Add.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Books\BooksBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Books\Manage.aspx.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -368,6 +371,9 @@
     <Compile Include="Reports\Loans.aspx.designer.cs">
       <DependentUpon>Loans.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RaportsBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="SessionHeartbeat.ashx.cs">
       <DependentUpon>SessionHeartbeat.ashx</DependentUpon>
     </Compile>
@@ -398,6 +404,9 @@
     </Compile>
     <Compile Include="Users\Manage.aspx.designer.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\UsersBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

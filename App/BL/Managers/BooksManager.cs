@@ -17,6 +17,11 @@ namespace BL.Managers
             return Kit.Instance.Books.GetBookCount(libraryId);
         }
 
+        public static int GetBooksNrByAddedUser(int userId, int libraryId)
+        {
+            return Kit.Instance.Books.GetBookCountByAddedUser(userId, libraryId);
+        }
+
         public static IEnumerable<Book> GetAllBooks(int libraryId)
         {
             var bookcacheKey = string.Format(CacheConstants.BooksGetAll, libraryId);

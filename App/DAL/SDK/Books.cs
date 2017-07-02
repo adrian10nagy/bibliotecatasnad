@@ -93,5 +93,10 @@ namespace DAL.SDK
         {
             return _repository.GetBookByISBN(isbn, libraryId);
         }
+
+        public int GetBookCountByAddedUser(int userId, int libraryId)
+        {
+            return _repository.GetBookCountByAddedUser(userId, libraryId);
+        }
     }
 }

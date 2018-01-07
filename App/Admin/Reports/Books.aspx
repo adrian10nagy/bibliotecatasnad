@@ -6,6 +6,20 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="row">
+
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="x_panel tile fixed_height_320">
+                <div class="x_title">
+                    <h2>Descarcă lista cu cărțile</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <asp:Button type="button" runat="server" id="Button1" CssClass="btn btn-main" Text="Descarcă PDF"  OnClick="btnBooksDownloadPdf_Click"/>
+                    <asp:Button type="button" runat="server" id="btnBooksDownloadExcel" CssClass="btn btn-main" Text="Descarcă EXCEL"  OnClick="btnBooksDownloadExcel_Click"/>
+                </div>
+            </div>
+        </div>
+
         <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="x_panel tile fixed_height_320 overflow_hidden">
                 <div class="x_title">
@@ -112,7 +126,7 @@
             }
         })
 
-       
+
 
     </script>
     <!-- /gauge.js -->

@@ -374,9 +374,10 @@ namespace Admin.Books
 
         protected void drdBooksAutors_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (drdBooksAutors.SelectedValue.ToNullableInt() != 0)
+            var drpBooksAuthorSelected = drdBooksAutors.SelectedValue.ToNullableInt();
+            if (drpBooksAuthorSelected.HasValue && drpBooksAuthorSelected.Value != 0)
             {
-                var author = AuthorsManager.GetById(drdBooksAutors.SelectedValue.ToNullableInt().Value);
+                var author = AuthorsManager.GetById(drpBooksAuthorSelected.Value);
                 if (author != null)
                 {
                     var listItem = new ListItem

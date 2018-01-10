@@ -54,6 +54,10 @@ namespace BL.Services
             string addressOld = "https://www.googleapis.com/books/v1/volumes?q={0}";
 
             List<string> selfLinks = new List<string>();
+            if(!string.IsNullOrEmpty(title))
+            {
+                title = title.Trim();
+            }
             var result = RequestManager.GetBookFromGoogleApi(title, addressOld);
 
             var bookLibNet = RequestManager.GetcontentFromLibrarieNet(title);

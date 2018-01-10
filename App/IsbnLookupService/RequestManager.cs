@@ -98,87 +98,88 @@ namespace IsbnLookupService
         /// <returns></returns>
         public static async Task<List<Book>> GetBookFromGoogleApiAsync(string isbn, string address)
         {
-                var books = new List<Book>();
-                // validate input
-                if (string.IsNullOrEmpty(isbn))
-                {
-                    return books;
-                }
+            var books = new List<Book>();
+            // validate input
+            if (string.IsNullOrEmpty(isbn))
+            {
+                return books;
+            }
 
-                try
+            try
+            {
+                using (WebClient client = new WebClient())
                 {
-                    using (WebClient client = new WebClient())
+                    client.Encoding = System.Text.Encoding.UTF8;
+                    var downloadString = client.DownloadString(string.Format(address, isbn));
+
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    GoogleApiResponse googleBooks = js.Deserialize<GoogleApiResponse>(downloadString);
+                    if (googleBooks.totalItems > 0)
                     {
-                        client.Encoding = System.Text.Encoding.UTF8;
-                        var downloadString = client.DownloadString(string.Format(address, isbn));
-
-                        JavaScriptSerializer js = new JavaScriptSerializer();
-                        GoogleApiResponse googleBooks = js.Deserialize<GoogleApiResponse>(downloadString);
-                        if (googleBooks.totalItems > 0)
+                        foreach (var item in googleBooks.items)
                         {
-                            foreach (var item in googleBooks.items)
-                            {
-                                    var bookDownloadString = client.DownloadString(item.selfLink);
-                                    BooksApiResponse bookResponse = js.Deserialize<BooksApiResponse>(bookDownloadString);
+                            var bookDownloadString = client.DownloadString(item.selfLink);
+                            BooksApiResponse bookResponse = js.Deserialize<BooksApiResponse>(bookDownloadString);
 
-                                    // map to Book
-                                    var book = MapGoogleApiBookToDalBook(bookResponse, isbn);
-                                    books.Add(book);
-                            }
+                            // map to Book
+                            var book = MapGoogleApiBookToDalBook(bookResponse, isbn);
+                            books.Add(book);
                         }
                     }
                 }
-                catch (Exception e)
-                {
-                    ErrorLog er = new ErrorLog();
-                    er.CreatedDate = DateTime.Now;
-                    er.Message = "Method: GetBookFromGoogleApi: Address: " + address +
-                        " isbn: " + isbn +
-                        " InnerException: " + e.InnerException +
-                        " Message: " + e.Message;
-                    Kit.Instance.ErrorLogs.AddErrorLog(er);
-                    return books;
-                }
-
+            }
+            catch (Exception e)
+            {
+                ErrorLog er = new ErrorLog();
+                er.CreatedDate = DateTime.Now;
+                er.Message = "Method: GetBookFromGoogleApi: Address: " + address +
+                    " isbn: " + isbn +
+                    " InnerException: " + e.InnerException +
+                    " Message: " + e.Message;
+                Kit.Instance.ErrorLogs.AddErrorLog(er);
                 return books;
+            }
+
+            return books;
         }
 
         private static Book MapGoogleApiBookToDalBook(BooksApiResponse item, string isbn)
         {
             DateTime bookPublishedDate = DateTime.MinValue;
-
-            if (item.volumeInfo.publishedDate != null)
+            var publishedDate = item.volumeInfo.publishedDate;
+            if (publishedDate != null)
             {
+                publishedDate = publishedDate.Replace("*", "");
 
-                if (DateTime.TryParseExact(item.volumeInfo.publishedDate,
+                if (DateTime.TryParseExact(publishedDate,
                        "yyyy-dd-MM",
                        CultureInfo.InvariantCulture,
                        DateTimeStyles.None,
                        out bookPublishedDate))
                 {
                 }
-                else if (DateTime.TryParseExact(item.volumeInfo.publishedDate,
+                else if (DateTime.TryParseExact(publishedDate,
                        "yyyy-MM-dd",
                        CultureInfo.InvariantCulture,
                        DateTimeStyles.None,
                        out bookPublishedDate))
                 {
                 }
-                else if (DateTime.TryParseExact(item.volumeInfo.publishedDate,
+                else if (DateTime.TryParseExact(publishedDate,
                       "yyyy",
                       CultureInfo.InvariantCulture,
                       DateTimeStyles.None,
                       out bookPublishedDate))
                 {
                 }
-                else if (DateTime.TryParseExact(item.volumeInfo.publishedDate,
+                else if (DateTime.TryParseExact(publishedDate,
                       "dd-MM-yyyy",
                       CultureInfo.InvariantCulture,
                       DateTimeStyles.None,
                       out bookPublishedDate))
                 {
                 }
-                else if (DateTime.TryParseExact(item.volumeInfo.publishedDate,
+                else if (DateTime.TryParseExact(publishedDate,
                  "yyyy-MM",
                  CultureInfo.InvariantCulture,
                  DateTimeStyles.None,
@@ -190,7 +191,7 @@ namespace IsbnLookupService
                     ErrorLog er = new ErrorLog();
                     er.CreatedDate = DateTime.Now;
                     er.Message = "Method: MapGoogleApiBookToDalBook Error: date not in correct format" +
-                        " date: " + item.volumeInfo.publishedDate;
+                        " date: " + publishedDate;
 
                     Kit.Instance.ErrorLogs.AddErrorLog(er);
                 }
@@ -317,7 +318,10 @@ namespace IsbnLookupService
                 var splited = page.IndexOf("<A HREF=http://aleph.bcucluj.ro:8991");
                 var splited2 = page.Remove(0, splited + 8);
                 var splited3 = splited2.IndexOf(">");
-                result = splited2.Remove(splited3);
+                if (splited3 >= 0)
+                {
+                    result = splited2.Remove(splited3);
+                }
             }
             catch (Exception e)
             {
@@ -403,19 +407,24 @@ namespace IsbnLookupService
         {
             Book book = null;
 
+            if (string.IsNullOrEmpty(url))
+            {
+                return book;
+            }
+
             using (WebClient client = new WebClient())
             {
                 string downloadString = client.DownloadString(url);
-                var index1 = downloadString.Replace("\n", " ").Replace("\t", " ").Replace("\r", " ").Split(new string[] { "<div class=\"produs_campuri\">" }, StringSplitOptions.None);
-                var title = GetDetailsByNameFromLibrarieNet(index1, "title");
-                var editura = GetDetailsByNameFromLibrarieNet(index1, "Editura:");
+                var contentSplit = downloadString.Replace("\n", " ").Replace("\t", " ").Replace("\r", " ").Split(new string[] { "<div class=\"produs_campuri\">" }, StringSplitOptions.None);
+                var title = GetDetailsByNameFromLibrarieNet(contentSplit, "title");
+                var editura = GetDetailsByNameFromLibrarieNet(contentSplit, "Editura:");
                 if (string.IsNullOrEmpty(editura))
                 {
-                    editura = GetDetailsByNameFromLibrarieNet(index1, "Producator:");
+                    editura = GetDetailsByNameFromLibrarieNet(contentSplit, "Producator:");
                 }
-                var autor = GetDetailsByNameFromLibrarieNet(index1, "Autor(i):");
-                var an = GetDetailsByNameFromLibrarieNet(index1, "Anul aparitiei:");
-                var nrPag = GetDetailsByNameFromLibrarieNet(index1, "Nr. pagini:");
+                var autor = GetDetailsByNameFromLibrarieNet(contentSplit, "Autor(i):");
+                var an = GetDetailsByNameFromLibrarieNet(contentSplit, "Anul aparitiei:");
+                var nrPag = GetDetailsByNameFromLibrarieNet(contentSplit, "Nr. pagini:");
 
                 book = new Book
                 {
@@ -448,19 +457,22 @@ namespace IsbnLookupService
                 if (item.Contains(property))
                 {
                     var itemChanged = item.Replace(property, string.Empty);
-                    var i = Regex.Replace(itemChanged, "<.*?>", String.Empty);
+                    var textWithoutHtmlTags = Regex.Replace(itemChanged, "<.*?>", String.Empty);
                     if (property.Contains("title"))
                     {
-                        var ii = i.IndexOf("var cookiesNote=new stickynote");
-                        var ii2 = i.Remove(ii).Trim();
-                        return ii2;
+                        var ii = textWithoutHtmlTags.IndexOf("var cookiesNote=new stickynote");
+                        if (ii >= 0)
+                        {
+                            var title = textWithoutHtmlTags.Remove(ii).Trim();
+                            return title;
+                        }
                     }
                     else if (property.Contains("Nr. pagini:"))
                     {
-                        i = i.Replace("pagini", string.Empty);
+                        textWithoutHtmlTags = textWithoutHtmlTags.Replace("pagini", string.Empty);
                     }
 
-                    return i.Trim();
+                    return textWithoutHtmlTags.Trim();
                 }
             }
 
@@ -474,9 +486,15 @@ namespace IsbnLookupService
             var splited3 = splited2.IndexOf("href=\"http://www.librarie.net/p");
             var splited4 = splited2.Remove(0, splited3 + 6);
             var splited5 = splited4.IndexOf("\">");
-            var splited6 = splited4.Remove(splited5);
-
-            return splited6;
+            if (splited5 >= 0)
+            {
+                var splited6 = splited4.Remove(splited5);
+                return splited6;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 

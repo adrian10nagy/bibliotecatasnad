@@ -17,6 +17,13 @@
     <asp:ContentPlaceHolder ID="MainStyle" runat="server">
     </asp:ContentPlaceHolder>
     <meta name="description" content="Administrare Biblioteca Tăsnad" />
+    	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+	    (adsbygoogle = window.adsbygoogle || []).push({
+	        google_ad_client: "ca-pub-1269310899675866",
+	        enable_page_level_ads: true
+	    });
+	</script>
 </head>
 <body class="nav-md">
     <form runat="server" defaultbutton="">

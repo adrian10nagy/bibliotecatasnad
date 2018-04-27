@@ -1,5 +1,11 @@
 use bibliotecaTasnad
 
+create table ISBN(
+	Id	int not null primary key identity(1,1),
+	Value nvarchar(50) not null,
+	Id_Book int not null foreign key REFERENCES Books(Id)
+)
+
 create table ErrorLogs(
 	Id	int not null primary key identity(1,1),
 	[Message] nvarchar(MAX) not null,

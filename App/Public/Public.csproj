@@ -305,6 +305,7 @@
       <DependentUpon>tether.min.js</DependentUpon>
     </Content>
     <Content Include="Views\Cont\Setări.cshtml" />
+    <Content Include="Views\Cont\Setari.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
